@@ -63,7 +63,7 @@ gitbook build . ./output
 
 新建book.json，可以做一些配置，比如标题，作者，指定readme文件，关闭分享链接等。
 
-![](blob:https://www.gitbook.com/d088c171-3956-4ff2-8a5e-b0041301a3a4)
+![](/assets/微信截图_20170629131627.png)
 
 [http://blog.csdn.net/axi295309066/article/details/61420694](http://blog.csdn.net/axi295309066/article/details/61420694)
 
