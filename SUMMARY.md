@@ -26,6 +26,8 @@
   * [常用命令清单](LearnGit/chang-yong-ming-ling-qing-dan.md)
 * [学习记录](internshiptraining.md)
   * [Linux](internshiptraining/linux.md)
+  * [Linux面试题](internshiptraining/linuxCaseInterview.md)
+  * [Linux常用指令](internshiptraining/linuxCommonInstructions.md)
   * [VIM](internshiptraining/vim.md)
   * [Nginx](internshiptraining/nginx.md)
 * [前端知识积累](qian-duan-zhi-shi-ji-lei.md)
