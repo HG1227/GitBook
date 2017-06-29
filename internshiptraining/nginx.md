@@ -4,17 +4,17 @@ Nginx
 
 ssh member@haomo-studio.com
 
-![](blob:https://www.gitbook.com/2bc9673d-6384-4623-941a-642015b0d2d4)
+![](/assets/Nginx1.png)
 
 2、打开nginx配置文件
 
 vim /etc/nginx/nginx.conf
 
-![](blob:https://www.gitbook.com/62e061d3-b772-4809-a789-97e5819d2051)
+![](/assets/Nginx2.png)
 
 3、找到organization对应接口，修改return里的东西
 
-![](blob:https://www.gitbook.com/c948ecb7-30b8-42a1-a1b8-65dbe0db6180)
+![](/assets/Nginx3.png)
 
 {
 
@@ -82,7 +82,7 @@ vim /etc/nginx/nginx.conf
 
 }
 
-![](blob:https://www.gitbook.com/f12d15ff-b68d-43dc-a77b-78133af2a51e)
+![](/assets/Nginx4.png)
 
 4、保存并退出
 
