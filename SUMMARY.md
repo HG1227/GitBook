@@ -13,13 +13,13 @@
     * [KPI&OKR](HaoMoBook/kpiandokr.md)
     * [设计模式](HaoMoBook/she-ji-mo-shi.md)
   * 4月23日培训
-  * [Kama](HaoMoBook/kama.md)
+    * [Kama](HaoMoBook/kama.md)
   * 5月7日培训
-  * [Yarn](HaoMoBook/yarn.md)
-  * [PM2](HaoMoBook/pm2.md)
-  * [Istanbul&codecov](HaoMoBook/istanbulandcodecov.md)
+    * [Yarn](HaoMoBook/yarn.md)
+    * [PM2](HaoMoBook/pm2.md)
+    * [Istanbul&codecov](HaoMoBook/istanbulandcodecov.md)
   * 5月21日培训
-  * [工作流](HaoMoBook/gong-zuo-liu.md)
+    * [工作流](HaoMoBook/gong-zuo-liu.md)
 * [学习Git](xue-xi-git.md)
   * [如何删除项目](LearnGit/ru-he-shan-chu-xiang-mu.md)
   * [多个ssh\_key的生成与使用](LearnGit/duo-ge-ssh-key-de-sheng-cheng-yu-shi-yong.md)
