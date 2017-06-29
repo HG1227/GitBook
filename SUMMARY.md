@@ -2,11 +2,11 @@
 
 * [简介](README.md)
 * [毫末培训记录](hao-mo-pei-xun-ji-lu.md)
-  * [4月1日培训](HaoMoBook/4yue-1-ri-pei-xun.md)
-  * [测试自动化](HaoMoBook/ce-shi-zi-dong-hua.md)
-  * [NPM的使用](HaoMoBook/npmde-shi-yong.md)
-  * [Gitbook的使用](HaoMoBook/gitbookde-shi-yong.md)
-  * [Git](HaoMoBook/git.md)
+  * 4月1日培训
+    * [测试自动化](HaoMoBook/ce-shi-zi-dong-hua.md)
+    * [NPM的使用](HaoMoBook/npmde-shi-yong.md)
+    * [Gitbook的使用](HaoMoBook/gitbookde-shi-yong.md)
+    * [Git](HaoMoBook/git.md)
   * 4月16日培训
     * [Navicat&Jmeteer](HaoMoBook/navicatandjmeteer.md)
     * [JEST](HaoMoBook/jest.md)
