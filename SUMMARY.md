@@ -2,24 +2,24 @@
 
 * [简介](README.md)
 * 毫末培训记录
-  * 4月1日培训
-  * 测试自动化
-  * NPM的使用
-  * Gitbook的使用
-  * Git
+  * [4月1日培训](4yue-1-ri-pei-xun.md)
+  * [测试自动化](ce-shi-zi-dong-hua.md)
+  * [NPM的使用](npmde-shi-yong.md)
+  * [Gitbook的使用](gitbookde-shi-yong.md)
+  * [Git](git.md)
   * 4月16日培训
-  * Navicat&Jmeteer
-  * JEST
-  * KPI&OKR
-  * 设计模式
+  * [Navicat&Jmeteer](navicatandjmeteer.md)
+  * [JEST](jest.md)
+  * [KPI&OKR](kpiandokr.md)
+  * [设计模式](she-ji-mo-shi.md)
   * 4月23日培训
-  * Kama
+  * [Kama](kama.md)
   * 5月7日培训
-  * Yarn
-  * PM2
-  * Istanbul&codecov
+  * [Yarn](yarn.md)
+  * [PM2](pm2.md)
+  * [Istanbul&codecov](istanbulandcodecov.md)
   * 5月21日培训
-  * 工作流
+  * [工作流](gong-zuo-liu.md)
 * [学习Git](xue-xi-git.md)
   * [如何删除项目](xue-xi-git/ru-he-shan-chu-xiang-mu.md)
   * [多个ssh\_key的生成与使用](xue-xi-git/duo-ge-ssh-key-de-sheng-cheng-yu-shi-yong.md)
