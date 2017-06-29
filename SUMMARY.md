@@ -8,10 +8,10 @@
   * [Gitbook的使用](HaoMoBook/gitbookde-shi-yong.md)
   * [Git](HaoMoBook/git.md)
   * 4月16日培训
-  * [Navicat&Jmeteer](HaoMoBook/navicatandjmeteer.md)
-  * [JEST](HaoMoBook/jest.md)
-  * [KPI&OKR](HaoMoBook/kpiandokr.md)
-  * [设计模式](HaoMoBook/she-ji-mo-shi.md)
+    * [Navicat&Jmeteer](HaoMoBook/navicatandjmeteer.md)
+    * [JEST](HaoMoBook/jest.md)
+    * [KPI&OKR](HaoMoBook/kpiandokr.md)
+    * [设计模式](HaoMoBook/she-ji-mo-shi.md)
   * 4月23日培训
   * [Kama](HaoMoBook/kama.md)
   * 5月7日培训
