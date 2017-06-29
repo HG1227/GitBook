@@ -35,11 +35,13 @@ SUMMARY.md 是书籍的目录结构
 
 * SUMMARY.md目录
 
-![](http://gtms01.alicdn.com/tps/i1/TB1OwZ8JXXXXXbDXVXX_0dR.XXX-876-1228.png)SUMMARY.md 是书籍的目录结构，格式如上，每一行对应一个相应的文件
+![](/assets/GitBookUse1.png)
+
+SUMMARY.md 是书籍的目录结构，格式如上，每一行对应一个相应的文件
 
 * gitbook init
 
-![](http://gtms02.alicdn.com/tps/i2/TB1MmpgJpXXXXb9XpXXCVKXPXXX-476-566.png)
+![](/assets/GitBookUse2.png)
 
 执行 gitbook init 会根据 SUMMARY.md 目录生成对应的文件夹和 md 文件，每一个 md 文件对应每一章节，每一章节的内容在对应的 md 文件里编辑。
 
@@ -47,7 +49,7 @@ SUMMARY.md 是书籍的目录结构
 
 * gitbook build
 
-![](http://gtms03.alicdn.com/tps/i3/TB1brk8JXXXXXbmXVXXVrHDJFXX-464-620.png)
+![](/assets/GitBookUse3.png)
 
 gitbook build . ./output
 
@@ -63,7 +65,7 @@ gitbook build . ./output
 
 新建book.json，可以做一些配置，比如标题，作者，指定readme文件，关闭分享链接等。
 
-![](/assets/微信截图_20170629131627.png)
+![](/assets/GitBookUse4.png)
 
 [http://blog.csdn.net/axi295309066/article/details/61420694](http://blog.csdn.net/axi295309066/article/details/61420694)
 
