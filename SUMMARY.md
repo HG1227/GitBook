@@ -1,7 +1,7 @@
 # Summary
 
 * [简介](README.md)
-* 毫末培训记录
+* [毫末培训记录](hao-mo-pei-xun-ji-lu.md)
   * [4月1日培训](4yue-1-ri-pei-xun.md)
   * [测试自动化](ce-shi-zi-dong-hua.md)
   * [NPM的使用](npmde-shi-yong.md)
