@@ -1,4 +1,4 @@
-# Linux必备面试题（1）
+# Linux必备面试题
 
 1. 在Linux系统中，以 文件 方式访问设备 。
 
@@ -96,7 +96,7 @@
 
 48. 进行远程登录的命令是 telnet 。
 
-49. 欲发送10个分组报文测试与主机abc.tuu.edu.cn的连通性，应使用的命令和参数是： ping abc.tuu.edu.cn –c 10 
+49. 欲发送10个分组报文测试与主机abc.tuu.edu.cn的连通性，应使用的命令和参数是： ping abc.tuu.edu.cn –c 10
 
 50. DNS服务器的进程命名为named，当其启动时，自动装载 /etc目录下的 named.conf 文件中定义的DNS分区数据库文件。
 
