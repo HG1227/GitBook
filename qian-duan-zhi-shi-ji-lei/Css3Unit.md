@@ -2,8 +2,6 @@
 
 ![](http://p3.pstatp.com/large/28980001eea43cdebe14 "css所有单位都在这了：px,em,rem,vh,vw……")
 
-![](http://p3.pstatp.com/large/28980001eea43cdebe14)
-
 **小伙伴们，css3单位你们听说过多少？我们在前端切图项目中用到的有px，em，rem，vh，% 其他基本没用到过了。特别是vh ，特别好用。**
 
 **附所有css单位，应该是最全的了**
