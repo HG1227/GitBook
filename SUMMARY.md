@@ -5,8 +5,6 @@
   * [Linux](internshiptraining/linux.md)
   * [VIM](internshiptraining/vim.md)
   * [Nginx](internshiptraining/nginx.md)
-* [毫末科技面试流程](haomointerview.md)
-  * [JAVA面试](haomointerview/content.md)
 * [学习Git](xue-xi-git.md)
   * [如何删除项目](xue-xi-git/ru-he-shan-chu-xiang-mu.md)
   * [多个ssh\_key的生成与使用](xue-xi-git/duo-ge-ssh-key-de-sheng-cheng-yu-shi-yong.md)
@@ -27,4 +25,27 @@
   * [移动端页面通过前端方法禁止ios页面横屏方法](qian-duan-zhi-shi-ji-lei/yi-dong-duan-ye-mian-tong-guo-qian-duan-fang-fa-jin-zhi-ios-ye-mian-heng-ping-fang-fa.md)
   * [解决ios下的微信页面背景音乐无法自动播放问题](qian-duan-zhi-shi-ji-lei/jie-jue-ios-xia-de-wei-xin-ye-mian-bei-jing-yin-le-wu-fa-zi-dong-bo-fang-wen-ti.md)
   * [深度克隆的方法](qian-duan-zhi-shi-ji-lei/shen-du-ke-long-de-fang-fa.md)
+* [毫末科技面试流程](haomointerview.md)
+  * [JAVA面试](haomointerview/content.md)
+* 毫末培训记录
+  * 4月1日培训
+  * 测试自动化
+  * NPM的使用
+  * Gitbook的使用
+  * Git
+  * 4月16日培训
+  * Navicat&Jmeteer
+  * JEST
+  * KPI&OKR
+  * 设计模式
+  * 4月23日培训
+  * Kama
+  * 5月7日培训
+  * Yarn
+  * PM2
+  * Istanbul&codecov
+  * 5月21日培训
+  * 工作流
+
+
 
