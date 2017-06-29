@@ -2,7 +2,7 @@
 
 1.链接公司wifi网络
 
-![](blob:https://www.gitbook.com/6af33fcc-d6b9-4026-a6d3-74f2e8dce7d3)
+![](/assets/5f4ec38f-50ce-40a4-afb8-06efb62e5d57.png)
 
 WIFI密码:
 
@@ -18,9 +18,9 @@ haomo-ent:$ecur1ty@haomo
 
 4.打开Techtest项目
 
-![](blob:https://www.gitbook.com/49cec2eb-a833-4b1d-b486-7619b093c38a)
+![](/assets/883765a6-3ffe-4169-ba42-76e95adbcfff.png)
 
 5.开始做习题
 
-![](blob:https://www.gitbook.com/0109302c-500a-4447-8bab-a9a112d9e55c)
+![](/assets/67d948fc-8206-4478-b393-ea8df47a1e66.png)
 
