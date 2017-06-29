@@ -44,6 +44,9 @@
   * [移动端页面通过前端方法禁止ios页面横屏方法](qian-duan-zhi-shi-ji-lei/yi-dong-duan-ye-mian-tong-guo-qian-duan-fang-fa-jin-zhi-ios-ye-mian-heng-ping-fang-fa.md)
   * [解决ios下的微信页面背景音乐无法自动播放问题](qian-duan-zhi-shi-ji-lei/jie-jue-ios-xia-de-wei-xin-ye-mian-bei-jing-yin-le-wu-fa-zi-dong-bo-fang-wen-ti.md)
   * [深度克隆的方法](qian-duan-zhi-shi-ji-lei/shen-du-ke-long-de-fang-fa.md)
+  * 排序方式
 * [毫末科技面试流程](haomointerview.md)
   * [JAVA面试](haomointerview/content.md)
+
+
 
