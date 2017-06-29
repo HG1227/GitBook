@@ -2,7 +2,7 @@
 
 1.链接公司wifi网络
 
-![](/assets/5f4ec38f-50ce-40a4-afb8-06efb62e5d57.png)
+![](/assets/JavaMianShi1.png)
 
 WIFI密码:
 
@@ -18,9 +18,9 @@ haomo-ent:$ecur1ty@haomo
 
 4.打开Techtest项目
 
-![](/assets/883765a6-3ffe-4169-ba42-76e95adbcfff.png)
+![](/assets/JavaMianShi2.png)
 
 5.开始做习题
 
-![](/assets/67d948fc-8206-4478-b393-ea8df47a1e66.png)
+![](/assets/JavaMianShi3.png)
 
