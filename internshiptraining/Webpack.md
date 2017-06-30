@@ -114,4 +114,8 @@ webpack.config.js文件entry的3种形式
 
 ![](/assets/webpack13.png)
 
+如果希望生成的html按照我们期望的格式生成可以给插件添加参数
+
+![](/assets/webpack14.png)
+
 ## 处理项目中的资源文件
