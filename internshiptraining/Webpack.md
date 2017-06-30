@@ -81,3 +81,24 @@ html、js、css
 ![](/assets/webpack8.png)
 
 ### webpack配置的entry和output
+
+webpack.config.js文件entry的3种形式
+
+1. 字符串
+
+![](/assets/webpack9.png)
+
+2. 数组
+
+![](/assets/webpack10.png)
+
+3. 对象
+
+注意:由于多个单独模块都必须只有唯一名称
+因此需要按下图方式修改output来确保输出的唯一性
+
+![](/assets/webpack11.png)
+
+此处的`[name][hash][chunkhash]`分别为
+
+![](/assets/webpack12.png)
