@@ -3,22 +3,22 @@
 ## webpack基本介绍
 
 ### webpack安装
-1. 创建目录并初始化
+* 创建目录并初始化
 
 `mkdir 文件夹名`
 
 `cd 文件夹`
 
-2. 安装开发依赖
+*  安装开发依赖
 
 `yarn add webpack --dev`
 
-3. 安装项目css-loader、style-loader依赖
+*  安装项目css-loader、style-loader依赖
 
 `yarn add css-loader style-loader --dev`
 
 ## webpack使用流程
-4. 创建项目文件
+*  创建项目文件
 
 html、js、css
 
@@ -29,7 +29,7 @@ html、js、css
 
 注意:引用方式为require
 
-5. 打包项目
+*  打包项目
 
 `webpack 目标文件 打包后文件名 需要执行的参数`
 
@@ -59,20 +59,20 @@ html、js、css
 
 ### webpack项目的从零构建
 
-1. 创建目录并初始化
-2. 安装开发依赖
+*  创建目录并初始化
+*  安装开发依赖
 
 `yarn add webpack --dev`
 
-3. 创建项目文件html、js、css
+*  创建项目文件html、js、css
 
 ![](/assets/webpack6.png)
 
-4. 编辑webpack.config.js配置文件
+*  编辑webpack.config.js配置文件
 
 ![](/assets/webpack7.png)
 
-5. 运行webpack命令
+*  运行webpack命令
 
 `webpack`
 
@@ -84,15 +84,15 @@ html、js、css
 
 webpack.config.js文件entry的3种形式
 
-1. 字符串
+*  字符串
 
 ![](/assets/webpack9.png)
 
-2. 数组
+*  数组
 
 ![](/assets/webpack10.png)
 
-3. 对象
+*  对象
 
 注意:由于多个单独模块都必须只有唯一名称
 因此需要按下图方式修改output来确保输出的唯一性
