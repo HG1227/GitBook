@@ -67,3 +67,11 @@ html、js、css
 4. 编辑webpack.config.js配置文件
 
 ![](/assets/webpack7.png)
+
+5. 运行webpack命令
+
+`webpack`
+
+目录结构发生改变 在规定位置生成bundle.js文件
+
+![](/assets/webpack8.png)
