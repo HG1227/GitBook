@@ -51,5 +51,4 @@ html、js、css
 
 `webpack hello.js hello.bundle.js --module-bind "css=style-loader!css-loader" --progress --display-modules --display-reasons`
 
-
 ![](/assets/webpack5.png)
