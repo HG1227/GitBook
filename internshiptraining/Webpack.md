@@ -1,6 +1,8 @@
 # 关于Webpack的学习记录
 
-## 安装流程
+## webpack基本介绍
+
+### webpack安装
 1. 创建目录并初始化
 
 `mkdir 文件夹名`
@@ -15,7 +17,7 @@
 
 `yarn add css-loader style-loader --dev`
 
-## 使用流程
+## webpack使用流程
 4. 创建项目文件
 
 html、js、css
@@ -53,7 +55,9 @@ html、js、css
 
 ![](/assets/webpack5.png)
 
-## webpack项目的从零构建
+## webpack基本配置
+
+### webpack项目的从零构建
 
 1. 创建目录并初始化
 2. 安装开发依赖
@@ -75,3 +79,5 @@ html、js、css
 目录结构发生改变 在规定位置生成bundle.js文件
 
 ![](/assets/webpack8.png)
+
+### webpack配置的entry和output
