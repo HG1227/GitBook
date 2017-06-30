@@ -99,7 +99,7 @@ webpack.config.js文件entry的3种形式
 注意:由于多个单独模块都必须只有唯一名称  
 因此需要按下图方式修改output来确保输出的唯一性
 
-![](/assets/webpack11 .png)
+![](/assets/webpack11.png)
 
 此处的`[name][hash][chunkhash]`分别为
 
