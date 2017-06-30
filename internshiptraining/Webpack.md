@@ -15,6 +15,7 @@
 
 `yarn add css-loader style-loader --dev`
 
+## 使用流程
 4. 创建项目文件
 
 html、js、css
@@ -23,3 +24,11 @@ html、js、css
 ![](/assets/webpack2.png)
 ![](/assets/webpack3.png)
 ![](/assets/webpack4.png)
+
+注意:引用方式为require
+
+5. 打包项目
+
+`webpack 目标文件 打包后文件名 需要执行的loader`
+
+`webpack hello.js hello.bundle.js --module-bind "css=style-loader!css-loader`
