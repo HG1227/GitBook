@@ -39,4 +39,12 @@ html、js、css
 
 `webpack hello.js hello.bundle.js --module-bind "css=style-loader!css-loader" --watch`
 
+`--progress查看打包过程参数`
+
+`webpack hello.js hello.bundle.js --module-bind "css=style-loader!css-loader" --progress`
+
+`--display-modules查看打包模块参数`
+
+`webpack hello.js hello.bundle.js --module-bind "css=style-loader!css-loader" --progress --display-modules`
+
 ![](/assets/webpack5.png)
