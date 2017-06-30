@@ -30,6 +30,7 @@
   * [Linux常用指令](internshiptraining/linuxCommonInstructions.md)
   * [VIM](internshiptraining/vim.md)
   * [Nginx](internshiptraining/nginx.md)
+  * [Webpack](internshiptraining/Webpack.md)
 * [前端知识积累](qian-duan-zhi-shi-ji-lei.md)
   * [CSS解决loading效果](qian-duan-zhi-shi-ji-lei/cssjie-jue-loading-xiao-guo.md)
   * [LESS Sass 编译工具Koala介绍](qian-duan-zhi-shi-ji-lei/less-sass-bian-yi-gong-ju-koala-jie-shao.md)
