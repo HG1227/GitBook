@@ -31,6 +31,12 @@ html、js、css
 
 `webpack 目标文件 打包后文件名 需要执行的参数`
 
-`webpack hello.js hello.bundle.js --module-bind "css=style-loader!css-loader`
+`--module-bind模块绑定参数`
+
+`webpack hello.js hello.bundle.js --module-bind "css=style-loader!css-loader"`
+
+`--watch监听参数`
+
+`webpack hello.js hello.bundle.js --module-bind "css=style-loader!css-loader" --watch`
 
 ![](/assets/webpack5.png)
