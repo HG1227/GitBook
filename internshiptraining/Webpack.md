@@ -105,3 +105,8 @@ webpack.config.js文件entry的3种形式
 
 ![](/assets/webpack12.png)
 
+## 生成项目中的html页面文件
+
+### 自动化生成项目中的html页面
+
+## 处理项目中的资源文件
