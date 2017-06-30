@@ -110,12 +110,16 @@ webpack.config.js文件entry的3种形式
 ### 自动化生成项目中的html并对打包后的js自动引入
 
 注意:此处的path不可省略并必须严格加上`__dirname`并且在目录结构处必须写成`/dist/`才能找到
-另外值得注意的是,生成的js、html均在`dist/js`文件夹下
 
 ![](/assets/webpack/webpack13.png)
 
 如果希望生成的html按照我们期望的格式生成可以给插件添加参数
 
 ![](/assets/webpack/webpack14.png)
+
+另外值得注意的是,生成的js、html均在`dist/js`文件夹下
+如果期望按照正常生产环境格式输出则改变一下path和filename
+
+![](/assets/webpack/webpack15.png)
 
 ## 处理项目中的资源文件
