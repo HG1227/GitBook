@@ -107,6 +107,11 @@ webpack.config.js文件entry的3种形式
 
 ## 生成项目中的html页面文件
 
-### 自动化生成项目中的html页面
+### 自动化生成项目中的html并对打包后的js自动引入
+
+注意:此处的path不可省略并必须严格加上`__dirname`并且在目录结构处必须写成`/dist/`才能找到
+另外值得注意的是,生成的js、html均在`dist/js`文件夹下
+
+![](/assets/webpack13.png)
 
 ## 处理项目中的资源文件
