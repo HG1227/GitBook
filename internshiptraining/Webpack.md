@@ -52,3 +52,18 @@ html、js、css
 `webpack hello.js hello.bundle.js --module-bind "css=style-loader!css-loader" --progress --display-modules --display-reasons`
 
 ![](/assets/webpack5.png)
+
+## webpack项目的从零构建
+
+1. 创建目录并初始化
+2. 安装开发依赖
+
+`yarn add webpack --dev`
+
+3. 创建项目文件html、js、css
+
+![](/assets/webpack6.png)
+
+4. 编辑webpack.config.js配置文件
+
+![](/assets/webpack7.png)
