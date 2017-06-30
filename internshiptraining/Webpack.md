@@ -18,3 +18,8 @@
 4. 创建项目文件
 
 html、js、css
+
+![](/assets/webpack1.png)
+![](/assets/webpack2.png)
+![](/assets/webpack3.png)
+![](/assets/webpack4.png)
