@@ -20,6 +20,8 @@
     * [Istanbul&codecov](HaoMoBook/istanbulandcodecov.md)
   * 5月21日培训
     * [工作流](HaoMoBook/gong-zuo-liu.md)
+  * 7月2日培训
+    * [自动化接口使用](HaoMoBook/portDocument.md)
 * [学习Git](xue-xi-git.md)
   * [如何删除项目](LearnGit/ru-he-shan-chu-xiang-mu.md)
   * [多个ssh\_key的生成与使用](LearnGit/duo-ge-ssh-key-de-sheng-cheng-yu-shi-yong.md)
