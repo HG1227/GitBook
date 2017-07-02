@@ -87,7 +87,7 @@ edit:接口功能
 }
 ```
 
-### 例子:查询并有条件
+### 例子1:查询并有条件
 
 ![](/assets/portDocument/portDocument9.png)
 
@@ -104,7 +104,72 @@ work_reports:表名复数
 
 ![](/assets/portDocument/portDocument11.png)
 
+### 例子2:查询并有条件
 
+![](/assets/portDocument/portDocument12-1.png)
 
+![](/assets/portDocument/portDocument12-2.png)
 
+![](/assets/portDocument/portDocument12-3.png)
 
+![](/assets/portDocument/portDocument12-4.png)
+
+## 从外键表查主键表数据
+
+![](/assets/portDocument/portDocument12.png)
+
+* @param includes JSON字符串, 用来将本表的外链字段(table_id类似的字段)指向的外链表的完整行数据返回, 格式为
+```
+{
+    'include_table1': {     外链表 表名1   本表所对应的主键表
+        includes: ['include_table11', 'include_table12']  与主表所对应的外键
+    },
+    'include_table2': {    外链表 表名2
+        includes: ['include_table21', 'include_table22']  与主表所对应的外键
+    }
+}
+```
+
+## 从主键表查外键表数据
+
+![](/assets/portDocument/portDocument13.png)
+
+* @param refers JSON字符串, 用来将其他表的外链字段为本表的表数据返回, 格式为
+```
+{
+    'refer_table1': {        主键id所对应的外键表 表名1  本表所对应的外键表
+        includes: ['include_table11', 'include_table12']   外键表的外键字段
+    },
+    'refer_table2': {        主键id所对应的外键表 表名2
+        includes: ['include_table21', 'include_table22']   外键表的外键字段
+    }
+}
+```
+
+### 例子:
+
+![](/assets/portDocument/portDocument14.png)
+
+* filters
+
+![](/assets/portDocument/portDocument15.png)
+
+* refers
+
+![](/assets/portDocument/portDocument16.png)
+
+## 两个表没主外键关系但值相同
+
+![](/assets/portDocument/portDocument17.png)
+
+* @param relates JSON字符串, 用来将其他有间接关系的表(所谓间接关系, 一定是跟本表的某个字段名一致, 且指向同一张表),两张表中非主键的两个字段相等
+```
+{
+    'relate_table1': ['column1', 'column2'],    '关联的另一张表名':['一致的字段名']   
+    'relate_table1': ['column3', 'column4']
+}
+```
+
+主键: 主键是能确定一条记录的唯一标识，自动生成的主键为id
+外键: 外键用于与另一张表的关联。是能确定另一张表记录的字段，用于保持数据的一致性
+查询列表接口名称:为表名的复数形式
