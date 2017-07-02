@@ -12,11 +12,11 @@
 
 ```
 http://bcs.hitevision.com/v1/work_reports/new
-http://bcs.hitevision.com/v1/：域名
-work_reports:表名复数
-new:接口功能
+域名:http://bcs.hitevision.com/v1/
+表名复数:work_reports
+接口功能:new
 X-Auth-Token:7bfbe22249a244b88daf903f951c6481
-X-Auth-Token:用户信息
+用户信息:X-Auth-Token
 ```
 
 ## 删除数据
@@ -25,10 +25,10 @@ X-Auth-Token:用户信息
 
 ```
 http://bcs.hitevision.com/v1/work_reports/980beb8304d14e8482f25f0b25e64d63/delete
-http://bcs.hitevision.com/v1/：域名
-work_reports:表名复数
-980beb8304d14e8482f25f0b25e64d63:数据id
-delete:接口功能
+域名:http://bcs.hitevision.com/v1/
+表名复数:work_reports
+数据id:980beb8304d14e8482f25f0b25e64d63
+接口功能:delete
 ```
 
 ## 修改数据
@@ -39,10 +39,10 @@ delete:接口功能
 
 ```
 http://bcs.hitevision.com/v1/work_reports/980beb8304d14e8482f25f0b25e64d63/edit
-http://bcs.hitevision.com/v1/:域名
-work_reports:表名复数
-980beb8304d14e8482f25f0b25e64d63:修改数据id
-edit:接口功能
+域名:http://bcs.hitevision.com/v1/
+表名复数:work_reports
+修改数据id:980beb8304d14e8482f25f0b25e64d63
+接口功能:edit
 ```
 
 ## 查询数据
@@ -93,9 +93,9 @@ edit:接口功能
 
 ```
 http://bcs.hitevision.com/v1/work_reports?filters=%7B%22work_report%22%3A%7B%22id%22%3A%7B%22equalTo%22%3A%22980beb8304d14e8482f25f0b25e64d63%22%7D%7D%7D
-http://bcs.hitevision.com/v1/:域名
-work_reports:表名复数
-?filters=%7B%22work_report%22%3A%7B%22id%22%3A%7B%22equalTo%22%3A%22980beb8304d14e8482f25f0b25e64d63%22%7D%7D%7D:条件
+域名:http://bcs.hitevision.com/v1/
+表名复数:work_reports
+条件:?filters=%7B%22work_report%22%3A%7B%22id%22%3A%7B%22equalTo%22%3A%22980beb8304d14e8482f25f0b25e64d63%22%7D%7D%7D
 ```
 
 [编码与解码工具](http://tool.css-js.com/urldecode.html)
