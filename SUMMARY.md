@@ -23,6 +23,7 @@
   * 5月14日培训
   * 5月21日培训
     * [工作流](HaoMoBook/gong-zuo-liu.md)
+    * [SmartClient](HaoMoBook/SmartClient.md)
   * 6月4日培训
   * 6月18日培训
   * 7月2日培训
