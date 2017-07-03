@@ -34,7 +34,7 @@
   * [VIM](internshiptraining/vim.md)
   * [Nginx](internshiptraining/nginx.md)
   * [Webpack](internshiptraining/Webpack.md)
-* [前端知识积累](WebKnowledgeAccumulation.md)
+* [前端知识积累](WebTips.md)
   * [CSS解决loading效果](webTips/cssjie-jue-loading-xiao-guo.md)
   * [LESS Sass 编译工具Koala介绍](webTips/less-sass-bian-yi-gong-ju-koala-jie-shao.md)
   * [Markdown 标记示例](webTips/markdown-biao-ji-shi-li.md)
