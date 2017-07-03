@@ -17,7 +17,8 @@
   * 5月7日培训
     * [Yarn](HaoMoBook/yarn.md)
     * [PM2](HaoMoBook/pm2.md)
-    * [Istanbul&codecov](HaoMoBook/istanbulandcodecov.md)
+    * [Istanbul](HaoMoBook/istanbul.md)
+    * [codecov](HaoMoBook/codecov.md)
   * 5月21日培训
     * [工作流](HaoMoBook/gong-zuo-liu.md)
   * 7月2日培训
