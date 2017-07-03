@@ -16,26 +16,30 @@
 
 先看下平时使用audio标签插入背景音乐的代码：
 
-`<audio id="Jaudio" class="media-audio" src="bg.mp3" autoplay preload loop="loop"></audio >`
+```
+<audio id="Jaudio" class="media-audio" src="bg.mp3" autoplay preload loop="loop"></audio >
+```
 
 正常来说，上面的写法在安卓和大部分IOS机子的微信是可以播放的（safari这里就忽略讨论），可以扫一扫demo测试下你的手机或者[点击查看demo&gt;&gt;](http://www.w3cmark.com/demo/html5-audio/index2.html)：
 
-如果上面的demo，你的ios微信可以播放，说明你的是大部分正常的手机。如果不能播放，哈哈，你成为了少部分不能正常播放的幸运者。。。
+如果上面的demo，你的ios微信可以播放，说明你的是大部分正常的手机。如果不能播放，哈哈，你成为了少部分不能正常播放的幸运者...
 
 那代码有办法解决这少部分用户呢？如何解决呢？
 
 答案的关键就是微信的WeixinJSBridgeReady事件。这个是微信自带提供的事件，测试发现，上面说的少部分的机子微信只要做微信ready后执行播放，就可以用代码实现自动播放功能了！具体代码请看下面：
 
-`<audio id="Jaudio" class="media-audio" src="bg.mp3" preload loop="loop"></audio >`
+```
+<audio id="Jaudio" class="media-audio" src="bg.mp3" preload loop="loop"></audio >
+function audioAutoPlay(id){
+    var audio = document.getElementById(id);
+    audio.play();
+    document.addEventListener("WeixinJSBridgeReady", function () {
+        audio.play();
+    }, false);
+}
+audioAutoPlay('Jaudio');
+```
 
-`function audioAutoPlay(id){`  
-`var audio = document.getElementById(id);`  
-`audio.play();`  
-`document.addEventListener("WeixinJSBridgeReady", function () {`  
-`audio.play();`  
-`}, false);`  
-`}`  
-`audioAutoPlay('Jaudio');`  
 刚才如果你第一个demo不能播放的童鞋可以再扫一扫测试下或者[点击查看demo&gt;&gt;](http://www.w3cmark.com/demo/html5-audio/index.html)（如果第一个demo已经测试正常的，这个肯定是正常的啦）
 
 是不是听到声音了呢？！！解决方案就是这么简单。
@@ -52,48 +56,50 @@
 
 那么针对已知的三种情况，关于自动播放背景音乐的问题，我们来总结一下综合解决方案代码吧：
 
-`<!DOCTYPE HTML>`  
-`<html>`  
-`<head>`  
-`<meta charset="utf-8">`  
-`<meta name="format-detection" content="telephone=no"/>`  
-`<title>IOS微信</title>`  
-`<meta name="keywords" content=""/>`  
-`<meta name="description" content=""/>`  
-`<script type="text/javascript">`  
-`//原来是在微信易信执行Ready之前，先注册事件，所以放在所有请求的最前面`  
-`document.addEventListener("WeixinJSBridgeReady", function () {`  
-`audioAutoPlay('Jaudio');//给个全局函数`  
-`}, false);`  
-`document.addEventListener('YixinJSBridgeReady', function() {`  
-`audioAutoPlay('Jaudio');//给个全局函数`  
-`}, false);`  
-`</script>`  
-`<!-- 加载css放这里 -->`  
-`</head>`  
-`<body>`
+```
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>IOS微信</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <script type="text/javascript">`  
+    //原来是在微信易信执行Ready之前，先注册事件，所以放在所有请求的最前面
+    document.addEventListener("WeixinJSBridgeReady", function () {
+        audioAutoPlay('Jaudio');//给个全局函数
+    }, false);
+    document.addEventListener('YixinJSBridgeReady', function() {
+        audioAutoPlay('Jaudio');//给个全局函数
+    }, false);
+    </script>
+    <!-- 加载css放这里 -->
+</head>
+<body>
 
-`<audio id="Jaudio" class="media-audio" src="http://game.163.com/weixin/gfxm3_gc/images/bg.mp3" preload loop="loop">`  
-`</audio>`
+<audio id="Jaudio" class="media-audio" src="http://game.163.com/weixin/gfxm3_gc/images/bg.mp3" preload loop="loop">
+</audio>
 
-`<script>`  
-`function audioAutoPlay(id){//全局控制播放函数`  
-`var audio = document.getElementById(id),`  
-`play = function(){`  
-`audio.play();`  
-`document.removeEventListener("touchstart",play, false);`  
-`};`  
-`audio.play();`  
-`document.addEventListener("touchstart",play, false);`  
-`}`
+<script>
+function audioAutoPlay(id){//全局控制播放函数
+    var audio = document.getElementById(id),
+    play = function(){
+        audio.play();
+        document.removeEventListener("touchstart",play, false);
+    };
+    audio.play();
+    document.addEventListener("touchstart",play, false);
+}
 
-`var isAppInside=/micromessenger/i.test(navigator.userAgent.toLowerCase())||/yixin/i.test(navigator.userAgent.toLowerCase());`  
-`if(!isAppInside){//给非微信易信浏览器`  
-`audioAutoPlay();`  
-`}`  
-`</script>`  
-`</body>`  
-`</html>`
+var isAppInside=/micromessenger/i.test(navigator.userAgent.toLowerCase())||/yixin/i.test(navigator.userAgent.toLowerCase());
+if(!isAppInside){//给非微信易信浏览器
+    audioAutoPlay();
+}
+</script>
+</body>
+</html>
+```
 
 ## [w3cmark \(http://www.w3cmark.com/2016/434.html\)](http://www.w3cmark.com/2016/434.html)
 
