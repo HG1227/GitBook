@@ -19,8 +19,11 @@
     * [PM2](HaoMoBook/pm2.md)
     * [Istanbul](HaoMoBook/istanbul.md)
     * [codecov](HaoMoBook/codecov.md)
+  * 5月14日培训
   * 5月21日培训
     * [工作流](HaoMoBook/gong-zuo-liu.md)
+  * 6月4日培训
+  * 6月18日培训
   * 7月2日培训
     * [自动化接口使用](HaoMoBook/portDocument.md)
     * [Swagger使用](HaoMoBook/Swagger.md)
