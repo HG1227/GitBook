@@ -21,6 +21,7 @@
     * [Istanbul](HaoMoBook/istanbul.md)
     * [codecov](HaoMoBook/codecov.md)
   * 5月14日培训
+    * [bower](HaoMoBook/bower.md)
   * 5月21日培训
     * [工作流](HaoMoBook/gong-zuo-liu.md)
     * [SmartClient](HaoMoBook/SmartClient.md)
