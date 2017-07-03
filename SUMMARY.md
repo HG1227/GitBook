@@ -7,6 +7,7 @@
     * [NPM的使用](HaoMoBook/npmde-shi-yong.md)
     * [Gitbook的使用](HaoMoBook/gitbookde-shi-yong.md)
     * [Git](HaoMoBook/git.md)
+    * [Markdown](HaoMoBook/markdown.md)
   * 4月16日培训
     * [Navicat&Jmeteer](HaoMoBook/navicatandjmeteer.md)
     * [JEST](HaoMoBook/jest.md)
