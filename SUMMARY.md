@@ -1,7 +1,7 @@
 # Summary
 
 * [简介](README.md)
-* [毫末培训记录](hao-mo-pei-xun-ji-lu.md)
+* [毫末培训记录](HaoMoTrainingRecord.md)
   * 4月1日培训
     * [测试自动化](HaoMoBook/ce-shi-zi-dong-hua.md)
     * [NPM的使用](HaoMoBook/npmde-shi-yong.md)
@@ -23,7 +23,7 @@
   * 7月2日培训
     * [自动化接口使用](HaoMoBook/portDocument.md)
     * [Swagger使用](HaoMoBook/Swagger.md)
-* [学习Git](xue-xi-git.md)
+* [学习Git](LearnGit.md)
   * [如何删除项目](LearnGit/ru-he-shan-chu-xiang-mu.md)
   * [多个ssh\_key的生成与使用](LearnGit/duo-ge-ssh-key-de-sheng-cheng-yu-shi-yong.md)
   * [常用命令清单](LearnGit/chang-yong-ming-ling-qing-dan.md)
@@ -34,7 +34,7 @@
   * [VIM](internshiptraining/vim.md)
   * [Nginx](internshiptraining/nginx.md)
   * [Webpack](internshiptraining/Webpack.md)
-* [前端知识积累](qian-duan-zhi-shi-ji-lei.md)
+* [前端知识积累](WebKnowledgeAccumulation.md)
   * [CSS解决loading效果](webTips/cssjie-jue-loading-xiao-guo.md)
   * [LESS Sass 编译工具Koala介绍](webTips/less-sass-bian-yi-gong-ju-koala-jie-shao.md)
   * [Markdown 标记示例](webTips/markdown-biao-ji-shi-li.md)
