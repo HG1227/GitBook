@@ -15,6 +15,7 @@
     * [设计模式](HaoMoBook/she-ji-mo-shi.md)
   * 4月23日培训
     * [Kama](HaoMoBook/kama.md)
+    * [GitLab](HaoMoBook/GitLab.md)
   * 5月7日培训
     * [Yarn](HaoMoBook/yarn.md)
     * [PM2](HaoMoBook/pm2.md)
