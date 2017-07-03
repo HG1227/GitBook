@@ -31,6 +31,7 @@
   * 6月4日培训
     * [Docker](HaoMoBook/Docker.md)
   * 6月18日培训
+    * [cycleJs](HaoMoBook/cycleJs.md)
   * 7月2日培训
     * [自动化接口使用](HaoMoBook/portDocument.md)
     * [Swagger使用](HaoMoBook/Swagger.md)
