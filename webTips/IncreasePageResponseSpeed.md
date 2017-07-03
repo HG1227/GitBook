@@ -2,11 +2,15 @@
 
 为了解释这个属性对于性能优化是多么有用，我们应该先明白，当不使用它时会发生什么。
 
-`<script src="example.js"></script>`
+```
+<script src="example.js"></script>
+```
 
 使用上面这种方式时，页面会在这个脚本文件被完全下载、解析、执行完后才去渲染之后的HTML，在这之前会一直处于阻塞状态。这就意味着会增加你的页面的加载时间。有时这种行为是我们希望的，而大多数时候则不想要。
 
-`<script async src="example.js"></script>`
+```
+<script async src="example.js"></script>
+```
 
 使用上面这种方式时，脚本的加载是异步的，不会影响到这之后的页面解析。脚本会在下载完之后立即执行。需要注意的是，如果有多个使用这种方式异步加载的脚本，他们是没有特定的执行顺序的。
 
@@ -14,11 +18,15 @@
 
 有两种方式可以引入一个外部的样式表：通过 标签：
 
-`<link rel="stylesheet" href="style.css">`
+```
+<link rel="stylesheet" href="style.css">
+```
 
 或者通过 @import 指令 \(使用在一个外部样式表中或者页面内嵌的style标签中\):
 
-`@import url('style.css');`
+```
+@import url('style.css');
+```
 
 当你在一个外部样式表中使用第二种方式时，浏览器无法通过并行下载的方式下载这个资源，这样就会导致其他资源的下载被阻塞
 

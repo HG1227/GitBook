@@ -43,7 +43,7 @@
   * [关于ico图标不显示解决办法](webTips/guan-yu-ico-tu-biao-bu-xian-shi-jie-jue-ban-fa.md)
   * [关于Jquery封装的AJAX基本使用方法](webTips/guan-yu-jquery-feng-zhuang-de-ajax-ji-ben-shi-yong-fang-fa.md)
   * [图片资源网站](webTips/tu-pian-zi-yuan-wang-zhan.md)
-  * [提升页面响应速度](webTips/ti-sheng-ye-mian-xiang-ying-su-du.md)
+  * [提升页面响应速度](webTips/IncreasePageResponseSpeed.md)
   * [收藏｜激发灵感的33套网页配色方案（附色值）](webTips/shou-cang-ff5c-ji-fa-ling-gan-de-33-tao-wang-ye-pei-se-fang-an-ff08-fu-se-zhi-ff09.md)
   * [有关CSS3D的插件使用介绍](webTips/you-guan-css3d-de-cha-jian-shi-yong-jie-shao.md)
   * [移动端插件](webTips/yi-dong-duan-cha-jian.md)
