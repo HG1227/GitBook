@@ -41,7 +41,7 @@
   * [Vue生命周期图例](webTips/vuesheng-ming-zhou-qi-tu-li.md)
   * [一套绝佳的图标字体库和CSS框架:Font Awesome](webTips/yi-tao-jue-jia-de-tu-biao-zi-ti-ku-he-css-kuang-67b63a-font-awesome.md)
   * [关于ico图标不显示解决办法](webTips/guan-yu-ico-tu-biao-bu-xian-shi-jie-jue-ban-fa.md)
-  * [关于Jquery封装的AJAX基本使用方法](webTips/guan-yu-jquery-feng-zhuang-de-ajax-ji-ben-shi-yong-fang-fa.md)
+  * [关于Jquery封装的AJAX基本使用方法](webTips/HowToUseAjax.md)
   * [图片资源网站](webTips/tu-pian-zi-yuan-wang-zhan.md)
   * [提升页面响应速度](webTips/IncreasePageResponseSpeed.md)
   * [收藏｜激发灵感的33套网页配色方案（附色值）](webTips/shou-cang-ff5c-ji-fa-ling-gan-de-33-tao-wang-ye-pei-se-fang-an-ff08-fu-se-zhi-ff09.md)
