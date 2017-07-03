@@ -47,7 +47,7 @@
   * [收藏｜激发灵感的33套网页配色方案（附色值）](webTips/shou-cang-ff5c-ji-fa-ling-gan-de-33-tao-wang-ye-pei-se-fang-an-ff08-fu-se-zhi-ff09.md)
   * [有关CSS3D的插件使用介绍](webTips/you-guan-css3d-de-cha-jian-shi-yong-jie-shao.md)
   * [移动端插件](webTips/yi-dong-duan-cha-jian.md)
-  * [移动端页面通过前端方法禁止ios页面横屏方法](webTips/yi-dong-duan-ye-mian-tong-guo-qian-duan-fang-fa-jin-zhi-ios-ye-mian-heng-ping-fang-fa.md)
+  * [移动端页面通过前端方法禁止ios页面横屏方法](webTips/mobileWebOnlyVerticalScreen.md)
   * [解决ios下的微信页面背景音乐无法自动播放问题](webTips/fixiOSWechartBGM.md)
   * [深度克隆的方法](webTips/deepClone.md)
   * [排序方式](webTips/pai-xu-fang-shi.md)
