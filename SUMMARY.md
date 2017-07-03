@@ -5,7 +5,7 @@
   * 4月1日培训
     * [测试自动化](HaoMoBook/ce-shi-zi-dong-hua.md)
     * [NPM的使用](HaoMoBook/npmde-shi-yong.md)
-    * [Gitbook的使用](HaoMoBook/gitbookde-shi-yong.md)
+    * [Gitbook的使用](HaoMoBook/GitBook.md)
     * [Git](HaoMoBook/git.md)
     * [Markdown](HaoMoBook/markdown.md)
   * 4月16日培训
@@ -16,6 +16,7 @@
   * 4月23日培训
     * [Kama](HaoMoBook/kama.md)
     * [GitLab](HaoMoBook/GitLab.md)
+    * [SonarQube](HaoMoBook/sonarqube.md)
   * 5月7日培训
     * [Yarn](HaoMoBook/yarn.md)
     * [PM2](HaoMoBook/pm2.md)
