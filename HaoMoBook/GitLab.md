@@ -78,3 +78,6 @@ git clone"你的项目地址"![](https://hxgqh.gitbooks.io/haomotraining/content
 
 ![](https://hxgqh.gitbooks.io/haomotraining/content/assets/20151118182853095.png)![](https://hxgqh.gitbooks.io/haomotraining/content/assets/20151123160951678.png)
 
+## 第四章 gitLab新建项目启动提示 {#第四章-gitLab新建项目启动提示}
+
+![](/assets/gitLab.png)
