@@ -95,9 +95,7 @@ Gitbookserve\(window环境可能有问题\)
 
 检测代码规范工具es-Lint
 
-怎么用
-
-[http://blog.csdn.net/witnessai1/article/details/52551362](http://blog.csdn.net/witnessai1/article/details/52551362)
+[语法说明](http://blog.csdn.net/witnessai1/article/details/52551362)
 
 Gitbook-cli
 
