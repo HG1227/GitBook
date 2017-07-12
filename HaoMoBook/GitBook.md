@@ -97,6 +97,8 @@ Gitbookserve\(window环境可能有问题\)
 
 怎么用
 
+[http://blog.csdn.net/witnessai1/article/details/52551362](http://blog.csdn.net/witnessai1/article/details/52551362)
+
 Gitbook-cli
 
 语法--markdown
