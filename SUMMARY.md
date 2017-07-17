@@ -38,6 +38,10 @@
     * [Swagger使用](HaoMoBook/Swagger.md)
     * [Angular使用](HaoMoBook/Angular.md)
     * [Maven使用](HaoMoBook/Maven.md)
+  * 7月16日培训
+      * [Yeoman使用](HaoMoBook/Yeoman.md)
+      * [react使用](HaoMoBook/react.md)
+      * [swagger-codegen后端使用](HaoMoBook/Swagger.md)
 * [学习Git](LearnGit.md)
   * [如何删除项目](LearnGit/ru-he-shan-chu-xiang-mu.md)
   * [多个ssh\_key的生成与使用](LearnGit/duo-ge-ssh-key-de-sheng-cheng-yu-shi-yong.md)
