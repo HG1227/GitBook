@@ -18,7 +18,7 @@ markdownMarkdown 的目标是实现「易读易写」。
   ，但是简单地「每个换行都转换为  
   」的方法在 Markdown 中并不适合， Markdown 中 email 式的 区块引用 和多段落的 列表 在使用换行来排版的时候，不但更好用，还更方便阅读。+
 
-* 
+[Markdown标记示例](https://mitudegaoyang.gitbooks.io/mybook/content/webTips/markdown-biao-ji-shi-li.html)
 
 
 
