@@ -4,15 +4,32 @@
 
 * bower初始化
 
-`bower init`
+```
+bower init
+```
 
 * 查看插件是否存在于bower库
 
-`bower search [插件名称]`
+```
+bower search [插件名称]
+```
 
 * 安装插件并存储于项目依赖
 
-`bower install [插件名称] --save`
+```
+bower install [插件名称] --save
+
+bower install [插件名称] -S
+```
+
+安装插件并存储于开发依赖
+
+```
+bower install [插件名称] --save-dev
+
+
+bower install [插件名称] -D
+```
 
 ## 第一章 bower简介 {#第一章-bower简介}
 
