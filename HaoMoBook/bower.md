@@ -22,7 +22,7 @@ bower install [插件名称] --save
 bower install [插件名称] -S
 ```
 
-安装插件并存储于开发依赖
+* 安装插件并存储于开发依赖
 
 ```
 bower install [插件名称] --save-dev
