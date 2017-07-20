@@ -1,8 +1,22 @@
 # bower培训 {#bower培训}
 
+> 常用命令说明
+
+* bower初始化
+
+`bower init`
+
+* 查看插件是否存在于bower库
+
+`bower search [插件名称]`
+
+* 安装插件并存储于项目依赖
+
+`bower install [插件名称] --save`
+
 ## 第一章 bower简介 {#第一章-bower简介}
 
-## 第一章 bower安装使用 {#第一章-bower安装使用}
+## 第二章 bower安装使用 {#第一章-bower安装使用}
 
 ### 1.1 bower安装 {#11-bower安装}
 
@@ -16,7 +30,6 @@ bower的安装：
 
 ```
 npm install bower -g          #-g表示全局安装
-
 ```
 
 ### 1.2 bower使用 {#12-bower使用}
@@ -27,7 +40,6 @@ npm install bower -g          #-g表示全局安装
 
 ```
 bower init
-
 ```
 
 * bower install
@@ -51,7 +63,6 @@ endpoint
 options
 >
 ]
-
 ```
 
 这个指令将递归安装项目所需依赖；
@@ -108,7 +119,6 @@ pkg
 ```
 bower cache list
 bower cache clean
-
 ```
 
 ### 2.3配置bower下载package的安装路径 {#23配置bower下载package的安装路径}
@@ -119,7 +129,6 @@ bower cache clean
 {
   "directory": "app/dist"
 }
-
 ```
 
 配置这个选项，会将bower下载的安装包下载到app/dist目录下取代默认的bower\_components路径
