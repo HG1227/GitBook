@@ -49,6 +49,16 @@ Ps.`Host名字随意，接下来会用到`
 `ssh -T git@gaotianyangHM.github.com`![](https://camo.githubusercontent.com/9e843e8820a365a1a25cb4179a96c4f112d57413/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313530313132313534323137303632 "测试图例2")  
 Ps.`如果出现Hi xxx!You've successfully authenticated 就说明连接成功了`
 
+测试结果失败，未成功添加处理办法：
+
+* 刷新新添加的ssh
+
+`ssh-add -l`
+
+[http://debugtalk.com/post/head-first-git-authority-verification/](http://debugtalk.com/post/head-first-git-authority-verification/)
+
+* 重启电脑\(待测试\)
+
 ### 现在就以下种情况给出不同的做法：
 
 #### 1、本地已经创建或已经clone到本地：
