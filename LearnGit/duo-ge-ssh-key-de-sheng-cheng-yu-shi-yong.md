@@ -55,7 +55,7 @@ Ps.`如果出现Hi xxx!You've successfully authenticated 就说明连接成功�
 
 `ssh-add -l`
 
-[http://debugtalk.com/post/head-first-git-authority-verification/](http://debugtalk.com/post/head-first-git-authority-verification/)
+[添加ssh讲解链接](http://debugtalk.com/post/head-first-git-authority-verification/)
 
 * 重启电脑\(待测试\)
 
