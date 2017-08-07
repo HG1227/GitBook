@@ -249,6 +249,18 @@ div yd name="name"
 
 参考文献：[http://www.jb51.net/article/83051.htm](http://www.jb51.net/article/83051.htm)
 
+##### 服务
+> 服务是一个对象或函数，对外提供特定的功能。  
+内建服务: 
+ 
+1. $location是对原生Javascript中location对象属性和方法的封装。  
+2. $timeout&$interval对原生Javascript中的setTimeout和setInterval进行了封装。  
+3. $filter在控制器中格式化数据。  
+4. $log打印调试信息  
+5. $http用于向服务端发起异步请求。  
+6. 同时还支持多种快捷方式如$http.get()、$http.post()、$http.jsonp。  
+
+
 ##### filter {#filter}
 
 ```
