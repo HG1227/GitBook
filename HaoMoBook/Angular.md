@@ -301,3 +301,22 @@ let promise = function(){
 
 $stateProvider
 
+##### $log {#log}
+
+```
+// 使用日志服务  
+App.controller('DemoController', ['$log', function ($log) {  
+
+    $log.info('普通信息');  
+
+    $log.warn('警告信息');  
+
+    $log.error('错误信息');  
+
+    $log.log('打印信息');  
+
+    $log.debug('调试信息');  
+
+}]); 
+
+```
