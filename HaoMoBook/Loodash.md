@@ -1,6 +1,7 @@
 # Lodash
 
 [参考文档](http://lodashjs.com/docs/)
+[Loodash中文文档](http://www.css88.com/doc/lodash/#_timesn-iteratee_identity)
 
 ## lodash简介：
 
@@ -216,20 +217,18 @@ _.each(Collection,function(value,(key)){})
 该方法用于数组或者对象的遍历，可以完美的代替for循环；第一个参数为需要遍历的数组或者对象，function里面的参数第一个value值必传，代表数组或对象中的每一项的值，key参数可以根据自己需求传递，表示数组或者对象中的每一项的键（key）；
 _.each()方法中的continue和break：
 在该方法中实现for循环break功能；只需要在方法结束时判断是否需要返回：eg：
+```
  var arr = [1,2,3,4,5,6,7,8];
-  _.each(arr, (item, key) =
->
-{
+  _.each(arr, (item, key) ={
       console.log(item);
       if(key == 3) return false;
   });
-  // =
->
- 输出1，2，3，4
-  // =
->
- 效果和for循环break一致
+```
+> 输出1，2，3，4
 
+效果和for循环break一致
+
+```angular2html
   var obj = [
       {'name': 'lion', 'age': '17'},
       {'name': 'lina', 'age': '18'},
@@ -237,18 +236,14 @@ _.each()方法中的continue和break：
       {'name': 'lich', 'age': '14'}
   ];
   _.each(obj, (item) =
->
  {
-      if(item.age 
->
-= 18) return true;
+      if(item.age === 18) return true;
       console.log(item.name + '未成年');
   });
-  // =
->
- 输出：lion未成年；lich未成年；
-  // =
->
+```
+
+> 输出：lion未成年；lich未成年；
+
  效果和for循环的continue一致；
 lodash更多方法请参考lodash文档：
 lodashAPI
