@@ -1,18 +1,21 @@
-Lodash
+# Lodash
 
-参考文档：http://lodashjs.com/docs/
-lodash简介：
+[参考文档](http://lodashjs.com/docs/)
+
+## lodash简介：
 
 lodash是一款接口统一、模块化、高性能的小型JavaScript工具库；
 最新版本支持≥IE9、chrome、firefox、≥Safari9以及node.js6-7版本；
 lodash是一个高度模块化的工具，可以按需加载；
 lodash是使用了惰性计算，提高程序性能；
 像jquery里面的$一样，lodash使用了全局的_来提供对工具的快速访问
-lodash发展
+
+## lodash发展
 
 随着前端的兴起和发展，尤其是node.js的兴起，原生javascript对于数据处理方法不能满足人们的需求，像jquery对dom，bom的操作，大大简化了前端人员的工作量；于是，前端工作人员开始私人封装方法，并不断发展成自己的处理数据的库，在这种情况下，underscore.js和lodash.js应运而生，从而大大简化了处理数据（像number，数组，字符串，对象等）工作。
 lodash.js原来作为underscore.js的一个fork，由于其与其他的underscore的贡献者意见不一致，John-David Dalton旨在创建“跨浏览器的行为一致的，高性能的”js工具库，从而在原有成功基础上取得了更大的成就。
-发展前景
+
+## 发展前景
 
 lodash是一款“一直接口，模块化，高性能的javascript”库。lodash不仅有所有的underscore的方法，当underscore.js更新方法，lodash会马上将其移植到自己的项目中，并且lodash还包括了很多underscore没有的方法，又由于其高性能，模块化等优势，现在lodash已经成为npm仓库中依赖最多的包。现在我们所熟知的很多开源项目都已经使用或者转到了lodash阵营之上。比如JavaScript转译器Babel、博客平台Ghost，和项目脚手架工具Yeoman。
 lazy.js是一个新的类lodash的库，其优异的运算性能，但Lodash不同于他的地方主要在于你仍然拥有一个外表和Underscore一样的API，但内部却是一个新的强大的引擎。不需要学习新的库，不需要更改大量的代码，就像只是一个附加的更新一样。而且惰性计算也会引起其他潜在的性能问题，我们将在结尾讨论；
@@ -20,47 +23,52 @@ data:npm官网提供的最近一个月（16年11月11日到16年12月10日）lod
 总结：作为npm下载量最大的js依赖库，lodash.js在我们的工作中必将发会越来越重要的作用，熟练使用lodash.js将为我们的工作带来很大便利。
 lodash的挑战：随着ES6规范的普及，lodash的一些方法，可能别js原生方法替代，比如.map,.time,_.random等等；
 
-
-入门指南
+## 入门指南
 
 安装：
 
-下载lodash：npm install lodash ；
+下载lodash：
+```
+npm install lodash
+``` 
+
 HTML使用script标签引入。
 npm安装：
-
-
 node.js使用：
 
-
-常用方法：
+## 常用方法：
 
 本文的方法实例使用的lodash.js版本为4.17.3,可以在使用CDN引入或者下载新版本
 _.times(_.times(number,function))
 相对于for循环，lodash提供了更为高效的循环方法：_.times(number,function); 该方法会返回一个数组；
-     var i = 0;
-     var time1 = _.times(3, function(){
-         console.log(i++);
-         return i;
-     });
-     // =
->
- 输出结果为：0, 1, 2
+```angular2html
+ var i = 0;
+ var time1 = _.times(3, function(){
+     console.log(i++);
+     return i;
+ });
+```
+> 输出结果为：0, 1, 2
 
-     var time2 = _.times(4, _.constant(0));
-     console.log(time1, time2);
-     // =
->
- 输出结果为： [1, 2, 3]    [0, 0, 0, 0]
+```angular2html
+ var time2 = _.times(4, _.constant(0));
+ console.log(time1, time2);
+
+```
+> 输出结果为： [1, 2, 3]    [0, 0, 0, 0]
+
 使用_.times方法创建一个有相同前缀的值的数组；
-     var newArr = _.times(6, _.partial(_.uniqueId, 'time_'));
-     console.log(newArr);
-     // =
->
- ["team_1", "team_2", "team_3", "team_4", "team_5", "team_6"];
+```angular2html
+ var newArr = _.times(6, _.partial(_.uniqueId, 'time_'));
+ console.log(newArr);
+
+```
+> ["team_1", "team_2", "team_3", "team_4", "team_5", "team_6"];
+
 _.filter(array,fucntion(item){return //判断条件})
 筛选符合条件的数组子项；返回新数组，原数组不变
-       var obj = {'data': [
+```angular2html
+var obj = {'data': [
          {
              'category': {
                  'uri': '/categories/0b092e7c-4d2c-4eba-8c4e-80937c9e483d',
@@ -90,60 +98,66 @@ _.filter(array,fucntion(item){return //判断条件})
          }
          ]};
          console.log(_.filter(obj.data,'debit'));
-         // =
+```
+
 >
+```angular2html
+[
+ {
+     'category': {
+         'uri': '/categories/0b092e7c-4d2c-4eba-8c4e-80937c9e483d',
+         'parent': 'Food',
+         'name': 'Costco'
+     },
+     'amount': '15.0',
+     'debit': true
+ },
+ {
+     'category': {
+         'uri': '/categories/d6c10cd2-e285-4829-ad8d-c1dc1fdeea2e',
+         'parent': 'Food',
+         'name': 'India Bazaar'
+     },
+     'amount': '10.0',
+     'debit': true
+ }]
 
-         //[
-         //    {
-         //        'category': {
-         //            'uri': '/categories/0b092e7c-4d2c-4eba-8c4e-80937c9e483d',
-         //            'parent': 'Food',
-         //            'name': 'Costco'
-         //        },
-         //        'amount': '15.0',
-         //        'debit': true
-         //    },
-         //    {
-         //        'category': {
-         //            'uri': '/categories/d6c10cd2-e285-4829-ad8d-c1dc1fdeea2e',
-         //            'parent': 'Food',
-         //            'name': 'India Bazaar'
-         //        },
-         //        'amount': '10.0',
-         //        'debit': true
-         //    }]
+console.log(_.filter(_.filter(obj.data), function(item){
+ return item.amount == 11.1;
+}));
+{
+ 'category': {
+ 'uri': '/categories/d6c10cd2-e285-4829-ad8d-c1dc1fdeea2e',
+         'parent': 'Food',
+        'name': 'Sprouts'
+},
+ 'amount': '11.1',
+     'debit': false
+}
 
-         console.log(_.filter(_.filter(obj.data), function(item){
-             return item.amount == 11.1;
-         }));
-         //    {
-         //        'category': {
-         //        'uri': '/categories/d6c10cd2-e285-4829-ad8d-c1dc1fdeea2e',
-         //                'parent': 'Food',
-         //               'name': 'Sprouts'
-         //   },
-         //        'amount': '11.1',
-         //            'debit': false
-         //    }
+```
+             
 _.reject(array,function(item){return //判断条件})
 取反，返回不符合判断条件的新数组，原数组不变
 _.remove(array,function(item){return //判断条件})
 去除符合条件的数组子项，改变原数组，返回被移除的子项组成的新数组
-   var array = [1, 2, 3, 4];
-   var evens = _.remove(array, function(n) {
-     return n % 2 == 0;
-   });
+```angular2html
+var array = [1, 2, 3, 4];
+var evens = _.remove(array, function(n) {
+ return n % 2 == 0;
+});
 
-   console.log(array);
-   // =
->
- [1, 3]
-   console.log(evens);
-  // =
->
- [2, 4]
+console.log(array);
+```
+
+>[1, 3] console.log(evens);
+
+
+> [2, 4]
+
 _.omit(obj,arr)；
 一个新的对象，移除了与数组项相同的属性；
+```angular2html
  var omit = {
      'name': 'lijinglin',
      'height': 175,
@@ -151,36 +165,49 @@ _.omit(obj,arr)；
  }
  var newOmit = _.omit(omit, ['name','height']);
  console.log(omit, newOmit);
- // {'name': 'lijinglin', 'height': 175, 'weight': '95kg'} =
->
+```
+> {'name': 'lijinglin', 'height': 175, 'weight': '95kg'} 
+
 原数组不变
- // {'height':175} =
->
+
+> {'height':175}
+
 清除了数组项；
+
 _.pick(obg,function(item){});
 一个新的对象，包含与数组项相同的属性；
+```angular2html
  var objA = {"name": "colin", "car": "suzuki", "age": 17};
  console.log(_.pick(objA, ['car', 'age']));
- // =
->
- {"car": "suzuki", "age": 17}
+```
+> {"car": "suzuki", "age": 17}
+
 _.random(min,max,floating);
 返回min-max之间的随机数，如果只有一个参数，那么返回0-该值之间的随机数，最后的参数为boolean值，表示返回的数是否是浮点数；
+```angular2html
  var random = _.random(10);
  var random1 = _.random(10,20);
  var random2 = _.random(10,20,true);
  var random3 = _.random(10,20,2);
  console.log(random, random1, random2, random3);
- //输出：
- // 10
- // 16
- // 13.626099468086885
- // 15.984136145057482
+```
+> 输出：
+```angular2html
+ 10
+ 16
+ 13.626099468086885
+ 15.984136145057482
+```
 
+```angular2html
  var random4 = _.round(random2, 2);
  console.log(random4);
- // 输出：
- // 13.63
+```
+> 输出：
+```angular2html
+13.63
+```
+ 
 _.map(Collection,functoion||string);
 返回一个数组。处理数组对象，当第二个参数为function改变每一项，该方法可以用于深层查找属性值；_.map方法是对原生 map 方法的改进，其中使用pets[0].name字符串对嵌套数据取值的方式简化了很多冗余的代码，
 
