@@ -395,7 +395,9 @@ Vue.directive('focus', {
 ```
 
 然后你可以在模板中任何元素上使用新的 v-focus 属性：
+```angular2html
 <input v-focus>
+```
 
 ### 4.2 钩子函数
 
