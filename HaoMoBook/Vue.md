@@ -287,10 +287,10 @@ components
 不需要表达式
 用法：
 
-这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如[v-cloak] { display: none }一起用时，这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕。
+这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如`[v-cloak]` { display: none }一起用时，这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕。
 示例：
 
-[v-cloak] {
+`[v-cloak]` {
   display: none;
 }
 <div v-cloak>
