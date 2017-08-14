@@ -44,7 +44,7 @@
     * [swagger-codegen后端使用](HaoMoBook/Swagger.md)
   * 8月13日培训
     * [Echarts](HaoMoBook/Echarts.md)
-    * [Loodash](HaoMoBook/Loodash.md)
+    * [Lodash](HaoMoBook/Lodash.md)
     * [Vue](HaoMoBook/Vue.md)
 * [学习Git](LearnGit.md)
   * [如何删除项目](LearnGit/ru-he-shan-chu-xiang-mu.md)

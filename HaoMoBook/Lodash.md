@@ -1,7 +1,7 @@
 # Lodash
 
 [参考文档](http://lodashjs.com/docs/)
-[Loodash中文文档](http://www.css88.com/doc/lodash/#_timesn-iteratee_identity)
+[Lodash中文文档](http://www.css88.com/doc/lodash/#_timesn-iteratee_identity)
 
 ## lodash简介：
 
