@@ -335,3 +335,173 @@ components
 ```angular2html
 <span v-pre>{{ this will not be compiled }}</span>
 ```
+
+#### 12.v-cloak
+不需要表达式
+用法：
+
+这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如`[v-cloak]` { display: none }一起用时，这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕。
+示例：
+
+```angular2html
+[v-cloak]{
+  display: none;
+}
+<div v-cloak>
+  {{ message }}
+</div>
+```
+不会显示，直到编译结束
+
+#### 13.v-once
+不需要表达式
+详细：
+
+只渲染元素和组件一次。随后的重新渲染,元素/组件及其所有的子节点将被视为静态内容并跳过。这可以用于优化更新性能。
+```angular2html
+<!-- 单个元素 -->
+<span v-once>This will never change: {{msg}}</span>
+<!-- 有子元素 -->
+<div v-once>
+  <h1>comment</h1>
+  <p>{{msg}}</p>
+</div>
+<!-- 组件 -->
+<my-component v-once :comment="msg"></my-component>
+<!-- v-for 指令-->
+<ul>
+  <li v-for="i in list" v-once>{{i}}</li>
+</ul>
+```
+参考：
+
+数据绑定语法- 插值
+组件 - 使用 v-once 实现轻量的静态组件
+第四章 自定义指令
+
+### 4.1 简介
+
+除了默认设置的核心指令( v-model 和 v-show ),Vue 也允许注册自定义指令。注意，在 Vue2.0 里面，代码复用的主要形式和抽象是组件——然而，有的情况下,你仍然需要对纯 DOM 元素进行底层操作,这时候就会用到自定义指令。
+下面这个例子将聚焦一个 input 元素,代码如下：
+```angular2html
+// 注册一个全局自定义指令 v-focus
+Vue.directive('focus', {
+  // 当绑定元素插入到 DOM 中。
+  inserted: function (el) {
+    // 聚焦元素
+    el.focus()
+  }
+})
+```
+
+然后你可以在模板中任何元素上使用新的 v-focus 属性：
+<input v-focus>
+
+### 4.2 钩子函数
+
+指令定义函数提供了几个钩子函数（可选）：
+bind: 只调用一次，指令第一次绑定到元素时调用，用这个钩子函数可以定义一个在绑定时执行一次的初始化动作。
+inserted: 被绑定元素插入父节点时调用（父节点存在即可调用，不必存在于 document 中）。
+update: 所在组件的 VNode 更新时调用，但是可能发生在其孩子的 VNode 更新之前。指令的值可能发生了改变也可能没有。但是你可以通过比较更新前后的值来忽略不必要的模板更新 (详细的钩子函数参数见下)。
+componentUpdated: 所在组件的 VNode及其孩子的 VNode全部更新时调用。
+unbind: 只调用一次， 指令与元素解绑时调用。
+接下来我们来看一下钩子函数的参数 (包括el，binding，vnode，oldVnode) 。
+
+### 4.3 钩子函数参数
+
+钩子函数被赋予了以下参数：
+el: 指令所绑定的元素，可以用来直接操作 DOM 。
+binding: 一个对象，包含以下属性：
+name: 指令名，不包括v-前缀。
+value: 指令的绑定值， 例如：v-my-directive="1 + 1", value 的值是2。
+oldValue: 指令绑定的前一个值，仅在update和componentUpdated钩子中可用。无论值是否改变都可用。
+expression: 绑定值的字符串形式。 例如v-my-directive="1 + 1"， expression 的值是"1 + 1"。
+arg: 传给指令的参数。例如v-my-directive:foo， arg 的值是"foo"。
+modifiers: 一个包含修饰符的对象。 例如：v-my-directive.foo.bar, 修饰符对象 modifiers 的值是{ foo: true, bar: true }。
+vnode: Vue 编译生成的虚拟节点，查阅VNode API了解更多详情。
+oldVnode: 上一个虚拟节点，仅在update和componentUpdated钩子中可用。
+样例：
+
+```angular2html
+<div id="hook-arguments-example" v-demo:foo.a.b="message"></div>
+Vue.directive('demo', {
+  bind: function (el, binding, vnode) {
+    var s = JSON.stringify
+    el.innerHTML =
+      'name: '       + s(binding.name) + '<br>' +
+      'argument: '   + s(binding.arg) + '<br>' +
+      'modifiers: '  + s(binding.modifiers) + '<br>' +
+      'vnode keys: ' + Object.keys(vnode).join(', ')
+  }
+})
+new Vue({
+  el: '#hook-arguments-example',
+  data: {
+    message: 'hello!'
+  }
+})
+name: "demo"
+value: "hello!"
+expression: "message"
+argument: "foo"
+modifiers: {"a":true,"b":true}
+vnode keys: tag, data, children, text, elm, ns, context, functionalContext, key, componentOptions, componentInstance, parent, raw, isStatic, isRootInsert, isComment, isCloned, isOnce, asyncFactory, asyncMeta, isAsyncPlaceholder
+```
+
+### 4.4 函数简写
+
+大多数情况下，我们可能想在bind和update钩子上做重复动作，并且不想关心其它的钩子函数。可以这样写:
+```angular2html
+Vue.directive('color-swatch', function (el, binding) {
+  el.style.backgroundColor = binding.value
+})
+```
+
+4.5 对象自变量
+
+如果指令需要多个值，可以传入一个 JavaScript 对象字面量。记住，指令函数能够接受所有合法类型的 JavaScript 表达式。
+```angular2html
+<div v-demo="{ color: 'white', text: 'hello!' }"></div>
+Vue.directive('demo', function (el, binding) {
+  console.log(binding.value.color) // => "white"
+  console.log(binding.value.text)  // => "hello!"
+})
+```
+
+## 第五章 过滤器
+
+Vue.js 允许你自定义过滤器，可被用作一些常见的文本格式化。过滤器可以用在两个地方：mustache 插值和v-bind表达式。过滤器应该被添加在 JavaScript 表达式的尾部，由“管道”符指示：
+```angular2html
+<!-- in mustaches -->
+{{ message | capitalize }}
+<!-- in v-bind -->
+<div v-bind:id="rawId | formatId"></div>
+```
+
+过滤器函数总接受表达式的值 (之前的操作链的结果) 作为第一个参数。在这个例子中，capitalize过滤器函数将会收到message
+的值作为第一个参数。
+```angular2html
+new Vue({
+  // ...
+  filters: {
+    capitalize: function (value) {
+      if (!value) return ''
+      value = value.toString()
+      return value.charAt(0).toUpperCase() + value.slice(1)
+    }
+  }
+})
+```
+
+过滤器可以串联：
+```angular2html
+{{ message | filterA | filterB }}
+```
+
+在这个例子中，filterA拥有单个参数，它会接收message的值，然后调用filterB，且filterA的处理结果将会作为filterB的单个参数传递进来。
+过滤器是 JavaScript 函数，因此可以接受参数：
+```angular2html
+{{ message | filterA('arg1', arg2) }}
+```
+
+这里，filterA是个拥有三个参数的函数。message的值将会作为第一个参数传入。字符串'arg1'将作为第二个参数传给filterA，表达式arg2的值将作为第三个参数。
