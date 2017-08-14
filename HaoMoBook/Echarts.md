@@ -1,27 +1,22 @@
-# angular {#98-angular}
+echartjs
 
-#### angular是什么? {#angular是什么}
+第一章 ECharts简介
 
-AngularJS 最初由Misko Hevery 和Adam Abrons于2009年开发，后来成为了Google公司的项目。AngularJS弥补了HTML在构建应用方面的不足，其通过使用标识符（directives）结构，来扩展Web应用中的HTML词汇，使开发者可以使用HTML来声明动态内容，从而使得Web开发和测试工作变得更加容易。
+ECharts，缩写来自Enterprise Charts，商业级数据图表，一个纯Javascript的图表库，可以流畅的运行在PC和移动设备上，兼容当前绝大部分浏览器（IE6/7/8/9/10/11，chrome，firefox，Safari等），底层依赖轻量级的Canvas类库ZRender，提供直观，生动，可交互，可高度个性化定制的数据可视化图表。创新的拖拽重计算、数据视图、值域漫游等特性大大增强了用户体验，赋予了用户对数据进行挖掘、整合的能力。
+支持折线图（区域图）、柱状图（条状图）、散点图（气泡图）、K线图、饼图（环形图）、雷达图（填充雷达图）、和弦图、力导向布局图、地图、仪表盘、漏斗图、事件河流图等12类图表，同时提供标题，详情气泡、图例、值域、数据区域、时间轴、工具箱等7个可交互组件，支持多图表、组件的联动和混搭展现。
+开源的ECharts来自百度EFE数据可视化团队
+第二章 在angular-martieral项目中如何使用
 
-#### 安装angular {#安装angular}
+2.1.1 echarts安装
 
-* Factory,
-* Service,
-* Provider
+bower install echarts
+npm install ng-echarts
+2.1.2 配置的修改
 
-#### 例子: {#例子}
+1.将node_module文件夹下面的ng-echarts/dist/ng-echart.js文件复制到将bower_components文件夹下面的echarts/dist下 面，如下图所示：
 
-##### value 传递值 {#value---传递值}
 
-```
-    let app = angular.module("app",[]);
-        app.value("name","yide");
-        app.controller("myController",function($scope,name,){
-             $scope.title = name;
-    })
+将bower_components文件夹下面的echarts文件夹下的.bower.json修改为如下所示：
 
-```
 
-参考文献：[http://www.oschina.net/translate/angularjs-factory-vs-service-vs-provider](http://www.oschina.net/translate/angularjs-factory-vs-service-vs-provider)
-
+ng-echarts的注入
