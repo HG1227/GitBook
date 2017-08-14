@@ -42,6 +42,10 @@
     * [Yeoman使用](HaoMoBook/Yeoman.md)
     * [react使用](HaoMoBook/react.md)
     * [swagger-codegen后端使用](HaoMoBook/Swagger.md)
+  * 8月13日培训
+    * [Echarts](HaoMoBook/Echarts.md)
+    * [Loodash](HaoMoBook/Loodash.md)
+    * [Vue](HaoMoBook/Vue.md)
 * [学习Git](LearnGit.md)
   * [如何删除项目](LearnGit/ru-he-shan-chu-xiang-mu.md)
   * [多个ssh\_key的生成与使用](LearnGit/duo-ge-ssh-key-de-sheng-cheng-yu-shi-yong.md)
