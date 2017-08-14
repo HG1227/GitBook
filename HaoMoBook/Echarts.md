@@ -14,9 +14,11 @@ npm install ng-echarts
 2.1.2 配置的修改
 
 1.将node_module文件夹下面的ng-echarts/dist/ng-echart.js文件复制到将bower_components文件夹下面的echarts/dist下 面，如下图所示：
-
+![](/assets/echarts1.png)
 
 将bower_components文件夹下面的echarts文件夹下的.bower.json修改为如下所示：
+![](/assets/echarts2.png)
 
 
 ng-echarts的注入
+![](/assets/echarts3.png)
