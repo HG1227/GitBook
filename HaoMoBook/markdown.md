@@ -1,5 +1,4 @@
-#
-markdown培训
+# markdown培训
 
 ## 第一章 markdown简介
 
