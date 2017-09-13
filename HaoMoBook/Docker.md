@@ -234,16 +234,19 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 ### 5.7 查看所有容器
 
 ```angular2html
-docker ps
+docker ps -a
 ```
 
 ```angular2html
+➜  ~ docker ps -a
+查看所有容器
+
 ➜  ~ docker ps -a
 CONTAINER ID        IMAGE                                               COMMAND                  CREATED             STATUS                      PORTS                               NAMES
 3b7409112eb8        ubuntu                                              "/bin/bash"              5 minutes ago       Exited (0) 5 minutes ago                                        sharp_williams
 ```
 
-* docker ps 是查看已启动的容器 加个-a参数查看全部的容器(包括没启动的)
+* 我们可以看到的信息有这个容器的id(3b7409112eb8) 给予哪个镜像创建的(ubuntu) 还有就是这个容器的名称(sharp_williams)名称是随机分配的
 
 ### 5.1 本地下载镜像
 
