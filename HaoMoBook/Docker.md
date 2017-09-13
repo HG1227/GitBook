@@ -36,21 +36,23 @@
 
 ## 第二章 Docker安装 {#第二章-docker安装}
 
-### 1.mac安装docker {#1mac安装docker}
+### 1.Mac安装Docker {#1mac安装docker}
 
-##### 1.1 下载docker for OS X Installer {#11-下载docker-for-os-x-installer}
+##### 1.1 下载Docker for OS X Installer {#11-下载docker-for-os-x-installer}
 
 ###### 下载链接[https://docs.docker.com/docker-for-mac/](https://docs.docker.com/docker-for-mac/) {#下载链接httpsdocsdockercomdocker-for-mac}
 
 ##### 1.2 安装 {#12-安装}
 
-将Docker拖到Application中
+将**Docker**拖到**Application**中
 
 然后它会要求你输入密码以获得更高的权限，输入密码即可~~
 
 安装完成！
 
-打开docker后\(如下图所示\)，状态栏中可以看到docker的标志，点开会有“Docker is running”的字样，便可以在终端操作![](../assets/docker2.png)
+打开**Docker**后\(如下图所示\)，状态栏中可以看到**Docker**的标志，点开会有“Docker is running”的字样，便可以在终端操作
+
+![](../assets/docker2.png)
 
 ### 2.Windows下安装 {#2windows下安装}
 
@@ -68,11 +70,11 @@
 
 安装完成后查看环境变量
 
-Path中是否包含boot2docker和git
+**Path**中是否包含**boot2docker**和**Git**
 
 #### 2.4重启电脑 {#24重启电脑}
 
-未开启vt-x的在bios中开启vt-x
+未开启**vt-x**的在**bios**中开启**vt-x**
 
 #### 2.5启动docker {#25启动docker}
 
@@ -84,7 +86,7 @@ Path中是否包含boot2docker和git
 
 ## 第三章 Docker的主要组成 {#第三章-docker的主要组成}
 
-Docker有两个主要的部件：
+**Docker**有两个主要的部件：
 
 * Docker: 开源的容器虚拟化平台。
 * Docker Hub: 用于分享、管理Docker容器的Docker SaaS平台。
@@ -100,15 +102,15 @@ Docker有两个主要的部件：
 
 ### 4.1Docker守护进程 {#articleHeader7}
 
-如上图所示，Docker守护进程运行在一台主机上。用不并不直接和守护进程进行交互，而是通过Docker客户端间接和其通信。
+如上图所示，**Docker**守护进程运行在一台主机上。用不并不直接和守护进程进行交互，而是通过**Docker**客户端间接和其通信。
 
 ### 4.2 Docker客户端 {#articleHeader8}
 
-Docker客户端，实际上是`docker`的二进制程序，是主要的用户与Docker交互方式。它接收用户指令并且与背后的Docker守护进程通信，如此来回往复。
+**Docker**客户端，实际上是`docker`的二进制程序，是主要的用户与**Docker**交互方式。它接收用户指令并且与背后的**Docker**守护进程通信，如此来回往复。
 
 ### 4.3 Docker的内部 {#articleHeader9}
 
-要理解Docker的内部构建，必须知道以下三种部件：
+要理解**Docker**的内部构建，必须知道以下三种部件：
 
 * Docker镜像 \(Docker images\)。
 * Docker仓库 \(Docker registeries\)。
