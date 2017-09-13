@@ -50,7 +50,7 @@
 
 安装完成！
 
-打开docker后\(如下图所示\)，状态栏中可以看到docker的标志，点开会有“Docker is running”的字样，便可以在终端操作![](https://hxgqh.gitbooks.io/haomotraining/content/assets/docker1-1-2.png)
+打开docker后\(如下图所示\)，状态栏中可以看到docker的标志，点开会有“Docker is running”的字样，便可以在终端操作![](../assets/docker2.png)
 
 ### 2.Windows下安装 {#2windows下安装}
 
@@ -62,7 +62,7 @@
 
 需要安装3个部分（如下图所示）
 
-![](https://hxgqh.gitbooks.io/haomotraining/content/assets/docker2-2-2.png)
+![](../assets/docker3.png)
 
 #### 2.3查看环境变量 {#23查看环境变量}
 
@@ -96,7 +96,7 @@ Docker有两个主要的部件：
 
 ```
 
-![](http://static.open-open.com/lib/uploadImg/20141013/20141013170235_453.png)
+![](../assets/docker4.png)
 
 ### 4.1Docker守护进程 {#articleHeader7}
 
