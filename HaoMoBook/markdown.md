@@ -279,24 +279,24 @@ __粗体__
 
 示例
 ![September](http://a3.topitme.com/4/9b/8f/11644743891028f9b4o.jpg)
-![雨夜](http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=624edb750633874488c8273f3966b38c/eaf81a4c510fd9f94340d04c2f2dd42a2834a444.jpg "视觉中国")
+![花瓣网](http://img.hb.aicdn.com/8b794b37c8aa6ec016d87f2608d5bddb2af37d66e7f7-Dhl91t_fw658 "孤影摇动")
 
 ```angular2html
 示例
 ![September](http://a3.topitme.com/4/9b/8f/11644743891028f9b4o.jpg)
-![雨夜](http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=624edb750633874488c8273f3966b38c/eaf81a4c510fd9f94340d04c2f2dd42a2834a444.jpg "视觉中国")
+![花瓣网](http://img.hb.aicdn.com/8b794b37c8aa6ec016d87f2608d5bddb2af37d66e7f7-Dhl91t_fw658 "孤影摇动")
 ```
 
 * 参考式语法:
 
-![雨夜][xd]
-[xd]:http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=624edb750633874488c8273f3966b38c/eaf81a4c510fd9f94340d04c2f2dd42a2834a444.jpg "视觉中国"
+![花瓣网][xd]
+[xd]:http://img.hb.aicdn.com/8b794b37c8aa6ec016d87f2608d5bddb2af37d66e7f7-Dhl91t_fw658 "孤影摇动"
 
 
 ```angular2html
 示例:
---![雨夜][xd]
---[xd]:http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=624edb750633874488c8273f3966b38c/eaf81a4c510fd9f94340d04c2f2dd42a2834a444.jpg "视觉中国"
+--![花瓣网][xd]
+--[xd]:http://img.hb.aicdn.com/8b794b37c8aa6ec016d87f2608d5bddb2af37d66e7f7-Dhl91t_fw658 "孤影摇动"
 (备注: 上述代码在使用时需删掉前面的--)
 ```
 
