@@ -198,7 +198,7 @@ busybox                                          latest              c30178c5239
 juu                                              latest              452596e4f289        2 months ago        118MB
 yd/mysql                                         latest              4e84d647f316        3 months ago        586MB
 nginx                                            latest              958a7ae9e569        3 months ago        109MB
-ubuntu                                           <none>              ebcd9d4fca80        3 months ago        118MB
+ubuntu                                           \<\none\>\              ebcd9d4fca80        3 months ago        118MB
 mysql
 ```
 
