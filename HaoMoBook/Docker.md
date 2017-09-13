@@ -135,15 +135,123 @@ Docker容器和文件夹很类似。一个Docker容器包含了所有的某个�
 * 容器概念:可以把容器看做实例(及new java对象, new JavaScript对象)
 * 镜像和容器的关系: Image container = new Image(); 容器是基于镜像创建的
 
-## 第五章 Docker实际操作
+## 第五章 创建Docker应用的详解
+
+### 5.1 ubuntu应用
+
+以**ubuntu**镜像为例： 这个镜像被称为基础镜像，及**Docker**官方提供的（看做它就是个ubuntu的虚拟机）只是一个裸机
+
+以上说了**ubuntu**只是个镜像，我们是不能直接用的，我们最终用到的是容器及"镜像new出来的东西"
+
+### 5.2 搜索镜像
+
+* 首先查看docker的镜像仓库中是否有ubuntu这个镜像
+
+```angular2html
+docker search ubuntu
+```
+
+```
+➜  ~ docker search ubuntu
+NAME                                                   DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+ubuntu                                                 Ubuntu is a Debian-based Linux operating s...   6509      [OK]
+dorowu/ubuntu-desktop-lxde-vnc                         Ubuntu with openssh-server and NoVNC            128                  [OK]
+rastasheep/ubuntu-sshd                                 Dockerized SSH service, built on top of of...   97                   [OK]
+ansible/ubuntu14.04-ansible                            Ubuntu 14.04 LTS with ansible                   86                   [OK]
+ubuntu-upstart                                         Upstart is an event-based replacement for ...   77        [OK]
+```
+
+* 上图中我们可以看到有我们需要的ubuntu镜像 接下来就把它拉去到本地吧！
+
+### 5.3 拉取镜像
+
+要从docker的镜像仓库中拉去ubuntu这个镜像到本地
+
+```angular2html
+docker pull ubuntu
+```
+
+```angular2html
+➜  ~ docker pull ubuntu
+Using default tag: latest
+latest: Pulling from library/ubuntu
+d5c6f90da05d: Downloading [==========================>                        ]  25.18MB/47.26MB
+1300883d87d5: Download complete
+c220aa3cfc1b: Download complete
+2e9398f099dc: Download complete
+dc27a084064f: Download complete
+```
+
+### 5.4 查看本地下载镜像
+
+```angular2html
+docker images
+```
+
+```angular2html
+➜  ~ docker images
+REPOSITORY                                       TAG                 IMAGE ID            CREATED             SIZE
+ubuntu                                           latest              ccc7a11d65b1        3 weeks ago         120MB
+mysql/mysql-server                               latest              3157d7f55f8d        5 weeks ago         241MB
+registry.cn-hangzhou.aliyuncs.com/haomo/mdexam   zf                  e00964020355        2 months ago        1.64GB
+busybox                                          latest              c30178c5239f        2 months ago        1.11MB
+juu                                              latest              452596e4f289        2 months ago        118MB
+yd/mysql                                         latest              4e84d647f316        3 months ago        586MB
+nginx                                            latest              958a7ae9e569        3 months ago        109MB
+ubuntu                                           <none>              ebcd9d4fca80        3 months ago        118MB
+mysql
+```
+
+* 在刚装的情况下应该只显示一个ubuntu镜像 其他镜像是我装的可以忽略
+
+### 5.5 创建第一个容器
+
+```angular2html
+docker run -i -t ubuntu /bin/bash
+docker run -it --name mdexam --hostname mdexam -d -p - /Users/liuranran/webwork/skilleee:/opt/work \[路径\] /bin/bash
+```
+
+```
+➜  ~ docker run -i -t ubuntu /bin/bash
+root@c6d35db61f33:/# exit
+```
+
+* 上面用run命令创建一个给予ubuntu镜像的容器 -i -t参数是调出容器内的shell可以与容器进行交互 exit 退出容器（退出及关闭容器）
+
+### 5.6 查看已启动的容器
+
+```angular2html
+docker ps
+```
+
+```angular2html
+➜  ~ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+```
+
+* docker ps 是查看已启动的容器 加个-a参数查看全部的容器(包括没启动的)
+
+### 5.7 查看所有容器
+
+```angular2html
+docker ps
+```
+
+```angular2html
+➜  ~ docker ps -a
+CONTAINER ID        IMAGE                                               COMMAND                  CREATED             STATUS                      PORTS                               NAMES
+3b7409112eb8        ubuntu                                              "/bin/bash"              5 minutes ago       Exited (0) 5 minutes ago                                        sharp_williams
+```
+
+* docker ps 是查看已启动的容器 加个-a参数查看全部的容器(包括没启动的)
 
 ### 5.1 本地下载镜像
 
-docker images
+/*docker images*/
 
-docker ps \(列出所有正在运行的命令\)
+/*docker ps \(列出所有正在运行的命令\)*/
 
-docker run -it --name mdexam --hostname mdexam -d -p - /Users/liuranran/webwork/skilleee:/opt/work \[路径\] /bin/bash
+/*docker run -it --name mdexam --hostname mdexam -d -p - /Users/liuranran/webwork/skilleee:/opt/work \[路径\] /bin/bash*/
 
 docker exec -it centos /bin/bash进入centos
 
@@ -156,9 +264,5 @@ docker start mdexam
 
 ## 第六章 使用docker可以完成什么？
 
-### 6.1 Docker的应用
 
-以**ubuntu**镜像为例： 这个镜像被称为基础镜像，及**Docker**官方提供的（看做它就是个ubuntu的虚拟机）只是一个裸机
-
-以上说了**ubuntu**只是个镜像，我们是不能直接用的 我们最终用到的是容器及"镜像new出来的东西"
 
