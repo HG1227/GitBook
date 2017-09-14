@@ -304,34 +304,20 @@ root@c6d35db61f33:/#
 ### 5.11 创建一个指定名称为testDocker的容器
 
 ```
-
+docker run -i -t --name testDocker ubuntu /bin/bash
 ```
 
 ```
-
+➜  ~ docker run -i -t --name testDocker ubuntu /bin/bash
+root@31fd4713f7da:/#
+➜  ~ docker ps -a
+CONTAINER ID        IMAGE                                               COMMAND                  CREATED             STATUS                      PORTS                               NAMES
+31fd4713f7da        ubuntu                                              "/bin/bash"              31 seconds ago      Exited (0) 14 seconds ago                                       testDocker
 ```
 
-### 5.1 本地下载镜像
+* --name参数可以指定创建容器的名称
 
-```
-
-```
-
-```
-
-```
-
-### 5.1 本地下载镜像
-
-```
-
-```
-
-```
-
-```
-
-### 5.1 本地下载镜像
+### 5.12 创建一个后台进行的容器
 
 ```
 
@@ -340,6 +326,67 @@ root@c6d35db61f33:/#
 ```
 
 ```
+
+### 5.13 attach 附着容器
+
+```
+
+```
+
+```
+
+```
+
+### 5.14 查看容器日志
+
+```
+
+```
+
+```
+
+```
+
+### 5.15 查看容器内部运行的进程
+
+```
+
+```
+
+```
+
+```
+
+### 5.16 自动重启容器
+
+```
+
+```
+
+```
+
+```
+
+### 5.17 深入容器
+
+```
+
+```
+
+```
+
+```
+
+### 5.18 删除容器
+
+```
+
+```
+
+```
+
+```
+
 
 ### 5.9 本地下载镜像
 
