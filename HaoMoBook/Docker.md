@@ -248,7 +248,103 @@ CONTAINER ID        IMAGE                                               COMMAND 
 
 * 我们可以看到的信息有这个容器的id(3b7409112eb8) 给予哪个镜像创建的(ubuntu) 还有就是这个容器的名称(sharp_williams)名称是随机分配的
 
+### 5.8 启动容器
+
+```
+docker start c6d35db61f33
+```
+
+```angular2html
+➜  ~ docker start c6d35db61f33
+c6d35db61f33
+➜  ~ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+c6d35db61f33        ubuntu              "/bin/bash"         7 minutes ago       Up 4 seconds                            silly_aryabhata
+```
+
+* docker start c6d35db61f33(容器id) 启动容器 可以使用docker ps -a 查看容器id
+* docker ps 查看我们刚刚启动的容器
+
+### 5.9 关闭容器
+
+```
+docker stop c6d35db61f33
+```
+
+```
+➜  ~ docker stop c6d35db61f33
+c6d35db61f33
+➜  ~ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+➜  ~
+```
+
+* docker stop c6d35db61f33(容器id) 关闭这个容器
+* docker ps 查看已启动的容器这里显示没有,及已被关闭
+
+### 5.10 与容器进行交互
+
+```
+docker start c6d35db61f33
+```
+```
+➜  ~ docker start c6d35db61f33
+c6d35db61f33
+➜  ~ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+c6d35db61f33        ubuntu              "/bin/bash"         14 minutes ago      Up 9 seconds                            silly_aryabhata
+➜  ~ docker exec -i -t c6d35db61f33 /bin/bash
+root@c6d35db61f33:/#
+```
+
+* 要与容器进行交互首先要保证这个容器是启动的，docker start c6d35db61f33 运行id为c6d35db61f33的容器
+* docker ps 查看已启动的容器
+* docker exec -i -t c6d35db61f33 /bin/bash 调出容器的shell与容器进行交互 在容器内新开一个shell交互退出时exit不退出容器
+
+### 5.11 创建一个指定名称为testDocker的容器
+
+```
+
+```
+
+```
+
+```
+
 ### 5.1 本地下载镜像
+
+```
+
+```
+
+```
+
+```
+
+### 5.1 本地下载镜像
+
+```
+
+```
+
+```
+
+```
+
+### 5.1 本地下载镜像
+
+```
+
+```
+
+```
+
+```
+
+### 5.9 本地下载镜像
+
+
+
 
 /*docker images*/
 
