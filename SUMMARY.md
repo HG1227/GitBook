@@ -53,6 +53,7 @@
         * [Webpack](HaoMoBook/Webpack.md)
 * [代码审查](CodeReview.md)
     * [页面代码结构](HaoMoBook/CodeStructure.md)
+    * [代码命名规范](HaoMoBook/CodeNaming.md)
 * [学习Git](LearnGit.md)
     * [如何删除项目](LearnGit/ru-he-shan-chu-xiang-mu.md)
     * [多个ssh_key的生成与使用](LearnGit/duo-ge-ssh-key-de-sheng-cheng-yu-shi-yong.md)
