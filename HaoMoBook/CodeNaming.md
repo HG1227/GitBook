@@ -27,3 +27,13 @@ $q.all异步执行
 select ng-options  = "item.id as item.name item in items"
 
 filters  过滤值  应该定义一个公共的方法
+
+
+1. todo 
+2. 注释 /**回车
+3. 可读性，一行<80;
+4. 事件，加载before。。。。
+5. 变量最少化
+6. 代码加注释
+7. 变量声明放
+8. 先处理异常，代码尽量左边靠
