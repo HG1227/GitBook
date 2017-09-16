@@ -4,44 +4,44 @@
 
 ```angular2html
 vm.setSearchParams  = function(resetFlag){
-      var deferred = $q.deferred();
+  var deferred = $q.deferred();
 
-      $q.all([1, 2]).then(function(values){
-        vm.search.filters = {
-          'table': {
-            'column': {
-              'in': values[0]
-            }
-          }
+  $q.all([1, 2]).then(function(values){
+    vm.search.filters = {
+      'table': {
+        'column': {
+          'in': values[0]
         }
-      }, function(err){
+      }
+    }
+  }, function(err){
 
-      });
+  });
 
-      Restangular().then(function(res){
-        deferred.resolve(res.data);
-      }, function(err){
-        deferred.reject();
-      });
+  Restangular().then(function(res){
+    deferred.resolve(res.data);
+  }, function(err){
+    deferred.reject();
+  });
 
-      return deferred.promise;
-    };
+  return deferred.promise;
+};
 
-    vm.search = function(){
-      vm.setFilters().then(function(data){
-        vm.process(data);
-      }, function(err){
-        console.log(err);
-      });
+vm.search = function(){
+  vm.setFilters().then(function(data){
+    vm.process(data);
+  }, function(err){
+    console.log(err);
+  });
 
-      Restangular().then(function(res){
-        vm.process(data);
-      })
-    };
+  Restangular().then(function(res){
+    vm.process(data);
+  })
+};
 
-    vm.process = function(data){
+vm.process = function(data){
 
-    };
+};
 ```
 
 ## 编辑页
@@ -49,22 +49,22 @@ vm.setSearchParams  = function(resetFlag){
 ```angular2html
 vm.item = {};
 
-    vm.loadItem = function(id){
-      Restangular().then(function(res){
-        vm.item = res.data;
-      })
-    };
+vm.loadItem = function(id){
+  Restangular().then(function(res){
+    vm.item = res.data;
+  })
+};
 
-    vm.clearBeforeUpdate = function(){
+vm.clearBeforeUpdate = function(){
 
-    };
+};
 
-    vm.updateItem = function(){
-      vm.clearBeforeUpdate();
-      Restangular().post()
-    };
+vm.updateItem = function(){
+  vm.clearBeforeUpdate();
+  Restangular().post()
+};
 
-    vm.columnOnChange = function(value){
+vm.columnOnChange = function(value){
 
-    };
+};
 ```
