@@ -4,6 +4,14 @@
     * 函数名不能大写
 * 注释
     * @TODO代办事项
+    * 注释方法 /**回车
+```angular2html
+/**
+* @TODO @desc 需要修改函数名称
+* @params
+* @return
+*/
+```
      
 
 var  vm = $scope.vm = {}
@@ -28,9 +36,6 @@ select ng-options  = "item.id as item.name item in items"
 
 filters  过滤值  应该定义一个公共的方法
 
-
-1. todo 
-2. 注释 /**回车
 3. 可读性，一行<80;
 4. 事件，加载before。。。。
 5. 变量最少化
