@@ -1,4 +1,103 @@
-# 代码命名规范
+# 项目命名规范
+
+## class命名规范
+
+### 网页内容类：
+* 标题：title
+* 摘要：summary
+* 箭头：arrow
+* 商标：label
+* 网站标志：logo
+* 转角/圆角：corner
+* 横幅广告：banner
+* 子菜单：subMenu
+* 搜索：search
+* 搜索框：searchBox
+* 登录：login
+* 登录条：loginbar
+* 工具条：toolbar
+* 下拉：drop
+* 标签页：tab
+* 当前的：current
+* 列表：list
+* 滚动：scroll
+* 服务：service
+* 提示信息：msg
+* 热点：hot
+* 新闻：news
+* 小技巧：tips
+* 下载：download
+* 栏目标题：title
+* 加入：joinus
+* 注册：regsiter
+* 功能区：shop
+* 加入：joinus
+* 状态：status
+* 按钮：btn
+* 图标：icon
+* 注释：note
+* 指南：guild
+* 投票：vote
+* 合作伙伴：partner
+* 友情链接：link
+* 版权：copyright
+
+### class命名：
+* 颜色：使用颜色的名称或16进制码
+
+```
+.red{color:red;}
+.f60{color:#f60}
+.ff8600{color:#ff8600}
+```
+
+* 字体大小，直接使用“font+字体大小”
+    
+```
+.font12px{font-size:12px}
+.font9pt{font-size:9pt}
+```
+
+* 对其样式，使用对齐目标的英文名称
+
+```
+.left{float:left;}
+.bottom{float:bottom;}
+```
+* 标题栏样式，使用“类别+功能”的方式命名
+
+```
+.barnews{}
+.barproduct{}
+```
+* 注意：
+
+1. 一律小写
+2. 尽量英文
+3. 不加中杠或下划线
+4. 尽量不缩写，除非一看就明白
+
+### 推荐css书写顺序
+
+* 显示属性
+    * display
+    * list-style
+    * position
+    * float
+    * clear
+
+* 自身属性
+    * width
+    * height
+    * margin
+    * padding
+    * border
+    * background
+
+* 文本属性
+    * color
+
+## js命名规范
 
 * 方法命名
     * 函数名不能大写
