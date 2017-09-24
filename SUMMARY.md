@@ -53,6 +53,7 @@
         * [Webpack](HaoMoBook/Webpack.md)
     * 9月24日培训
         * [项目经理培训](HaoMoBook/projectManager.md)
+        * [ES6模块](HaoMoBook/ES6Module.md)
 * [代码审查](CodeReview.md)
     * [页面代码结构](HaoMoBook/CodeStructure.md)
     * [代码命名规范](HaoMoBook/CodeNaming.md)
