@@ -18,6 +18,12 @@
 
 ## 二. 如何修改主题
 
+- 下载主题`git clone git@github.com:litten/hexo-theme-yilia.git`
+- 将下载好的主题包复制到Hexo项目themes文件夹中
+- 配置`_config.yml`文件中`theme`为对应主题名称
+- 执行`hexo g`和`hexo d`
+- 大功告成
+
 hexo有很多主题，每个人可以选择自己喜欢的主题来应用，也可以自己设计主题并且上传形成公共主题供大家下载。
 
 如果是自己设计主题的话，会稍微麻烦一些，需要自己配置很多文件，并且编写css以及js代码等。
