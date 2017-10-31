@@ -74,6 +74,7 @@
     * [css3单位汇总](webTips/Css3Unit.md)
     * [JS开发工具大全](webTips/JsTools.md)
     * [Hexo博客框架](webTips/HexoBlog.md)
+    * [Hexo博客框架-图片问题处理](webTips/HexoBlogImg.md)
 * [毫末科技面试流程](haomointerview.md)
     * [JAVA面试](haomointerview/content.md)
 
