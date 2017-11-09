@@ -165,7 +165,7 @@ unalias 简化命令
 
 但是查看profile文件，你会发现文件最开头就有提示：
 
-![alias存储提示](assets/commandAlias1.png)
+![alias存储提示](/assets/commandAlias1.png)
 
 因此最好不要直接在/etc/profile文件出进行定义，而是在/etc/bashrc中进行定义，定义完成后，通过    #source /etc/bashrc使其生效。
 
