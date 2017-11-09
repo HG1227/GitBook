@@ -127,4 +127,12 @@ hexocgd(){
 
 ## 方法二 写alias
 
-### 第一步
+### 第一步 在命令行中输入如下命令
+
+```angular2html
+alias gitacpp = 'git add . && git commit -m "$1" && git pull && git push' 
+alias hexocgd = 'hexo clean && hexo g && hexo d' 
+```
+- 注意:此方法只能在当前窗口使用 关机重启后便被清除
+
+### 
