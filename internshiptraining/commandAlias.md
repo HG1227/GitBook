@@ -131,7 +131,9 @@ alias可以简化一些复杂的命令串，使一个单词或简化后的命令
 
 ### 基本用法
 
-- alias 简化命令=‘实际的长串命令’    //实际长串命令通常为‘原命令 -/选项参数’
+```angular2html
+alias 简化命令=‘实际的长串命令’    //实际长串命令通常为‘原命令 -/选项参数’
+```
 
 ```angular2html
 alias gitacpp = 'git add . && git commit -m "$1" && git pull && git push' 
@@ -141,12 +143,32 @@ alias hexocgd = 'hexo clean && hexo g && hexo d'
 
 ### 获取别名
 
+```angular2html
 alias        //即可查看当前设定的所有alias别名
+```
 
 ### 取消别名
 
+```angular2html
 unalias 简化命令
+```
 
 ------
 
 ### 永久生效
+
+直接使用alias命令定义的别名，重启后就会失效。因此如果需要永久使用别名，就需要做一些操作。
+
+修改/定义别名，实际上也是在定义系统的环境变量。
+
+系统环境变量文件是/etc/profile。
+
+但是查看profile文件，你会发现文件最开头就有提示：
+
+![alias存储提示](assets/commandAlias1.png)
+
+因此最好不要直接在/etc/profile文件出进行定义，而是在/etc/bashrc中进行定义，定义完成后，通过    #source /etc/bashrc使其生效。
+
+或者，重新定义一个文件 /etc/profile.d/alias_bash.sh （alias_bash文件名是任意取的），然后通过    #source /etc/profile.d/alias_bash使其生效。
+
+通过这个方法，就可以使自己（自定义）的别名永久生效了。
