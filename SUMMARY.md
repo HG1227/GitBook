@@ -54,6 +54,7 @@
     * [Nginx](internshiptraining/nginx.md)
     * [Webpack](internshiptraining/Webpack.md)
     * [tmate命令行分享](internshiptraining/tmate.md)
+    * [命令别名存储](internshiptraining/commandAlias.md)
 * [前端知识积累](WebTips.md)
     * [CSS解决loading效果](webTips/cssjie-jue-loading-xiao-guo.md)
     * [LESS Sass 编译工具Koala介绍](webTips/less-sass-bian-yi-gong-ju-koala-jie-shao.md)
