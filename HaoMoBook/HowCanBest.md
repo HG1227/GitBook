@@ -18,3 +18,10 @@
 | DIP | The Dependency Inversion Principle | 依赖倒置原则 | 
 
 [原文链接](https://www.cnblogs.com/lanxuezaipiao/archive/2013/06/09/3128665.html)
+
+代码框架搭建
+
+官方脚手架
+yeoman
+github脚手架
+第三方脚手架
