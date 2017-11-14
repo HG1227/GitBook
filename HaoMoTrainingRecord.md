@@ -54,3 +54,6 @@
 * 9月24日培训
     * [项目经理培训](HaoMoBook/projectManager.md)
     * [ES6模块](HaoMoBook/ES6Module.md)
+* 11月12日培训
+    * [如何提高编程技能](HaoMoBook/HowCanBest.md)
+    * [培训材料撰写](HaoMoBook/TrainingMaterialWriting.md)
