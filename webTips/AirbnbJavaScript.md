@@ -385,19 +385,164 @@ function yup(name, options, args) {
 }
 ```
 
+### 2.6 属性
+
+- 使用`.`来访问对象的属性。
+
+```angular2html
+var luke = {
+  jedi: true,
+  age: 28
+};
+
+// bad
+var isJedi = luke['jedi'];
+
+// good
+var isJedi = luke.jedi;
+```
+
+- 当通过变量访问属性时使用中括号`[]`。
+
+```angular2html
+var luke = {
+  jedi: true,
+  age: 28
+};
+
+function getProp(prop) {
+  return luke[prop];
+}
+
+var isJedi = getProp('jedi');
+```
+
+### 2.7 变量
+
+- 使用总是`var`来声明变量。不这么做将导致产生全局变量。我们要避免污染全局命名空间。
+
+```angular2html
+// bad
+superPower = new SuperPower();
+
+// good
+var superPower = new SuperPower();
+```
+- 使用`va`r声明每一个变量。
+
+这样做的好处是增加新变量将变的更加容易，你而且永远不用再担心调换错`;`跟`,`。
+
+```angular2html
+// bad
+var items = getItems(),
+    goSportsTeam = true,
+    dragonball = 'z';
+
+// bad
+// （跟上面的代码比较一下，看看哪里错了）
+var items = getItems(),
+    goSportsTeam = true;
+    dragonball = 'z';
+
+// good
+var items = getItems();
+var goSportsTeam = true;
+var dragonball = 'z';
+```
+- 最后再声明未赋值的变量。当你需要引用前面的变量赋值时这将变的很有用。
+
+```angular2html
+// bad
+var i, len, dragonball,
+    items = getItems(),
+    goSportsTeam = true;
+
+// bad
+var i;
+var items = getItems();
+var dragonball;
+var goSportsTeam = true;
+var len;
+
+// good
+var items = getItems();
+var goSportsTeam = true;
+var dragonball;
+var length;
+var i;
+```
+- 在作用域顶部声明变量。这将帮你避免变量声明提升相关的问题。
+
+```angular2html
+// bad
+function () {
+  test();
+  console.log('doing stuff..');
+
+  //..other stuff..
+
+  var name = getName();
+
+  if (name === 'test') {
+    return false;
+  }
+
+  return name;
+}
+
+// good
+function () {
+  var name = getName();
+
+  test();
+  console.log('doing stuff..');
+
+  //..other stuff..
+
+  if (name === 'test') {
+    return false;
+  }
+
+  return name;
+}
+
+// bad - 不必要的函数调用
+function () {
+  var name = getName();
+
+  if (!arguments.length) {
+    return false;
+  }
+
+  this.setFirstName(name);
+
+  return true;
+}
+
+// good
+function () {
+  var name;
+
+  if (!arguments.length) {
+    return false;
+  }
+
+  name = getName();
+  this.setFirstName(name);
+
+  return true;
+}
+```
 - 
 
 ```angular2html
 
 ```
-
 - 
 
 ```angular2html
 
 ```
-
-- 
 
 
 
