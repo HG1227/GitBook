@@ -41,7 +41,6 @@
     * [ES6模块](HaoMoBook/ES6Module.md)
     * [如何提高编程技能](HaoMoBook/HowCanBest.md)
     * [培训材料撰写](HaoMoBook/TrainingMaterialWriting.md)
-    * [培训材料撰写](HaoMoBook/TrainingMaterialWriting.md)
 * [代码审查](CodeReview.md)
     * [页面代码结构](HaoMoBook/CodeStructure.md)
     * [代码命名规范](HaoMoBook/CodeNaming.md)
