@@ -237,11 +237,11 @@ function trigger2() {
 }
 
 // bad
-a = trigger2('a','b','c','d') // a为类数组对象
+a = trigger2('a','b','c','d') // 此时a为类数组对象
 a.push('e');// => Uncaught TypeError: a.push is not a function
 
 // good
-a = trigger('a','b','c','d') // a为数组对象
+a = trigger('a','b','c','d') // 此时a为数组对象
 a.push('e');
 console.log(a);// => ["a", "b", "c", "d", "e"]
 ```
