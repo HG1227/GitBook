@@ -331,22 +331,58 @@ function inbox(messages) {
 
 ### 2.5 函数
 
-- 
+- 函数表达式：
 
 ```angular2html
+// 匿名函数表达式
+var anonymous = function() {
+  return true;
+};
 
+// 命名函数表达式
+var named = function named() {
+  return true;
+};
+
+// 立即调用的函数表达式（IIFE）
+(function () {
+  console.log('Welcome to the Internet. Please follow me.');
+}());
 ```
 
-- 
+- 永远不要在一个非函数代码块（if，while等）中声明一个函数，把那个函数赋予给一个变量。但是它们的解析表现不一致。
+
+- **注意： ECMA-262**把`块`定义为一组语句。函数声明不是语句。[阅读对ECMA-262这个问题的说明](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97)。
 
 ```angular2html
+// bad
+if (currentUser) {
+  function test() {
+    console.log('Nope.');
+  }
+}
 
+// good
+var test;
+if (currentUser) {
+  test = function test() {
+    console.log('Yup.');
+  };
+}
 ```
 
-- 
+- 永远不要把参数命名为`arguments`。将这取代函数作用英文域内的`arguments`对象。
 
 ```angular2html
+// bad
+function nope(name, options, arguments) {
+  // ...stuff...
+}
 
+// good
+function yup(name, options, args) {
+  // ...stuff...
+}
 ```
 
 - 
