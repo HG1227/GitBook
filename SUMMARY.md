@@ -79,6 +79,7 @@
     * [Hexo博客框架](webTips/HexoBlog.md)
     * [Hexo博客框架-图片问题处理](webTips/HexoBlogImg.md)
     * [Hexo博客框架-切换主题](webTips/HexoBlogThemes.md)
+    * [AirbnbJavaScript风格指南](webTips/AirbnbJavaScript.md)
 * [毫末科技面试流程](haomointerview.md)
     * [JAVA面试](haomointerview/content.md)
 
