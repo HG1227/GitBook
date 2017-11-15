@@ -428,7 +428,7 @@ superPower = new SuperPower();
 // good
 var superPower = new SuperPower();
 ```
-- 使用`va`r声明每一个变量。
+- 使用`var`声明每一个变量。
 
 这样做的好处是增加新变量将变的更加容易，你而且永远不用再担心调换错`;`跟`,`。
 
