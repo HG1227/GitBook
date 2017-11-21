@@ -141,7 +141,7 @@ npm install gulp -g
 
 ![](/assets/Fuse/Fuse14.jpeg)
 
-* 处理方法：二级路由也需要注入restangular
+* 处理方法：模块路由也需要注入restangular
 
 ![](/assets/Fuse/Fuse18.jpeg)
 
