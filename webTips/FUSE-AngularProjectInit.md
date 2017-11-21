@@ -103,27 +103,26 @@ npm install node-sass
 
 * 处理方法2：此问题需查看node版本(过高或过低均会影响Sass安装 建议6.X.X版本)
 
-## 4 其他提示
+## 4 其他常用命令提示
 
-### 引入ui-grid组件，为解决打包部署后框架文字变为韩文问题，在部署脚本写了替换css的命令。
+### 4.1 引入ui-grid组件，为解决打包部署后框架文字变为韩文问题，在部署脚本写了替换css的命令。
 
-### 开发分支：dev  
-### 切换分支命令： 
+### 4.2 切换分支命令(开发分支：dev)
 
 ``` angular2html
 git checkout -b dev  
 git branch --set-upstream dev remotes/origin/dev
 ```
 
-### 安装插件：
+### 4.3 安装插件：
 
-查看插件是否存在于bower库
+* 查看插件是否存在于bower库
 
 ```angular2html
 bower search [插件名称]
 ```
 
-安装插件并存储于项目依赖
+* 安装插件并存储于项目依赖
 
 ```angular2html
 bower install [插件名称] --save
@@ -131,7 +130,7 @@ bower install [插件名称] --save
 bower install [插件名称] -S
 ```
 
-安装插件并存储于开发依赖
+* 安装插件并存储于开发依赖
 
 ```angular2html
 bower install [插件名称] --save-dev
@@ -139,7 +138,7 @@ bower install [插件名称] --save-dev
 bower install [插件名称] -D
 ```
 
-### 打包项目：
+### 4.4 打包项目：
 
 ```angular2html
 gulp build 打包 
