@@ -49,20 +49,36 @@ gulp serve // 启动项目
 ### 目录结构：
 
 ```angular2html
-wegame/src/app/main/Auction/    编写代码存放目录
-wegame/bower_components     插件依赖
-wegame/node_modules     开发依赖
+wechatgame/src/app/main/wegame/    编写代码存放目录
+wechatgame/bower_components     插件依赖
+wechatgame/node_modules     开发依赖
 ```
+![](/assets/Fuse/Fuse3.jpeg)
 
 ### 主要文件及功能
 ```angular2html
 index.route.js   配置起始页面
 index.module.js   配置项目目录
-wechatgame/src/app/main/wegame/auction.module.js    toolbar配置文件
+wechatgame/src/app/main/wegame/sample.module.js    toolbar配置文件
 wechatgame/src/app/main/wegame/customer/customer.module.js    路由配置文件
 wechatgame/src/app/main/wegame/customer/XXX.html    具体页面文件
 wechatgame/src/app/main/wegame/customer/XXX.js    具体页面路由文件
 ```
+
+![](/assets/Fuse/Fuse4.jpeg)
+![](/assets/Fuse/Fuse5.jpeg)
+![](/assets/Fuse/Fuse6.jpeg)
+![](/assets/Fuse/Fuse7.jpeg)
+![](/assets/Fuse/Fuse8.jpeg)
+![](/assets/Fuse/Fuse9.jpeg)
+![](/assets/Fuse/Fuse10.jpeg)
+
+
+## 初始化项目、配置路由
+
+### 引入模块
+![](/assets/Fuse/Fuse3.jpeg)
+
 
 ## 其他提示
 
