@@ -95,13 +95,24 @@ wechatgame/src/app/main/wegame/customer/XXX.js    具体页面路由文件
 
 * 处理方法1：此问题需安装node-sass
 
-```
+```angular2html
 npm install node-sass
 ```
 
 [解决方法链接](http://blog.csdn.net/u010116861/article/details/51886550)
 
 * 处理方法2：此问题需查看node版本(过高或过低均会影响Sass安装 建议6.X.X版本)
+
+### 3.3 bower、gulp命令不是内部或外部可识别的命令
+
+* npm安装bower、gulp成功，但bower install、gulp serve却提示命令不是内部或外部可识别的命令
+
+* 处理方法：全局安装bower、gulp
+
+```angular2html
+npm install bower -g
+npm install gulp -g
+```
 
 ## 4 其他常用命令提示
 
