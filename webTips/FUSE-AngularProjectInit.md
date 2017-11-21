@@ -73,6 +73,27 @@ wechatgame/src/app/main/wegame/customer/XXX.js    具体页面路由文件
 ![](/assets/Fuse/Fuse9.jpeg)
 ![](/assets/Fuse/Fuse10.jpeg)
 
+### 2.3 安装restangular并注入
+
+安装restangular插件
+
+```angular2html
+bower install --save restangular
+```
+![](/assets/Fuse/Fuse15.jpeg)
+
+在项目路由配置文件引入restangular
+
+![](/assets/Fuse/Fuse16.jpeg)
+
+在模块路由引入restangular
+
+![](/assets/Fuse/Fuse18.jpeg)
+
+在页面路由引入restangular
+
+![](/assets/Fuse/Fuse17.jpeg)
+
 ## 3 常见问题及处理
 
 ### 3.1 模块加载失败
@@ -101,7 +122,7 @@ npm install node-sass
 
 [解决方法链接](http://blog.csdn.net/u010116861/article/details/51886550)
 
-* 处理方法2：此问题需查看node版本(过高或过低均会影响Sass安装 建议6.X.X版本)
+* 处理方法2：此问题需查看node版本(过高或过低均会影响Sass安装 建议node-6.X.X版本)
 
 ### 3.3 bower、gulp命令不是内部或外部可识别的命令
 
@@ -113,6 +134,16 @@ npm install node-sass
 npm install bower -g
 npm install gulp -g
 ```
+
+### 3.4 配置restangular失败
+
+* 报错提示：
+
+![](/assets/Fuse/Fuse14.jpeg)
+
+* 处理方法：二级路由也需要注入restangular
+
+![](/assets/Fuse/Fuse18.jpeg)
 
 ## 4 其他常用命令提示
 
