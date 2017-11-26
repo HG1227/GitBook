@@ -81,6 +81,9 @@
     * [Hexo博客框架-切换主题](webTips/HexoBlogThemes.md)
     * [AirbnbJavaScript风格指南](webTips/AirbnbJavaScript.md)
     * [FUSE-Angular前端框架项目初始化](webTips/FUSE-AngularProjectInit.md)
+    * [ng-file-upload-Angular上传图片插件](webTips/ng-file-upload.md)
+    * [ngclipboard-Angular复制到剪贴板插件](webTips/ngclipboard.md)
+    * [AngularJs-toaster-Angular提示弹框插件](webTips/AngularJS-Toaster.md)
 * [毫末科技面试流程](haomointerview.md)
     * [JAVA面试](haomointerview/content.md)
 
