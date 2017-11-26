@@ -10,9 +10,11 @@
 
 ```
 
-## 1 使用背景
+## 1 简介、特点
 
 ![](/assets/AngularJs-toaster1.jpeg)
 ![](/assets/AngularJs-toaster2.jpeg)
 ![](/assets/AngularJs-toaster3.jpeg)
 ![](/assets/AngularJs-toaster4.jpeg)
+
+## 参考资料

@@ -136,7 +136,6 @@ ngf-drag-over-class="{
 |ngf-background="file"|设置背景图片的样式|
 |ngf-no-object-url="true or false"|默认为false，强制生成base64url而不是对象url|
 
-
 ## 参考资料
 
 * [简书教程](http://www.jianshu.com/p/6e14f9200450)
