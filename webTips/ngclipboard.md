@@ -24,13 +24,13 @@ ngclipboard使用angularjs指令将文本复制到剪贴板而不使用flash
 
 ### 2.1 安装
 
-npm安装
+* Npm安装
 
 ```angular2html
 npm install ngclipboard --save
 ```
 
-bower安装
+* Bower安装
 
 ```angular2html
 bower install ngclipboard --save

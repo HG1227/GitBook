@@ -27,6 +27,14 @@ ng-file-upload是一款轻量级、跨浏览器的angular上传文件指令
 
 ## 2 安装、使用
 
+### 2.1 安装
+
+* Npm安装
+
+```angular2html
+npm install ng-file-upload --save
+```
+
 * Bower安装
 
 ```angular2html
@@ -35,18 +43,61 @@ bower install ng-file-upload --save
 
 ![](/assets/ng-file-upload1.jpeg)
 
+### 2.2 引入依赖
+
 引入ng-file-upload
+
+```angular2html
+//inject directives and services. 
+var app = angular.module('fileUpload', ['ngFileUpload']);
+
+app.controller('MyCtrl', ['$scope', 'Upload', function ($scope, Upload) {
+    // upload later on form submit or something similar 
+    $scope.submit = function() {
+      if ($scope.form.file.$valid && $scope.file) {
+        $scope.upload($scope.file);
+      }
+    };
+ 
+    // upload on file select or drop 
+    $scope.upload = function (file) {
+        Upload.upload({
+            url: 'upload/url',
+            data: {file: file, 'username': $scope.username}
+        }).then(function (resp) {
+            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+        }, function (resp) {
+            console.log('Error status: ' + resp.status);
+        }, function (evt) {
+            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+        });
+    };
+    // for multiple files: 
+    $scope.uploadFiles = function (files) {
+      if (files && files.length) {
+        for (var i = 0; i < files.length; i++) {
+          Upload.upload({..., data: {file: files[i]}, ...})...;
+        }
+        // or send them all together for HTML5 browsers: 
+        Upload.upload({..., data: {file: files}, ...})...;
+      }
+    }
+}]);
+```
 
 ![](/assets/ng-file-upload2.jpeg)
 ![](/assets/ng-file-upload3.jpeg)
 
-调用上传接口(把图片对象上传后台)
-
-![](/assets/ng-file-upload4.jpeg)
+### 2.3 使用
 
 在页面插入上传按钮
 
 ![](/assets/ng-file-upload5.jpeg)
+
+调用上传接口(把图片对象上传后台)
+
+![](/assets/ng-file-upload4.jpeg)
 
 ## 3 涉及参数：
 
@@ -141,3 +192,4 @@ ngf-drag-over-class="{
 * [简书教程](http://www.jianshu.com/p/6e14f9200450)
 * [ng-file-upload教程](https://www.awesomes.cn/repo/danialfarid/ng-file-upload)
 * [CSDN教程](http://blog.csdn.net/csdnmmcl/article/details/51033954)
+* [Npm官方介绍](https://www.npmjs.com/package/ng-file-upload)
