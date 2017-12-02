@@ -60,6 +60,9 @@ wechatgame/node_modules             开发依赖
 ![](/assets/Fuse/Fuse19.jpeg)
 
 ### 2.2 主要文件及功能
+
+* 项目主体
+
 ```angular2html
 index.route.js   配置起始页面
 index.module.js   配置项目目录
@@ -77,6 +80,8 @@ wechatgame/src/app/main/wegame/customer/XXX.js    具体页面路由文件
 ![](/assets/Fuse/Fuse9.jpeg)
 ![](/assets/Fuse/Fuse10.jpeg)
 
+* 导航栏
+
 ```angular2html
 wechatgame/src/app/navigation/  导航配置
 wechatgame/src/app/navigation/navigation.module.js   导航路由配置
@@ -91,6 +96,8 @@ wechatgame/src/app/navigation/XXX/layouts   框架导航页面不同样式布局
 ![](/assets/Fuse/Fuse22.jpeg)
 ![](/assets/Fuse/Fuse23.jpeg)
 
+* 工具栏
+
 ```angular2html
 wechatgame/src/app/toolbar/         工具栏配置
 wechatgame/src/app/toolbar/toolbar.module.js   工具栏路由配置
@@ -99,6 +106,16 @@ wechatgame/src/app/toolbar/XXX/layouts   工具栏页面不同样式布局方案
 ```
 
 ![](/assets/Fuse/Fuse21.jpeg)
+
+> 工具栏主要包括:LOGO、下拉列表、搜索、国际化、更多
+
+![](/assets/Fuse/Fuse26.jpeg)
+
+> 修改了工具栏LOGO内容、登录用户姓名 注释了下拉栏多余内容、国际化、更多
+
+![](/assets/Fuse/Fuse24.jpeg)
+![](/assets/Fuse/Fuse25.jpeg)
+![](/assets/Fuse/Fuse27.jpeg)
 
 ### 2.3 安装restangular并注入
 
