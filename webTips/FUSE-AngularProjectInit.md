@@ -7,6 +7,7 @@
 更改历史
 
 * 2017-11-21	高天阳	初始化文档
+* 2017-12-2 	高天阳	补充导航、工具栏配置
 
 ```
 
@@ -49,11 +50,14 @@ gulp serve // 启动项目
 ### 2.1 目录结构：
 
 ```angular2html
-wechatgame/src/app/main/wegame/    编写代码存放目录
-wechatgame/bower_components     插件依赖
-wechatgame/node_modules     开发依赖
+wechatgame/src/app/main/wegame/     编写代码存放目录
+wechatgame/src/app/navigation/      框架导航配置
+wechatgame/src/app/toolbar/         框架工具栏配置
+wechatgame/bower_components         插件依赖
+wechatgame/node_modules             开发依赖
 ```
 ![](/assets/Fuse/Fuse3.jpeg)
+![](/assets/Fuse/Fuse19.jpeg)
 
 ### 2.2 主要文件及功能
 ```angular2html
@@ -72,6 +76,29 @@ wechatgame/src/app/main/wegame/customer/XXX.js    具体页面路由文件
 ![](/assets/Fuse/Fuse8.jpeg)
 ![](/assets/Fuse/Fuse9.jpeg)
 ![](/assets/Fuse/Fuse10.jpeg)
+
+```angular2html
+wechatgame/src/app/navigation/  导航配置
+wechatgame/src/app/navigation/navigation.module.js   导航路由配置
+wechatgame/src/app/navigation/navigation.controller.js   工具栏控制器配置
+wechatgame/src/app/navigation/XXX/layouts   框架导航页面不同样式布局方案
+```
+
+![](/assets/Fuse/Fuse20.jpeg)
+
+> 一般情况下 只会修改页面样式 此次还修改了控制器 增加了一个打开关闭判定
+
+![](/assets/Fuse/Fuse22.jpeg)
+![](/assets/Fuse/Fuse23.jpeg)
+
+```angular2html
+wechatgame/src/app/toolbar/         工具栏配置
+wechatgame/src/app/toolbar/toolbar.module.js   工具栏路由配置
+wechatgame/src/app/toolbar/toolbar.controller.js   工具栏控制器配置
+wechatgame/src/app/toolbar/XXX/layouts   工具栏页面不同样式布局方案
+```
+
+![](/assets/Fuse/Fuse21.jpeg)
 
 ### 2.3 安装restangular并注入
 
