@@ -84,6 +84,7 @@
     * [ng-file-upload-Angular上传图片插件](webTips/ng-file-upload.md)
     * [ngclipboard-Angular复制到剪贴板插件](webTips/ngclipboard.md)
     * [AngularJs-toaster-Angular提示弹框插件](webTips/AngularJS-Toaster.md)
+    * [Windows部署时脚本报错](webTips/WinDeployment.md)
 * [毫末科技面试流程](haomointerview.md)
     * [JAVA面试](haomointerview/content.md)
 
