@@ -47,11 +47,17 @@ var _ = require('lodash');
 ## 常用lodash函数
 ####（参考版本lodash v4.16.1）
 
-### 1、浅克隆对象 `_.clone`
+### 1、浅克隆对象 `_.clone(value)`
+
+* 参数
+    * value (*): 要拷贝的值
+* 返回
+    * (*): 返回拷贝后的值。
+
 ```angular2html
 <script type="text/javascript">
     var objA = {
-        "name": "戈德斯文"
+        "name": "张三"
     };
     var objB = _.clone(objA);
     console.log(objA);
@@ -64,11 +70,17 @@ arrays、array buffers、 booleans、 date objects、maps、 numbers， Object �
 以及 typed arrays。 arguments对象的可枚举属性会拷贝为普通对象。 一些不可拷贝的对象，例如error objects、functions, DOM nodes, 
 以及 WeakMaps 会返回空对象。
 
-### 2、深克隆对象 `_.cloneDeep`
+### 2、深克隆对象 `_.cloneDeep(value)`
+
+* 参数
+    * value (*): 要深拷贝的值。
+* 返回
+    * (*): 返回拷贝后的值。
+
 ```angular2html
 <script type="text/javascript">
     var objA = {
-        "name": "戈德斯文"
+        "name": "张三"
     };
     var objB = _.cloneDeep(objA);
     console.log(objA);
@@ -76,9 +88,20 @@ arrays、array buffers、 booleans、 date objects、maps、 numbers， Object �
     console.log(objA === objB);     //  false
 </script>
 ```
-深度克隆JavaScript对象是困难的，并且也没有什么简单的解决方案。你可以使用原生的解决方案:JSON.parse(JSON.stringify(objectToClone)) 进行深度克隆。但是，这种方案仅在对象内部没有方法的时候才可行。
+深度克隆JavaScript对象是困难的，并且也没有什么简单的解决方案。
+你可以使用原生的解决方案:JSON.parse(JSON.stringify(objectToClone)) 进行深度克隆。
+但是，这种方案仅在对象内部没有方法的时候才可行。
 
-### 3、遍历循环`_.forEach`
+### 3、遍历循环`_.forEach(collection, [iteratee=_.identity])`
+
+* 别名
+    * _.each
+* 参数
+    * collection (Array|Object): 一个用来迭代的集合。
+    * [iteratee=_.identity] (Function): 每次迭代调用的函数。
+* 返回
+    * (*): 返回集合 collection。
+
 ```angular2html
 <script type="text/javascript">
     _([1, 2]).forEach(function(value) {
@@ -91,7 +114,35 @@ arrays、array buffers、 booleans、 date objects、maps、 numbers， Object �
 ```
 这两种方法都会分别输出‘1’和‘2’，不仅是数组，对象也可以，数组的是后key是元素的下标，当传入的是对象的时候，key是属性，value是值
 
-### 4、查找属性 `_.find()`、`_.filter()`、`_.reject()`
+注意: 与其他"集合"方法一样，类似于数组，对象的 "length" 属性也会被遍历。想避免这种情况，可以用 _.forIn 或者 _.forOwn 代替。
+
+### 4、查找属性
+
+`_.find(collection, [predicate=_.identity], [fromIndex=0])`
+
+* 参数
+    * collection (Array|Object): 一个用来迭代的集合。
+    * [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
+    * [fromIndex=0] (number): 开始搜索的索引位置。
+* 返回
+    * (*): 返回匹配元素，否则返回 undefined。
+
+`_.filter(collection, [predicate=_.identity])`
+
+* 参数
+    * collection (Array|Object): 一个用来迭代的集合。
+    * [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
+* 返回
+    * (Array): 返回一个新的过滤后的数组。
+
+`_.reject(collection, [predicate=_.identity])`
+
+* 参数
+    * collection (Array|Object): 用来迭代的集合。
+    * [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
+* 返回
+    * (Array): 返回过滤后的新数组
+
 ```angular2html
 <script type="text/javascript">
     var users = [
@@ -115,6 +166,65 @@ arrays、array buffers、 booleans、 date objects、maps、 numbers， Object �
 _.find()第一个返回真值的第一个元素。
 _.filter()返回真值的所有元素的数组。
 _.reject()是_.filter的反向方法，不返回真值的（集合）元素
+
+`_.filter`
+_.filter(array,fucntion(item){return //判断条件})
+筛选符合条件的数组子项；返回新数组，原数组不变
+```angular2html
+var obj = {'data': [
+         {
+             'category': {
+                 'uri': '/categories/0b092e7c-4d2c-4eba-8c4e-80937c9e483d',
+                 'parent': 'Food',
+                 'name': 'Costco'
+             },
+             'amount': '15.0',
+             'debit': true
+         },
+         {
+             'category': {
+                 'uri': '/categories/d6c10cd2-e285-4829-ad8d-c1dc1fdeea2e',
+                 'parent': 'Food',
+                 'name': 'India Bazaar'
+             },
+             'amount': '10.0',
+             'debit': true
+         },
+         {
+             'category': {
+                 'uri': '/categories/d6c10cd2-e285-4829-ad8d-c1dc1fdeea2e',
+                 'parent': 'Food',
+                 'name': 'Sprouts'
+             },
+             'amount': '11.1',
+             'debit': false
+         }
+         ]};
+         console.log(_.filter(obj.data,'debit'));
+```
+
+```angular2html
+var users = [
+  { 'user': 'barney', 'age': 36, 'active': true },
+  { 'user': 'fred',   'age': 40, 'active': false }
+];
+ 
+_.filter(users, function(o) { return !o.active; });
+// => objects for ['fred']
+ 
+// The `_.matches` iteratee shorthand.
+_.filter(users, { 'age': 36, 'active': true });
+// => objects for ['barney']
+ 
+// The `_.matchesProperty` iteratee shorthand.
+_.filter(users, ['active', false]);
+// => objects for ['fred']
+ 
+// The `_.property` iteratee shorthand.
+_.filter(users, 'active');
+// => objects for ['barney']
+
+```
 
 ### 5、数组去重 `_.uniq`
 _.uniq(array)创建一个去重后的array数组副本。
@@ -157,66 +267,63 @@ console.log(_.uniqBy([{ 'x': 1 }, { 'x': 2 }, { 'x': 1 }], 'x'));
 ```
 Math.floor只是向下取整，去重，并没有改变原有的数组，所以还是2.1和1.2，不是2和1。
 
-### 6、筛选数组 `_.filter`
-_.filter(array,fucntion(item){return //判断条件})
-筛选符合条件的数组子项；返回新数组，原数组不变
-```angular2html
-var obj = {'data': [
-         {
-             'category': {
-                 'uri': '/categories/0b092e7c-4d2c-4eba-8c4e-80937c9e483d',
-                 'parent': 'Food',
-                 'name': 'Costco'
-             },
-             'amount': '15.0',
-             'debit': true
-         },
-         {
-             'category': {
-                 'uri': '/categories/d6c10cd2-e285-4829-ad8d-c1dc1fdeea2e',
-                 'parent': 'Food',
-                 'name': 'India Bazaar'
-             },
-             'amount': '10.0',
-             'debit': true
-         },
-         {
-             'category': {
-                 'uri': '/categories/d6c10cd2-e285-4829-ad8d-c1dc1fdeea2e',
-                 'parent': 'Food',
-                 'name': 'Sprouts'
-             },
-             'amount': '11.1',
-             'debit': false
-         }
-         ]};
-         console.log(_.filter(obj.data,'debit'));
-```
+### 6、过滤返回新数组 `_.difference(array, [values])`
 
+* 参数
+    * array (Array): 要检查的数组。
+    * `[values]` (...Array): 排除的值。
 
 ```angular2html
-var users = [
-  { 'user': 'barney', 'age': 36, 'active': true },
-  { 'user': 'fred',   'age': 40, 'active': false }
-];
- 
-_.filter(users, function(o) { return !o.active; });
-// => objects for ['fred']
- 
-// The `_.matches` iteratee shorthand.
-_.filter(users, { 'age': 36, 'active': true });
-// => objects for ['barney']
- 
-// The `_.matchesProperty` iteratee shorthand.
-_.filter(users, ['active', false]);
-// => objects for ['fred']
- 
-// The `_.property` iteratee shorthand.
-_.filter(users, 'active');
-// => objects for ['barney']
-
+_.difference([3, 2, 1], [4, 2]);
+// => [3, 1]
 ```
 
+创建一个具有唯一array值的数组，每个值不包含在其他给定的数组中。
+（愚人码头注：即创建一个新数组，这个数组中的值，为第一个数字（array 参数）排除了给定数组中的值。）
+该方法使用 SameValueZero做相等比较。结果值的顺序是由第一个数组中的顺序确定。 
+
+注意: 不像 `_.pullAll`，这个方法会返回一个新数组。
+
+### 7、值过滤返回原数组 `_.pull(array, [values])`
+
+* 参数
+    * array (Array): 要修改的数组。
+    * [values] (...*): 要删除的值。
+* 返回值
+    * (Array): 返回 array.
+
+```angular2html
+var array = [1, 2, 3, 1, 2, 3];
+ 
+_.pull(array, 2, 3);
+console.log(array);
+// => [1, 1]
+```
+
+移除数组array中所有和给定值相等的元素，使用 SameValueZero 进行全等比较。 
+
+注意：和 `_.without 方法不同`，这个方法会改变数组。使用 `_.remove` 从一个数组中移除元素。
+
+### 8、方法过滤返回新数组 `_.remove(array, [predicate=_.identity])`
+
+* 参数
+    * array (Array): 要修改的数组。
+    * [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
+* 返回
+    * (Array): 返回移除元素组成的新数组。
+
+```angular2html
+var array = [1, 2, 3, 4];
+var evens = _.remove(array, function(n) {
+  return n % 2 == 0;
+});
+ 
+console.log(array);
+// => [1, 3]
+ 
+console.log(evens);
+// => [2, 4]
+```
 ### 2、N次循环`_.times`
 ```angular2html
 <script type="text/javascript">
