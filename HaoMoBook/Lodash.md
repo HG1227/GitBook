@@ -5,7 +5,9 @@
 
 ## 简介：
 
-Lodash是一个著名的javascript原生库，不需要引入其他第三方依赖。是一个意在提高开发者效率,提高JS原生方法性能的JS库。简单的说就是，很多方法lodash已经帮你写好了，直接调用就行，不用自己费尽心思去写了，而且可以统一方法的一致性。Lodash使用了一个简单的 _ 符号，就像Jquery的 $ 一样，十分简洁。
+Lodash是一个著名的javascript原生库，不需要引入其他第三方依赖。是一个意在提高开发者效率,提高JS原生方法性能的JS库。
+简单的说就是，很多方法lodash已经帮你写好了，直接调用就行，不用自己费尽心思去写了，而且可以统一方法的一致性。
+Lodash使用了一个简单的 _ 符号，就像Jquery的 $ 一样，十分简洁。
 类似的还有Underscore.js和Lazy.js
 
 ## 浏览器支持
@@ -462,7 +464,30 @@ _.times(3, String);
 ```
 for语句是执行循环的不二选择，但在上面代码的使用场景下，_.times()的解决方式更加简洁和易于理解。
 
-### 3、遍历循环执行某个方法 深层查找属性值`_.map`
+### 12、遍历循环执行某个方法 深层查找属性值`_.map(collection, [iteratee=_.identity])`
+
+创建一个数组， value（值） 是 iteratee（迭代函数）遍历 collection（集合）中的每个元素后返回的结果。 iteratee（迭代函数）调用3个参数： 
+(value, index|key, collection). 
+
+Lodash中的_.map方法和JavaScript中原生的数组方法非常的像，但它还是有非常有用的升级。 
+你可以通过一个字符串而不是回调函数来浏览深度嵌套的对象属性。
+
+lodash 中有许多方法是防止作为其他方法的迭代函数（愚人码头注：即不能作为iteratee参数传递给其他方法），
+例如： _.every, _.filter, _.map, _.mapValues, _.reject, 和 _.some。 
+
+受保护的方法有（愚人码头注：即这些方法不能使用_.every, _.filter, _.map, _.mapValues, _.reject,
+和 _.some作为 iteratee 迭代函数参数） ：
+ary, chunk, curry, curryRight, drop, dropRight, every, fill, invert, parseInt, random, range, 
+rangeRight, repeat, sampleSize, slice, some, sortBy, split, take, takeRight, template, trim,
+ trimEnd, trimStart, and words
+
+* 添加版本
+    * 0.1.0
+* 参数
+    * collection (Array|Object): 用来迭代的集合。
+    * [iteratee=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
+* 返回
+    * (Array): 返回新的映射后数组。
 
 ```angular2html
 <script type="text/javascript">
@@ -507,43 +532,82 @@ for语句是执行循环的不二选择，但在上面代码的使用场景下�
    // => ['barney', 'fred']
 </script>
 ```
-Lodash中的_.map方法和JavaScript中原生的数组方法非常的像，但它还是有非常有用的升级。 你可以通过一个字符串而不是回调函数来浏览深度嵌套的对象属性。
 
-### 4、在指定范围内获取一个随机值`_.random`
+### 13、扩展对象`_.assign(object, [sources])`
+
+分配来源对象的可枚举属性到目标对象上。 来源对象的应用规则是从左到右，随后的下一个对象的属性会覆盖上一个对象的属性。 
+
+注意: 这方法会改变 object，参考自 Object.assign.
+
+_.assign 方法也可以接收多个参数对象进行扩展，都是往后面的对象上合并
+
+* 添加版本
+    * 0.10.0
+* 参数
+    * object (Object): 目标对象。
+    * [sources] (...Object): 来源对象。
+* 返回
+    * (Object): 返回 object.
+
 ```angular2html
 <script type="text/javascript">
-    function getRandomNumber(min, max){
-        return Math.floor(Math.random() * (max - min)) + min;
+Object.prototype.extend = function(obj) {
+    for (var i in obj) {
+        if (obj.hasOwnProperty(i)) {    //判断被扩展的对象有没有某个属性，
+            this[i] = obj[i];
+        }
     }
-    console.log(getRandomNumber(15, 20));
+};
 
-    console.log(_.random(15, 20));
+var objA = {"name": "张三", "car": "宝马"};
+var objB = {"name": "李四", "loveEat": true};
+
+objA.extend(objB);
+console.log(objA); 
+
+console.log(_.assign(objA, objB));
+</script>
+```
+
+### 14、在指定范围内获取一个随机值 `_.random([lower=0], [upper=1], [floating])`
+
+产生一个包括 lower 与 upper 之间的数。 如果只提供一个参数返回一个0到提供数之间的数。 如果 floating 设为 true，或者 lower 或 upper 是浮点数，结果返回浮点数。 
+
+注意: JavaScript 遵循 IEEE-754 标准处理无法预料的浮点数结果。
+
+* 添加版本
+    * 0.7.0
+* 参数
+    * [lower=0] (number): 下限。
+    * [upper=1] (number): 上限。
+    * [floating] (boolean): 指定是否返回浮点数。
+* 返回
+    * (number): 返回随机数。
+
+```angular2html
+<script type="text/javascript">
+_.random(0, 5);
+// => an integer between 0 and 5
+ 
+_.random(5);
+// => also an integer between 0 and 5
+ 
+_.random(5, true);
+// => a floating-point number between 0 and 5
+ 
+_.random(1.2, 5.2);
+// => a floating-point number between 1.2 and 5.2
+
+function getRandomNumber(min, max){
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+console.log(getRandomNumber(15, 20));
+
+console.log(_.random(15, 20));
 
 </script>
 ```
 Lodash中的 _.random 方法要比上面的原生方法更强大与灵活。你可以只传入一个参数作为最大值， 你也可以指定返回的结果为浮点数_.random(15,20,true)
-
-### 5、扩展对象`_.assign`
-```angular2html
-<script type="text/javascript">
-    Object.prototype.extend = function(obj) {
-        for (var i in obj) {
-            if (obj.hasOwnProperty(i)) {    //判断被扩展的对象有没有某个属性，
-                this[i] = obj[i];
-            }
-        }
-    };
-
-    var objA = {"name": "戈德斯文", "car": "宝马"};
-    var objB = {"name": "柴硕", "loveEat": true};
-
-    objA.extend(objB);
-    console.log(objA); 
-
-    console.log(_.assign(objA, objB));
-</script>
-```
-_.assign 方法也可以接收多个参数对象进行扩展，都是往后面的对象上合并
 
 ### 6、从列表中随机的选择列表项`_.sample`
 ```angular2html
