@@ -55,6 +55,7 @@ $ npm install --save lodash
 ```
 
 * node.js使用：
+
 ```angular2html
 var _ = require('lodash');
 ```
@@ -62,7 +63,7 @@ var _ = require('lodash');
 ### 2.2 使用
 `import _ from 'lodash'`，lodash默认使用的符号是下划线`_`，类似于jQuery的`$`符号;
 
-## 2.3 示例（参考版本lodash v4.16.1）
+### 2.3 示例（参考版本lodash v4.16.1）
 
 #### 2.3.1、浅克隆对象 `_.clone(value)`
 
@@ -1024,19 +1025,21 @@ _.each()方法中的continue和break：
 
 > 输出：lion未成年；lich未成年；
 
- 效果和for循环的continue一致；
-lodash更多方法请参考lodash文档：
-lodashAPI
-实用的lodash中文网站：http://www.itdadao.com/tags/lodash-0.html
-前端常用工具：
+效果和for循环的continue一致；
 
-is.js为检查数据类型等提供的小型的js库，大大减少了我们对REGEXP的依赖；
-underscore.js和lodash.js提供了一整套工具函数，无需经验不足的程序员再去给内置的 JavaScript 对象打补丁；
-D3.js数据可视化和图表是web应用程序的一种常规需求。当涉及到任何数据操作和可视化时，D3.js 就是事实上的标准。它是 GitHub 上最受欢迎的项目之一，并被数百个组织机构所采用。大量的图形、图标和可视化库都是构件于 D3 之上的；D3.js网站
-three.jsThree.js 提供了一个轻量级的 3D 库，让你可以将 3D 效果渲染成一个 HTML5 的 canvas, SVG, 和 WebGL。在
-three网站上展示了数百个漂亮的实例；
-lazy.jsLazy.js是类似Underscore或Lo-Dash的JavaScript工具库,但是它有一个非常独特的特性:惰性求值，具有优良的计算性能；但是惰性计算会带来其他方便的性能问题，详见注释；故而使用惰性计算需要慎重考虑。
-注释
+### 2.4、其他工具库推荐
+
+* 前端常用工具：
+    * is.js为检查数据类型等提供的小型的js库，大大减少了我们对REGEXP的依赖；
+    * underscore.js和lodash.js提供了一整套工具函数，无需经验不足的程序员再去给内置的 JavaScript 对象打补丁；
+    * D3.js数据可视化和图表是web应用程序的一种常规需求。当涉及到任何数据操作和可视化时，D3.js 就是事实上的标准。
+    它是 GitHub 上最受欢迎的项目之一，并被数百个组织机构所采用。大量的图形、图标和可视化库都是构件于 D3 之上的；D3.js网站
+    * three.jsThree.js 提供了一个轻量级的 3D 库，让你可以将 3D 效果渲染成一个 HTML5 的 canvas, SVG, 和 WebGL。
+    在three网站上展示了数百个漂亮的实例；
+    * lazy.jsLazy.js是类似Underscore或Lo-Dash的JavaScript工具库,但是它有一个非常独特的特性:惰性求值，具有优良的计算性能；
+    但是惰性计算会带来其他方便的性能问题，详见注释；故而使用惰性计算需要慎重考虑。
+
+### 2.5、专业词汇解释
 
 惰性计算(Lazy Evaluation)
 惰性计算是什么
@@ -1074,7 +1077,7 @@ lodash collection方法的使用：
 collection方法中可以传入数组或者对象，lodash会通过getFuncName（）从而计算出你传入的对象，实现对目标对象的解析。
 大大增强了lodash中collection的方法的灵活性。
 
-### 2.4 最佳实践
+### 2.6 最佳实践
 
 创建一个lodash包装实例，包装value以启用显式链模式。
 
