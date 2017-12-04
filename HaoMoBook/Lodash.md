@@ -47,48 +47,24 @@ var _ = require('lodash');
 ## 常用lodash函数
 ####（参考版本lodash v4.16.1）
 
-### 1、N次循环
+### 1、浅克隆对象 `_.clone`
 ```angular2html
 <script type="text/javascript">
-console.log('------- javascript -------');
-//js原生的循环方法
-for(var i = 0; i < 5; i++){
-    console.log(i);
-}
-console.log('------- lodash -------');
-//ladash的times方法
-_.times(5,function(a){
-    console.log(a);
-});
+    var objA = {
+        "name": "戈德斯文"
+    };
+    var objB = _.clone(objA);
+    console.log(objA);
+    console.log(objB);
+    console.log(objA === objB);     //  true
 </script>
 ```
-for语句是执行循环的不二选择，但在上面代码的使用场景下，_.times()的解决方式更加简洁和易于理解。
+创建一个 value 的浅拷贝。 注意: 这个方法参考自 structured clone algorithm 以及支持
+arrays、array buffers、 booleans、 date objects、maps、 numbers， Object 对象, regexes, sets, strings, symbols, 
+以及 typed arrays。 arguments对象的可枚举属性会拷贝为普通对象。 一些不可拷贝的对象，例如error objects、functions, DOM nodes, 
+以及 WeakMaps 会返回空对象。
 
-### 2、深层查找属性值
-
-```angular2html
-<script type="text/javascript">
-    var ownerArr = [{
-        "owner": "Colin",
-        "pets": [{"name": "dog1"}, {"name": "dog2"}]
-    }, {
-        "owner": "John",
-        "pets": [{"name": "dog3"}, {"name": "dog4"}]
-    }];
-    var jsMap = ownerArr.map(function (owner) {
-        return owner.pets[0].name;
-    });
-    console.log('------- jsMap -------');
-    console.log(jsMap);
-
-    var lodashMap = _.map(ownerArr, 'pets[0].name');
-    console.log('------- lodashMap -------');
-    console.log(lodashMap);
-</script>
-```
-Lodash中的_.map方法和JavaScript中原生的数组方法非常的像，但它还是有非常有用的升级。 你可以通过一个字符串而不是回调函数来浏览深度嵌套的对象属性。
-
-### 3、深克隆对象
+### 2、深克隆对象 `_.cloneDeep`
 ```angular2html
 <script type="text/javascript">
     var objA = {
@@ -97,84 +73,12 @@ Lodash中的_.map方法和JavaScript中原生的数组方法非常的像，但�
     var objB = _.cloneDeep(objA);
     console.log(objA);
     console.log(objB);
-    console.log(objA === objB);
+    console.log(objA === objB);     //  false
 </script>
 ```
 深度克隆JavaScript对象是困难的，并且也没有什么简单的解决方案。你可以使用原生的解决方案:JSON.parse(JSON.stringify(objectToClone)) 进行深度克隆。但是，这种方案仅在对象内部没有方法的时候才可行。
 
-### 4、在指定范围内获取一个随机值
-```angular2html
-<script type="text/javascript">
-    function getRandomNumber(min, max){
-        return Math.floor(Math.random() * (max - min)) + min;
-    }
-    console.log(getRandomNumber(15, 20));
-
-    console.log(_.random(15, 20));
-
-</script>
-```
-Lodash中的 _.random 方法要比上面的原生方法更强大与灵活。你可以只传入一个参数作为最大值， 你也可以指定返回的结果为浮点数_.random(15,20,true)
-
-### 5、扩展对象
-```angular2html
-<script type="text/javascript">
-    Object.prototype.extend = function(obj) {
-        for (var i in obj) {
-            if (obj.hasOwnProperty(i)) {    //判断被扩展的对象有没有某个属性，
-                this[i] = obj[i];
-            }
-        }
-    };
-
-    var objA = {"name": "戈德斯文", "car": "宝马"};
-    var objB = {"name": "柴硕", "loveEat": true};
-
-    objA.extend(objB);
-    console.log(objA); 
-
-    console.log(_.assign(objA, objB));
-</script>
-```
-_.assign 方法也可以接收多个参数对象进行扩展，都是往后面的对象上合并
-
-### 6、从列表中随机的选择列表项
-```angular2html
-<script type="text/javascript">
-    var smartTeam = ["戈德斯文", "杨海月", "柴硕", "师贝贝"];
-
-    function randomSmarter(smartTeam){
-        var index = Math.floor(Math.random() * smartTeam.length);
-        return smartTeam[index];
-    }
-
-    console.log(randomSmarter(smartTeam));
-
-    // Lodash
-    console.log(_.sample(smartTeam));
-    console.log(_.sampleSize(smartTeam,2));
-</script>
-```
-此外，你也可以指定随机返回元素的个数_.sampleSize(smartTeam,n)，n为需要返回的元素个数
-
-### 7、判断对象中是否含有某元素
-```angular2html
-<script type="text/javascript">
-    var smartPerson = {
-            'name': '戈德斯文',
-            'gender': 'male'
-        },
-        smartTeam = ["戈德斯文", "杨海月", "柴硕", "师贝贝"];
-
-
-    console.log(_.includes(smartPerson, '戈德斯文'));
-    console.log(_.includes(smartTeam, '杨海月'));
-    console.log(_.includes(smartTeam, '杨海月',2));
-</script>
-```
-_.includes()第一个参数是需要查询的对象，第二个参数是需要查询的元素，第三个参数是开始查询的下标
-
-### 8、遍历循环
+### 3、遍历循环`_.forEach`
 ```angular2html
 <script type="text/javascript">
     _([1, 2]).forEach(function(value) {
@@ -187,54 +91,7 @@ _.includes()第一个参数是需要查询的对象，第二个参数是需要�
 ```
 这两种方法都会分别输出‘1’和‘2’，不仅是数组，对象也可以，数组的是后key是元素的下标，当传入的是对象的时候，key是属性，value是值
 
-### 9、遍历循环执行某个方法
-_.map()
-```angular2html
-<script type="text/javascript">
-    function square(n) {
-        return n * n;
-    }
-
-    console.log(_.map([4, 8], square));
-    // => [16, 64]
-
-    console.log(_.map({ 'a': 4, 'b': 8 }, square));
-    // => [16, 64] (iteration order is not guaranteed)
-
-    var users = [
-        { 'user': 'barney' },
-        { 'user': 'fred' }
-    ];
-
-    // The `_.property` iteratee shorthand.
-    console.log(_.map(users, 'user'));
-    // => ['barney', 'fred']
-</script>
-```
-
-### 10、检验值是否为空
-_.isEmpty()
-```angular2html
-<script type="text/javascript">
-    _.isEmpty(null);
-    // => true
-
-    _.isEmpty(true);
-    // => true
-
-    _.isEmpty(1);
-    // => true
-
-    _.isEmpty([1, 2, 3]);
-    // => false
-
-    _.isEmpty({ 'a': 1 });
-    // => false
-</script>
-```
-
-### 11、查找属性
-_.find()、_.filter()、_.reject()
+### 4、查找属性 `_.find()`、`_.filter()`、`_.reject()`
 ```angular2html
 <script type="text/javascript">
     var users = [
@@ -259,7 +116,7 @@ _.find()第一个返回真值的第一个元素。
 _.filter()返回真值的所有元素的数组。
 _.reject()是_.filter的反向方法，不返回真值的（集合）元素
 
-### 12、数组去重
+### 5、数组去重 `_.uniq`
 _.uniq(array)创建一个去重后的array数组副本。
 
 参数
@@ -300,60 +157,7 @@ console.log(_.uniqBy([{ 'x': 1 }, { 'x': 2 }, { 'x': 1 }], 'x'));
 ```
 Math.floor只是向下取整，去重，并没有改变原有的数组，所以还是2.1和1.2，不是2和1。
 
-### 13、模板插入
-```angular2html
-_.template([string=''], [options={}])
-```
-```angular2html
-<div id="container"></div>
-
-<script src="https://cdn.bootcss.com/lodash.js/4.17.4/lodash.min.js"></script>
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript">
-    $(function () {
-        var data = [{name: '戈德斯文'}, {name: '柴硕'}, {name: '杨海月'}];
-        var t = _.template($("#tpl").html());
-        $("#container").html(t(data));
-    });
-</script>
-<script type="text/template" id="tpl">
-    <% _.each(obj,function(e,i){ %>
-        <ul>
-            <li><%= e.name %><%= i %></li>
-        </ul>
-    <%})%>
-</script>
-```
-注意，这个<script>标签的type是text/template，类似于react的JSX的写法，就是js和html可以混写，用<% %>括起来的就是js代码，可以执行，直接写的就是html的标签，并且有类似MVC框架的的数据绑定，在<%= %>中可以调用到数据呈现（纯属个人见解，不知道理解的对不对）
-
-
-本文的方法实例使用的lodash.js版本为4.17.3,可以在使用CDN引入或者下载新版本
-_.times(_.times(number,function))
-相对于for循环，lodash提供了更为高效的循环方法：_.times(number,function); 该方法会返回一个数组；
-```angular2html
- var i = 0;
- var time1 = _.times(3, function(){
-     console.log(i++);
-     return i;
- });
-```
-> 输出结果为：0, 1, 2
-
-```angular2html
- var time2 = _.times(4, _.constant(0));
- console.log(time1, time2);
-
-```
-> 输出结果为： [1, 2, 3]    [0, 0, 0, 0]
-
-使用_.times方法创建一个有相同前缀的值的数组；
-```angular2html
- var newArr = _.times(6, _.partial(_.uniqueId, 'time_'));
- console.log(newArr);
-
-```
-> ["team_1", "team_2", "team_3", "team_4", "team_5", "team_6"];
-
+### 6、筛选数组 `_.filter`
 _.filter(array,fucntion(item){return //判断条件})
 筛选符合条件的数组子项；返回新数组，原数组不变
 ```angular2html
@@ -389,43 +193,244 @@ var obj = {'data': [
          console.log(_.filter(obj.data,'debit'));
 ```
 
->
-```angular2html
-[
- {
-     'category': {
-         'uri': '/categories/0b092e7c-4d2c-4eba-8c4e-80937c9e483d',
-         'parent': 'Food',
-         'name': 'Costco'
-     },
-     'amount': '15.0',
-     'debit': true
- },
- {
-     'category': {
-         'uri': '/categories/d6c10cd2-e285-4829-ad8d-c1dc1fdeea2e',
-         'parent': 'Food',
-         'name': 'India Bazaar'
-     },
-     'amount': '10.0',
-     'debit': true
- }]
 
-console.log(_.filter(_.filter(obj.data), function(item){
- return item.amount == 11.1;
-}));
-{
- 'category': {
- 'uri': '/categories/d6c10cd2-e285-4829-ad8d-c1dc1fdeea2e',
-         'parent': 'Food',
-        'name': 'Sprouts'
-},
- 'amount': '11.1',
-     'debit': false
-}
+```angular2html
+var users = [
+  { 'user': 'barney', 'age': 36, 'active': true },
+  { 'user': 'fred',   'age': 40, 'active': false }
+];
+ 
+_.filter(users, function(o) { return !o.active; });
+// => objects for ['fred']
+ 
+// The `_.matches` iteratee shorthand.
+_.filter(users, { 'age': 36, 'active': true });
+// => objects for ['barney']
+ 
+// The `_.matchesProperty` iteratee shorthand.
+_.filter(users, ['active', false]);
+// => objects for ['fred']
+ 
+// The `_.property` iteratee shorthand.
+_.filter(users, 'active');
+// => objects for ['barney']
 
 ```
-             
+
+### 2、N次循环`_.times`
+```angular2html
+<script type="text/javascript">
+console.log('------- javascript -------');
+//js原生的循环方法
+for(var i = 0; i < 5; i++){
+    console.log(i);
+}
+console.log('------- lodash -------');
+//ladash的times方法
+_.times(5,function(a){
+    console.log(a);
+});
+</script>
+```
+for语句是执行循环的不二选择，但在上面代码的使用场景下，_.times()的解决方式更加简洁和易于理解。
+
+### 3、遍历循环执行某个方法 深层查找属性值`_.map`
+
+```angular2html
+<script type="text/javascript">
+    var ownerArr = [{
+        "owner": "Colin",
+        "pets": [{"name": "dog1"}, {"name": "dog2"}]
+    }, {
+        "owner": "John",
+        "pets": [{"name": "dog3"}, {"name": "dog4"}]
+    }];
+    var jsMap = ownerArr.map(function (owner) {
+        return owner.pets[0].name;
+    });
+    console.log('------- jsMap -------');
+    console.log(jsMap);
+
+    var lodashMap = _.map(ownerArr, 'pets[0].name');
+    console.log('------- lodashMap -------');
+    console.log(lodashMap);
+</script>
+```
+
+```angular2html
+<script type="text/javascript">
+   function square(n) {
+       return n * n;
+   }
+
+   console.log(_.map([4, 8], square));
+   // => [16, 64]
+
+   console.log(_.map({ 'a': 4, 'b': 8 }, square));
+   // => [16, 64] (iteration order is not guaranteed)
+
+   var users = [
+       { 'user': 'barney' },
+       { 'user': 'fred' }
+   ];
+
+   // The `_.property` iteratee shorthand.
+   console.log(_.map(users, 'user'));
+   // => ['barney', 'fred']
+</script>
+```
+Lodash中的_.map方法和JavaScript中原生的数组方法非常的像，但它还是有非常有用的升级。 你可以通过一个字符串而不是回调函数来浏览深度嵌套的对象属性。
+
+### 4、在指定范围内获取一个随机值`_.random`
+```angular2html
+<script type="text/javascript">
+    function getRandomNumber(min, max){
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+    console.log(getRandomNumber(15, 20));
+
+    console.log(_.random(15, 20));
+
+</script>
+```
+Lodash中的 _.random 方法要比上面的原生方法更强大与灵活。你可以只传入一个参数作为最大值， 你也可以指定返回的结果为浮点数_.random(15,20,true)
+
+### 5、扩展对象`_.assign`
+```angular2html
+<script type="text/javascript">
+    Object.prototype.extend = function(obj) {
+        for (var i in obj) {
+            if (obj.hasOwnProperty(i)) {    //判断被扩展的对象有没有某个属性，
+                this[i] = obj[i];
+            }
+        }
+    };
+
+    var objA = {"name": "戈德斯文", "car": "宝马"};
+    var objB = {"name": "柴硕", "loveEat": true};
+
+    objA.extend(objB);
+    console.log(objA); 
+
+    console.log(_.assign(objA, objB));
+</script>
+```
+_.assign 方法也可以接收多个参数对象进行扩展，都是往后面的对象上合并
+
+### 6、从列表中随机的选择列表项`_.sample`
+```angular2html
+<script type="text/javascript">
+    var smartTeam = ["戈德斯文", "杨海月", "柴硕", "师贝贝"];
+
+    function randomSmarter(smartTeam){
+        var index = Math.floor(Math.random() * smartTeam.length);
+        return smartTeam[index];
+    }
+
+    console.log(randomSmarter(smartTeam));
+
+    // Lodash
+    console.log(_.sample(smartTeam));
+    console.log(_.sampleSize(smartTeam,2));
+</script>
+```
+此外，你也可以指定随机返回元素的个数_.sampleSize(smartTeam,n)，n为需要返回的元素个数
+
+### 7、判断对象中是否含有某元素`_.includes`
+```angular2html
+<script type="text/javascript">
+    var smartPerson = {
+            'name': '戈德斯文',
+            'gender': 'male'
+        },
+        smartTeam = ["戈德斯文", "杨海月", "柴硕", "师贝贝"];
+
+
+    console.log(_.includes(smartPerson, '戈德斯文'));
+    console.log(_.includes(smartTeam, '杨海月'));
+    console.log(_.includes(smartTeam, '杨海月',2));
+</script>
+```
+_.includes()第一个参数是需要查询的对象，第二个参数是需要查询的元素，第三个参数是开始查询的下标
+
+
+### 10、检验值是否为空 `_.isEmpty()`
+```angular2html
+<script type="text/javascript">
+    _.isEmpty(null);
+    // => true
+
+    _.isEmpty(true);
+    // => true
+
+    _.isEmpty(1);
+    // => true
+
+    _.isEmpty([1, 2, 3]);
+    // => false
+
+    _.isEmpty({ 'a': 1 });
+    // => false
+</script>
+```
+
+
+### 13、模板插入 `_.template`
+
+```angular2html
+_.template([string=''], [options={}])
+```
+```angular2html
+<div id="container"></div>
+
+<script src="https://cdn.bootcss.com/lodash.js/4.17.4/lodash.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var data = [{name: '戈德斯文'}, {name: '柴硕'}, {name: '杨海月'}];
+        var t = _.template($("#tpl").html());
+        $("#container").html(t(data));
+    });
+</script>
+<script type="text/template" id="tpl">
+    <% _.each(obj,function(e,i){ %>
+        <ul>
+            <li><%= e.name %><%= i %></li>
+        </ul>
+    <%})%>
+</script>
+```
+注意，这个`<script>`标签的type是text/template，类似于react的JSX的写法，就是js和html可以混写，用`<% %>`括起来的就是js代码，
+可以执行，直接写的就是html的标签，并且有类似MVC框架的的数据绑定，在`<%= %>`中可以调用到数据呈现（纯属个人见解，不知道理解的对不对）
+
+
+本文的方法实例使用的lodash.js版本为4.17.3,可以在使用CDN引入或者下载新版本
+_.times(_.times(number,function))
+相对于for循环，lodash提供了更为高效的循环方法：_.times(number,function); 该方法会返回一个数组；
+```angular2html
+ var i = 0;
+ var time1 = _.times(3, function(){
+     console.log(i++);
+     return i;
+ });
+```
+> 输出结果为：0, 1, 2
+
+```angular2html
+ var time2 = _.times(4, _.constant(0));
+ console.log(time1, time2);
+
+```
+> 输出结果为： [1, 2, 3]    [0, 0, 0, 0]
+
+使用_.times方法创建一个有相同前缀的值的数组；
+```angular2html
+ var newArr = _.times(6, _.partial(_.uniqueId, 'time_'));
+ console.log(newArr);
+
+```
+> ["team_1", "team_2", "team_3", "team_4", "team_5", "team_6"];
+         
 _.reject(array,function(item){return //判断条件})
 取反，返回不符合判断条件的新数组，原数组不变
 _.remove(array,function(item){return //判断条件})
