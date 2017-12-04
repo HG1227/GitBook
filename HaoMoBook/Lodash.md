@@ -406,8 +406,40 @@ _.fill([4, 6, 8, 10], '*', 1, 3);
 // => [4, '*', '*', 10]
 ```
 
+### 10、剪裁数组 `_.slice(array, [start=0], [end=array.length])`
 
-### 2、N次循环`_.times`
+裁剪数组array，从 start 位置开始到end结束，但不包括 end 本身的位置。 
+
+Note: 这个方法用于代替 Array#slice 来确保数组正确返回。
+
+* 添加版本
+    * 3.0.0
+* 参数
+    * array (Array): 要裁剪数组。
+    * [start=0] (number): 开始位置。
+    * [end=array.length] (number): 结束位置。
+* 返回
+    * (Array): 返回 数组array 裁剪部分的新数组。
+    
+```
+var array = [1, 2, 3, 4, 5];
+ 
+_.slice(array, 1, 3);
+console.log(array);
+```
+
+### 11、N次循环 `_.times(n, [iteratee=_.identity])`
+
+调用 iteratee n 次，每次调用返回的结果存入到数组中。 iteratee 调用入1个参数： (index)。
+
+* 添加版本
+    * 0.1.0
+* 参数
+    * n (number): 调用 iteratee 的次数。
+    * [iteratee=_.identity] (Function): 每次迭代调用的函数。
+* 返回
+    * (Array): 返回调用结果的数组。
+
 ```angular2html
 <script type="text/javascript">
 console.log('------- javascript -------');
@@ -420,6 +452,12 @@ console.log('------- lodash -------');
 _.times(5,function(a){
     console.log(a);
 });
+
+_.times(3, String);
+// => ['0', '1', '2']
+ 
+ _.times(4, _.constant(0));
+// => [0, 0, 0, 0]
 </script>
 ```
 for语句是执行循环的不二选择，但在上面代码的使用场景下，_.times()的解决方式更加简洁和易于理解。
