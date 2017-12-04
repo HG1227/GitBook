@@ -1,55 +1,61 @@
 # Lodash
 
-[参考文档](http://lodashjs.com/docs/)
-[Lodash中文文档](http://www.css88.com/doc/lodash/#_timesn-iteratee_identity)
+#### 作者：高天阳
+#### 邮箱：gty@haomo-studio.com
 
-## 简介：
+## 1. 历史、现状和发展
 
-Lodash是一个著名的javascript原生库，不需要引入其他第三方依赖。是一个意在提高开发者效率,提高JS原生方法性能的JS库。
-简单的说就是，很多方法lodash已经帮你写好了，直接调用就行，不用自己费尽心思去写了，而且可以统一方法的一致性。
-Lodash使用了一个简单的 _ 符号，就像Jquery的 $ 一样，十分简洁。
-类似的还有Underscore.js和Lazy.js
+### 1.1 什么是lodash
 
-## 浏览器支持
+lodash库是一个具有一致接口、模块化、高性能等特性的 JavaScript 工具库。
+有多年开发经验的工程师，往往都会有自己的一套工具库，称为 utils、helpers 等等，
+这套库一方面是自己的技术积累，另一方面也是对某项技术的扩展，领先于技术规范的制定和实现，
+需要用的时候直接饮用就可以了，不用再重新编写一套函数方法。
+Lodash 就是这样的一套工具库，它内部封装了诸多对字符串、数组、对象等常见数据类型的处理函数，
+其中部分是目前 ECMAScript 尚未制定的规范，但同时被业界所认可的辅助函数。
+目前每天使用 npm 安装 Lodash 的数量在百万级以上，这在一定程度上证明了其代码的健壮性，值得我们在项目中一试。
 
-chrome 43往上
-Firefox 38往上
-IE 6-11
-MS Edge
-Safari 5往上
-（几乎涵盖现在市面上可以见到的大部分浏览器）
+### 1.2 现状
 
-## 为什么使用lodash
-   
-通过使用数组，数字，对象，字符串等方法，Lodash使JavaScript变得更简单。
+目前lodash已经更新到了V4，2015年是大年 Lodash成为最依赖于 npm的软件包，通过了10亿次下载，其v3版本也被大量采用！
+并且lodash已经开始对于和underscore合并的事宜进行讨论。
 
-## 入门指南
+最新版本支持Chrome 54-55，Firefox 49-50，IE 11，Edge 14，Safari 9-10，Node.js 6-7和 PhantomJS 2.1.1。
 
-### 安装：
+### 1.3 ES6大行其道的今天lodash怎么发展
 
-#### 下载lodash：
+1. Lodash 提供了很多 es6 里面没有的功能，真的有需求的时候还是可以用的
+2. Lodash 还提供了几乎所有浏览器的兼容，从现代浏览器来说很多兼容是多余的，带来了很多不必要的流量
+3. 对于server 端、框架或是工具库开发而言，如果无法预测代码会跑在什么环境，有 lodash 能少考虑很多兼容的问题少做很多测试
+4. 很多方法都提供了 path 以及一些很方便的参数，可以大幅度减少代码量
 
-* npm安装：
+## 2. 安装和使用
+
+### 2.1 安装
+
+在HTML使用script标签引入：  
 ```
-npm install lodash
-npm i --save lodash
-``` 
-
-* HTML使用script标签引入。
-```angular2html
-<script src="lodash.js"></script> 
+<script src="lodash.js"></script>
 ```
 直接下载下来引入，或者使用cdn
+
+使用npm：  
+```
+$ npm install -g lodash
+$ npm install --save lodash
+```
 
 * node.js使用：
 ```angular2html
 var _ = require('lodash');
 ```
 
-## 常用lodash函数
-####（参考版本lodash v4.16.1）
+### 2.2 使用
+`import _ from 'lodash'`，lodash默认使用的符号是下划线`_`，类似于jQuery的`$`符号;
 
-### 1、浅克隆对象 `_.clone(value)`
+## 2.3 示例（参考版本lodash v4.16.1）
+
+#### 2.3.1、浅克隆对象 `_.clone(value)`
 
 创建一个 value 的浅拷贝。 注意: 这个方法参考自 structured clone algorithm 以及支持
 arrays、array buffers、 booleans、 date objects、maps、 numbers， Object 对象, regexes, sets, strings, symbols, 
@@ -74,7 +80,7 @@ arrays、array buffers、 booleans、 date objects、maps、 numbers， Object �
     console.log(objA === objB);     //  true
 </script>
 ```
-### 2、深克隆对象 `_.cloneDeep(value)`
+#### 2.3.2、深克隆对象 `_.cloneDeep(value)`
 
 深度克隆JavaScript对象是困难的，并且也没有什么简单的解决方案。
 你可以使用原生的解决方案:JSON.parse(JSON.stringify(objectToClone)) 进行深度克隆。
@@ -99,7 +105,7 @@ arrays、array buffers、 booleans、 date objects、maps、 numbers， Object �
 </script>
 ```
 
-### 3、遍历循环`_.forEach(collection, [iteratee=_.identity])`
+#### 2.3.3、遍历循环`_.forEach(collection, [iteratee=_.identity])`
 
 这两种方法都会分别输出‘1’和‘2’，不仅是数组，对象也可以，数组的是后key是元素的下标，当传入的是对象的时候，key是属性，value是值
 
@@ -126,7 +132,7 @@ arrays、array buffers、 booleans、 date objects、maps、 numbers， Object �
 </script>
 ```
 
-### 4、查找属性 `_.find(collection, [predicate=_.identity], [fromIndex=0])`
+#### 2.3.4、查找属性 `_.find(collection, [predicate=_.identity], [fromIndex=0])`
 
 遍历 collection（集合）元素，返回 predicate（断言函数）第一个返回真值的第一个元素。
 predicate（断言函数）调用3个参数： (value, index|key, collection)。
@@ -163,7 +169,7 @@ _.find(users, 'active');
 // => object for 'barney'
 ```
 
-### 5、查找属性 `_.filter(collection, [predicate=_.identity])`
+#### 2.3.5、查找属性 `_.filter(collection, [predicate=_.identity])`
 
 遍历 collection（集合）元素，返回 predicate（断言函数）返回真值 的所有元素的数组。
 predicate（断言函数）调用三个参数：(value, index|key, collection)。 
@@ -198,7 +204,7 @@ _.filter(users, 'active');
 // => objects for ['barney']
 ```
 
-### 6、查找属性 `_.reject(collection, [predicate=_.identity])`
+#### 2.3.6、查找属性 `_.reject(collection, [predicate=_.identity])`
 
 `_.filter`的反向方法;此方法 返回 predicate（断言函数） 不 返回 truthy（真值）的collection（集合）元素（愚人码头注释：非真）。
 
@@ -232,7 +238,7 @@ _.reject(users, 'active');
 // => objects for ['barney']
 ```
 
-### 7、查找属性`_.find`与`_.filter`的比较
+#### 2.3.7、查找属性`_.find`与`_.filter`的比较
 
 `_.find()`第一个返回真值的第一个元素。
 `_.filter()`返回真值的所有元素的数组。
@@ -259,7 +265,7 @@ _.reject(users, 'active');
 </script>
 ```
 
-### 8、数组通过值去重 `_.uniq(array)`
+#### 2.3.8、数组通过值去重 `_.uniq(array)`
 
 创建一个去重后的array数组副本。使用了 SameValueZero 做等值比较。只有第一次出现的元素才会被保留。
 
@@ -293,7 +299,7 @@ _.reject(users, 'active');
 </script>
 ```
 
-### 9、数组通过方法去重 `_.uniqBy(array, [iteratee=_.identity])`
+#### 2.3.9、数组通过方法去重 `_.uniqBy(array, [iteratee=_.identity])`
 
 这个方法类似 `_.uniq` ，除了它接受一个 iteratee （迭代函数），调用每一个数组（array）的每个元素以产生唯一性计算的标准。
 iteratee 调用时会传入一个参数：(value)。
@@ -316,7 +322,7 @@ _.uniqBy([{ 'x': 1 }, { 'x': 2 }, { 'x': 1 }], 'x');
 ```
 Math.floor只是向下取整，去重，并没有改变原有的数组，所以还是2.1和1.2，不是2和1。
 
-### 10、过滤返回新数组 `_.difference(array, [values])`
+#### 2.3.10、过滤返回新数组 `_.difference(array, [values])`
 
 创建一个具有唯一array值的数组，每个值不包含在其他给定的数组中。
 （愚人码头注：即创建一个新数组，这个数组中的值，为第一个数字（array 参数）排除了给定数组中的值。）
@@ -337,7 +343,7 @@ _.difference([3, 2, 1], [4, 2]);
 // => [3, 1]
 ```
 
-### 7、值过滤返回原数组 `_.pull(array, [values])`
+#### 2.3.11、值过滤返回原数组 `_.pull(array, [values])`
 
 * 参数
     * array (Array): 要修改的数组。
@@ -357,7 +363,7 @@ console.log(array);
 
 注意：和 `_.without 方法不同`，这个方法会改变数组。使用 `_.remove` 从一个数组中移除元素。
 
-### 8、方法过滤返回新数组 `_.remove(array, [predicate=_.identity])`
+#### 2.3.12、方法过滤返回新数组 `_.remove(array, [predicate=_.identity])`
 
 去除符合条件的数组子项，改变原数组，返回被移除的子项组成的新数组
 
@@ -380,7 +386,7 @@ console.log(evens);
 // => [2, 4]
 ```
 
-### 9、替换`_.fill(array, value, [start=0], [end=array.length])`
+#### 2.3.13、替换`_.fill(array, value, [start=0], [end=array.length])`
 
 使用 value 值来填充（替换） array，从start位置开始, 到end位置结束（但不包含end位置）。
 
@@ -410,7 +416,7 @@ _.fill([4, 6, 8, 10], '*', 1, 3);
 // => [4, '*', '*', 10]
 ```
 
-### 10、剪裁数组 `_.slice(array, [start=0], [end=array.length])`
+#### 2.3.14、剪裁数组 `_.slice(array, [start=0], [end=array.length])`
 
 裁剪数组array，从 start 位置开始到end结束，但不包括 end 本身的位置。 
 
@@ -432,7 +438,7 @@ _.slice(array, 1, 3);
 console.log(array);
 ```
 
-### 11、N次循环 `_.times(n, [iteratee=_.identity])`
+#### 2.3.15、N次循环 `_.times(n, [iteratee=_.identity])`
 
 调用 iteratee n 次，每次调用返回的结果存入到数组中。 iteratee 调用入1个参数： (index)。
 
@@ -493,7 +499,7 @@ _.times(3, String);
 ```
 > ["team_1", "team_2", "team_3", "team_4", "team_5", "team_6"];
 
-### 12、遍历循环执行某个方法 深层查找属性值`_.map(collection, [iteratee=_.identity])`
+#### 2.3.16、遍历循环执行某个方法 深层查找属性值`_.map(collection, [iteratee=_.identity])`
 
 创建一个数组， value（值） 是 iteratee（迭代函数）遍历 collection（集合）中的每个元素后返回的结果。 iteratee（迭代函数）调用3个参数： 
 (value, index|key, collection). 
@@ -562,7 +568,7 @@ rangeRight, repeat, sampleSize, slice, some, sortBy, split, take, takeRight, tem
 </script>
 ```
 
-### 13、扩展对象`_.assign(object, [sources])`
+#### 2.3.17、扩展对象`_.assign(object, [sources])`
 
 分配来源对象的可枚举属性到目标对象上。 来源对象的应用规则是从左到右，随后的下一个对象的属性会覆盖上一个对象的属性。 
 
@@ -598,7 +604,7 @@ console.log(_.assign(objA, objB));
 </script>
 ```
 
-### 14、在指定范围内获取一个随机值 `_.random([lower=0], [upper=1], [floating])`
+#### 2.3.18、在指定范围内获取一个随机值 `_.random([lower=0], [upper=1], [floating])`
 
 产生一个包括 lower 与 upper 之间的数。 如果只提供一个参数返回一个0到提供数之间的数。 
 如果 floating 设为 true，或者 lower 或 upper 是浮点数，结果返回浮点数。 
@@ -641,7 +647,7 @@ console.log(_.random(15, 20));
 </script>
 ```
 
-### 15、查找元素索引值 `_.findIndex(array, [predicate=_.identity], [fromIndex=0])`
+#### 2.3.19、查找元素索引值 `_.findIndex(array, [predicate=_.identity], [fromIndex=0])`
 
 该方法类似_.find，区别是该方法返回第一个通过 predicate 判断为真值的元素的索引值（index），而不是元素本身。
 
@@ -677,7 +683,7 @@ _.findIndex(users, 'active');
 // => 2
 ```
 
-### 16、获取数组第一个元素 `_.head(array)`
+#### 2.3.20、获取数组第一个元素 `_.head(array)`
 
 获取数组 array 的第一个元素。
 
@@ -698,7 +704,7 @@ _.head([]);
 // => undefined
 ```
 
-### 17、从列表中随机的选择列表项 `_.indexOf(array, value, [fromIndex=0])`
+#### 2.3.21、从列表中随机的选择列表项 `_.indexOf(array, value, [fromIndex=0])`
 
 使用 SameValueZero 等值比较，返回首次 value 在数组array中被找到的 索引值， 如果 fromIndex 为负值，将从数组array尾端索引进行匹配。
 
@@ -720,7 +726,7 @@ _.indexOf([1, 2, 1, 2], 2, 2);
 // => 3
 ```
 
-### 18、从列表中随机的选择列表项 `_.sample(collection)`
+#### 2.3.22、从列表中随机的选择列表项 `_.sample(collection)`
 
 从collection（集合）中获得一个随机元素。
 
@@ -753,7 +759,7 @@ console.log(_.sampleSize(array,2));
 ```
 此外，你也可以指定随机返回元素的个数_.sampleSize(smartTeam,n)，n为需要返回的元素个数
 
-### 19、判断对象中是否含有某元素`_.includes(collection, value, [fromIndex=0])`
+#### 2.3.23、判断对象中是否含有某元素`_.includes(collection, value, [fromIndex=0])`
 
 检查 value(值) 是否在 collection(集合) 中。如果 collection(集合)是一个字符串，那么检查 value（值，子字符串） 是否在字符串中，
 否则使用 SameValueZero 做等值比较。 如果指定 fromIndex 是负数，那么从 collection(集合) 的结尾开始检索。
@@ -795,7 +801,7 @@ console.log(_.includes(smartTeam, '李四',2));
 </script>
 ```
 
-### 20、检验值是否为空 `_.isEmpty(value)`
+#### 2.3.24、检验值是否为空 `_.isEmpty(value)`
 
 检查 value 是否为一个空对象，集合，映射或者set。 判断的依据是除非是有枚举属性的对象，
 length 大于 0 的 arguments object, array, string 或类jquery选择器。 
@@ -829,7 +835,7 @@ _.isEmpty({ 'a': 1 });
 // => false
 ```
 
-### 21、模板插入 `_.template([string=''], [options={}])`
+#### 2.3.25、模板插入 `_.template([string=''], [options={}])`
 
 创建一个预编译模板方法，可以插入数据到模板中 "interpolate" 分隔符相应的位置。 HTML会在 "escape" 分隔符中转换为相应实体。 在 "evaluate" 分隔符中允许执行JavaScript代码。 在模板中可以自由访问变量。 如果设置了选项对象，则会优先覆盖 _.templateSettings 的值。 
 
@@ -919,7 +925,7 @@ fs.writeFileSync(path.join(cwd, 'jst.js'), '\
 ');
 ```
 
-### 22、其他方法
+#### 2.3.26、其他方法
 
 _.omit(obj,arr)；
 一个新的对象，移除了与数组项相同的属性；
@@ -1056,4 +1062,64 @@ after , ary , assign , assignIn , assignInWith , assignWith , at , before , bind
 在调用这些方法之前会通过islaziable(func){}(版本号4.17.2第6338行)来对这些方法进行处理，从而计算出是否需要惰性计算，这些是在内部实现的，可以预处理lodash的绝大多数方法；从而增强了lodash的内聚度，而在外部函数中可以随意调用，而在外部随意调用，不要再处理。从而实现外部模块对随意调用。降低了耦合度。
 lodash collection方法的使用：
 
-collection方法中可以传入数组或者对象，lodash会通过getFuncName（）从而计算出你传入的对象，实现对目标对象的解析。大大增强了lodash中collection的方法的灵活性。
+collection方法中可以传入数组或者对象，lodash会通过getFuncName（）从而计算出你传入的对象，实现对目标对象的解析。
+大大增强了lodash中collection的方法的灵活性。
+
+### 2.4 最佳实践
+
+创建一个lodash包装实例，包装value以启用显式链模式。
+
+```
+var users = [
+  { 'user': 'barney',  'age': 36 },
+  { 'user': 'fred',    'age': 40 },
+  { 'user': 'pebbles', 'age': 1 }
+];
+
+var youngest = _
+  .chain(users)
+  .sortBy('age')
+  .map(function(o) {
+    return o.user + ' is ' + o.age;
+  })
+  .head()
+  .value();
+// => 'pebbles is 1'
+```
+一次性解决数据处理
+
+## 3. 同类技术对比
+
+### underscore
+
+Underscore 是一个JavaScript库，它提供了一大堆有用的函数式编程助手，而不需要扩展任何内置对象。
+
+### underscore和lodash的渊源
+
+lodash一开始是Underscore.js库的一个fork，因为和其他(Underscore.js的)贡献者意见相左。
+John-David Dalton的最初目标，是提供更多“一致的跨浏览器行为……，并改善性能”。
+之后，该项目在现有成功的基础之上取得了更大的成果。最近lodash也发布了3.5版，成为了npm包仓库中依赖最多的库。
+它正在摆脱屌丝身份，成为开发者的常规的选择之一。
+现在我们所熟知的很多开源项目都已经使用或者转到了lodash阵营之上。
+比如JavaScript转译器Babel、博客平台Ghost，和项目脚手架工具Yeoman。
+特别Ghost是从Underscore迁移到了lodash，Ghost的创始人John O’Nolan对于此曾评价到：
+“这是一个非常明智的选择，它几乎完全是由我们开源开发社区推动的。我们发现lodash包含更多的功能，
+更好的性能、恰到好处地使用了semver，并且在Node.js社区（以及其他依赖）中越来越抢眼“。
+
+### lazy
+
+Lazy.js是类似Underscore或Lo-Dash的JavaScript工具库，但是它有一个非常独特的特性：惰性求值。
+很多情况下，惰性求值都将带来巨大的性能提升，特别是当处理巨大的数组和连锁使用多个方法的时候
+
+目前lazy和undescore、lodash的性能对比
+![lodash、underscore和lazy](http://i.imgur.com/9vP6sVG.png)
+
+This library is experimental and still a work in progress.
+这个库还在试验阶段，暂不推荐使用在生产环境
+
+# 参考资料
+* [lodash官方文档](https://lodash.com/)
+* [博客《lodash入门》作者：前端战五渣](http://www.jianshu.com/p/d46abfa4ddc9)
+* [博客《lodash》作者：pinggod](http://www.jianshu.com/p/7436e40ac5d1)
+* [lodash中文文档](http://www.css88.com/doc/lodash/#_timesn-iteratee_identity)
+* [lodash3.10.1中文文档](http://lodashjs.com/docs/)
