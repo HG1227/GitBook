@@ -359,6 +359,8 @@ console.log(array);
 
 ### 8、方法过滤返回新数组 `_.remove(array, [predicate=_.identity])`
 
+去除符合条件的数组子项，改变原数组，返回被移除的子项组成的新数组
+
 * 参数
     * array (Array): 要修改的数组。
     * [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
@@ -434,6 +436,10 @@ console.log(array);
 
 调用 iteratee n 次，每次调用返回的结果存入到数组中。 iteratee 调用入1个参数： (index)。
 
+for语句是执行循环的不二选择，但在上面代码的使用场景下，_.times()的解决方式更加简洁和易于理解。
+
+相对于for循环，lodash提供了更为高效的循环方法：_.times(number,function); 该方法会返回一个数组；
+
 * 添加版本
     * 0.1.0
 * 参数
@@ -462,7 +468,30 @@ _.times(3, String);
 // => [0, 0, 0, 0]
 </script>
 ```
-for语句是执行循环的不二选择，但在上面代码的使用场景下，_.times()的解决方式更加简洁和易于理解。
+
+```angular2html
+ var i = 0;
+ var time1 = _.times(3, function(){
+     console.log(i++);
+     return i;
+ });
+```
+> 输出结果为：0, 1, 2
+
+```angular2html
+ var time2 = _.times(4, _.constant(0));
+ console.log(time1, time2);
+
+```
+> 输出结果为： [1, 2, 3]    [0, 0, 0, 0]
+
+使用_.times方法创建一个有相同前缀的值的数组；
+```angular2html
+ var newArr = _.times(6, _.partial(_.uniqueId, 'time_'));
+ console.log(newArr);
+
+```
+> ["team_1", "team_2", "team_3", "team_4", "team_5", "team_6"];
 
 ### 12、遍历循环执行某个方法 深层查找属性值`_.map(collection, [iteratee=_.identity])`
 
@@ -766,100 +795,131 @@ console.log(_.includes(smartTeam, '李四',2));
 </script>
 ```
 
-### 20、检验值是否为空 `_.isEmpty()`
-```angular2html
-<script type="text/javascript">
-    _.isEmpty(null);
-    // => true
+### 20、检验值是否为空 `_.isEmpty(value)`
 
-    _.isEmpty(true);
-    // => true
+检查 value 是否为一个空对象，集合，映射或者set。 判断的依据是除非是有枚举属性的对象，
+length 大于 0 的 arguments object, array, string 或类jquery选择器。 
 
-    _.isEmpty(1);
-    // => true
+对象如果被认为为空，那么他们没有自己的可枚举属性的对象。 
 
-    _.isEmpty([1, 2, 3]);
-    // => false
+类数组值，比如arguments对象，array，buffer，string或者类jQuery集合的length 为 0，被认为是空。
+类似的，map（映射）和set 的size 为 0，被认为是空。
 
-    _.isEmpty({ 'a': 1 });
-    // => false
-</script>
-```
-
-
-### 21、模板插入 `_.template`
+* 添加版本
+    * 0.1.0
+* 参数
+    * value (*): 要检查的值。
+* 返回
+    * (boolean): 如果 value 为空，那么返回 true，否则返回 false。
 
 ```angular2html
-_.template([string=''], [options={}])
+_.isEmpty(null);
+// => true
+ 
+_.isEmpty(true);
+// => true
+ 
+_.isEmpty(1);
+// => true
+ 
+_.isEmpty([1, 2, 3]);
+// => false
+ 
+_.isEmpty({ 'a': 1 });
+// => false
 ```
+
+### 21、模板插入 `_.template([string=''], [options={}])`
+
+创建一个预编译模板方法，可以插入数据到模板中 "interpolate" 分隔符相应的位置。 HTML会在 "escape" 分隔符中转换为相应实体。 在 "evaluate" 分隔符中允许执行JavaScript代码。 在模板中可以自由访问变量。 如果设置了选项对象，则会优先覆盖 _.templateSettings 的值。 
+
+注意: 在开发过程中，构建_.template可以使用 sourceURLs， 便于调试。 
+
+了解更多预编译模板的信息查看 lodash的自定义构建文档。 
+
+了解更多 Chrome 沙箱扩展的信息查看 Chrome的扩展文档。
+
+* 添加版本
+    * 0.1.0
+* 参数
+    * [string=''] (string): 模板字符串.
+    * [options={}] (Object): 选项对象.
+    * [options.escape=_.templateSettings.escape] (RegExp): "escape" 分隔符.
+    * [options.evaluate=_.templateSettings.evaluate] (RegExp): "evaluate" 分隔符.
+    * [options.imports=_.templateSettings.imports] (Object): 导入对象到模板中作为自由变量。
+    * [options.interpolate=_.templateSettings.interpolate] (RegExp): "interpolate" 分隔符。
+    * [options.sourceURL='lodash.templateSources[n]'] (string): 模板编译的来源URL。
+    * [options.variable='obj'] (string): 数据对象的变量名。
+* 返回
+    * (Function): 返回编译模板函数。
+
 ```angular2html
-<div id="container"></div>
-
-<script src="https://cdn.bootcss.com/lodash.js/4.17.4/lodash.min.js"></script>
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript">
-    $(function () {
-        var data = [{name: '戈德斯文'}, {name: '柴硕'}, {name: '杨海月'}];
-        var t = _.template($("#tpl").html());
-        $("#container").html(t(data));
-    });
-</script>
-<script type="text/template" id="tpl">
-    <% _.each(obj,function(e,i){ %>
-        <ul>
-            <li><%= e.name %><%= i %></li>
-        </ul>
-    <%})%>
-</script>
+// 使用 "interpolate" 分隔符创建编译模板
+var compiled = _.template('hello <%= user %>!');
+compiled({ 'user': 'fred' });
+// => 'hello fred!'
+ 
+// 使用 HTML "escape" 转义数据的值
+var compiled = _.template('<b><%- value %></b>');
+compiled({ 'value': '<script>' });
+// => '<b>&lt;script&gt;</b>'
+ 
+// 使用 "evaluate" 分隔符执行 JavaScript 和 生成HTML代码
+var compiled = _.template('<% _.forEach(users, function(user) { %><li><%- user %></li><% }); %>');
+compiled({ 'users': ['fred', 'barney'] });
+// => '<li>fred</li><li>barney</li>'
+ 
+// 在 "evaluate" 分隔符中使用内部的 `print` 函数
+var compiled = _.template('<% print("hello " + user); %>!');
+compiled({ 'user': 'barney' });
+// => 'hello barney!'
+ 
+// 使用 ES 分隔符代替默认的 "interpolate" 分隔符
+var compiled = _.template('hello ${ user }!');
+compiled({ 'user': 'pebbles' });
+// => 'hello pebbles!'
+ 
+// 使用自定义的模板分隔符
+_.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
+var compiled = _.template('hello {{ user }}!');
+compiled({ 'user': 'mustache' });
+// => 'hello mustache!'
+ 
+// 使用反斜杠符号作为纯文本处理
+var compiled = _.template('<%= "\\<%- value %\\>" %>');
+compiled({ 'value': 'ignored' });
+// => '<%- value %>'
+ 
+// 使用 `imports` 选项导入 `jq` 作为 `jQuery` 的别名
+var text = '<% jq.each(users, function(user) { %><li><%- user %></li><% }); %>';
+var compiled = _.template(text, { 'imports': { 'jq': jQuery } });
+compiled({ 'users': ['fred', 'barney'] });
+// => '<li>fred</li><li>barney</li>'
+ 
+// 使用 `sourceURL` 选项指定模板的来源URL
+var compiled = _.template('hello <%= user %>!', { 'sourceURL': '/basic/greeting.jst' });
+compiled(data);
+// => 在开发工具的 Sources 选项卡 或 Resources 面板中找到 "greeting.jst"
+ 
+// 使用 `variable` 选项确保在编译模板中不声明变量
+var compiled = _.template('hi <%= data.user %>!', { 'variable': 'data' });
+compiled.source;
+// => function(data) {
+//   var __t, __p = '';
+//   __p += 'hi ' + ((__t = ( data.user )) == null ? '' : __t) + '!';
+//   return __p;
+// }
+ 
+// 使用 `source` 特性内联编译模板
+// 便以查看行号、错误信息、堆栈
+fs.writeFileSync(path.join(cwd, 'jst.js'), '\
+  var JST = {\
+    "main": ' + _.template(mainText).source + '\
+  };\
+');
 ```
-注意，这个`<script>`标签的type是text/template，类似于react的JSX的写法，就是js和html可以混写，用`<% %>`括起来的就是js代码，
-可以执行，直接写的就是html的标签，并且有类似MVC框架的的数据绑定，在`<%= %>`中可以调用到数据呈现（纯属个人见解，不知道理解的对不对）
 
-
-本文的方法实例使用的lodash.js版本为4.17.3,可以在使用CDN引入或者下载新版本
-_.times(_.times(number,function))
-相对于for循环，lodash提供了更为高效的循环方法：_.times(number,function); 该方法会返回一个数组；
-```angular2html
- var i = 0;
- var time1 = _.times(3, function(){
-     console.log(i++);
-     return i;
- });
-```
-> 输出结果为：0, 1, 2
-
-```angular2html
- var time2 = _.times(4, _.constant(0));
- console.log(time1, time2);
-
-```
-> 输出结果为： [1, 2, 3]    [0, 0, 0, 0]
-
-使用_.times方法创建一个有相同前缀的值的数组；
-```angular2html
- var newArr = _.times(6, _.partial(_.uniqueId, 'time_'));
- console.log(newArr);
-
-```
-> ["team_1", "team_2", "team_3", "team_4", "team_5", "team_6"];
-         
-_.reject(array,function(item){return //判断条件})
-取反，返回不符合判断条件的新数组，原数组不变
-_.remove(array,function(item){return //判断条件})
-去除符合条件的数组子项，改变原数组，返回被移除的子项组成的新数组
-```angular2html
-var array = [1, 2, 3, 4];
-var evens = _.remove(array, function(n) {
- return n % 2 == 0;
-});
-
-console.log(array);
-```
-
->[1, 3] console.log(evens);
-
-
-> [2, 4]
+### 22、其他方法
 
 _.omit(obj,arr)；
 一个新的对象，移除了与数组项相同的属性；
