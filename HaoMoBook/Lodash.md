@@ -571,9 +571,13 @@ console.log(_.assign(objA, objB));
 
 ### 14、在指定范围内获取一个随机值 `_.random([lower=0], [upper=1], [floating])`
 
-产生一个包括 lower 与 upper 之间的数。 如果只提供一个参数返回一个0到提供数之间的数。 如果 floating 设为 true，或者 lower 或 upper 是浮点数，结果返回浮点数。 
+产生一个包括 lower 与 upper 之间的数。 如果只提供一个参数返回一个0到提供数之间的数。 
+如果 floating 设为 true，或者 lower 或 upper 是浮点数，结果返回浮点数。 
 
 注意: JavaScript 遵循 IEEE-754 标准处理无法预料的浮点数结果。
+
+Lodash中的 _.random 方法要比上面的原生方法更强大与灵活。你可以只传入一个参数作为最大值， 
+你也可以指定返回的结果为浮点数_.random(15,20,true)
 
 * 添加版本
     * 0.7.0
@@ -607,46 +611,162 @@ console.log(_.random(15, 20));
 
 </script>
 ```
-Lodash中的 _.random 方法要比上面的原生方法更强大与灵活。你可以只传入一个参数作为最大值， 你也可以指定返回的结果为浮点数_.random(15,20,true)
 
-### 6、从列表中随机的选择列表项`_.sample`
+### 15、查找元素索引值 `_.findIndex(array, [predicate=_.identity], [fromIndex=0])`
+
+该方法类似_.find，区别是该方法返回第一个通过 predicate 判断为真值的元素的索引值（index），而不是元素本身。
+
+* 引入版本
+    * 1.1.0
+* 参数
+    * array (Array): 要搜索的数组。
+    * [predicate=_.identity] (Array|Function|Object|string): 这个函数会在每一次迭代调用。
+    * [fromIndex=0] (number): The index to search from.
+* 返回值
+    * (number): 返回找到元素的 索引值（index），否则返回 -1。
+    
+```
+var users = [
+  { 'user': 'barney',  'active': false },
+  { 'user': 'fred',    'active': false },
+  { 'user': 'pebbles', 'active': true }
+];
+ 
+_.findIndex(users, function(o) { return o.user == 'barney'; });
+// => 0
+ 
+// The `_.matches` iteratee shorthand.
+_.findIndex(users, { 'user': 'fred', 'active': false });
+// => 1
+ 
+// The `_.matchesProperty` iteratee shorthand.
+_.findIndex(users, ['active', false]);
+// => 0
+ 
+// The `_.property` iteratee shorthand.
+_.findIndex(users, 'active');
+// => 2
+```
+
+### 16、获取数组第一个元素 `_.head(array)`
+
+获取数组 array 的第一个元素。
+
+* 引入版本
+    * 0.1.0
+* 别名
+    * _.first
+* 参数
+    * array (Array): 要查询的数组。
+* 返回值
+    * (*): 返回数组 array的第一个元素。
+    
+```
+_.head([1, 2, 3]);
+// => 1
+ 
+_.head([]);
+// => undefined
+```
+
+### 17、从列表中随机的选择列表项 `_.indexOf(array, value, [fromIndex=0])`
+
+使用 SameValueZero 等值比较，返回首次 value 在数组array中被找到的 索引值， 如果 fromIndex 为负值，将从数组array尾端索引进行匹配。
+
+* 引入版本
+    * 0.1.0
+* 参数
+    * array (Array): 需要查找的数组。
+    * value (*): 需要查找的值。
+    * [fromIndex=0] (number): 开始查询的位置。
+* 返回值
+    * (number): 返回 值value在数组中的索引位置, 没有找到为返回-1。
+    
+```
+_.indexOf([1, 2, 1, 2], 2);
+// => 1
+ 
+// Search from the `fromIndex`.
+_.indexOf([1, 2, 1, 2], 2, 2);
+// => 3
+```
+
+### 18、从列表中随机的选择列表项 `_.sample(collection)`
+
+从collection（集合）中获得一个随机元素。
+
+* 添加版本
+    * 2.0.0
+* 参数
+    * collection (Array|Object): 要取样的集合。
+* 返回
+    (*): 返回随机元素。
+
 ```angular2html
 <script type="text/javascript">
-    var smartTeam = ["戈德斯文", "杨海月", "柴硕", "师贝贝"];
+_.sample([1, 2, 3, 4]);
+// => 2
 
-    function randomSmarter(smartTeam){
-        var index = Math.floor(Math.random() * smartTeam.length);
-        return smartTeam[index];
-    }
 
-    console.log(randomSmarter(smartTeam));
+var array = [1, 2, 3, 4];
 
-    // Lodash
-    console.log(_.sample(smartTeam));
-    console.log(_.sampleSize(smartTeam,2));
+function randomArray(array){
+    var index = Math.floor(Math.random() * array.length);
+    return array[index];
+}
+
+console.log(randomArray(array));
+
+// Lodash
+console.log(_.sample(array));
+console.log(_.sampleSize(array,2));
 </script>
 ```
 此外，你也可以指定随机返回元素的个数_.sampleSize(smartTeam,n)，n为需要返回的元素个数
 
-### 7、判断对象中是否含有某元素`_.includes`
-```angular2html
-<script type="text/javascript">
-    var smartPerson = {
-            'name': '戈德斯文',
-            'gender': 'male'
-        },
-        smartTeam = ["戈德斯文", "杨海月", "柴硕", "师贝贝"];
+### 19、判断对象中是否含有某元素`_.includes(collection, value, [fromIndex=0])`
 
+检查 value(值) 是否在 collection(集合) 中。如果 collection(集合)是一个字符串，那么检查 value（值，子字符串） 是否在字符串中，
+否则使用 SameValueZero 做等值比较。 如果指定 fromIndex 是负数，那么从 collection(集合) 的结尾开始检索。
 
-    console.log(_.includes(smartPerson, '戈德斯文'));
-    console.log(_.includes(smartTeam, '杨海月'));
-    console.log(_.includes(smartTeam, '杨海月',2));
-</script>
-```
 _.includes()第一个参数是需要查询的对象，第二个参数是需要查询的元素，第三个参数是开始查询的下标
 
+* 添加版本
+    * 0.1.0
+* 参数
+    * collection (Array|Object|string): 要检索的集合。
+    * value (*): 要检索的值。
+    * [fromIndex=0] (number): 要检索的 索引位置。
+* 返回
+    * (boolean): 如果找到 value 返回 true， 否则返回 false。
 
-### 10、检验值是否为空 `_.isEmpty()`
+```angular2html
+<script type="text/javascript">
+_.includes([1, 2, 3], 1);
+// => true
+ 
+_.includes([1, 2, 3], 1, 2);
+// => false
+ 
+_.includes({ 'user': 'fred', 'age': 40 }, 'fred');
+// => true
+ 
+_.includes('pebbles', 'eb');
+// => true
+
+var smartPerson = {
+        'name': '张三',
+        'gender': 'male'
+    },
+smartTeam = ["张三", "李四", "王五", "赵六"];
+
+console.log(_.includes(smartPerson, '张三'));
+console.log(_.includes(smartTeam, '李四'));
+console.log(_.includes(smartTeam, '李四',2));
+</script>
+```
+
+### 20、检验值是否为空 `_.isEmpty()`
 ```angular2html
 <script type="text/javascript">
     _.isEmpty(null);
@@ -667,7 +787,7 @@ _.includes()第一个参数是需要查询的对象，第二个参数是需要�
 ```
 
 
-### 13、模板插入 `_.template`
+### 21、模板插入 `_.template`
 
 ```angular2html
 _.template([string=''], [options={}])
