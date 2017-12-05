@@ -849,7 +849,8 @@ _.isEmpty({ 'a': 1 });
 
 #### 2.3.25、模板插入 `_.template([string=''], [options={}])`
 
-创建一个预编译模板方法，可以插入数据到模板中 "interpolate" 分隔符相应的位置。 HTML会在 "escape" 分隔符中转换为相应实体。 在 "evaluate" 分隔符中允许执行JavaScript代码。 在模板中可以自由访问变量。 如果设置了选项对象，则会优先覆盖 _.templateSettings 的值。 
+创建一个预编译模板方法，可以插入数据到模板中 "interpolate" 分隔符相应的位置。 HTML会在 "escape" 分隔符中转换为相应实体。
+在 "evaluate" 分隔符中允许执行JavaScript代码。 在模板中可以自由访问变量。 如果设置了选项对象，则会优先覆盖 _.templateSettings 的值。
 
 注意: 在开发过程中，构建_.template可以使用 sourceURLs， 便于调试。 
 
@@ -961,7 +962,8 @@ _.pick(object, ['a', 'c']);
 
 #### 2.3.26、移除属性 `_.omit(object, [props])`
 
-反向版 _.pick; 这个方法一个对象，这个对象由忽略属性之外的object自身和继承的可枚举属性组成。（愚人码头注：可以理解为删除object对象的属性）。
+反向版 _.pick; 这个方法一个对象，这个对象由忽略属性之外的object自身和继承的可枚举属性组成。
+（愚人码头注：可以理解为删除object对象的属性）。
 
 * 添加版本
     * 0.1.0
@@ -1015,12 +1017,15 @@ _.omit(object, ['a', 'c']);
 惰性计算可以通过避免不必要的计算从而增加程序运行速率；
 惰性计算的不足
 
-由于必要的参数或则计算才会被使用，所以惰性计算在运行时，会首先判断是否需要计算，或者是否存在，从而造成另外不必要的开销； 这会导致在运行一些小的计算时，使得惰性计算并没有必要。
-惰性计算在一定程度上可能造成内存泄露； 解释：惰性计算会将所有的参数计算一次，那么惰性计算会将所有计算的参数保存在内存中，当该参数不再使用后仍然可能会占用内存，这在一定程度堵上造成内存泄露的风险。
+由于必要的参数或则计算才会被使用，所以惰性计算在运行时，会首先判断是否需要计算，或者是否存在，从而造成另外不必要的开销； 
+这会导致在运行一些小的计算时，使得惰性计算并没有必要。
+惰性计算在一定程度上可能造成内存泄露； 解释：惰性计算会将所有的参数计算一次，那么惰性计算会将所有计算的参数保存在内存中，
+当该参数不再使用后仍然可能会占用内存，这在一定程度堵上造成内存泄露的风险。
 前端中的钩子使用：
 
 百度中钩子函数的定义：
-钩子函数：钩子函数是Windows消息处理机制的一部分，通过设置“钩子”，应用程序可以在系统级对所有消息、事件进行过滤，访问在正常情况下无法访问的消息。钩子的本质是一段用以处理系统消息的程序，通过系统调用，把它挂入系统。
+钩子函数：钩子函数是Windows消息处理机制的一部分，通过设置“钩子”，应用程序可以在系统级对所有消息、事件进行过滤，
+访问在正常情况下无法访问的消息。钩子的本质是一段用以处理系统消息的程序，通过系统调用，把它挂入系统。
 我们要讨论的是钩子在lodash中的应用：
 我理解的前端中的钩子：
 
@@ -1033,10 +1038,16 @@ lodash中hook的使用实例：
 
 在lodash中，处理复杂的对象或者较大的数组时会使用lazy计算从而提高程序的运行性能；在调用lodash的运行方法之前例如
 数组、对象、collection方法中的
-at , compact , drop , dropRight , dropWhile , filter , find , findLast , head , initial , last , map , reject , reverse , slice , tail , take , takeRight , takeRightWhile , takeWhile , and toArray ；
+at , compact , drop , dropRight , dropWhile , filter , find , findLast , head , initial , last , map ,
+ reject , reverse , slice , tail , take , takeRight , takeRightWhile , takeWhile , and toArray ；
 以及_.chain()方法中的
-after , ary , assign , assignIn , assignInWith , assignWith , at , before , bind , bindAll , bindKey , castArray , chain , chunk , commit , compact , concat , conforms , constant , countBy , create , curry , debounce , defaults , defaultsDeep , defer , delay ， difference , differenceBy , differenceWith , drop , dropRight , dropRightWhile , dropWhile , extend 等方法；
-在调用这些方法之前会通过islaziable(func){}(版本号4.17.2第6338行)来对这些方法进行处理，从而计算出是否需要惰性计算，这些是在内部实现的，可以预处理lodash的绝大多数方法；从而增强了lodash的内聚度，而在外部函数中可以随意调用，而在外部随意调用，不要再处理。从而实现外部模块对随意调用。降低了耦合度。
+after , ary , assign , assignIn , assignInWith , assignWith , at , before , bind , bindAll , bindKey ,
+ castArray , chain , chunk , commit , compact , concat , conforms , constant , countBy , create , curry ,
+  debounce , defaults , defaultsDeep , defer , delay ， difference , differenceBy , differenceWith , drop , 
+  dropRight , dropRightWhile , dropWhile , extend 等方法；
+在调用这些方法之前会通过islaziable(func){}(版本号4.17.2第6338行)来对这些方法进行处理，从而计算出是否需要惰性计算，
+这些是在内部实现的，可以预处理lodash的绝大多数方法；从而增强了lodash的内聚度，而在外部函数中可以随意调用，而在外部随意调用，
+不要再处理。从而实现外部模块对随意调用。降低了耦合度。
 lodash collection方法的使用：
 
 collection方法中可以传入数组或者对象，lodash会通过getFuncName（）从而计算出你传入的对象，实现对目标对象的解析。
