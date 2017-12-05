@@ -121,6 +121,8 @@ arrays、array buffers、 booleans、 date objects、maps、 numbers， Object �
 
 注意: 与其他"集合"方法一样，类似于数组，对象的 "length" 属性也会被遍历。想避免这种情况，可以用 `_.forIn` 或者 `_.forOwn` 代替。
 
+效果和for循环的continue一致；
+
 * 添加版本
     * 0.1.0
 * 别名
@@ -935,11 +937,46 @@ fs.writeFileSync(path.join(cwd, 'jst.js'), '\
 ');
 ```
 
-#### 2.3.26、其他方法
+#### 2.3.26、筛选属性 `_.pick(object, [props])`
 
-_.omit(obj,arr)；
-一个新的对象，移除了与数组项相同的属性；
+创建一个从 object 中选中的属性的对象。
+
+* 添加版本
+    * 0.1.0
+* 参数
+    * object (Object): 来源对象。
+    * [props] (...(string|string[])): 要被忽略的属性。（愚人码头注：单独指定或指定在数组中。）
+* 返回
+    * (Object): 返回新对象。
+
 ```angular2html
+var objA = {"name": "colin", "car": "suzuki", "age": 17};
+console.log(_.pick(objA, ['car', 'age']));
+// => {"car": "suzuki", "age": 17}
+
+var object = { 'a': 1, 'b': '2', 'c': 3 };
+_.pick(object, ['a', 'c']);
+// => { 'a': 1, 'c': 3 }
+```
+
+#### 2.3.26、移除属性 `_.omit(object, [props])`
+
+反向版 _.pick; 这个方法一个对象，这个对象由忽略属性之外的object自身和继承的可枚举属性组成。（愚人码头注：可以理解为删除object对象的属性）。
+
+* 添加版本
+    * 0.1.0
+* 参数
+    * object (Object): 来源对象。
+    * [props] (...(string|string[])): 要被忽略的属性。（愚人码头注：单独指定或指定在数组中。）
+* 返回
+    * (Object): 返回新对象。
+
+```angular2html
+var object = { 'a': 1, 'b': '2', 'c': 3 };
+ 
+_.omit(object, ['a', 'c']);
+// => { 'b': '2' }
+
  var omit = {
      'name': 'lijinglin',
      'height': 175,
@@ -947,85 +984,13 @@ _.omit(obj,arr)；
  }
  var newOmit = _.omit(omit, ['name','height']);
  console.log(omit, newOmit);
-```
-> {'name': 'lijinglin', 'height': 175, 'weight': '95kg'} 
-
-原数组不变
-
-> {'height':175}
-
-清除了数组项；
-
-_.pick(obg,function(item){});
-一个新的对象，包含与数组项相同的属性；
-```angular2html
- var objA = {"name": "colin", "car": "suzuki", "age": 17};
- console.log(_.pick(objA, ['car', 'age']));
-```
-> {"car": "suzuki", "age": 17}
-
-_.random(min,max,floating);
-返回min-max之间的随机数，如果只有一个参数，那么返回0-该值之间的随机数，最后的参数为boolean值，表示返回的数是否是浮点数；
-```angular2html
- var random = _.random(10);
- var random1 = _.random(10,20);
- var random2 = _.random(10,20,true);
- var random3 = _.random(10,20,2);
- console.log(random, random1, random2, random3);
-```
-> 输出：
-```angular2html
- 10
- 16
- 13.626099468086885
- 15.984136145057482
-```
-
-```angular2html
- var random4 = _.round(random2, 2);
- console.log(random4);
-```
-> 输出：
-```angular2html
-13.63
-```
  
-_.map(Collection,functoion||string);
-返回一个数组。处理数组对象，当第二个参数为function改变每一项，该方法可以用于深层查找属性值；_.map方法是对原生 map 方法的改进，其中使用pets[0].name字符串对嵌套数据取值的方式简化了很多冗余的代码，
+// => 原数组不变
+// => {'name': 'lijinglin', 'height': 175, 'weight': '95kg'} 
 
-
-_.each(Collection,function(value,(key)){})
-该方法用于数组或者对象的遍历，可以完美的代替for循环；第一个参数为需要遍历的数组或者对象，function里面的参数第一个value值必传，代表数组或对象中的每一项的值，key参数可以根据自己需求传递，表示数组或者对象中的每一项的键（key）；
-_.each()方法中的continue和break：
-在该方法中实现for循环break功能；只需要在方法结束时判断是否需要返回：eg：
+// => 清除了数组项；
+// => {'height':175}
 ```
- var arr = [1,2,3,4,5,6,7,8];
-  _.each(arr, (item, key) ={
-      console.log(item);
-      if(key == 3) return false;
-  });
-```
-> 输出1，2，3，4
-
-效果和for循环break一致
-
-```angular2html
-  var obj = [
-      {'name': 'lion', 'age': '17'},
-      {'name': 'lina', 'age': '18'},
-      {'name': 'luna', 'age': '23'},
-      {'name': 'lich', 'age': '14'}
-  ];
-  _.each(obj, (item) =
- {
-      if(item.age === 18) return true;
-      console.log(item.name + '未成年');
-  });
-```
-
-> 输出：lion未成年；lich未成年；
-
-效果和for循环的continue一致；
 
 ### 2.4、其他工具库推荐
 
