@@ -1,6 +1,6 @@
 # lodash
-#### [作者] 王生龙
-#### [邮箱] wangshenglong@haomo-studio.com
+#### [作者] 高天阳
+#### [邮箱] gty@haomo-studio.com
 #### [版本] v1.0.0
 #### [标签] 
 * lodash
