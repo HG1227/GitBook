@@ -305,13 +305,103 @@
 #### [答案]
 * A.{ 'a': 1, 'b': 2 }
 
+## [选择题]下列objA===objB的是：
+#### [选项] 
+* A.objA = {"name": "张三"}; objB = _.clone(objA);
+* B.objA = {"name": "张三"}; objB = objA;
+* C.objA = {"name": "张三"}; objB = _.cloneDeep(objA);
+* D.objA = {"name": "张三"}; objB = {"name": "张三"};
 
+#### [答案]
+* C.objA = {"name": "张三"}; objB = _.cloneDeep(objA);
 
+## [选择题]_.forEach([1, 3] , function(value, key) {console.log(value,key);});可能打印输出的是：
+#### [选项] 
+* A."1,1";
+* B."0,1";
+* C."1,3";
+* D."3,1";
 
+#### [答案]
+* D."3,1";
 
+## [选择题]var users = [{'user':'barney','age':36,'active':true },{'user':'fred','age':40,'active':false},{'user':'pebbles','age': 1,'active':true}];输出结果为'pebbles'的是:
+#### [选项] 
+* A._.find(users, function(o) { return o.age < 40; });
+* B._.find(users, { 'age': 1, 'active': true });
+* C._.find(users, ['active', false]);
+* D._.find(users, 'active');
 
+#### [答案]
+* B._.find(users, { 'age': 1, 'active': true });
 
+## [选择题]var arr1 = [2, 1, 2]; var arr2 = _.uniq(arr1); arr2是：
+#### [选项] 
+* A.[1, 2, 2];
+* B.[2, 2, 1];
+* C.[1, 2];
+* D.[2, 1];
 
+#### [答案]
+* D.[2, 1];
 
+## [选择题]var array = [1, 2, 3, 4];var evens = _.remove(array, function(n) {return n % 2 == 0;}); array是:
+#### [选项] 
+* A.[1, 3];
+* B.[2, 4];
+* C.[1, 2, 3, 4];
+* D.[1, 3, 4];
 
+#### [答案]
+* A.[1, 3];
+
+## [选择题]var array = [1, 2, 3, 4, 5];_.slice(array, 1, 3);array是:
+#### [选项] 
+* A.[1, 2, 3];
+* B.[2, 3, 4];
+* C.[3];
+* D.[4];
+
+#### [答案]
+* B.[2, 3, 4];
+
+## [选择题]var users = [{'user':'barney','active':false},{'user':'fred','active':false},{'user':'pebbles','active':true}]; 输出结果为2的是:
+#### [选项] 
+* A._.findIndex(users, function(o) { return o.user == 'barney'; });
+* B._.findIndex(users, { 'user': 'fred', 'active': false });
+* C._.findIndex(users, ['active', false]);
+* D._.findIndex(users, 'active');
+
+#### [答案]
+* D._.findIndex(users, 'active');
+
+## [选择题]输出结果是false的是:
+#### [选项] 
+* A._.isEmpty(null);
+* B._.isEmpty(true);
+* C._.isEmpty(1);
+* D._.isEmpty([1, 2, 3]);
+
+#### [答案]
+* D._.isEmpty([1, 2, 3]);
+
+## [选择题]var object = { 'a': 1, 'b': '2', 'c': 3, 'd': 4 };_.pick(object, ['a', 'c']);的结果为:
+#### [选项] 
+* A.{ 'a': 1, 'c': 3 }；
+* B.{ 1, 3 };
+* C.{ 'b': '2', 'd': 4 }；
+* D.{ 2, 4 };
+
+#### [答案]
+* A.{ 'a': 1, 'c': 3 }；
+
+## [选择题]var object = { 'a': 1, 'b': '2', 'c': 3, 'd': 4 };_.omit(object, ['a', 'c']);的结果为:
+#### [选项] 
+* A.{ 'a': 1, 'c': 3 }；
+* B.{ 1, 3 };
+* C.{ 'b': '2', 'd': 4 }；
+* D.{ 2, 4 };
+
+#### [答案]
+* C.{ 'b': '2', 'd': 4 }；
 
