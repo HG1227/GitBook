@@ -143,375 +143,7 @@ arrays、array buffers、 booleans、 date objects、maps、 numbers， Object �
     });
 </script>
 ```
-
-#### 2.3.4、查找属性 `_.find(collection, [predicate=_.identity], [fromIndex=0])`
-
-遍历 collection（集合）元素，返回 predicate（断言函数）第一个返回真值的第一个元素。
-predicate（断言函数）调用3个参数： (value, index|key, collection)。
-
-* 添加版本
-    * 0.1.0
-* 参数
-    * collection (Array|Object): 一个用来迭代的集合。
-    * `[predicate=_.identity]` (Array|Function|Object|string): 每次迭代调用的函数。
-    * `[fromIndex=0]` (number): 开始搜索的索引位置。
-* 返回
-    * (*): 返回匹配元素，否则返回 undefined。
-    
-```
-var users = [
-  { 'user': 'barney',  'age': 36, 'active': true },
-  { 'user': 'fred',    'age': 40, 'active': false },
-  { 'user': 'pebbles', 'age': 1,  'active': true }
-];
- 
-_.find(users, function(o) { return o.age < 40; });
-// => object for 'barney'
- 
-// The `_.matches` iteratee shorthand.
-_.find(users, { 'age': 1, 'active': true });
-// => object for 'pebbles'
- 
-// The `_.matchesProperty` iteratee shorthand.
-_.find(users, ['active', false]);
-// => object for 'fred'
- 
-// The `_.property` iteratee shorthand.
-_.find(users, 'active');
-// => object for 'barney'
-```
-
-#### 2.3.5、查找属性 `_.filter(collection, [predicate=_.identity])`
-
-遍历 collection（集合）元素，返回 predicate（断言函数）返回真值 的所有元素的数组。
-predicate（断言函数）调用三个参数：(value, index|key, collection)。 
-
-* 添加版本
-    * 0.1.0
-* 参数
-    * collection (Array|Object): 一个用来迭代的集合。
-    * `[predicate=_.identity]` (Array|Function|Object|string): 每次迭代调用的函数。
-* 返回
-    * (Array): 返回一个新的过滤后的数组。
-
-```
-var users = [
-  { 'user': 'barney', 'age': 36, 'active': true },
-  { 'user': 'fred',   'age': 40, 'active': false }
-];
- 
-_.filter(users, function(o) { return !o.active; });
-// => objects for ['fred']
- 
-// The `_.matches` iteratee shorthand.
-_.filter(users, { 'age': 36, 'active': true });
-// => objects for ['barney']
- 
-// The `_.matchesProperty` iteratee shorthand.
-_.filter(users, ['active', false]);
-// => objects for ['fred']
- 
-// The `_.property` iteratee shorthand.
-_.filter(users, 'active');
-// => objects for ['barney']
-```
-
-#### 2.3.6、查找属性 `_.reject(collection, [predicate=_.identity])`
-
-`_.filter`的反向方法;此方法 返回 predicate（断言函数） 不 返回 truthy（真值）的collection（集合）元素（愚人码头注释：非真）。
-
-* 添加版本
-    * 0.1.0
-* 参数
-    * collection (Array|Object): 用来迭代的集合。
-    * `[predicate=_.identity]` (Array|Function|Object|string): 每次迭代调用的函数。
-* 返回
-    * (Array): 返回过滤后的新数组
-    
-```
-var users = [
-  { 'user': 'barney', 'age': 36, 'active': false },
-  { 'user': 'fred',   'age': 40, 'active': true }
-];
- 
-_.reject(users, function(o) { return !o.active; });
-// => objects for ['fred']
- 
-// `_.matches` 迭代简写
-_.reject(users, { 'age': 40, 'active': true });
-// => objects for ['barney']
- 
-// `_.matchesProperty` 迭代简写
-_.reject(users, ['active', false]);
-// => objects for ['fred']
- 
-// `_.property` 迭代简写
-_.reject(users, 'active');
-// => objects for ['barney']
-```
-
-#### 2.3.7、查找属性`_.find`与`_.filter`的比较
-
-`_.find()`第一个返回真值的第一个元素。
-`_.filter()`返回真值的所有元素的数组。
-`_.reject()`是`_.filter()`的反向方法，不返回真值的（集合）元素
-
-```angular2html
-<script type="text/javascript">
-    var users = [
-        {'user': 'barney', 'age': 36, 'active': true},
-        {'user': 'fred', 'age': 40, 'active': false},
-        {'user': 'pebbles', 'age': 1, 'active': true}
-    ];
-
-    console.log(_.find(users, function (o) {
-        return o.age < 40;
-    }));
-    console.log(_.find(users, {'age': 1, 'active': true}));
-    console.log(_.filter(users, {'age': 1, 'active': true}));
-    console.log(_.find(users, ['active', false]));
-    console.log(_.filter(users, ['active', false]));
-    console.log(_.find(users, 'active'));
-    console.log(_.filter(users, 'active'));
-
-</script>
-```
-
-#### 2.3.8、数组通过值去重 `_.uniq(array)`
-
-创建一个去重后的array数组副本。使用了 SameValueZero 做等值比较。只有第一次出现的元素才会被保留。
-
-* 添加版本
-    * 0.1.0
-* 参数
-    * array (Array): 要检查的数组。
-* 返回
-    * (Array): 返回新的去重后的数组。
-
-```angular2html
-<script type="text/javascript">
-    var arr1 = [2, 1, 2];
-
-    var arr2 = _.uniq(arr1);
-
-
-    function unique(arr) {
-        var newArr = [];
-        for (var i = 0; i < arr.length; i++) {
-            if(newArr.indexOf(arr[i]) == -1){
-                newArr.push(arr[i]);
-            }
-        }
-        return newArr;
-    }
-
-    console.log(arr1);
-    console.log(arr2);
-    console.log(unique(arr1));
-</script>
-```
-
-#### 2.3.9、数组通过方法去重 `_.uniqBy(array, [iteratee=_.identity])`
-
-这个方法类似 `_.uniq` ，除了它接受一个 iteratee （迭代函数），调用每一个数组（array）的每个元素以产生唯一性计算的标准。
-iteratee 调用时会传入一个参数：(value)。
-
-* 添加版本
-    * 4.0.0
-* 参数
-    * array (Array): 要检查的数组。
-    * `[iteratee=_.identity]` (Array|Function|Object|string): 迭代函数，调用每个元素。
-* 返回
-    * (Array): 返回新的去重后的数组。
-
-```angular2html
-_.uniqBy([2.1, 1.2, 2.3], Math.floor);
-// => [2.1, 1.2]
- 
-// The `_.property` iteratee shorthand.
-_.uniqBy([{ 'x': 1 }, { 'x': 2 }, { 'x': 1 }], 'x');
-// => [{ 'x': 1 }, { 'x': 2 }]
-```
-Math.floor只是向下取整，去重，并没有改变原有的数组，所以还是2.1和1.2，不是2和1。
-
-#### 2.3.10、过滤返回新数组 `_.difference(array, [values])`
-
-创建一个具有唯一array值的数组，每个值不包含在其他给定的数组中。
-（愚人码头注：即创建一个新数组，这个数组中的值，为第一个数字（array 参数）排除了给定数组中的值。）
-该方法使用 SameValueZero做相等比较。结果值的顺序是由第一个数组中的顺序确定。 
-
-注意: 不像 `_.pullAll`，这个方法会返回一个新数组。
-
-* 引入版本
-    * 0.1.0
-* 参数
-    * array (Array): 要检查的数组。
-    * `[values]` (...Array): 排除的值。
-* 返回
-    * (Array): 返回一个过滤值后的新数组。
-
-```angular2html
-_.difference([3, 2, 1], [4, 2]);
-// => [3, 1]
-```
-
-#### 2.3.11、值过滤返回原数组 `_.pull(array, [values])`
-
-* 参数
-    * array (Array): 要修改的数组。
-    * [values] (...*): 要删除的值。
-* 返回值
-    * (Array): 返回 array.
-
-```angular2html
-var array = [1, 2, 3, 1, 2, 3];
- 
-_.pull(array, 2, 3);
-console.log(array);
-// => [1, 1]
-```
-
-移除数组array中所有和给定值相等的元素，使用 SameValueZero 进行全等比较。 
-
-注意：和 `_.without 方法不同`，这个方法会改变数组。使用 `_.remove` 从一个数组中移除元素。
-
-#### 2.3.12、方法过滤返回新数组 `_.remove(array, [predicate=_.identity])`
-
-去除符合条件的数组子项，改变原数组，返回被移除的子项组成的新数组
-
-* 参数
-    * array (Array): 要修改的数组。
-    * [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
-* 返回
-    * (Array): 返回移除元素组成的新数组。
-
-```angular2html
-var array = [1, 2, 3, 4];
-var evens = _.remove(array, function(n) {
-  return n % 2 == 0;
-});
- 
-console.log(array);
-// => [1, 3]
- 
-console.log(evens);
-// => [2, 4]
-```
-
-#### 2.3.13、替换`_.fill(array, value, [start=0], [end=array.length])`
-
-使用 value 值来填充（替换） array，从start位置开始, 到end位置结束（但不包含end位置）。
-
-Note: 这个方法会改变 array（愚人码头注：不是创建新数组）。
-
-* 引入版本
-    * 3.2.0
-* 参数
-    * array (Array): 要填充改变的数组。
-    * value (*): 填充给 array 的值。
-    * [start=0] (number): 开始位置（默认0）。
-    * [end=array.length] (number):结束位置（默认array.length）。
-* 返回值
-    * (Array): 返回 array。
-
-```
-var array = [1, 2, 3];
- 
-_.fill(array, 'a');
-console.log(array);
-// => ['a', 'a', 'a']
- 
-_.fill(Array(3), 2);
-// => [2, 2, 2]
- 
-_.fill([4, 6, 8, 10], '*', 1, 3);
-// => [4, '*', '*', 10]
-```
-
-#### 2.3.14、剪裁数组 `_.slice(array, [start=0], [end=array.length])`
-
-裁剪数组array，从 start 位置开始到end结束，但不包括 end 本身的位置。 
-
-Note: 这个方法用于代替 Array#slice 来确保数组正确返回。
-
-* 添加版本
-    * 3.0.0
-* 参数
-    * array (Array): 要裁剪数组。
-    * [start=0] (number): 开始位置。
-    * [end=array.length] (number): 结束位置。
-* 返回
-    * (Array): 返回 数组array 裁剪部分的新数组。
-    
-```
-var array = [1, 2, 3, 4, 5];
- 
-_.slice(array, 1, 3);
-console.log(array);
-```
-
-#### 2.3.15、N次循环 `_.times(n, [iteratee=_.identity])`
-
-调用 iteratee n 次，每次调用返回的结果存入到数组中。 iteratee 调用入1个参数： (index)。
-
-for语句是执行循环的不二选择，但在上面代码的使用场景下，_.times()的解决方式更加简洁和易于理解。
-
-相对于for循环，lodash提供了更为高效的循环方法：_.times(number,function); 该方法会返回一个数组；
-
-* 添加版本
-    * 0.1.0
-* 参数
-    * n (number): 调用 iteratee 的次数。
-    * [iteratee=_.identity] (Function): 每次迭代调用的函数。
-* 返回
-    * (Array): 返回调用结果的数组。
-
-```angular2html
-<script type="text/javascript">
-console.log('------- javascript -------');
-//js原生的循环方法
-for(var i = 0; i < 5; i++){
-    console.log(i);
-}
-console.log('------- lodash -------');
-//ladash的times方法
-_.times(5,function(a){
-    console.log(a);
-});
-
-_.times(3, String);
-// => ['0', '1', '2']
- 
- _.times(4, _.constant(0));
-// => [0, 0, 0, 0]
-</script>
-```
-
-```angular2html
- var i = 0;
- var time1 = _.times(3, function(){
-     console.log(i++);
-     return i;
- });
-```
-> 输出结果为：0, 1, 2
-
-```angular2html
- var time2 = _.times(4, _.constant(0));
- console.log(time1, time2);
-
-```
-> 输出结果为： [1, 2, 3]    [0, 0, 0, 0]
-
-使用_.times方法创建一个有相同前缀的值的数组；
-```angular2html
- var newArr = _.times(6, _.partial(_.uniqueId, 'time_'));
- console.log(newArr);
-
-```
-> ["team_1", "team_2", "team_3", "team_4", "team_5", "team_6"];
-
-#### 2.3.16、遍历循环执行某个方法 深层查找属性值`_.map(collection, [iteratee=_.identity])`
+#### 2.3.4、遍历循环执行某个方法 深层查找属性值`_.map(collection, [iteratee=_.identity])`
 
 创建一个数组， value（值） 是 iteratee（迭代函数）遍历 collection（集合）中的每个元素后返回的结果。 iteratee（迭代函数）调用3个参数： 
 (value, index|key, collection). 
@@ -579,6 +211,373 @@ rangeRight, repeat, sampleSize, slice, some, sortBy, split, take, takeRight, tem
    // => ['barney', 'fred']
 </script>
 ```
+
+#### 2.3.5、查找属性 `_.find(collection, [predicate=_.identity], [fromIndex=0])`
+
+遍历 collection（集合）元素，返回 predicate（断言函数）第一个返回真值的第一个元素。
+predicate（断言函数）调用3个参数： (value, index|key, collection)。
+
+* 添加版本
+    * 0.1.0
+* 参数
+    * collection (Array|Object): 一个用来迭代的集合。
+    * `[predicate=_.identity]` (Array|Function|Object|string): 每次迭代调用的函数。
+    * `[fromIndex=0]` (number): 开始搜索的索引位置。
+* 返回
+    * (*): 返回匹配元素，否则返回 undefined。
+    
+```
+var users = [
+  { 'user': 'barney',  'age': 36, 'active': true },
+  { 'user': 'fred',    'age': 40, 'active': false },
+  { 'user': 'pebbles', 'age': 1,  'active': true }
+];
+ 
+_.find(users, function(o) { return o.age < 40; });
+// => object for 'barney'
+ 
+// The `_.matches` iteratee shorthand.
+_.find(users, { 'age': 1, 'active': true });
+// => object for 'pebbles'
+ 
+// The `_.matchesProperty` iteratee shorthand.
+_.find(users, ['active', false]);
+// => object for 'fred'
+ 
+// The `_.property` iteratee shorthand.
+_.find(users, 'active');
+// => object for 'barney'
+```
+
+#### 2.3.6、查找属性 `_.filter(collection, [predicate=_.identity])`
+
+遍历 collection（集合）元素，返回 predicate（断言函数）返回真值 的所有元素的数组。
+predicate（断言函数）调用三个参数：(value, index|key, collection)。 
+
+* 添加版本
+    * 0.1.0
+* 参数
+    * collection (Array|Object): 一个用来迭代的集合。
+    * `[predicate=_.identity]` (Array|Function|Object|string): 每次迭代调用的函数。
+* 返回
+    * (Array): 返回一个新的过滤后的数组。
+
+```
+var users = [
+  { 'user': 'barney', 'age': 36, 'active': true },
+  { 'user': 'fred',   'age': 40, 'active': false }
+];
+ 
+_.filter(users, function(o) { return !o.active; });
+// => objects for ['fred']
+ 
+// The `_.matches` iteratee shorthand.
+_.filter(users, { 'age': 36, 'active': true });
+// => objects for ['barney']
+ 
+// The `_.matchesProperty` iteratee shorthand.
+_.filter(users, ['active', false]);
+// => objects for ['fred']
+ 
+// The `_.property` iteratee shorthand.
+_.filter(users, 'active');
+// => objects for ['barney']
+```
+
+#### 2.3.7、查找属性 `_.reject(collection, [predicate=_.identity])`
+
+`_.filter`的反向方法;此方法 返回 predicate（断言函数） 不 返回 truthy（真值）的collection（集合）元素（愚人码头注释：非真）。
+
+* 添加版本
+    * 0.1.0
+* 参数
+    * collection (Array|Object): 用来迭代的集合。
+    * `[predicate=_.identity]` (Array|Function|Object|string): 每次迭代调用的函数。
+* 返回
+    * (Array): 返回过滤后的新数组
+    
+```
+var users = [
+  { 'user': 'barney', 'age': 36, 'active': false },
+  { 'user': 'fred',   'age': 40, 'active': true }
+];
+ 
+_.reject(users, function(o) { return !o.active; });
+// => objects for ['fred']
+ 
+// `_.matches` 迭代简写
+_.reject(users, { 'age': 40, 'active': true });
+// => objects for ['barney']
+ 
+// `_.matchesProperty` 迭代简写
+_.reject(users, ['active', false]);
+// => objects for ['fred']
+ 
+// `_.property` 迭代简写
+_.reject(users, 'active');
+// => objects for ['barney']
+```
+
+#### 2.3.8、查找属性`_.find`与`_.filter`的比较
+
+`_.find()`第一个返回真值的第一个元素。
+`_.filter()`返回真值的所有元素的数组。
+`_.reject()`是`_.filter()`的反向方法，不返回真值的（集合）元素
+
+```angular2html
+<script type="text/javascript">
+    var users = [
+        {'user': 'barney', 'age': 36, 'active': true},
+        {'user': 'fred', 'age': 40, 'active': false},
+        {'user': 'pebbles', 'age': 1, 'active': true}
+    ];
+
+    console.log(_.find(users, function (o) {
+        return o.age < 40;
+    }));
+    console.log(_.find(users, {'age': 1, 'active': true}));
+    console.log(_.filter(users, {'age': 1, 'active': true}));
+    console.log(_.find(users, ['active', false]));
+    console.log(_.filter(users, ['active', false]));
+    console.log(_.find(users, 'active'));
+    console.log(_.filter(users, 'active'));
+
+</script>
+```
+
+#### 2.3.9、数组通过值去重 `_.uniq(array)`
+
+创建一个去重后的array数组副本。使用了 SameValueZero 做等值比较。只有第一次出现的元素才会被保留。
+
+* 添加版本
+    * 0.1.0
+* 参数
+    * array (Array): 要检查的数组。
+* 返回
+    * (Array): 返回新的去重后的数组。
+
+```angular2html
+<script type="text/javascript">
+    var arr1 = [2, 1, 2];
+
+    var arr2 = _.uniq(arr1);
+
+
+    function unique(arr) {
+        var newArr = [];
+        for (var i = 0; i < arr.length; i++) {
+            if(newArr.indexOf(arr[i]) == -1){
+                newArr.push(arr[i]);
+            }
+        }
+        return newArr;
+    }
+
+    console.log(arr1);
+    console.log(arr2);
+    console.log(unique(arr1));
+</script>
+```
+
+#### 2.3.10、数组通过方法去重 `_.uniqBy(array, [iteratee=_.identity])`
+
+这个方法类似 `_.uniq` ，除了它接受一个 iteratee （迭代函数），调用每一个数组（array）的每个元素以产生唯一性计算的标准。
+iteratee 调用时会传入一个参数：(value)。
+
+* 添加版本
+    * 4.0.0
+* 参数
+    * array (Array): 要检查的数组。
+    * `[iteratee=_.identity]` (Array|Function|Object|string): 迭代函数，调用每个元素。
+* 返回
+    * (Array): 返回新的去重后的数组。
+
+```angular2html
+_.uniqBy([2.1, 1.2, 2.3], Math.floor);
+// => [2.1, 1.2]
+ 
+// The `_.property` iteratee shorthand.
+_.uniqBy([{ 'x': 1 }, { 'x': 2 }, { 'x': 1 }], 'x');
+// => [{ 'x': 1 }, { 'x': 2 }]
+```
+Math.floor只是向下取整，去重，并没有改变原有的数组，所以还是2.1和1.2，不是2和1。
+
+#### 2.3.11、过滤返回新数组 `_.difference(array, [values])`
+
+创建一个具有唯一array值的数组，每个值不包含在其他给定的数组中。
+（愚人码头注：即创建一个新数组，这个数组中的值，为第一个数字（array 参数）排除了给定数组中的值。）
+该方法使用 SameValueZero做相等比较。结果值的顺序是由第一个数组中的顺序确定。 
+
+注意: 不像 `_.pullAll`，这个方法会返回一个新数组。
+
+* 引入版本
+    * 0.1.0
+* 参数
+    * array (Array): 要检查的数组。
+    * `[values]` (...Array): 排除的值。
+* 返回
+    * (Array): 返回一个过滤值后的新数组。
+
+```angular2html
+_.difference([3, 2, 1], [4, 2]);
+// => [3, 1]
+```
+
+#### 2.3.12、值过滤返回原数组 `_.pull(array, [values])`
+
+* 参数
+    * array (Array): 要修改的数组。
+    * [values] (...*): 要删除的值。
+* 返回值
+    * (Array): 返回 array.
+
+```angular2html
+var array = [1, 2, 3, 1, 2, 3];
+ 
+_.pull(array, 2, 3);
+console.log(array);
+// => [1, 1]
+```
+
+移除数组array中所有和给定值相等的元素，使用 SameValueZero 进行全等比较。 
+
+注意：和 `_.without 方法不同`，这个方法会改变数组。使用 `_.remove` 从一个数组中移除元素。
+
+#### 2.3.13、方法过滤返回新数组 `_.remove(array, [predicate=_.identity])`
+
+去除符合条件的数组子项，改变原数组，返回被移除的子项组成的新数组
+
+* 参数
+    * array (Array): 要修改的数组。
+    * [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
+* 返回
+    * (Array): 返回移除元素组成的新数组。
+
+```angular2html
+var array = [1, 2, 3, 4];
+var evens = _.remove(array, function(n) {
+  return n % 2 == 0;
+});
+ 
+console.log(array);
+// => [1, 3]
+ 
+console.log(evens);
+// => [2, 4]
+```
+
+#### 2.3.14、替换`_.fill(array, value, [start=0], [end=array.length])`
+
+使用 value 值来填充（替换） array，从start位置开始, 到end位置结束（但不包含end位置）。
+
+Note: 这个方法会改变 array（愚人码头注：不是创建新数组）。
+
+* 引入版本
+    * 3.2.0
+* 参数
+    * array (Array): 要填充改变的数组。
+    * value (*): 填充给 array 的值。
+    * [start=0] (number): 开始位置（默认0）。
+    * [end=array.length] (number):结束位置（默认array.length）。
+* 返回值
+    * (Array): 返回 array。
+
+```
+var array = [1, 2, 3];
+ 
+_.fill(array, 'a');
+console.log(array);
+// => ['a', 'a', 'a']
+ 
+_.fill(Array(3), 2);
+// => [2, 2, 2]
+ 
+_.fill([4, 6, 8, 10], '*', 1, 3);
+// => [4, '*', '*', 10]
+```
+
+#### 2.3.15、剪裁数组 `_.slice(array, [start=0], [end=array.length])`
+
+裁剪数组array，从 start 位置开始到end结束，但不包括 end 本身的位置。 
+
+Note: 这个方法用于代替 Array#slice 来确保数组正确返回。
+
+* 添加版本
+    * 3.0.0
+* 参数
+    * array (Array): 要裁剪数组。
+    * [start=0] (number): 开始位置。
+    * [end=array.length] (number): 结束位置。
+* 返回
+    * (Array): 返回 数组array 裁剪部分的新数组。
+    
+```
+var array = [1, 2, 3, 4, 5];
+ 
+_.slice(array, 1, 3);
+console.log(array);
+```
+
+#### 2.3.16、N次循环 `_.times(n, [iteratee=_.identity])`
+
+调用 iteratee n 次，每次调用返回的结果存入到数组中。 iteratee 调用入1个参数： (index)。
+
+for语句是执行循环的不二选择，但在上面代码的使用场景下，_.times()的解决方式更加简洁和易于理解。
+
+相对于for循环，lodash提供了更为高效的循环方法：_.times(number,function); 该方法会返回一个数组；
+
+* 添加版本
+    * 0.1.0
+* 参数
+    * n (number): 调用 iteratee 的次数。
+    * [iteratee=_.identity] (Function): 每次迭代调用的函数。
+* 返回
+    * (Array): 返回调用结果的数组。
+
+```angular2html
+<script type="text/javascript">
+console.log('------- javascript -------');
+//js原生的循环方法
+for(var i = 0; i < 5; i++){
+    console.log(i);
+}
+console.log('------- lodash -------');
+//ladash的times方法
+_.times(5,function(a){
+    console.log(a);
+});
+
+_.times(3, String);
+// => ['0', '1', '2']
+ 
+ _.times(4, _.constant(0));
+// => [0, 0, 0, 0]
+</script>
+```
+
+```angular2html
+ var i = 0;
+ var time1 = _.times(3, function(){
+     console.log(i++);
+     return i;
+ });
+```
+> 输出结果为：0, 1, 2
+
+```angular2html
+ var time2 = _.times(4, _.constant(0));
+ console.log(time1, time2);
+
+```
+> 输出结果为： [1, 2, 3]    [0, 0, 0, 0]
+
+使用_.times方法创建一个有相同前缀的值的数组；
+```angular2html
+ var newArr = _.times(6, _.partial(_.uniqueId, 'time_'));
+ console.log(newArr);
+
+```
+> ["team_1", "team_2", "team_3", "team_4", "team_5", "team_6"];
 
 #### 2.3.17、扩展对象`_.assign(object, [sources])`
 
