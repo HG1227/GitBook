@@ -305,15 +305,15 @@
 #### [答案]
 * A.{ 'a': 1, 'b': 2 }
 
-## [选择题]下列objA===objB的是：
+## [选择题]下列objA[0]===objB[0]为false的是：
 #### [选项] 
-* A.objA = {"name": "张三"}; objB = _.clone(objA);
-* B.objA = {"name": "张三"}; objB = objA;
-* C.objA = {"name": "张三"}; objB = _.cloneDeep(objA);
-* D.objA = {"name": "张三"}; objB = {"name": "张三"};
+* A.objA = [{'a': 1 }, { 'b': 2 }]; objB = _.clone(objA);
+* B.objA = [{'a': 1 }, { 'b': 2 }]; objB = objA;
+* C.objA = [{'a': 1 }, { 'b': 2 }]; objB = _.cloneDeep(objA);
+* D.objA = [{'a': 1 }, { 'b': 2 }]; objB = [{'a': 1 }, { 'b': 2 }];
 
 #### [答案]
-* C.objA = {"name": "张三"}; objB = _.cloneDeep(objA);
+* C.objA = [{'a': 1 }, { 'b': 2 }]; objB = _.cloneDeep(objA);
 
 ## [选择题]_.forEach([1, 3] , function(value, key) {console.log(value,key);});可能打印输出的是：
 #### [选项] 
