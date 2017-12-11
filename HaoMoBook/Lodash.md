@@ -80,15 +80,18 @@ arrays、array buffers、 booleans、 date objects、maps、 numbers， Object �
     * (*): 返回拷贝后的值。
 
 ```angular2html
-<script type="text/javascript">
-    var objA = {
-        "name": "张三"
-    };
-    var objB = _.clone(objA);
-    console.log(objA);
-    console.log(objB);
-    console.log(objA === objB);     //  true
-</script>
+vm.objects = [{ 'a': 1 }, { 'b': 2 }];
+
+vm.shallow = vm.objects;
+$log.log(vm.shallow === vm.objects);
+$log.log(vm.shallow[0] === vm.objects[0]);
+
+
+vm.objects = [{ 'a': 1 }, { 'b': 2 }];
+
+vm.shallow = _.clone(vm.objects);
+$log.log(vm.shallow === vm.objects);
+$log.log(vm.shallow[0] === vm.objects[0]);
 ```
 #### 2.3.2、深克隆对象 `_.cloneDeep(value)`
 
@@ -104,15 +107,11 @@ arrays、array buffers、 booleans、 date objects、maps、 numbers， Object �
     * (*): 返回拷贝后的值。
 
 ```angular2html
-<script type="text/javascript">
-    var objA = {
-        "name": "张三"
-    };
-    var objB = _.cloneDeep(objA);
-    console.log(objA);
-    console.log(objB);
-    console.log(objA === objB);     //  false
-</script>
+vm.objects = [{ 'a': 1 }, { 'b': 2 }];
+
+vm.shallow = _.cloneDeep(vm.objects);
+$log.log(vm.shallow === vm.objects);
+$log.log(vm.shallow[0] === vm.objects[0]);
 ```
 
 #### 2.3.3、遍历循环`_.forEach(collection, [iteratee=_.identity])`
@@ -134,14 +133,22 @@ arrays、array buffers、 booleans、 date objects、maps、 numbers， Object �
     * (*): 返回集合 collection。
 
 ```angular2html
-<script type="text/javascript">
-    _([1, 2]).forEach(function(value) {
-        console.log(value);
-    });
-    _.forEach([1, 3] , function(value, key) {
-        console.log(key,value);
-    });
-</script>
+_([1, 2]).forEach(function(value) {
+  $log.log(value);
+});
+_.forEach([1, 3] , function(value, key) {
+  $log.log(value,key);
+});
+vm.users = [
+    { 'user': 'barney',  'age': 36, 'active': true },
+    { 'user': 'fred',    'age': 40, 'active': false },
+    { 'user': 'pebbles', 'age': 1,  'active': true }
+  ];
+_.forEach(vm.users , function(v, k) {
+  $log.log(v,k);
+  v.age=1;
+  $log.log(v,k);
+});
 ```
 #### 2.3.4、遍历循环执行某个方法 深层查找属性值`_.map(collection, [iteratee=_.identity])`
 
@@ -169,24 +176,28 @@ rangeRight, repeat, sampleSize, slice, some, sortBy, split, take, takeRight, tem
     * (Array): 返回新的映射后数组。
 
 ```angular2html
-<script type="text/javascript">
-    var ownerArr = [{
-        "owner": "Colin",
-        "pets": [{"name": "dog1"}, {"name": "dog2"}]
-    }, {
-        "owner": "John",
-        "pets": [{"name": "dog3"}, {"name": "dog4"}]
-    }];
-    var jsMap = ownerArr.map(function (owner) {
-        return owner.pets[0].name;
-    });
-    console.log('------- jsMap -------');
-    console.log(jsMap);
+vm.users = [
+  { 'user': 'barney',  'age': 36, 'active': true },
+  { 'user': 'fred',    'age': 40, 'active': false },
+  { 'user': 'pebbles', 'age': 1,  'active': true }
+];
 
-    var lodashMap = _.map(ownerArr, 'pets[0].name');
-    console.log('------- lodashMap -------');
-    console.log(lodashMap);
-</script>
+vm.test = _.map(vm.users , function(v) {
+  v.user = v.user+'1';
+  return v
+});
+$log.log(vm.test);
+
+vm.users = [
+  { 'user': 'barney',  'age': 36, 'active': true },
+  { 'user': 'fred',    'age': 40, 'active': false },
+  { 'user': 'pebbles', 'age': 1,  'active': true }
+];
+
+vm.test2 = _.each(vm.users , function(v) {
+  return v.user == 'barney'
+});
+$log.log(vm.test2);
 ```
 
 ```angular2html
