@@ -359,11 +359,11 @@
 #### [选项] 
 * A.[1, 2, 3];
 * B.[2, 3, 4];
-* C.[3];
-* D.[4];
+* C.[1, 2];
+* D.[2, 3];
 
 #### [答案]
-* B.[2, 3, 4];
+* D.[2, 3];
 
 ## [选择题]var users = [{'user':'barney','active':false},{'user':'fred','active':false},{'user':'pebbles','active':true}]; 输出结果为2的是:
 #### [选项] 
