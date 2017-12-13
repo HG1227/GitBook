@@ -189,6 +189,24 @@ npm install gulp -g
 
 ![](/assets/Fuse/Fuse18.jpeg)
 
+### 3.5 表格查询后出现空白效果(客户体验不好)
+
+* 报错提示：
+
+![](/assets/Fuse/Fuse30.jpeg)
+![](/assets/Fuse/Fuse31.jpeg)
+
+* 问题分析：
+
+单页显示数据量过大 导致翻页后页面渲染位置不正确
+
+![](/assets/Fuse/Fuse32.png)
+
+* 处理方法：删除`ms-scroll`
+
+![](/assets/Fuse/Fuse28.jpeg)
+![](/assets/Fuse/Fuse29.jpeg)
+
 ## 4 其他常用命令提示
 
 ### 4.1 引入ui-grid组件，为解决打包部署后框架文字变为韩文问题，在部署脚本写了替换css的命令。
