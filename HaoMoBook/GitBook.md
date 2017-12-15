@@ -65,9 +65,9 @@ $ npm install gitbook -g
 
 npm install gitbook-cli -g
 
-![](http://images2015.cnblogs.com/blog/911086/201611/911086-20161128151654162-458713780.png)
+![](../../assets/gitbook/gitbook-cliInstall.jpeg)
 
-![](http://images2015.cnblogs.com/blog/911086/201611/911086-20161128151721865-1466239694.png)
+![](../../assets/gitbook/gitbook-cliInstall2.jpeg)
 
 在CMD窗口中输入
 
@@ -75,7 +75,7 @@ mkdir   mybook       创建文件夹
 
 切换到目录下.
 
-![](http://images2015.cnblogs.com/blog/911086/201611/911086-20161128151919677-1609156972.png)
+![](../../assets/gitbook/mkdirGitBook.png)
 
 切换文件夹后在当前文件目录下的在窗口中输入如下命令
 
@@ -89,7 +89,7 @@ npm install gitbook-cli -g   #安装gitbook-cli
 gitbook --version            #检测是否安装成功
 ```
 
-![](../../assets/gitbookversion.png)
+![](../../assets/gitbook/gitbookversion.png)
 
 ### 2.2 使用
 
@@ -153,7 +153,8 @@ gitbook --version            #检测是否安装成功
 gitbook 的基本用法非常简单，基本上就只有两步：
 
 1. 使用`gitbook init`初始化书籍目录
-2. 使用`gitbook serve`编译书籍
+2. 使用`gitbook serve`预览书籍
+2. 使用`gitbook build`编译书籍
 
 下面将结合一个非常简单的实例，来介绍 gitbook 的基本用法。
 
@@ -176,11 +177,11 @@ README.md 和 SUMMARY.md 是两个必须文件
 * README.md 文件内容作为创建的gitbook的简介；
 * SUMMARY.md 文件内容为创建的gitbook的目录信息；
 
-![](../../assets/readme.png)  
-![](../../assets/summary.png)
+![](../../assets/gitbook/readme.png)  
+![](../../assets/gitbook/summary.png)
 
 再次使用`gitbook init`初始化文件夹如图：  
-![](../../assets/gitbookinitfile.png)
+![](../../assets/gitbook/gitbookinitfile.png)
 
 这样我们就会在自己的电脑上创建对好应的md文件；
 
@@ -189,8 +190,8 @@ README.md 和 SUMMARY.md 是两个必须文件
 当你在自己的电脑上编辑好图书之后，你可以使用Gitbook的命令行进行本地预览：
 
 `gitbook serve`;之后，浏览器打开`localhost:4000`;如下图：  
-![](../../assets/gitbookserve.png)  
-![](../../assets/gitbookhtml.png)
+![](../../assets/gitbook/gitbookserve.png)  
+![](../../assets/gitbook/gitbookhtml.png)
 
 `git build .`默认生成了\_book文件夹存储生成的html文件,可以使用：
 
@@ -210,32 +211,32 @@ gitbook可以帮助我们团队在线编写gitbook，协作编辑文档。
 
 接下来登录gitbook,使用git账号登录：
 
-![](../../assets/gitbooklogin.png)
+![](../../assets/gitbook/gitbooklogin.png)
 
 进入主页选择点击create book，进入创建书籍页面，选择创建github类型书籍：
 
-![](../../assets/gitbookhub.png)
+![](../../assets/gitbook/gitbookhub.png)
 
 点击图中2所指按钮，进入github页面；在github上安装gitbook；并创建gitbook相关创库：
 
-![](../../assets/githubookinstall.png)  
-![](../../assets/githubbuild.png)
+![](../../assets/gitbook/githubookinstall.png)  
+![](../../assets/gitbook/githubbuild.png)
 
 接下里回到gitbook网站，新建书籍，选择github出现填写title等，选择刚才创建的仓库；然后点击`Create book`按钮，生成新的书籍；
 
-![](../../assets/createbook.png)  
-![](../../assets/bookjiemian.png)
+![](../../assets/gitbook/createbook.png)  
+![](../../assets/gitbook/bookjiemian.png)
 
 这样我们就可以通过在github上上传我们创建的book，然后显示在gitbook上；
 
 按照github上指示将本地创建的book上传到对应的仓库；
 
-![](../../assets/gitpushbook.png)
+![](../../assets/gitbook/gitpushbook.png)
 
 在gitbook上刷新书籍我们就能看到这本书书籍了；在setting里通过添加成员并设置权限就可以实现多成员共同维护这本书籍了~
 
-![](../../assets/showbook.png)  
-![](../../assets/addmember.png)
+![](../../assets/gitbook/showbook.png)  
+![](../../assets/gitbook/addmember.png)
 
 ### 2.4 最佳实践
 
