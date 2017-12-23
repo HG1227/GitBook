@@ -212,7 +212,17 @@ npm install gulp -g
 
 ### 4.1 service注入
 
+在项目中创建service文件
 
+![](/assets/Fuse/Fuse42.jpeg)
+
+在调用公共方法的controller注入service
+
+![](/assets/Fuse/Fuse43.jpeg)
+
+在controller中调用service的方法
+
+![](/assets/Fuse/Fuse44.jpeg)
 
 ### 4.2 datepicker汉化
 
