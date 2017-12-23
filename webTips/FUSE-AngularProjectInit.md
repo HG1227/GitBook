@@ -8,6 +8,7 @@
 
 * 2017-11-21	高天阳	初始化文档
 * 2017-12-2 	高天阳	补充导航、工具栏配置
+* 2017-12-23 	高天阳	补充最佳实践
 
 ```
 
@@ -207,7 +208,13 @@ npm install gulp -g
 ![](/assets/Fuse/Fuse28.jpeg)
 ![](/assets/Fuse/Fuse29.jpeg)
 
-### 3.6 datepicker汉化
+## 4 最佳实践
+
+### 4.1 service注入
+
+
+
+### 4.2 datepicker汉化
 
 * 原组件样式：
 
@@ -239,18 +246,21 @@ $mdDateLocaleProvider.formatDate = function(date) {
 };
 ```
 
-## 4 其他常用命令提示
+### 4.3 登录用户名密码存储于cookies
 
-### 4.1 引入ui-grid组件，为解决打包部署后框架文字变为韩文问题，在部署脚本写了替换css的命令。
 
-### 4.2 切换分支命令(开发分支：dev)
+## 5 其他常用命令提示
+
+### 5.1 引入ui-grid组件，为解决打包部署后框架文字变为韩文问题，在部署脚本写了替换css的命令。
+
+### 5.2 切换分支命令(开发分支：dev)
 
 ``` angular2html
 git checkout -b dev  
 git branch --set-upstream dev remotes/origin/dev
 ```
 
-### 4.3 安装插件：
+### 5.3 安装插件：
 
 * 查看插件是否存在于bower库
 
@@ -274,13 +284,13 @@ bower install [插件名称] --save-dev
 bower install [插件名称] -D
 ```
 
-### 4.4 打包项目：
+### 5.4 打包项目：
 
 ```angular2html
 gulp build 打包 
 ```
 
-## 5 代码结构
+## 6 代码结构
 
 ```angular2html
 vm.setSearchParams  = function(resetFlag){
