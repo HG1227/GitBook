@@ -224,6 +224,12 @@ npm install gulp -g
 
 ![](/assets/Fuse/Fuse44.jpeg)
 
+* 注意:此样例service中引入了locals因此需要在项目中声明locals
+
+![](/assets/Fuse/Fuse45.jpeg)
+
+> 若不引人项目会报错
+
 ### 4.2 datepicker汉化
 
 * 原组件样式：
