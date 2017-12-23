@@ -248,6 +248,39 @@ $mdDateLocaleProvider.formatDate = function(date) {
 
 ### 4.3 登录用户名密码存储于cookies
 
+* 页面样式：
+
+![](/assets/Fuse/Fuse37.jpeg)
+
+* cookies存储位置：
+
+![](/assets/Fuse/Fuse38.jpeg)
+
+* 处理方法：
+
+HTML：
+
+![](/assets/Fuse/Fuse39.jpeg)
+
+JS：
+
+![](/assets/Fuse/Fuse40.jpeg)
+![](/assets/Fuse/Fuse41.jpeg)
+
+* 核心代码
+
+```angular2html
+/**
+ * 存储cookie
+ */
+if(vm.isRemember){
+    vm.setCookie('user',vm.form.loginId,7); //保存帐号到cookie，有效期7天
+    vm.setCookie('pwd',vm.form.password,7); //保存密码到cookie，有效期7天
+}else{
+    vm.setCookie('user',"",-1); //清除cookie
+    vm.setCookie('pwd',"",-1); //清除cookie
+}
+```
 
 ## 5 其他常用命令提示
 
