@@ -207,6 +207,38 @@ npm install gulp -g
 ![](/assets/Fuse/Fuse28.jpeg)
 ![](/assets/Fuse/Fuse29.jpeg)
 
+### 3.6 datepicker汉化
+
+* 原组件样式：
+
+![](/assets/Fuse/Fuse33.jpeg)
+
+* 修改后组件样式：
+
+![](/assets/Fuse/Fuse34.jpeg)
+
+* 处理方法：
+
+![](/assets/Fuse/Fuse35.jpeg)
+![](/assets/Fuse/Fuse36.jpeg)
+
+```angular2html
+/**
+ * 时间格式化
+ * @param date
+ */
+$mdDateLocaleProvider.months = ['一月', '二月', '三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+$mdDateLocaleProvider.shortMonths = $mdDateLocaleProvider.months;
+$mdDateLocaleProvider.days = ['星期日','星期一', '星期二', '星期三','星期四','星期五','星期六'];
+$mdDateLocaleProvider.shortDays = ['日','一', '二', '三','四','五','六'];
+$mdDateLocaleProvider.monthHeaderFormatter = function(date) {
+  return date.getFullYear() + ' ' + $mdDateLocaleProvider.shortMonths[date.getMonth()];
+};
+$mdDateLocaleProvider.formatDate = function(date) {
+  return date? moment(date).format('YYYY-MM-DD') : '';
+};
+```
+
 ## 4 其他常用命令提示
 
 ### 4.1 引入ui-grid组件，为解决打包部署后框架文字变为韩文问题，在部署脚本写了替换css的命令。
