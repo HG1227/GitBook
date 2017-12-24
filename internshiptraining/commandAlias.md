@@ -7,6 +7,7 @@
 ```angular2html
 vim ~/.zshrc
 ```
+1
 
 ### 第二步 将命令写到bash_profile或者zshrc中
 ```angular2html
