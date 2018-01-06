@@ -30,7 +30,14 @@ Babel 可用于转化你的 JavaScript 代码
 
 Babel将其转为普通函数
 
-![](../../assets/Babel/babel02.png)
+```angular2html
+//转码前
+input.map(item => item + 1);
+//转码后
+input.map(function (item){
+    return item + 1;
+})
+```
 
 ## 2 安装和使用
 
