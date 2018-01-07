@@ -6,9 +6,10 @@
 ```
 更改历史
 
+* 2018-1-7	    高天阳	gitbook serve报错处理方法
 * 2017-11-12	高天阳	增加类比内容，更改页面格式
-* 2017-7-15	高天阳	更改内容
-* 2017-6-1 江伟	初始化文档
+* 2017-7-15	    高天阳	更改内容
+* 2017-6-1      江伟	    初始化文档
 
 ```
 
@@ -332,6 +333,22 @@ git config --system credential.helper
 Mac系统打开钥匙串访问，查看到对应gitbook的秘钥(你会发现此秘钥不是你自己的账号密码)，并删除它。
 
 再次提交代码，会提示你输入用户名密码。输入后成功提交。
+
+#### 2.4.3 gitbook serve报错
+
+windows系统gitbook serve时报错找不到lunr.min.js
+
+![](../../assets/gitbook/gitbook01.png)
+
+> 处理方法
+
+按下面顺序执行命令
+
+```angular2html
+$ gitbook init
+$ gitbook build
+$ gitbook serve
+```
 
 ## 3 同类技术对比(列表)
 
