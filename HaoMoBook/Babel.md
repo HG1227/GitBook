@@ -6,6 +6,7 @@
 ```
 更改历史
 
+* 2018-1-7  高天阳	2.2.2图片改文字
 * 2018-1-6  高天阳	格式化文档
 * 2017-5-11 高天阳	初始化文档
 
@@ -472,13 +473,109 @@ package.json
 $ touch .babelrc
 ```
 
-![](../../assets/Babel/babel05.png)
-![](../../assets/Babel/babel06.png)
-![](../../assets/Babel/babel07.png)
+** es2015 **
 
-* 注:值得我们注意的是
+使用es2015的，也就是我们常说的es6的相关方法，简单翻译如下，更多细节可以参看[文档](https://babeljs.io/docs/plugins/preset-es2015/)。
 
-![](../../assets/Babel/babel08.png)
+* check-es2015-constants // 检验const常量是否被重新赋值
+* transform-es2015-arrow-functions // 编译箭头函数
+* transform-es2015-block-scoped-functions // 函数声明在作用域内
+* transform-es2015-block-scoping // 编译const和let
+* transform-es2015-classes // 编译class
+* transform-es2015-computed-properties // 编译计算对象属性
+* transform-es2015-destructuring // 编译解构赋值
+* transform-es2015-duplicate-keys // 编译对象中重复的key，其实是转换成计算对象属性
+* transform-es2015-for-of // 编译for...of
+* transform-es2015-function-name // 将function.name语义应用于所有的function
+* transform-es2015-literals // 编译整数(8进制/16进制)和unicode
+* transform-es2015-modules-commonjs // 将modules编译成commonjs
+* transform-es2015-object-super // 编译super
+* transform-es2015-parameters // 编译参数，包括默认参数，不定参数和解构参数
+* transform-es2015-shorthand-properties // 编译属性缩写
+* transform-es2015-spread // 编译展开运算符
+* transform-es2015-sticky-regex // 正则添加sticky属性
+* transform-es2015-template-literals // 编译模版字符串
+* transform-es2015-typeof-symbol // 编译Symbol类型
+* transform-es2015-unicode-regex // 正则添加unicode模式
+* transform-regenerator // 编译generator函数
+
+总结：常用的都覆盖了，并不需要太关心内容，如果使用某些还不支持的语法导致报错，可以回头查一下支持的列表。
+
+** es2016 **
+
+使用es2016的相关插件，也就是es7，更多细节可以参看[文档](https://babeljs.io/docs/plugins/preset-es2016/)。
+
+* transform-exponentiation-operator // 编译幂运算符
+
+** es2017 **
+
+使用es2017的相关插件，也就是es8？，更多细节可以参看[文档](https://babeljs.io/docs/plugins/preset-es2017/)。
+
+* syntax-trailing-function-commas // function最后一个参数允许使用逗号
+* transform-async-to-generator // 把async函数转化成generator函数
+
+** latest **
+
+latest是一个特殊的presets，包括了es2015，es2016，es2017的插件（目前为止，以后有es2018也会包括进去）。
+
+** react **
+
+react是一个比较特别的官方推荐的presets，大概是因为比较火吧。加入了flow，jsx等语法，具体可以看[文档](https://babeljs.io/docs/plugins/preset-react/)。
+
+** stage-x(stage-0/1/2/3/4) **
+
+stage-x和上面的es2015等有些类似，但是它是按照JavaScript的提案阶段区分的，一共有5个阶段。而数字越小，阶段越靠后，存在依赖关系。
+也就是说stage-0是包括stage-1的，以此类推。
+
+** stage-4 **
+
+已完成的提案，与年度发布的release有关，包含2015年到明年正式发布的内容。
+例如，现在是2016年，stage-4应该是包括es2015，es2016，es2017。
+经过测试，babel-preset-stage-4这个npm包是不存在的，如果你单纯的需要stage-4的相关方法，
+需要引入es2015~es2017的presets。
+
+** stage-3 **
+
+除了stage-4的内容，还包括以下插件，更多细节请看[文档](http://babeljs.io/docs/plugins/preset-stage-3/)。
+
+* transform-object-rest-spread // 编译对象的解构赋值和不定参数
+* transform-async-generator-functions // 将async generator function和for await编译为es2015的generator。
+
+** stage-2 **
+
+除了stage-3的内容，还包括以下插件，更多细节请看[文档](http://babeljs.io/docs/plugins/preset-stage-2/)。
+
+* transform-class-properties // 编译静态属性(es2015)和属性初始化语法声明的属性(es2016)。
+
+** stage-1 **
+
+除了stage-2的内容，还包括以下插件，更多细节请看[文档](http://babeljs.io/docs/plugins/preset-stage-1/)。
+
+* transform-class-constructor-call // 编译class中的constructor，在Babel7中会被移除
+* transform-export-extensions // 编译额外的exprt语法，如export * as ns from "mod";细节可以看[这个](https://github.com/leebyron/ecmascript-more-export-from)
+
+** stage-0 **
+
+除了stage-1的内容，还包括以下插件，更多细节请看[文档](http://babeljs.io/docs/plugins/preset-stage-0/)。
+
+* transform-do-expressions // 编译do表达式
+* transform-function-bind // 编译bind运算符，也就是`::`
+
+** 注意 **
+
+值得我们注意的是
+
+为了统一称呼，我们定义如下：
+
+** 插件名 ** -形如：es2015-arrow-functions、es2015-block-scoped-functions、es2015-block-scoping
+
+** 插件（安装）包名 ** -形如：babel-plugin-transform-es2015-arrow-functions、
+babel-plugin-transform-es2015-block-scoped-functions、babel-plugin-transform-es2015-block-scoping
+
+** 配置名 ** -形如：transform-es2015-arrow-functions、transform-es2015-block-scoped-functions、transform-es2015-block-scoping
+
+一般来说，在 .babelrc 中，或者是gulp中，或者是使用babel-standalone 的在线转译功能，都使用的是**配置名**。
+一定要区分这三者的区别，不然很容易出错。
 
 ```angular2html
 {
@@ -637,4 +734,5 @@ module.exports = {
 * [Babel官网](https://babeljs.cn/)
 * [阮一峰Babel入门教程](http://www.ruanyifeng.com/blog/2016/01/babel.html)
 * [推酷如何使用babel](http://www.tuicool.com/articles/UVb6Zvv)
+* [Babel指南&nbsp;-&nbsp;基本环境搭建](https://passport.weibo.com/visitor/visitor?entry=miniblog&a=enter&url=https%3A%2F%2Fweibo.com%2Fp%2F230418d2e38ba80102wn7v&domain=.weibo.com&sudaref=https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3DUyJNNrh1-_2K82p7-gWDmpx_eVwxQ4qtuOUv7QS_ms6tzliuIotEiDKyezxUaZZlxaf9n-d4oM0GwsVUN2YDJq%26wd%3D%26eqid%3Db67b7ed10000af80000000025a51808e&ua=php-sso_sdk_client-0.6.23&_rand=1515290774.4061)
 * [如何写好.babelrc？Babel的presets和plugins配置解析](https://excaliburhan.com/post/babel-preset-and-plugins.html)
