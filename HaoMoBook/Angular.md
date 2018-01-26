@@ -159,10 +159,13 @@ transclude
 
 restrict   E(元素),A(属性),C(类),M(注释) (默认为A)
  
-E(元素)：<directiveName></directiveName>  
-A(属性)：<div directiveName='expression'></div>  
-C(类)： <div class='directiveName'></div>  
-M(注释)：<--directive:directiveName expression-->
+E(元素)：`<directiveName></directiveName>  `
+
+A(属性)：`<div directiveName='expression'></div>  `
+
+C(类)： `<div class='directiveName'></div>  `
+
+M(注释)：`<--directive:directiveName expression-->`
 
 scope
 
