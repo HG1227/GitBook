@@ -491,11 +491,11 @@ docker cp c90f4cbb43079:/tomcat8/webapps/ /pot/project/
 
 * 将id为c90f4cbb43079容器的/tomcat8/webapps/目录拷贝到宿主机/pot/project/文件夹下
 
-### 5.26 本地下载镜像
+### 5.26 常用指令
 
-/*docker images*/
+* docker images
 
-/*docker ps \(列出所有正在运行的命令\)*/
+* docker ps \(列出所有正在运行的命令\)
 
 /*docker run -it --name mdexam --hostname mdexam -d -p - /Users/liuranran/webwork/skilleee:/opt/work \[路径\] /bin/bash*/
 
