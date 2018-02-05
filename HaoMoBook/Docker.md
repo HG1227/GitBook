@@ -320,78 +320,178 @@ CONTAINER ID        IMAGE                                               COMMAND 
 ### 5.12 创建一个后台进行的容器
 
 ```
-
+docker run--name testDocker -d ubuntu /bin/bash
 ```
 
 ```
-
+➜  ~ docker run--name testDocker -d ubuntu /bin/bash
+2b6be9c242276b3969d6b8e36f5d07337f770bfe6c64a43fb51054824e995c67
+➜  ~ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+2b6be9c24227        ubuntu              "/bin/bash"         44 seconds ago      Up 43 seconds 
 ```
 
 ### 5.13 attach 附着容器
 
 ```
-
+docker attach 2b6be9c24227
 ```
 
 ```
-
+➜  ~ docker attach 2b6be9c24227
+root@2b6be9c24227:/#
+root@2b6be9c24227:/# exit
+exit
+➜  ~
+➜  ~ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+➜  ~
 ```
+
+* --docker attach 2b6be9c24227 附着到这个容器在创建时的shell交互 当exit退出时容器也跟着停止（一般用exec）
 
 ### 5.14 查看容器日志
 
 ```
-
+docker logs 2b6be9c24227
 ```
 
-```
-
-```
+* 查看容器日志docker logs 2b6be9c24227(容器id)
 
 ### 5.15 查看容器内部运行的进程
 
 ```
-
+docker top testDocker
 ```
 
 ```
+➜  ~ docker top testDocker
+PID                 USER                TIME                COMMAND
+3162                root                0:00                /bin/bash
+➜  ~
+```
 
+* docker top testDocker(容器名/ID都可以)
+
+```
+docker top testDocker
+```
+
+```
+➜  ~ docker top testDocker
+PID                 USER                TIME                COMMAND
+3162                root                0:00                /bin/bash
+➜  ~
 ```
 
 ### 5.16 自动重启容器
 
 ```
-
+docker run --restart=on-failure:5 --name testR1 -d ubuntu /bin/sh -c "while true; do echo hello world; sleep 1; done"
 ```
 
-```
-
-```
+* --restart 标志被设置为always,无论容器的退出代码是什么，Docker都会自动重启该容器,除了always ，我们还可以将这个标志设置为on-failure,
+这样，只有当容器的退出代码为非0值的时候，才会自动启动，另外，on-failure还接受一个可选的重启次数，如：--restart=on-failure:5
 
 ### 5.17 深入容器
 
+查看容器
+
+``` 
+docker inspect testR1
 ```
 
 ```
-
+➜  ~ docker inspect testR1
+[
+{
+"Id": "553badc90f4cbb430791dad29c597c3ec46fb6d825c3951e79d73f884d404069",
+"Created": "2017-09-04T07:07:10.607876379Z",
+"Path": "/bin/sh",
+"Args": [
+"-c",
+"while true; do echo hello world; sleep 1; done"
+],
+"State": {
+"Status": "running",
+"Running": true,
+"Paused": false,
+"Restarting": false,
+"OOMKilled": false,
+..........
 ```
 
-```
+docker inspect 容器名称 查看容器构造
 
 ### 5.18 删除容器
 
 ```
-
+docker rm 2b6be9c24227
 ```
 
 ```
-
+➜  ~ docker rm 2b6be9c24227
 ```
 
+* docker rm 容器id或者容器名都可以，注意：运行中的容器时删除不了的，必须停止之后进行删除
 
-### 5.9 本地下载镜像
+### 5.19 删除镜像
 
+```
+docker rmi c90f4cbb43079
+```
 
+* docker rmi 镜像名称/或者镜像id
 
+### 5.20 端口映射
+
+```
+docker rmi c90f4cbb43079
+```
+
+* docker rmi 镜像名称/或者镜像id
+
+### 5.21 映射到宿主机的指定端口
+
+```
+docker run -it -p 8080:80 --name test ubuntu /bin/bash
+```
+
+* -p 8080:80 将容器内的80端口映射到宿主机的8080端口上
+
+### 5.22 卷
+
+```
+docekr run -it -v /opt/tomcat8/:/opt/tomcat8/ --name test ubuntu /bin/bash
+```
+
+* -v 将宿主机的/opt/tomcat8目录挂在(共享)到容器内的/opt/tomcat8/下 (及改变容器该是改变宿主机上的tomcat8下的文件他们同时都会被改变)
+
+### 5.23 查看容器端口映射情况
+
+```
+docekr port test1 80
+```
+
+* 查看test1容器的80端口的映射情况(映射到宿主机的哪个端口)
+
+### 5.24 将文件拷贝到容器内
+
+```
+docker cp /pot/project/ c90f4cbb43079:/tomcat8/webapps/
+```
+
+* 将宿主机/pot/project/文件夹拷贝到id为c90f4cbb43079容器的/tomcat8/webapps/目录下
+
+### 5.25 将容器的文件拷贝到宿主机
+
+```
+docker cp c90f4cbb43079:/tomcat8/webapps/ /pot/project/
+```
+
+* 将id为c90f4cbb43079容器的/tomcat8/webapps/目录拷贝到宿主机/pot/project/文件夹下
+
+### 5.26 本地下载镜像
 
 /*docker images*/
 
@@ -412,3 +512,7 @@ docker start mdexam
 
 
 
+## 参考资料
+
+* [RUNOOB Docker教程](http://www.runoob.com/docker/docker-tutorial.html)
+* [Docker中文文档](http://www.docker.org.cn/)
