@@ -94,3 +94,6 @@ Tomcat started.
 ```angular2html
 ➜  ~ ./catalina.sh stop
 ```
+
+![示例图片1](assets/serverReboot1.jpeg "示例图片1")
+![示例图片2](assets/serverReboot2.jpeg "示例图片2")
