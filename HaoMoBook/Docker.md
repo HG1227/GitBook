@@ -629,10 +629,14 @@ Bye
 bash-4.2# exit
 ```
 
+```angular2html
+exit
+```
+
 #### 6.1.11 安装WordPress
 
 ```angular2html
-docker run -it --name wo --link test:mysql -p 8011:80 -d wordpress
+➜  ~ docker run -it --name wo --link test:mysql -p 8011:80 -d wordpress
 ```
 
 ```angular2html
@@ -662,6 +666,9 @@ Digest: sha256:bc4e60f4f9476feeb5c69d291841e837fcf6fc2f4ec39eff44ae29b95d06fb56
 Status: Downloaded newer image for wordpress:latest
 849b7e6bab2159b42b9062d0323263d14dff0265d8dad10662aeeaf9989c3923
 ```
+
+![示例图片1](../assets/docker1.jpeg "示例图片1")
+![示例图片2](../assets/docker2.jpeg "示例图片2")
 
 ## 参考资料
 
