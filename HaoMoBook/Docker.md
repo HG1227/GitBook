@@ -1,6 +1,6 @@
 # Docker
 
-## 第一章 Docker介绍
+## 1 Docker介绍
 
 ### 1.1 docker简介
 
@@ -34,15 +34,15 @@
 
 ![EE和CE版本对比](../assets/docker1.jpeg "EE和CE版本对比")
 
-## 第二章 Docker安装
+## 2 Docker安装
 
-### 1.Mac安装Docker
+### 2.1 Mac安装Docker
 
-##### 1.1 下载Docker for OS X Installer {#11-下载docker-for-os-x-installer}
+##### 2.1.1 下载Docker for OS X Installer {#11-下载docker-for-os-x-installer}
 
 ###### 下载链接[https://docs.docker.com/docker-for-mac/](https://docs.docker.com/docker-for-mac/) {#下载链接httpsdocsdockercomdocker-for-mac}
 
-##### 1.2 安装
+##### 2.1.2 安装
 
 将**Docker**拖到**Application**中
 
@@ -54,44 +54,44 @@
 
 ![](../assets/docker2.png)
 
-### 2.Windows下安装
+### 2.2 Windows下安装
 
-#### 2.1下载
+#### 2.2.1 下载
 
 官网下载boot2docker for windows 1.2
 
-#### 2.2双击打开
+#### 2.2.2 双击打开
 
 需要安装3个部分（如下图所示）
 
 ![](../assets/docker3.png)
 
-#### 2.3查看环境变量
+#### 2.3 查看环境变量
 
 安装完成后查看环境变量
 
 **Path**中是否包含**boot2docker**和**Git**
 
-#### 2.4重启电脑
+#### 2.4 重启电脑
 
 未开启**vt-x**的在**bios**中开启**vt-x**
 
-#### 2.5启动docker
+#### 2.5 启动docker
 
 桌面上双击boot2docker start.sh
 
 #### 2.6 等待启动
 
-#### 2.7完成
+#### 2.7 完成
 
-## 第三章 Docker的主要组成
+## 3 Docker的主要组成
 
 **Docker**有两个主要的部件：
 
 * Docker: 开源的容器虚拟化平台。
 * Docker Hub: 用于分享、管理Docker容器的Docker SaaS平台。
 
-## 第四章 Docker的架构
+## 4 Docker的架构
 
 ```
    Docker使用客户端-服务器\(client-server\)架构模式。Docker客户端会与Docker守护进程进行通信。Docker守护 进程会处理复杂繁重的任务，例如建立、运行、发布你的Docker容器。Docker客户端和守护进程可以运行在同一个系统上，当然你也可以使用 Docker客户端去连接一个远程的Docker守护进程。Docker客户端和守护进程之间通过socket或者RESTful API进行通信。
@@ -100,7 +100,7 @@
 
 ![](../assets/docker4.png)
 
-### 4.1Docker守护进程
+### 4.1 Docker守护进程
 
 如上图所示，**Docker**守护进程运行在一台主机上。用不并不直接和守护进程进行交互，而是通过**Docker**客户端间接和其通信。
 
@@ -135,7 +135,7 @@ Docker容器和文件夹很类似。一个Docker容器包含了所有的某个�
 * 容器概念:可以把容器看做实例(及new java对象, new JavaScript对象)
 * 镜像和容器的关系: Image container = new Image(); 容器是基于镜像创建的
 
-## 第五章 创建Docker应用的详解
+## 5 创建Docker应用的详解
 
 ### 5.1 ubuntu应用
 
@@ -508,9 +508,160 @@ docker stop mdexam
 
 docker start mdexam
 
-## 第六章 使用docker可以完成什么？
+## 6 最佳实践
 
+### 6.1 WordPress服务
 
+#### 6.1.1 查看docker正在运行的命令
+
+```angular2html
+➜  ~ docker ps
+```
+
+```angular2html
+WARNING: Error loading config file: /Users/haomo/.docker/config.json - stat /Users/haomo/.docker/config.json: permission denied
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+```
+
+#### 6.1.2 查看docker全部正在运行的命令
+
+```angular2html
+➜  ~ docker ps -a
+```
+
+```angular2html
+WARNING: Error loading config file: /Users/haomo/.docker/config.json - stat /Users/haomo/.docker/config.json: permission denied
+CONTAINER ID        IMAGE                                            COMMAND                  CREATED             STATUS                      PORTS               NAMES
+9537ff7bc1e4        mysql/mysql-server                               "/entrypoint.sh mysq…"   2 minutes ago       Created                                         mysql3306-TY
+cd66dc4565d6        registry.cn-hangzhou.aliyuncs.com/haomo/mdexam   "/bin/bash"              10 months ago       Exited (255) 8 months ago                       mdexam
+```
+
+#### 6.1.3 查看docker容器
+
+```angular2html
+➜  ~ docker images
+```
+
+```angular2html
+WARNING: Error loading config file: /Users/haomo/.docker/config.json - stat /Users/haomo/.docker/config.json: permission denied
+REPOSITORY                                       TAG                 IMAGE ID            CREATED             SIZE
+mysql/mysql-server                               latest              f92f0896ed95        2 weeks ago         246MB
+registry.cn-hangzhou.aliyuncs.com/haomo/mdexam   latest              3b5b2bc0b22f        11 months ago       267MB
+
+```
+
+#### 6.1.4 起`mysql`容器，命名为`test`
+
+```angular2html
+➜  ~ docker run -it --name test -p 3316:3306 -e "MYSQL_ROOT_PASSWORD=root" -d mysql/mysql-server
+```
+
+```angular2html
+WARNING: Error loading config file: /Users/haomo/.docker/config.json - stat /Users/haomo/.docker/config.json: permission denied
+cdce57f4147ac6d2e3beb135865e744a548709d12e140585490fad85522c7992
+```
+
+#### 6.1.5 查看docker正在运行的命令
+
+```angular2html
+➜  ~ docker ps
+```
+
+```angular2html
+WARNING: Error loading config file: /Users/haomo/.docker/config.json - stat /Users/haomo/.docker/config.json: permission denied
+CONTAINER ID        IMAGE                COMMAND                  CREATED             STATUS                            PORTS                               NAMES
+cdce57f4147a        mysql/mysql-server   "/entrypoint.sh mysq…"   9 seconds ago       Up 9 seconds (health: starting)   33060/tcp, 0.0.0.0:3316->3306/tcp   test
+```
+
+#### 6.1.6 进入test容器
+
+```angular2html
+➜  ~ docker exec -it test /bin/bash
+```
+
+```angular2html
+WARNING: Error loading config file: /Users/haomo/.docker/config.json - stat /Users/haomo/.docker/config.json: permission denied
+```
+
+#### 6.1.7 进入mysql并输入密码`root`
+
+```angular2html
+bash-4.2# mysql -u root -p 
+```
+
+```angular2html
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.7.21 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+```
+
+#### 6.1.8 查看
+
+```angular2html
+mysql> grant all privileges on *.* to 'root'@'%'identified by 'root' with grant option;
+```
+
+```angular2html
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+```
+
+#### 6.1.9 退出mysql
+
+```
+mysql> exit
+```
+
+```angular2html
+Bye
+```
+
+#### 6.1.10 退出test容器
+
+```
+bash-4.2# exit
+```
+
+#### 6.1.11 安装WordPress
+
+```angular2html
+docker run -it --name wo --link test:mysql -p 8011:80 -d wordpress
+```
+
+```angular2html
+WARNING: Error loading config file: /Users/haomo/.docker/config.json - stat /Users/haomo/.docker/config.json: permission denied
+Unable to find image 'wordpress:latest' locally
+latest: Pulling from library/wordpress
+e7bb522d92ff: Pull complete 
+75651f247827: Pull complete 
+dbcf8fd0150f: Pull complete 
+de80263f26f0: Pull complete 
+65be8ad4c5fd: Pull complete 
+239d5fed0dda: Pull complete 
+5ab39b683a9f: Pull complete 
+4a3f54f2d93a: Pull complete 
+28c970ad99e9: Pull complete 
+5d1e20c7c396: Pull complete 
+05f877a23903: Pull complete 
+e0a5c61bdaa6: Pull complete 
+d27d2d70a072: Pull complete 
+ba039fef4b7e: Pull complete 
+fd026e22f5c3: Pull complete 
+a523c6d55ab4: Pull complete 
+025590874132: Pull complete 
+2d4bd5336aa0: Pull complete 
+c014b4d902ee: Pull complete 
+Digest: sha256:bc4e60f4f9476feeb5c69d291841e837fcf6fc2f4ec39eff44ae29b95d06fb56
+Status: Downloaded newer image for wordpress:latest
+849b7e6bab2159b42b9062d0323263d14dff0265d8dad10662aeeaf9989c3923
+```
 
 ## 参考资料
 
