@@ -667,8 +667,8 @@ Status: Downloaded newer image for wordpress:latest
 849b7e6bab2159b42b9062d0323263d14dff0265d8dad10662aeeaf9989c3923
 ```
 
-![示例图片1](../assets/docker1.jpeg "示例图片1")
-![示例图片2](../assets/docker2.jpeg "示例图片2")
+![示例图片5](../assets/docker5.jpeg "示例图片5")
+![示例图片6](../assets/docker6.jpeg "示例图片6")
 ![](assets/docker2.jpeg)
 
 ## 参考资料
