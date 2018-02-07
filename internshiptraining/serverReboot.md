@@ -89,11 +89,13 @@ Using JRE_HOME:        /usr
 Using CLASSPATH:       /data/tomcat/bin/bootstrap.jar:/data/tomcat/bin/tomcat-juli.jar
 Tomcat started.
 ```
+
+![](../assets/serverReboot1.jpeg)
+
 ### 2.6 如果未重启成功 需要先关闭服务再启动
 
 ```angular2html
 ➜  ~ ./catalina.sh stop
 ```
 
-![](../assets/serverReboot1.jpeg)
 ![](../assets/serverReboot2.jpeg)
