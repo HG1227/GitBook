@@ -95,5 +95,5 @@ Tomcat started.
 ➜  ~ ./catalina.sh stop
 ```
 
-![](../../assets/serverReboot1.jpeg)
-![](../../assets/serverReboot2.jpeg)
+![](../assets/serverReboot1.jpeg)
+![](../assets/serverReboot2.jpeg)
