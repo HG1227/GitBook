@@ -669,7 +669,6 @@ Status: Downloaded newer image for wordpress:latest
 
 ![示例图片5](../assets/docker5.jpeg "示例图片5")
 ![示例图片6](../assets/docker6.jpeg "示例图片6")
-![](assets/docker2.jpeg)
 
 ## 参考资料
 
