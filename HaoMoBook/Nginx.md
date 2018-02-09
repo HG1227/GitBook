@@ -401,10 +401,103 @@ server {
 ![](../assets/Nginx/nginx8.jpeg)
 ![](../assets/Nginx/nginx9.jpeg)
 
-#### 2.3.5 查看Nginx目录
-#### 2.3.5 查看Nginx目录
-#### 2.3.5 查看Nginx目录
-#### 2.3.5 查看Nginx目录
+#### 2.3.7 进入代码仓库目录
+
+```angular2html
+member@ecs-4354:/etc/nginx/sites-enabled$ cd
+member@ecs-4354:~$ cd /var/www/html
+```
+
+#### 2.3.8 查看目录
+
+```angular2html
+member@ecs-4354:/var/www/html$ ll
+```
+
+```angular2html
+total 1007340
+drwxrwxrwx 15 member member       4096 2月   9 10:53 ./
+drwxrwxrwx  3 root   root         4096 12月  1 16:32 ../
+drwxrwxr-x  3 member member       4096 2月   6 18:10 admin/
+drwxrwxrwx  4 member member       4096 1月   4 14:43 admin_test/
+drwxrwxr-x  3 member member       4096 1月   2 22:18 code/
+drwxrwxr-x  7 member member       4096 1月  26 10:33 demo/
+drwxrwxrwx  7 member member       4096 2月   5 14:40 digitizing/
+-rw-rw-r--  1 member member 1031449088 1月  24 01:55 Nextcloud_yd.tar
+drwxrwxrwx  7 member member       4096 12月 28 17:39 spoken/
+drwxrwxr-x  7 member member       4096 2月   8 21:00 static/
+drwxrwxrwx  2 member member       4096 12月  8 05:05 video/
+drwxrwxr-x  7 member member       4096 1月  30 17:51 wxgame/
+drwxrwxr-x  2 member member       4096 1月  30 18:06 wxgamebk/
+drwxrwxr-x  6 member member       4096 2月   8 20:59 xuetang/
+drwxrwxr-x  3 member member       4096 1月   2 23:25 xuetangx/
+```
+
+#### 2.3.9 创建张家口项目目录
+
+```angular2html
+member@ecs-4354:/var/www/html$ mkdir zjk
+```
+#### 2.3.10 查看目录
+
+```angular2html
+member@ecs-4354:/var/www/html$ ll
+```
+
+```angular2html
+total 1007340
+drwxrwxrwx 15 member member       4096 2月   9 10:53 ./
+drwxrwxrwx  3 root   root         4096 12月  1 16:32 ../
+drwxrwxr-x  3 member member       4096 2月   6 18:10 admin/
+drwxrwxrwx  4 member member       4096 1月   4 14:43 admin_test/
+drwxrwxr-x  3 member member       4096 1月   2 22:18 code/
+drwxrwxr-x  7 member member       4096 1月  26 10:33 demo/
+drwxrwxrwx  7 member member       4096 2月   5 14:40 digitizing/
+-rw-rw-r--  1 member member 1031449088 1月  24 01:55 Nextcloud_yd.tar
+drwxrwxrwx  7 member member       4096 12月 28 17:39 spoken/
+drwxrwxr-x  7 member member       4096 2月   8 21:00 static/
+drwxrwxrwx  2 member member       4096 12月  8 05:05 video/
+drwxrwxr-x  7 member member       4096 1月  30 17:51 wxgame/
+drwxrwxr-x  2 member member       4096 1月  30 18:06 wxgamebk/
+drwxrwxr-x  6 member member       4096 2月   8 20:59 xuetang/
+drwxrwxr-x  3 member member       4096 1月   2 23:25 xuetangx/
+drwxrwxr-x  3 member member       4096 2月   9 10:55 zjk/
+```
+
+#### 2.3.11 配置项目中的部署脚本
+
+```angular2html
+#!/usr/bin/env bash
+
+npm run build:sit
+#rsync -avz dist/* member@60.205.191.90:/data/projects/zjk/
+rsync -avz --delete dist/*  member@haomo-tech.com:/var/www/html/zjk/
+```
+
+#### 2.3.12 部署
+
+```angular2html
+➜  zhangjiakouweb git:(master) ✗ sh deploy_dev.sh 
+```
+
+#### 2.3.13 重启Nginx
+
+1. studio服务器重启nginx
+
+```angular2html
+sudo gitlab-ctl restart nginx
+```
+
+2. tech服务器重启nginx
+
+```angular2html
+pkill -9 nginx
+nginx -c /etc/nginx/nginx.conf
+```
+
+#### 2.3.13 查看效果
+
+访问[http://zjk.haomo-tech.com](http://zjk.haomo-tech.com)测试配置是否成功
 
 ### 2.4 最佳实践
 
