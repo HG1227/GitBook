@@ -36,7 +36,7 @@ Nginx相较于Apache\lighttpd具有占有内存少，稳定性高等优势，并
 并将获得的内容返回给客户端。而客户端始终任务它访问的事原始服务器B而不是服务器Z。由于防火墙作用，只允许服务器Z进出，
 防火墙和反向代理共同作用保护了院子资源服务器B。
 
-![](https://hxgqh.gitbooks.io/haomotraining/content/nginx/nginx122.png)
+![](../assets/Nginx/nginx1.png)
 
 用途：将防火墙后面的服务器提供给Internet用户访问。反向代理还可以为后端的多台服务器提供负载平衡或为后端较慢的服务器提供缓冲服务。
 
@@ -46,7 +46,7 @@ Nginx相较于Apache\lighttpd具有占有内存少，稳定性高等优势，并
 用户A向代理服务器Z发送一个请求并指定目标（服务器B），然后代理服务器Z向服务器B转交请求并将获得的内容返回给客户端。
 客户端必须要进行一些特别的设置才能使用正向代理。
 
-![](https://hxgqh.gitbooks.io/haomotraining/content/nginx/nginx131.png)
+![](../assets/Nginx/nginx2.png)
 
 用途：在防火墙内的局域网客户端提供访问Internet的途径。还可以使用缓冲特性减少网络使用率。
 
@@ -103,7 +103,7 @@ Nginx具有很高的稳定性；支持热部署；代码质量非常高，代码
 事件模块、HTTP模块、mail模块这三种模块的共性是：实际上它们在核心模块中各有1个模块作为自己的代言人，
 并在同类模块中有1个作为核心业务与管理功能的模块。
 
-![](https://hxgqh.gitbooks.io/haomotraining/content/nginx/nginx211.png)
+![](../assets/Nginx/nginx3.png)
 
 Nginx模块直接被编译仅Nginx,因此属于静态编译方式。启动Nginx后，Nginx的模块被自动加载，不像Apache，
 首先将模块编译为一个so文件，然后再配置文件汇总指定是否进行加载。在解析配置文件时，Nginx的每一个模块都有可能去处理某个请求，
@@ -114,7 +114,7 @@ Nginx模块直接被编译仅Nginx,因此属于静态编译方式。启动Nginx�
 
 Nginx由一个master进程和多个worker进程组成，但master进程或者worker进程中并不会再创建线程。
 
-![](https://hxgqh.gitbooks.io/haomotraining/content/nginx/nginx311.png)
+![](../assets/Nginx/nginx4.png)
 
 #### 1.3.3.1 master进程和worker进程的作用
 
@@ -191,7 +191,7 @@ Nginx会按需同时运行多个进程：一个主进程和几个工作进程，
 
 #### 1.4.1 Nginx模块常规的HTTP请求和响应的过程
 
-![](https://hxgqh.gitbooks.io/haomotraining/content/nginx/nginx411.png)
+![](../assets/Nginx/nginx5.png)
 
 当它接收到一个HTTP请求时，它仅仅是通过查找配置文件将此次请求映射到一个location block,
 而此location中配置的各个指令则会启动不同的模块去完成工作，因此模块可以看做Nginx真正的劳动工作者。
@@ -204,10 +204,13 @@ handler模块负责处理请求，完成响应内容的生成，而filter模块�
 但也有一些复杂、多变的业务不适合放到Nginx服务器上，这时会用Apache、Tomcat等服务器来处理。
 于是，Nginx通常会被配置为既是静态Web服务器也是反向代理服务器，不适合Nginx处理的请求就会直接转发到上游服务器中处理。
 
-Nginx作为HTTP服务器以及反向代理服务器：![](https://hxgqh.gitbooks.io/haomotraining/content/nginx/nginx421.png)
+Nginx作为HTTP服务器以及反向代理服务器：
+
+![](../assets/Nginx/nginx6.png)
+
 Nginx作为反向代理服务器时转发请求的流程：
 
-![](https://hxgqh.gitbooks.io/haomotraining/content/nginx/nginx422.png)
+![](../assets/Nginx/nginx7.png)
 
 Nginx减轻了上游服务器的并发压力；延长了一个请求的处理时间，并增加了用于缓存请求内容的内存和磁盘空间。
 
@@ -218,6 +221,190 @@ Nginx减轻了上游服务器的并发压力；延长了一个请求的处理时
 ### 2.2 使用
 
 ### 2.3 示例
+
+#### 2.3.1 连接服务器
+
+```angular2html
+➜  ~ ssh member@haomo-tech.com
+```
+
+```angular2html
+Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+155 个可升级软件包。
+66 个安全更新。
+
+
+  ######################################################################
+  #                              Notice                                #
+  #                                                                    #
+  #  1. Please DO NOT upgrade the kernel, as the kernel upgrade would  #
+  #   damage the original operating system.                            #
+  #                                                                    #
+  #  2. Please create unique passwords that use a combination of words,#
+  #   numbers, symbols, and both upper-case and lower-case letters.    #
+  #   Avoid using simple adjacent keyboard combinations such as        # 
+  #   "Qwert!234","Qaz2wsx",etc.                                       #
+  #                                                                    #
+  #  3. Unless necessary, please DO NOT open or use high-risk ports,   #
+  #   such as Telnet-23, FTP-20/21, NTP-123(UDP), RDP-3389,            #
+  #   SSH/SFTP-22, Mysql-3306, SQL-1433,etc.                           #
+  #                                                                    #
+  #                                                                    #
+  #                     Any questions please contact 4000-955-988      #
+  ######################################################################
+```
+
+#### 2.3.2 进入Nginx目录
+
+```angular2html
+member@ecs-4354:~$ cd /etc/nginx/sites-enabled
+```
+
+#### 2.3.3 查看Nginx目录
+
+```angular2html
+member@ecs-4354:/etc/nginx/sites-enabled$ ll
+```
+
+```angular2html
+total 92
+drwxr-xr-x 2 root root  4096 2月   9 11:48 ./
+drwxr-xr-x 7 root root  4096 12月 12 23:00 ../
+-rw-r--r-- 1 root root   435 1月  30 18:55 cardbk.conf
+-rw-r--r-- 1 root root   356 1月  30 19:13 card.conf
+lrwxrwxrwx 1 root root    34 11月 13 18:24 default -> /etc/nginx/sites-available/default
+-rw-r--r-- 1 root root  1267 12月 13 19:28 dev.conf
+-rw-r--r-- 1 root root  2631 2月   5 14:34 digitizing.conf
+-rw-r--r-- 1 root root  1150 1月   2 11:22 etroindocs.conf
+-rw-r--r-- 1 root root   971 2月   1 00:10 officedocument.conf
+-rw-r--r-- 1 root root   417 1月  31 23:52 onlyoffice.conf
+-rw-r--r-- 1 root root   951 2月   1 00:27 ownoffice.conf
+-rw-r--r-- 1 root root   976 12月 12 23:03 rocket.conf
+-rw-r--r-- 1 root root  2684 12月 25 15:53 seccasadminweb.conf
+-rw-r--r-- 1 root root  2747 12月 25 14:56 spoken.conf
+-rw-r--r-- 1 root root   241 12月  1 16:40 video.conf
+-rw-r--r-- 1 root root   968 12月 14 14:25 video-lingdao.conf
+-rw-r--r-- 1 root root   333 2月   2 06:23 wordpress.conf
+-rw-r--r-- 1 root root 10115 1月  29 19:40 xuetang.conf
+-rw-r--r-- 1 root root  9206 1月  12 15:18 xuetang-dev.conf
+```
+
+#### 2.3.4 复制一个配置文件范本
+
+```angular2html
+member@ecs-4354:/etc/nginx/sites-enabled$ sudo cp digitizing.conf /etc/nginx/sites-enabled/zjkweb.conf
+```
+#### 2.3.5 查看Nginx目录
+
+```angular2html
+member@ecs-4354:/etc/nginx/sites-enabled$ ll
+```
+
+```angular2html
+total 92
+drwxr-xr-x 2 root root  4096 2月   9 11:48 ./
+drwxr-xr-x 7 root root  4096 12月 12 23:00 ../
+-rw-r--r-- 1 root root   435 1月  30 18:55 cardbk.conf
+-rw-r--r-- 1 root root   356 1月  30 19:13 card.conf
+lrwxrwxrwx 1 root root    34 11月 13 18:24 default -> /etc/nginx/sites-available/default
+-rw-r--r-- 1 root root  1267 12月 13 19:28 dev.conf
+-rw-r--r-- 1 root root  2631 2月   5 14:34 digitizing.conf
+-rw-r--r-- 1 root root  1150 1月   2 11:22 etroindocs.conf
+-rw-r--r-- 1 root root   971 2月   1 00:10 officedocument.conf
+-rw-r--r-- 1 root root   417 1月  31 23:52 onlyoffice.conf
+-rw-r--r-- 1 root root   951 2月   1 00:27 ownoffice.conf
+-rw-r--r-- 1 root root   976 12月 12 23:03 rocket.conf
+-rw-r--r-- 1 root root  2684 12月 25 15:53 seccasadminweb.conf
+-rw-r--r-- 1 root root  2747 12月 25 14:56 spoken.conf
+-rw-r--r-- 1 root root   241 12月  1 16:40 video.conf
+-rw-r--r-- 1 root root   968 12月 14 14:25 video-lingdao.conf
+-rw-r--r-- 1 root root   333 2月   2 06:23 wordpress.conf
+-rw-r--r-- 1 root root 10115 1月  29 19:40 xuetang.conf
+-rw-r--r-- 1 root root  9206 1月  12 15:18 xuetang-dev.conf
+-rw-r--r-- 1 root root   197 2月   9 11:48 zjkweb.conf
+```
+
+#### 2.3.6 配置Nginx文件
+
+```angular2html
+member@ecs-4354:/etc/nginx/sites-enabled$ sudo vim zjkweb.conf 
+```
+
+```angular2html
+server {
+        listen       80;
+        server_name  digitizing.haomo-tech.com;
+
+        location / {
+
+                root   /var/www/html/digitizing;
+                index  index.html index.htm;
+		try_files $uri$args $uri$args/ $uri $uri/ /index.html =404;
+        }
+
+        location /digitizing    {
+                proxy_pass    http://localhost:8082/digitizing;
+                proxy_set_header  X-Real-IP  $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                
+                #add_header Access-Control-Allow-Origin *;
+                #add_header Access-Control-Allow-Methods "POST, GET, OPTIONS";
+                #add_header Access-Control-Allow-Headers "Origin, Authorization, Accept";
+                #add_header Access-Control-Allow-Credentials true;
+                if ($request_method = 'OPTIONS') {
+                    add_header 'Access-Control-Allow-Origin' '*';
+                    add_header 'Access-Control-Allow-Headers' '*';
+                    return 204;
+                 }
+                 if ($request_method = 'POST') {
+                    add_header 'Access-Control-Allow-Origin' '*';
+                    add_header 'Access-Control-Allow-Headers' '*';
+                 }
+                 if ($request_method = 'GET') {
+                    add_header 'Access-Control-Allow-Origin' '*';
+                    add_header 'Access-Control-Allow-Headers' '*';
+                 }
+        
+        }
+        location /reptile    {
+                proxy_pass    http://localhost:3003;
+                proxy_set_header  X-Real-IP  $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+                #add_header Access-Control-Allow-Origin *;
+                #add_header Access-Control-Allow-Methods "POST, GET, OPTIONS";
+                #add_header Access-Control-Allow-Headers "Origin, Authorization, Accept";
+                #add_header Access-Control-Allow-Credentials true;
+                if ($request_method = 'OPTIONS') {
+                    add_header 'Access-Control-Allow-Origin' '*';
+                    add_header 'Access-Control-Allow-Headers' '*';
+                    return 204;
+                 }
+                 if ($request_method = 'POST') {
+                    add_header 'Access-Control-Allow-Origin' '*';
+                    add_header 'Access-Control-Allow-Headers' '*';
+                 }
+                 if ($request_method = 'GET') {
+                    add_header 'Access-Control-Allow-Origin' '*';
+                    add_header 'Access-Control-Allow-Headers' '*';
+                 }
+    
+        }
+}
+```
+
+![](../assets/Nginx/nginx8.jpeg)
+![](../assets/Nginx/nginx9.jpeg)
+
+#### 2.3.5 查看Nginx目录
+#### 2.3.5 查看Nginx目录
+#### 2.3.5 查看Nginx目录
+#### 2.3.5 查看Nginx目录
 
 ### 2.4 最佳实践
 
