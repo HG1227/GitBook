@@ -36,7 +36,7 @@ Nginx相较于Apache\lighttpd具有占有内存少，稳定性高等优势，并
 并将获得的内容返回给客户端。而客户端始终任务它访问的事原始服务器B而不是服务器Z。由于防火墙作用，只允许服务器Z进出，
 防火墙和反向代理共同作用保护了院子资源服务器B。
 
-![](../assets/Nginx/nginx1.png)
+![](../../assets/Nginx/nginx1.png)
 
 用途：将防火墙后面的服务器提供给Internet用户访问。反向代理还可以为后端的多台服务器提供负载平衡或为后端较慢的服务器提供缓冲服务。
 
@@ -46,7 +46,7 @@ Nginx相较于Apache\lighttpd具有占有内存少，稳定性高等优势，并
 用户A向代理服务器Z发送一个请求并指定目标（服务器B），然后代理服务器Z向服务器B转交请求并将获得的内容返回给客户端。
 客户端必须要进行一些特别的设置才能使用正向代理。
 
-![](../assets/Nginx/nginx2.png)
+![](../../assets/Nginx/nginx2.png)
 
 用途：在防火墙内的局域网客户端提供访问Internet的途径。还可以使用缓冲特性减少网络使用率。
 
@@ -103,7 +103,7 @@ Nginx具有很高的稳定性；支持热部署；代码质量非常高，代码
 事件模块、HTTP模块、mail模块这三种模块的共性是：实际上它们在核心模块中各有1个模块作为自己的代言人，
 并在同类模块中有1个作为核心业务与管理功能的模块。
 
-![](../assets/Nginx/nginx3.png)
+![](../../assets/Nginx/nginx3.png)
 
 Nginx模块直接被编译仅Nginx,因此属于静态编译方式。启动Nginx后，Nginx的模块被自动加载，不像Apache，
 首先将模块编译为一个so文件，然后再配置文件汇总指定是否进行加载。在解析配置文件时，Nginx的每一个模块都有可能去处理某个请求，
@@ -114,7 +114,7 @@ Nginx模块直接被编译仅Nginx,因此属于静态编译方式。启动Nginx�
 
 Nginx由一个master进程和多个worker进程组成，但master进程或者worker进程中并不会再创建线程。
 
-![](../assets/Nginx/nginx4.png)
+![](../../assets/Nginx/nginx4.png)
 
 #### 1.3.3.1 master进程和worker进程的作用
 
@@ -191,7 +191,7 @@ Nginx会按需同时运行多个进程：一个主进程和几个工作进程，
 
 #### 1.4.1 Nginx模块常规的HTTP请求和响应的过程
 
-![](../assets/Nginx/nginx5.png)
+![](../../assets/Nginx/nginx5.png)
 
 当它接收到一个HTTP请求时，它仅仅是通过查找配置文件将此次请求映射到一个location block,
 而此location中配置的各个指令则会启动不同的模块去完成工作，因此模块可以看做Nginx真正的劳动工作者。
@@ -206,11 +206,11 @@ handler模块负责处理请求，完成响应内容的生成，而filter模块�
 
 Nginx作为HTTP服务器以及反向代理服务器：
 
-![](../assets/Nginx/nginx6.png)
+![](../../assets/Nginx/nginx6.png)
 
 Nginx作为反向代理服务器时转发请求的流程：
 
-![](../assets/Nginx/nginx7.png)
+![](../../assets/Nginx/nginx7.png)
 
 Nginx减轻了上游服务器的并发压力；延长了一个请求的处理时间，并增加了用于缓存请求内容的内存和磁盘空间。
 
@@ -400,13 +400,13 @@ server {
 }
 ```
 
-![](../assets/Nginx/nginx8.jpeg)
-![](../assets/Nginx/nginx9.jpeg)
+![](../../assets/Nginx/nginx8.jpeg)
+![](../../assets/Nginx/nginx9.jpeg)
 
 * 关于配置文件的详细讲解
 
-![](../assets/Nginx/nginx10.jpeg)
-![](../assets/Nginx/nginx11.jpeg)
+![](../../assets/Nginx/nginx10.jpeg)
+![](../../assets/Nginx/nginx11.jpeg)
 
 #### 2.3.7 进入代码仓库目录
 
