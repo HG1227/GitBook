@@ -403,6 +403,11 @@ server {
 ![](../assets/Nginx/nginx8.jpeg)
 ![](../assets/Nginx/nginx9.jpeg)
 
+* 关于配置文件的详细讲解
+
+![](../assets/Nginx/nginx10.jpeg)
+![](../assets/Nginx/nginx11.jpeg)
+
 #### 2.3.7 进入代码仓库目录
 
 ```angular2html
