@@ -64,7 +64,9 @@ $ npm install gitbook -g
 
 输入命令，全局安装gitbook。
 
-npm install gitbook-cli -g
+```
+$ npm install gitbook-cli -g
+```
 
 ![](../../assets/gitbook/gitbook-cliInstall.jpeg)
 
