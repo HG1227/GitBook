@@ -55,7 +55,6 @@
     * [Linux面试题](internshiptraining/linuxCaseInterview.md)
     * [Linux常用指令](internshiptraining/linuxCommonInstructions.md)
     * [VIM](internshiptraining/vim.md)
-    * [Nginx](internshiptraining/nginx.md)
     * [Webpack](internshiptraining/Webpack.md)
     * [tmate命令行分享](internshiptraining/tmate.md)
     * [命令别名存储](internshiptraining/commandAlias.md)
