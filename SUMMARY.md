@@ -87,6 +87,7 @@
     * [ngclipboard-Angular复制到剪贴板插件](webTips/ngclipboard.md)
     * [AngularJs-toaster-Angular提示弹框插件](webTips/AngularJS-Toaster.md)
     * [Windows部署时脚本报错](webTips/WinDeployment.md)
+    * [ElementUI-Vue前端框架项目初始化](webTips/ElementUI-VueProjectInit.md)
 * [毫末科技面试流程](haomointerview.md)
     * [JAVA面试](haomointerview/content.md)
 
