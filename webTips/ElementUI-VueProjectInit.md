@@ -14,34 +14,33 @@
 
 ### 1.1 在项目中添加clone权限： 
 
-![](/assets/Fuse/Fuse1.jpeg)
-![](/assets/Fuse/Fuse2.jpeg)
-
+![](/assets/ElementUI/ElementUI1.jpeg)
 
 ### 1.2 克隆项目至本地：
 ```angular2html
 git clone [项目克隆地址]
 
 code:
-git clone git@115.28.80.125:haomo/wechatgame.git
+git clone git@115.28.80.125:softwarefactory/vueelementtemplate.git
 ```
 
-### 1.3 切换开发分支：
+![](/assets/ElementUI/ElementUI2.jpeg)
+
+### 1.3 服务启动说明：
+
 ```angular2html
-git branch -a   // 查看分支
-git checkout dev    // 切换至dev分支
+npm install
 ```
 
-### 1.4 服务启动说明：
-
-```angular2html
-npm install // 安装服务器插件(若安装过慢或丢包，请使用cnom安装)
-bower install // 安装依赖的插件  
+```
+# 建议不要用cnpm安装 会有各种诡异的bug 可以通过如下操作解决 npm 下载速度慢的问题
+npm install --registry=https://registry.npm.taobao.org
 ```
 
 ### 1.5 服务启动：
 ```angular2html
-gulp serve // 启动项目
+# 启动服务
+npm run dev
 ```
 
 ## 2 目录结构、文件功能介绍

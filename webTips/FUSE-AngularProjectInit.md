@@ -37,7 +37,7 @@ git checkout dev    // 切换至dev分支
 ### 1.4 服务启动说明：
 
 ```angular2html
-npm install // 安装服务器插件(若安装过慢或丢包，请使用cnom安装)
+npm install // 安装服务器插件(若安装过慢或丢包，请使用cnpm安装)
 bower install // 安装依赖的插件  
 ```
 
