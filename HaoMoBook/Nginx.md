@@ -685,6 +685,58 @@ sudo nginx -c /etc/nginx/nginx.conf
 
 ![](../../assets/Nginx/nginx15.jpeg)
 
+#### 2.4.3 代理网址时网址找不到css等文件导致报错
+
+* 此时报错为下图
+
+![](../../assets/Nginx/nginx16.jpeg)
+![](../../assets/Nginx/nginx17.jpeg)
+
+* 修改前配置文件如下
+
+```angular2html
+server {
+        listen       80;
+        server_name  vr.haomo-tech.com;
+        
+        location /demo/room/ {
+                proxy_pass  https://playcanv.as/p/zi09Xvld/;
+        }
+        
+        location /demo/bmw/ {
+                proxy_pass  https://playcanv.as/p/RqJJ9oU9/?overlay=fal;
+        }
+}
+```
+
+* 需要修改配置文件增加代理地址(哪个地址找不到就代理哪个地址)
+
+```angular2html
+server {
+        listen       80;
+        server_name  vr.haomo-tech.com;
+
+        location / {
+                proxy_pass  https://playcanv.as/;
+        }
+        
+        location /demo/ {
+                proxy_pass  https://playcanv.as/p/;
+        }
+        
+        location /css/ {
+                proxy_pass  https://playcanv.as/css/;
+        }
+        
+        location /demo/room/ {
+                proxy_pass  https://playcanv.as/p/zi09Xvld/;
+        }
+        
+        location /demo/bmw/ {
+                proxy_pass  https://playcanv.as/p/RqJJ9oU9/?overlay=fal;
+        }
+}
+```
 ## 3 同类技术对比
 
 ### 3.1 Nginx VS Apache
