@@ -498,8 +498,8 @@ sudo gitlab-ctl restart nginx
 2. tech服务器重启nginx
 
 ```angular2html
-pkill -9 nginx
-nginx -c /etc/nginx/nginx.conf
+sudo pkill -9 nginx
+sudo nginx -c /etc/nginx/nginx.conf
 ```
 
 #### 2.3.13 查看效果
