@@ -1121,10 +1121,10 @@ location ~ ^/get_service_task_url_param {
 
 * 下图为原json
 
-![](../../assets/Nginx/nginx18.jpeg)
+![](../../assets/Nginx/nginx18.png)
 
 * 下图为现json
-![](../../assets/Nginx/nginx19.jpeg)
+![](../../assets/Nginx/nginx19.png)
 
 ```
 '{
