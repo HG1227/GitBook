@@ -21,12 +21,12 @@
 git clone [项目克隆地址]
 
 code:
-git clone git@115.28.80.125:softwarefactory/vueelementtemplate.git
+git clone git@115.28.80.125:zhangjiakou/zhangjiakouweb.git
 ```
 
 ![](/assets/ElementUI/ElementUI2.jpeg)
 
-### 1.3 服务启动说明：
+### 1.3 安装依赖：
 
 ```angular2html
 npm install
@@ -37,7 +37,7 @@ npm install
 npm install --registry=https://registry.npm.taobao.org
 ```
 
-### 1.5 服务启动：
+### 1.4 服务启动：
 ```angular2html
 # 启动服务
 npm run dev
@@ -48,11 +48,10 @@ npm run dev
 ### 2.1 目录结构：
 
 ```angular2html
-wechatgame/src/app/main/wegame/     编写代码存放目录
-wechatgame/src/app/navigation/      框架导航配置
-wechatgame/src/app/toolbar/         框架工具栏配置
-wechatgame/bower_components         插件依赖
-wechatgame/node_modules             开发依赖
+zhangjiakouweb/src/views/       编写代码存放目录
+zhangjiakouweb/src/router/      框架导航配置
+zhangjiakouweb/src/lang/        i18n配置
+zhangjiakouweb/node_modules     开发依赖
 ```
 ![](/assets/Fuse/Fuse3.jpeg)
 ![](/assets/Fuse/Fuse19.jpeg)
