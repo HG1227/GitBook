@@ -222,9 +222,9 @@ Nginx减轻了上游服务器的并发压力；延长了一个请求的处理时
 
 ### 2.3 示例
 
-> 以张家口OA项目为例
+#### 2.3.1 以张家口OA项目为例
 
-#### 2.3.1 连接服务器
+##### 2.3.1.1 连接服务器
 
 ```angular2html
 ➜  ~ ssh member@haomo-tech.com
@@ -261,13 +261,13 @@ Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64)
   ######################################################################
 ```
 
-#### 2.3.2 进入Nginx目录
+##### 2.3.1.2 进入Nginx目录
 
 ```angular2html
 member@ecs-4354:~$ cd /etc/nginx/sites-enabled
 ```
 
-#### 2.3.3 查看Nginx目录
+##### 2.3.1.3 查看Nginx目录
 
 ```angular2html
 member@ecs-4354:/etc/nginx/sites-enabled$ ll
@@ -296,12 +296,12 @@ lrwxrwxrwx 1 root root    34 11月 13 18:24 default -> /etc/nginx/sites-availabl
 -rw-r--r-- 1 root root  9206 1月  12 15:18 xuetang-dev.conf
 ```
 
-#### 2.3.4 复制一个配置文件范本
+##### 2.3.1.4 复制一个配置文件范本
 
 ```angular2html
 member@ecs-4354:/etc/nginx/sites-enabled$ sudo cp digitizing.conf /etc/nginx/sites-enabled/zjkweb.conf
 ```
-#### 2.3.5 查看Nginx目录
+##### 2.3.1.5 查看Nginx目录
 
 ```angular2html
 member@ecs-4354:/etc/nginx/sites-enabled$ ll
@@ -331,7 +331,7 @@ lrwxrwxrwx 1 root root    34 11月 13 18:24 default -> /etc/nginx/sites-availabl
 -rw-r--r-- 1 root root   197 2月   9 11:48 zjkweb.conf
 ```
 
-#### 2.3.6 配置Nginx文件
+##### 2.3.1.6 配置Nginx文件
 
 ```angular2html
 member@ecs-4354:/etc/nginx/sites-enabled$ sudo vim zjkweb.conf 
@@ -408,14 +408,14 @@ server {
 ![](../../assets/Nginx/nginx10.jpeg)
 ![](../../assets/Nginx/nginx11.jpeg)
 
-#### 2.3.7 进入代码仓库目录
+##### 2.3.1.7 进入代码仓库目录
 
 ```angular2html
 member@ecs-4354:/etc/nginx/sites-enabled$ cd
 member@ecs-4354:~$ cd /var/www/html
 ```
 
-#### 2.3.8 查看目录
+##### 2.3.1.8 查看目录
 
 ```angular2html
 member@ecs-4354:/var/www/html$ ll
@@ -440,12 +440,12 @@ drwxrwxr-x  6 member member       4096 2月   8 20:59 xuetang/
 drwxrwxr-x  3 member member       4096 1月   2 23:25 xuetangx/
 ```
 
-#### 2.3.9 创建张家口项目目录
+##### 2.3.1.9 创建张家口项目目录
 
 ```angular2html
 member@ecs-4354:/var/www/html$ mkdir zjk
 ```
-#### 2.3.10 查看目录
+##### 2.3.1.10 查看目录
 
 ```angular2html
 member@ecs-4354:/var/www/html$ ll
@@ -471,7 +471,7 @@ drwxrwxr-x  3 member member       4096 1月   2 23:25 xuetangx/
 drwxrwxr-x  3 member member       4096 2月   9 10:55 zjk/
 ```
 
-#### 2.3.11 配置项目中的部署脚本
+##### 2.3.1.11 配置项目中的部署脚本
 
 ```angular2html
 #!/usr/bin/env bash
@@ -481,13 +481,13 @@ npm run build:sit
 rsync -avz --delete dist/*  member@haomo-tech.com:/var/www/html/zjk/
 ```
 
-#### 2.3.12 部署
+##### 2.3.1.12 部署
 
 ```angular2html
 ➜  zhangjiakouweb git:(master) ✗ sh deploy_dev.sh 
 ```
 
-#### 2.3.13 重启Nginx
+##### 2.3.1.13 重启Nginx
 
 1. studio服务器重启nginx
 
@@ -502,11 +502,188 @@ sudo pkill -9 nginx
 sudo nginx -c /etc/nginx/nginx.conf
 ```
 
-#### 2.3.13 查看效果
+##### 2.3.1.13 查看效果
 
 访问[http://zjk.haomo-tech.com](http://zjk.haomo-tech.com)测试配置是否成功
 
+#### 2.3.2 以代理转接网址为例
+
+##### 2.3.2.1 连接服务器
+
+```angular2html
+➜  ~ ssh member@haomo-tech.com
+```
+
+```angular2html
+Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+155 个可升级软件包。
+66 个安全更新。
+
+
+  ######################################################################
+  #                              Notice                                #
+  #                                                                    #
+  #  1. Please DO NOT upgrade the kernel, as the kernel upgrade would  #
+  #   damage the original operating system.                            #
+  #                                                                    #
+  #  2. Please create unique passwords that use a combination of words,#
+  #   numbers, symbols, and both upper-case and lower-case letters.    #
+  #   Avoid using simple adjacent keyboard combinations such as        # 
+  #   "Qwert!234","Qaz2wsx",etc.                                       #
+  #                                                                    #
+  #  3. Unless necessary, please DO NOT open or use high-risk ports,   #
+  #   such as Telnet-23, FTP-20/21, NTP-123(UDP), RDP-3389,            #
+  #   SSH/SFTP-22, Mysql-3306, SQL-1433,etc.                           #
+  #                                                                    #
+  #                                                                    #
+  #                     Any questions please contact 4000-955-988      #
+  ######################################################################
+```
+
+##### 2.3.2.2 进入Nginx目录
+
+```angular2html
+member@ecs-4354:~$ cd /etc/nginx/sites-enabled
+```
+
+##### 2.3.2.3 查看Nginx目录
+
+```angular2html
+member@ecs-4354:/etc/nginx/sites-enabled$ ll
+```
+
+```angular2html
+total 92
+drwxr-xr-x 2 root root  4096 2月   9 11:48 ./
+drwxr-xr-x 7 root root  4096 12月 12 23:00 ../
+-rw-r--r-- 1 root root   435 1月  30 18:55 cardbk.conf
+-rw-r--r-- 1 root root   356 1月  30 19:13 card.conf
+lrwxrwxrwx 1 root root    34 11月 13 18:24 default -> /etc/nginx/sites-available/default
+-rw-r--r-- 1 root root  1267 12月 13 19:28 dev.conf
+-rw-r--r-- 1 root root  2631 2月   5 14:34 digitizing.conf
+-rw-r--r-- 1 root root  1150 1月   2 11:22 etroindocs.conf
+-rw-r--r-- 1 root root   971 2月   1 00:10 officedocument.conf
+-rw-r--r-- 1 root root   417 1月  31 23:52 onlyoffice.conf
+-rw-r--r-- 1 root root   951 2月   1 00:27 ownoffice.conf
+-rw-r--r-- 1 root root   976 12月 12 23:03 rocket.conf
+-rw-r--r-- 1 root root  2684 12月 25 15:53 seccasadminweb.conf
+-rw-r--r-- 1 root root  2747 12月 25 14:56 spoken.conf
+-rw-r--r-- 1 root root   241 12月  1 16:40 video.conf
+-rw-r--r-- 1 root root   968 12月 14 14:25 video-lingdao.conf
+-rw-r--r-- 1 root root   333 2月   2 06:23 wordpress.conf
+-rw-r--r-- 1 root root 10115 1月  29 19:40 xuetang.conf
+-rw-r--r-- 1 root root  9206 1月  12 15:18 xuetang-dev.conf
+-rw-r--r-- 1 root root   197 2月   9 11:48 zjkweb.conf
+```
+
+##### 2.3.2.4 复制一个配置文件范本
+
+```angular2html
+member@ecs-4354:/etc/nginx/sites-enabled$ sudo cp zjkweb.conf /etc/nginx/sites-enabled/vr.conf
+```
+##### 2.3.2.5 查看Nginx目录
+
+```angular2html
+member@ecs-4354:/etc/nginx/sites-enabled$ ll
+```
+
+```angular2html
+total 92
+drwxr-xr-x 2 root root  4096 2月   9 11:48 ./
+drwxr-xr-x 7 root root  4096 12月 12 23:00 ../
+-rw-r--r-- 1 root root   435 1月  30 18:55 cardbk.conf
+-rw-r--r-- 1 root root   356 1月  30 19:13 card.conf
+lrwxrwxrwx 1 root root    34 11月 13 18:24 default -> /etc/nginx/sites-available/default
+-rw-r--r-- 1 root root  1267 12月 13 19:28 dev.conf
+-rw-r--r-- 1 root root  2631 2月   5 14:34 digitizing.conf
+-rw-r--r-- 1 root root  1150 1月   2 11:22 etroindocs.conf
+-rw-r--r-- 1 root root   971 2月   1 00:10 officedocument.conf
+-rw-r--r-- 1 root root   417 1月  31 23:52 onlyoffice.conf
+-rw-r--r-- 1 root root   951 2月   1 00:27 ownoffice.conf
+-rw-r--r-- 1 root root   976 12月 12 23:03 rocket.conf
+-rw-r--r-- 1 root root  2684 12月 25 15:53 seccasadminweb.conf
+-rw-r--r-- 1 root root  2747 12月 25 14:56 spoken.conf
+-rw-r--r-- 1 root root   241 12月  1 16:40 video.conf
+-rw-r--r-- 1 root root   968 12月 14 14:25 video-lingdao.conf
+-rw-r--r-- 1 root root   333 2月   2 06:23 wordpress.conf
+-rw-r--r-- 1 root root 10115 1月  29 19:40 xuetang.conf
+-rw-r--r-- 1 root root  9206 1月  12 15:18 xuetang-dev.conf
+-rw-r--r-- 1 root root   197 2月   9 11:48 zjkweb.conf
+-rw-r--r-- 1 root root   197 2月  25 16:38 vr.conf
+```
+##### 2.3.2.6 配置Nginx文件
+
+```angular2html
+member@ecs-4354:/etc/nginx/sites-enabled$ sudo vim vr.conf 
+```
+
+```angular2html
+server {
+        listen       80;
+        server_name  vr.haomo-tech.com;
+
+        location / {
+                proxy_pass  https://playcanv.as/;
+        }
+        
+        location /demo/ {
+                proxy_pass  https://playcanv.as/p/;
+        }
+        
+        location /css/ {
+                proxy_pass  https://playcanv.as/css/;
+        }
+        
+        location /demo/room/ {
+                proxy_pass  https://playcanv.as/p/zi09Xvld/;
+        }
+        
+        location /demo/bmw/ {
+                proxy_pass  https://playcanv.as/p/RqJJ9oU9/?overlay=fal;
+        }
+}
+```
+
+##### 2.3.2.7 重启Nginx
+
+1. tech服务器重启nginx
+
+```angular2html
+sudo pkill -9 nginx
+sudo nginx -c /etc/nginx/nginx.conf
+```
+
+##### 2.3.2.8 查看效果
+
+访问[http://vr.haomo-tech.com/demo/room](http://vr.haomo-tech.com/demo/room)测试配置是否成功
+访问[http://vr.haomo-tech.com/demo/bmw](http://vr.haomo-tech.com/demo/bmw)测试配置是否成功
+
 ### 2.4 最佳实践
+
+#### 2.4.1 未添加`;`导致报错
+
+* 修改前配置文件为下图
+
+![](../../assets/Nginx/nginx13.jpeg)
+
+* 此时报错为下图
+
+![](../../assets/Nginx/nginx12.jpeg)
+
+* 修改后配置文件为下图
+
+![](../../assets/Nginx/nginx14.jpeg)
+
+#### 2.4.2 重启Nginx未加`sudo`导致没有权限报错
+
+* 此时报错为下图
+
+![](../../assets/Nginx/nginx15.jpeg)
 
 ## 3 同类技术对比
 
