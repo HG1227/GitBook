@@ -1,0 +1,744 @@
+<!-- 数据透明 -->
+<style>
+    body{
+        background: #f5f5f5;
+        font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+    }
+    .fr{
+        float: right;
+    }
+    .fl{
+        float: left;
+    }
+    ul{
+        list-style: none;
+    }
+    .transparent{
+        width: 960px;
+        margin: 0 auto;
+        background: #fff;
+    }
+    .transparent h3{
+        height: 120px;
+        background: #1ABE9C;
+        color: #f5f5f5;
+        font-size: 24px;      
+        line-height: 120px; 
+        text-indent: 30px;
+    }
+    .date_item{
+        padding: 0 30px; 
+    }
+    .date_item h4{
+        font-weight: normal;
+        font-size: 18px;
+        text-align: left;
+        line-height: 40px;
+        margin: 0;
+        margin-bottom: 10px;
+    }
+    .date_item h4 span{
+        font-size: 14px;
+        font-weight: normal;
+        color: #666;
+    }
+    .clearfloat{
+        zoom: 1;
+    }
+    .clearfloat:after{
+        display: block;
+        clear: both;
+        content: '';
+        visibility: hidden;
+    }
+    .normal_number>div{
+        width: 25%;
+        float: left;
+        background: #fafafa;
+        margin-bottom: 10px;
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+    .normal_number>div p{
+        text-align: center;
+        margin: 0;
+        line-height: 30px;
+        color: #666;
+        font-size: 14px;
+    }
+    .normal_number .value {
+        font-size: 24px;
+        color: #596273;
+        margin-bottom: 10px;
+    }
+    .age{
+        float: left;
+        position: relative;
+        width: 540px;
+        height: 350px;
+        background: #fafafa;
+        margin-bottom: 10px;
+    }
+    .age ul{
+        position: absolute;
+        top: 75px;
+        right: 24px;
+        list-style: none;
+        font-size: 14px;
+        margin: 0;
+    }
+    .age ul li{
+        margin-bottom: 36px;
+        font-size: 14px;
+        color: #666;
+    }
+    #main{
+        background: #fafafa;
+        margin-bottom: 10px;
+    }
+    #echarts2{
+        width: 350px;
+        height: 350px;
+    }
+    .gender{
+        float: left;
+        position: relative;
+        width: 360px;
+        height: 350px;
+        background: #fafafa;
+        margin-bottom: 10px;
+    }
+    #echarts3{
+        width: 500px;
+        height: 350px;
+        background: #fafafa;
+        
+    }
+    .gender ul{
+        position: absolute;
+        bottom: 40px ;
+        left: 90px ;
+        list-style: none;
+        font-size: 14px;
+
+    }
+    .gender ul li{
+        color: #666;
+        line-height: 30px;
+    }
+    .overdue{
+        margin: 0;
+        padding-bottom: 20px;
+        background: #fafafa;
+        padding-top: 20px;
+        margin-bottom: 10px;
+    }
+    .overdue li{
+        width: 30%;
+        float: left;
+        padding-top: 20px;
+        border: 1px solid #efefef;
+        padding-bottom: 20px;
+        margin-right: 20px;
+        background: #fff;
+        height: 114px;
+        box-sizing: border-box;
+    }
+    .overdue li p{
+        text-align: center;
+        color: #666;
+        margin: 0;
+    }
+    
+    .overdue li p.num{
+        font-size: 24px;
+        margin-bottom: 10px
+    }
+    #user_increase{
+        height: 350px;
+        background: #fafafa;
+        margin-bottom: 10px;
+    }
+    .top_box{
+        
+    }
+    .top_box p{
+        text-align: center;
+        margin: 0;
+        line-height: 40px;
+        color: #666;
+        font-size: 14px;
+    }
+    .top_box>div{
+        width: 50%;
+        float: left;
+        border-right: 1px solid #fff;
+        box-sizing: border-box;
+        background: #fafafa;
+    }
+    .top_3{
+        position: relative;
+        height: 250px;
+    }
+    .top_3 .top_img{
+        position: absolute;
+        width: 200px;
+        height: 250px;
+        text-align: center;
+        cursor: pointer;
+        top: 0px;
+        -webkit-transform: translate(0, 0);
+        -moz-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+    .top_3 .top_img:hover{
+        -webkit-transform: translate(0, -4px);
+        -moz-transform: translate(0, -4px);
+        transform: translate(0, -4px);
+        z-index: 10;
+        transition: all .3s;
+    }
+    .top_3 .top_img span{
+        position: relative;
+        top: -100px;
+    }
+    .top_3 .top_img1{
+        top: 0px;
+        left: 126px;
+        z-index: 20;
+    }
+    .top_3 .top_img2{
+        top: 0px;
+        left: 0px;
+        
+    }
+    .top_3 .top_img3{
+        top: 0px;
+        left: 260px;
+    }
+    .prefect_cash{
+        position: relative;
+        height: 300px;
+    }
+    .prefect_cash .prefect1{
+        position: absolute;
+        top: 0px;
+        left: 80px;
+        width: 250px;
+    } 
+    .prefect_cash .prefect2{
+        position: absolute;
+        top: 10px;
+        left: 80px;
+        width: 250px;
+    } 
+    .top_ul{
+        background: #fafafa;
+        padding: 20px 0 20px 40px;
+    }
+    .top_ul li{
+        width: 30%;
+        float: left;
+        padding-top: 20px;
+        border: 1px solid #efefef;
+        padding-bottom: 20px;
+        margin-right: 20px;
+        background: #fff;
+        height: 114px;
+        box-sizing: border-box;    
+        text-align: center;    
+    }
+    .top_ul li p{
+        line-height: 34px;
+        margin: 0;
+        color: #666;
+    }
+    .top_ul li p span{
+        font-size: 24px;
+        margin-right: 6px;
+    }
+    .prefect_cash .prefect3{
+        position: absolute;
+        top: 0px;
+        left: 40px;
+        width: 350px;
+    } 
+    #project_list{
+        width: 400px;
+        height: 250px;
+    }
+</style>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="http://www.yumaomoney.com/activity/20170508/vue.min.js"></script>
+        <script src="http://www.yumaomoney.com/js/echarts.common.min.js"></script>
+    </head>
+    <body>
+        <div class="transparent" id="transparent">
+            <h3>鱼猫金服信息披露</h3>
+            <div class="date_item">
+                <h4>平台运营情况<span class="fr">截止{{deadline}}</span></h4>
+                <div class="normal_number clearfloat">
+                    <div>
+                        <p class="value">{{jsondata.cashData_userPrincipal}}</p>
+                        <p class="name">累积出借总额</p>
+                    </div>
+                    <div>
+                        <p class="value">{{jsondata.dataOverview_investNumber}}</p>
+                        <p class="name">累积出借次数</p>
+                    </div>
+                    <div>
+                        <p class="value">{{jsondata.dataOverview_caseNumber}}个</p>
+                        <p class="name">上线项目数</p>
+                    </div>
+                    <div>
+                        <p class="value">{{start_time}}天</p>
+                        <p class="name">平台安全运营</p>
+                    </div>
+                </div>
+            </div>
+            <div class="date_item">
+                <!-- 累积投资总额 -->
+                <h4>累积投资总额</h4>
+                <div id="main" style="width: 100%;height:450px;"></div>
+            </div>
+            <div class="date_item">
+                <h4>平台兑付数据</h4>
+                <ul class="top_ul clearfloat">
+                    <li>
+                        <p><span>{{jsondata.cashData_userPrincipal}}</span>元</p>
+                        <p>已支付用户本金</p>
+                    </li>
+                    <li>
+                        <p><span>{{jsondata.cashData_userInterest}}</span>元</p>
+                        <p>已支付用户利息</p>
+                    </li>
+                    <li>
+                        <p><span>{{jsondata.cashData_caseNumber}}</span>个</p>
+                        <p>已兑付项目</p>
+                    </li>
+                </ul>
+                <h4>出借排行榜</h4>
+                <div class="top_box clearfloat">
+                    <div>
+                        <div class="top_3">
+                            <div class="top_img top_img1">
+                                <img src="img/p5-01.png" alt="" >
+                                <span>{{jsondata.ranking_1}}</span>
+                            </div>
+                            <div class="top_img top_img2">
+                                <img src="img/p5-02.png" alt="" >
+                                <span>{{jsondata.ranking_2}}</span>
+                            </div>
+                            <div class="top_img top_img3">
+                                <img src="img/p5-03.png" alt="">
+                                <span>{{jsondata.ranking_3}}</span>
+                            </div>
+                        </div>
+                        <p>用户对鱼猫金服信心满满</p>
+                    </div>
+                    <div>
+                        <div id="project_list"></div>
+                        <p>多种周期产品，短、中、长期投资皆可满足</p>
+                    </div>
+                </div>
+            </div>
+            <div class="date_item">
+                <h4>用户增长情况</h4>
+                <!-- 用户增长情况 -->
+                <div id="user_increase">     
+                </div>
+            </div>
+            <div class="date_item clearfloat">
+                <h4>出借人基本特征</h4>
+                <!-- 借款人情况 -->
+                <!-- 性别分布 年龄分布 -->
+                <div class="age">
+                    <div id="echarts3"></div>
+                    <ul>
+                        <li>{{jsondata.agelg45_bi}}%</li>
+                        <li>{{jsondata.age3545_bi}}%</li>
+                        <li>{{jsondata.age2535_bi}}%</li>
+                        <li>{{jsondata.age1825_bi}}%</li>
+                    </ul>
+                </div>
+                <div class="gender">
+                    <div id="echarts2" ></div>
+                    <ul>
+                        <li>男性出借人<span>{{jsondata.sex_boy_bi}}%</span></li>
+                        <li>女性出借人<span>{{jsondata.sex_girl_bi}}%</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="date_item">
+                <h4>逾期情况</h4>
+                <ul class="overdue clearfloat">
+                    <li>
+                        <p class="num">0 元</p>
+                        <p>历史逾期金额</p>
+                    </li>
+                    <li>
+                        <p class="num">0 个</p>
+                        <p>历史项目逾期数</p>
+                    </li>
+                    <li>
+                        <p class="num">0.00 %</p>
+                        <p>历史项目逾期率</p>
+                    </li>
+                </ul>
+            </div>
+        </div>        
+    </body>
+    <script>
+
+        var app = new Vue({
+            el: '#transparent',
+            data: {
+                jsondata:{
+                    "dataOverview_investNumber":70350,
+                    "dataOverview_investSum":"683762145.30",
+                    "dataOverview_earnings":"14003271.32",
+                    "dataOverview_caseNumber":"898",
+                    "cashData_caseNumber":"797",
+                    "cashData_userPrincipal":"630478811.30",
+                    "cashData_userInterest":"13026471.81",
+                    "investPeriod_1":25.06,
+                    "investPeriod_2":31.74,
+                    "investPeriod_3":29.06,
+                    "investPeriod_4":14.14,
+                    "sex_boy":"3803",
+                    "sex_girl":"2104",
+                    "sex_all":5907,
+                    "sex_boy_bi":64.38,
+                    "sex_girl_bi":35.62,
+                    "age1825":"2",
+                    "age2535":"23",
+                    "age3545":"30",
+                    "agelg45":"8",
+                    "age_all":63,
+                    "age1825_bi":3.17,
+                    "age2535_bi":36.51,
+                    "age3545_bi":47.62,
+                    "agelg45_bi":12.7,
+                    "edu_1":"18",
+                    "edu_2":"9",
+                    "edu_3":"2",
+                    "edu_4":"25",
+                    "edu_all":54,
+                    "edu_1_bi":33.33,
+                    "edu_2_bi":16.67,
+                    "edu_3_bi":3.7,
+                    "edu_4_bi":46.3,
+                    "ranking_1":"7027372.24",
+                    "ranking_2":"3282492.00",
+                    "ranking_3":"3172674.24",
+                    "usertotal":"349866"
+                
+                },
+                start_time:'',//平台安全运营时间
+                current_time:'',//当前时间
+                deadline : Date.now('YYYY-MM-DD'),
+            },
+            methods:{
+                //获取数据
+                getJsonDate:function(){
+                   
+                },
+                //计算运营时间
+                calcTime:function(){
+                    var currentTime = Date.now();
+                    var targetTime = (new Date(2015, 0, 1, 0, 0, 0)).getTime();
+                    var offsetTime = targetTime - currentTime;
+                    offsetTime = Math.abs(offsetTime);
+                    this.start_time = Math.floor(offsetTime / (3600 * 24 * 1e3));
+
+                    var today = new Date();
+                    var year = today.getFullYear()+'';
+                        year = year.slice(2)
+                    var month = parseInt(today.getMonth())+1;
+                    var day = today.getDate();
+                    this.current_time = year+'年'+month+'月';
+                    this.deadline = today.getFullYear()+'年'+month+'月'+day+'日';
+                },
+                //绘制echarts
+                drawEcharts:function(){
+                    // Dom
+                    var myChart = echarts.init(document.getElementById('main'));
+                    var myChart3 = echarts.init(document.getElementById('echarts3'));
+                    var myChart2 = echarts.init(document.getElementById('echarts2'));
+                    var myChart4 = echarts.init(document.getElementById('user_increase'));
+                    var myChart5 = echarts.init(document.getElementById('project_list'));
+
+                    // 累积投资总额
+                    var TZZE = {
+                        backgroundColor:'#fafafa',
+                        color: ['#87CEFA'],
+                        tooltip : {
+                            trigger: 'axis',
+                            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                                type : 'line'        // 默认为直线，可选为：'line' | 'shadow'
+                            }
+                        },
+                        grid: {
+                            containLabel: true
+                        },
+                        xAxis: {
+                            boundaryGap: false,
+                            axisLabel: {
+                                textStyle: {
+                                    color: '#666'
+                                }
+                            },
+                            "axisLine": {
+                                lineStyle: {
+                                    color: '#999'
+                                }
+                            },
+                            data: ["15年1月","15年2月","15年5月","15年10月","16年2月","16年6月","16年9月","16年12月",this.current_time]
+                        },
+                        yAxis: {
+                            axisLabel: {
+                                textStyle: {
+                                    color: '#666'
+                                }
+                            },
+                            "axisLine": {
+                                lineStyle: {
+                                    color: '#999'
+                                }
+                            }
+                        },
+                        series: [{
+                            name: '累积成交金额',
+                            type: 'line',
+                            areaStyle: {
+                                normal: {
+                                    color: '#87CEFA',
+                                }
+                            },
+                            data: [0, 5082800,30603300,68030609,112806000,160410301,210516500,281431602,this.jsondata.dataOverview_investSum]
+                        }]
+                    };
+                    // 性别分布
+                    var XBFB = {
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: "{a} <br/>{b}: {c} ({d}%)"
+                        },
+                        series: [
+                            {
+                                name:'性别分布',
+                                type:'pie',
+                                radius: ['30%', '50%'],
+                                center : ['50%', '40%'],
+                                color:['#00ACEE','#A7E7FF'],
+                                label: {
+                                    normal: {
+                                        show: false,
+                                        position: 'center'                    
+                                    },
+                                    emphasis: {
+                                        show: false,
+                                        textStyle: {
+                                            fontSize: '30',
+                                            fontWeight: 'bold'
+                                        }
+                                    }
+                                },
+                                labelLine: {
+                                    normal: {
+                                        show: false
+                                    }
+                                },
+                                data:[
+                                    {value:this.jsondata.sex_girl_bi, name:'女'},
+                                    {value:this.jsondata.sex_girl_bi, name:'男'},
+                                ]
+                            }
+                        ]
+                    };
+                    // 年龄分布
+                    var NLFB =  {
+                        tooltip : {
+                            trigger: 'axis',
+                        },
+                        grid: {
+                            containLabel: true
+                        },
+                        xAxis:  {
+                            type: 'value',
+                            axisLabel: {
+                                textStyle: {
+                                    color: '#666'
+                                }
+                            },
+                            "axisLine": {
+                                lineStyle: {
+                                    color: '#999'
+                                }
+                            },
+                            boundaryGap: false,
+                        },
+                        yAxis: {
+                            type: 'category',
+                            data: ['18-25岁','25-35岁','35-45岁','45岁以上'],
+                            axisLabel: {
+                                textStyle: {
+                                    color: '#666'
+                                }
+                            },
+                            "axisLine": {
+                                lineStyle: {
+                                    color: '#999'
+                                }
+                            },
+                        },
+                        series: [
+                            {
+                                color:['#A7E7FF'],
+                                name:'对应比例',
+                                type: 'bar',
+                                barWidth:'50%',
+                                stack: '总量',
+                                itemStyle: {
+                                    normal: {
+                                        color: '#87CEFA'
+                                    }
+                                },
+                                label: {
+                                    normal: {
+                                        show: false,
+                                    }
+                                },
+                                data: [this.jsondata.age1825_bi, this.jsondata.age2535_bi, this.jsondata.age3545_bi, this.jsondata.agelg45_bi]
+                            } 
+                        ]
+                    };  
+                    //用户增长情况
+                    var YHZZ = {
+                        backgroundColor:'#fafafa',
+                        color: ['#A7E7FF'],
+                        tooltip : {
+                            trigger: 'axis',
+                        },
+                        grid: {
+                            containLabel: true
+                        },
+                        xAxis : [
+                            {
+                                type : 'category',
+                                data : ['2015年1月', '2015年3月', '2015年5月', '2015年9月', '2015年12月', '2016年2月', '2017年3月', this.current_time],
+                                axisTick: {
+                                    alignWithLabel: true
+                                },
+                                axisLabel: {
+                                    textStyle: {
+                                        color: '#999'
+                                    }
+                                },
+                                "axisLine": {
+                                    lineStyle: {
+                                        color: '#999'
+                                    }
+                                }
+                            }
+                        ],
+                        yAxis : [
+                            {
+                                type : 'value',
+                                axisLabel: {
+                                    textStyle: {
+                                        color: '#999'
+                                    }
+                                },
+                                "axisLine": {
+                                    lineStyle: {
+                                        color: '#999'
+                                    }
+                                },
+                            }
+                        ],
+                        series : [
+                            {
+                                name:'累积用户数量',
+                                type:'bar',
+                                barWidth: '60%',
+                                data:[0, 10000, 30000, 50000, 200000, 300000, 320000, this.jsondata.usertotal]
+                            }
+                        ]
+                    }; 
+                    // 产品列表
+                    var CPLB ={
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: "{a} <br/>{b}: {c} ({d}%)"
+                        },
+                        legend: {
+                            orient: 'vertical',
+                            x: '70%',
+                            y:'32%',
+                            data:['1个月','2个月','3个月','更长']
+                        },
+                        series: [
+                            {
+                                name:'产品周期',
+                                type:'pie',
+                                radius: ['40%', '70%'],
+                                center : ['35%', '50%'],
+                                color:['#00acee','#79d9f1','#a7e7ff','#c8efff'],
+                                label: {
+                                    normal: {
+                                        show: false,
+                                        position: 'center'                    
+                                    },
+                                    emphasis: {
+                                        show: false,
+                                        textStyle: {
+                                            fontSize: '30',
+                                            fontWeight: 'bold'
+                                        }
+                                    }
+                                },
+                                labelLine: {
+                                    normal: {
+                                        show: false
+                                    }
+                                },
+                                data:[
+                                    {value:this.jsondata.investPeriod_1, name:'1个月'},
+                                    {value:this.jsondata.investPeriod_2, name:'2个月'},
+                                    {value:this.jsondata.investPeriod_3, name:'3个月'},
+                                    {value:this.jsondata.investPeriod_4, name:'更长'},
+                                ]
+                            }
+                        ]
+                    }
+                    myChart.setOption(TZZE);
+                    myChart2.setOption(XBFB);
+                    myChart3.setOption(NLFB);
+                    myChart4.setOption(YHZZ);
+                    myChart5.setOption(CPLB);
+
+                }
+            },
+            mounted:function(){
+                this.$nextTick(function () {
+                    this.calcTime();
+                    this.drawEcharts();
+                })					
+		    }
+        })
+        
+        
+
+
+        //http://api.yumaomoney.com/yumao_shuju/?jsoncallback=jQuery311013293112634002724_1519623749246&_=1519623749247
+
+
+        
+        
+        
+
+    </script>
+</html>
