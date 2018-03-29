@@ -6,6 +6,7 @@
 ```
 更改历史
 
+* 2018-2-25     高天阳	    合并Nginx文档、添加示例
 * 2018-2-9      高天阳	    格式化文档
 * 2017-7-3      高天阳	    初始化文档
 
@@ -222,9 +223,9 @@ Nginx减轻了上游服务器的并发压力；延长了一个请求的处理时
 
 ### 2.3 示例
 
-> 以张家口OA项目为例
+#### 2.3.1 以张家口OA项目为例
 
-#### 2.3.1 连接服务器
+##### 2.3.1.1 连接服务器
 
 ```angular2html
 ➜  ~ ssh member@haomo-tech.com
@@ -261,13 +262,13 @@ Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64)
   ######################################################################
 ```
 
-#### 2.3.2 进入Nginx目录
+##### 2.3.1.2 进入Nginx目录
 
 ```angular2html
 member@ecs-4354:~$ cd /etc/nginx/sites-enabled
 ```
 
-#### 2.3.3 查看Nginx目录
+##### 2.3.1.3 查看Nginx目录
 
 ```angular2html
 member@ecs-4354:/etc/nginx/sites-enabled$ ll
@@ -296,12 +297,12 @@ lrwxrwxrwx 1 root root    34 11月 13 18:24 default -> /etc/nginx/sites-availabl
 -rw-r--r-- 1 root root  9206 1月  12 15:18 xuetang-dev.conf
 ```
 
-#### 2.3.4 复制一个配置文件范本
+##### 2.3.1.4 复制一个配置文件范本
 
 ```angular2html
 member@ecs-4354:/etc/nginx/sites-enabled$ sudo cp digitizing.conf /etc/nginx/sites-enabled/zjkweb.conf
 ```
-#### 2.3.5 查看Nginx目录
+##### 2.3.1.5 查看Nginx目录
 
 ```angular2html
 member@ecs-4354:/etc/nginx/sites-enabled$ ll
@@ -331,7 +332,7 @@ lrwxrwxrwx 1 root root    34 11月 13 18:24 default -> /etc/nginx/sites-availabl
 -rw-r--r-- 1 root root   197 2月   9 11:48 zjkweb.conf
 ```
 
-#### 2.3.6 配置Nginx文件
+##### 2.3.1.6 配置Nginx文件
 
 ```angular2html
 member@ecs-4354:/etc/nginx/sites-enabled$ sudo vim zjkweb.conf 
@@ -408,14 +409,14 @@ server {
 ![](../../assets/Nginx/nginx10.jpeg)
 ![](../../assets/Nginx/nginx11.jpeg)
 
-#### 2.3.7 进入代码仓库目录
+##### 2.3.1.7 进入代码仓库目录
 
 ```angular2html
 member@ecs-4354:/etc/nginx/sites-enabled$ cd
 member@ecs-4354:~$ cd /var/www/html
 ```
 
-#### 2.3.8 查看目录
+##### 2.3.1.8 查看目录
 
 ```angular2html
 member@ecs-4354:/var/www/html$ ll
@@ -440,12 +441,12 @@ drwxrwxr-x  6 member member       4096 2月   8 20:59 xuetang/
 drwxrwxr-x  3 member member       4096 1月   2 23:25 xuetangx/
 ```
 
-#### 2.3.9 创建张家口项目目录
+##### 2.3.1.9 创建张家口项目目录
 
 ```angular2html
 member@ecs-4354:/var/www/html$ mkdir zjk
 ```
-#### 2.3.10 查看目录
+##### 2.3.1.10 查看目录
 
 ```angular2html
 member@ecs-4354:/var/www/html$ ll
@@ -471,7 +472,7 @@ drwxrwxr-x  3 member member       4096 1月   2 23:25 xuetangx/
 drwxrwxr-x  3 member member       4096 2月   9 10:55 zjk/
 ```
 
-#### 2.3.11 配置项目中的部署脚本
+##### 2.3.1.11 配置项目中的部署脚本
 
 ```angular2html
 #!/usr/bin/env bash
@@ -481,13 +482,13 @@ npm run build:sit
 rsync -avz --delete dist/*  member@haomo-tech.com:/var/www/html/zjk/
 ```
 
-#### 2.3.12 部署
+##### 2.3.1.12 部署
 
 ```angular2html
 ➜  zhangjiakouweb git:(master) ✗ sh deploy_dev.sh 
 ```
 
-#### 2.3.13 重启Nginx
+##### 2.3.1.13 重启Nginx
 
 1. studio服务器重启nginx
 
@@ -498,16 +499,750 @@ sudo gitlab-ctl restart nginx
 2. tech服务器重启nginx
 
 ```angular2html
-pkill -9 nginx
-nginx -c /etc/nginx/nginx.conf
+sudo pkill -9 nginx
+sudo nginx -c /etc/nginx/nginx.conf
 ```
 
-#### 2.3.13 查看效果
+##### 2.3.1.13 查看效果
 
 访问[http://zjk.haomo-tech.com](http://zjk.haomo-tech.com)测试配置是否成功
 
+#### 2.3.2 以代理转接网址为例
+
+##### 2.3.2.1 连接服务器
+
+```angular2html
+➜  ~ ssh member@haomo-tech.com
+```
+
+```angular2html
+Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+155 个可升级软件包。
+66 个安全更新。
+
+
+  ######################################################################
+  #                              Notice                                #
+  #                                                                    #
+  #  1. Please DO NOT upgrade the kernel, as the kernel upgrade would  #
+  #   damage the original operating system.                            #
+  #                                                                    #
+  #  2. Please create unique passwords that use a combination of words,#
+  #   numbers, symbols, and both upper-case and lower-case letters.    #
+  #   Avoid using simple adjacent keyboard combinations such as        # 
+  #   "Qwert!234","Qaz2wsx",etc.                                       #
+  #                                                                    #
+  #  3. Unless necessary, please DO NOT open or use high-risk ports,   #
+  #   such as Telnet-23, FTP-20/21, NTP-123(UDP), RDP-3389,            #
+  #   SSH/SFTP-22, Mysql-3306, SQL-1433,etc.                           #
+  #                                                                    #
+  #                                                                    #
+  #                     Any questions please contact 4000-955-988      #
+  ######################################################################
+```
+
+##### 2.3.2.2 进入Nginx目录
+
+```angular2html
+member@ecs-4354:~$ cd /etc/nginx/sites-enabled
+```
+
+##### 2.3.2.3 查看Nginx目录
+
+```angular2html
+member@ecs-4354:/etc/nginx/sites-enabled$ ll
+```
+
+```angular2html
+total 92
+drwxr-xr-x 2 root root  4096 2月   9 11:48 ./
+drwxr-xr-x 7 root root  4096 12月 12 23:00 ../
+-rw-r--r-- 1 root root   435 1月  30 18:55 cardbk.conf
+-rw-r--r-- 1 root root   356 1月  30 19:13 card.conf
+lrwxrwxrwx 1 root root    34 11月 13 18:24 default -> /etc/nginx/sites-available/default
+-rw-r--r-- 1 root root  1267 12月 13 19:28 dev.conf
+-rw-r--r-- 1 root root  2631 2月   5 14:34 digitizing.conf
+-rw-r--r-- 1 root root  1150 1月   2 11:22 etroindocs.conf
+-rw-r--r-- 1 root root   971 2月   1 00:10 officedocument.conf
+-rw-r--r-- 1 root root   417 1月  31 23:52 onlyoffice.conf
+-rw-r--r-- 1 root root   951 2月   1 00:27 ownoffice.conf
+-rw-r--r-- 1 root root   976 12月 12 23:03 rocket.conf
+-rw-r--r-- 1 root root  2684 12月 25 15:53 seccasadminweb.conf
+-rw-r--r-- 1 root root  2747 12月 25 14:56 spoken.conf
+-rw-r--r-- 1 root root   241 12月  1 16:40 video.conf
+-rw-r--r-- 1 root root   968 12月 14 14:25 video-lingdao.conf
+-rw-r--r-- 1 root root   333 2月   2 06:23 wordpress.conf
+-rw-r--r-- 1 root root 10115 1月  29 19:40 xuetang.conf
+-rw-r--r-- 1 root root  9206 1月  12 15:18 xuetang-dev.conf
+-rw-r--r-- 1 root root   197 2月   9 11:48 zjkweb.conf
+```
+
+##### 2.3.2.4 复制一个配置文件范本
+
+```angular2html
+member@ecs-4354:/etc/nginx/sites-enabled$ sudo cp zjkweb.conf /etc/nginx/sites-enabled/vr.conf
+```
+##### 2.3.2.5 查看Nginx目录
+
+```angular2html
+member@ecs-4354:/etc/nginx/sites-enabled$ ll
+```
+
+```angular2html
+total 92
+drwxr-xr-x 2 root root  4096 2月   9 11:48 ./
+drwxr-xr-x 7 root root  4096 12月 12 23:00 ../
+-rw-r--r-- 1 root root   435 1月  30 18:55 cardbk.conf
+-rw-r--r-- 1 root root   356 1月  30 19:13 card.conf
+lrwxrwxrwx 1 root root    34 11月 13 18:24 default -> /etc/nginx/sites-available/default
+-rw-r--r-- 1 root root  1267 12月 13 19:28 dev.conf
+-rw-r--r-- 1 root root  2631 2月   5 14:34 digitizing.conf
+-rw-r--r-- 1 root root  1150 1月   2 11:22 etroindocs.conf
+-rw-r--r-- 1 root root   971 2月   1 00:10 officedocument.conf
+-rw-r--r-- 1 root root   417 1月  31 23:52 onlyoffice.conf
+-rw-r--r-- 1 root root   951 2月   1 00:27 ownoffice.conf
+-rw-r--r-- 1 root root   976 12月 12 23:03 rocket.conf
+-rw-r--r-- 1 root root  2684 12月 25 15:53 seccasadminweb.conf
+-rw-r--r-- 1 root root  2747 12月 25 14:56 spoken.conf
+-rw-r--r-- 1 root root   241 12月  1 16:40 video.conf
+-rw-r--r-- 1 root root   968 12月 14 14:25 video-lingdao.conf
+-rw-r--r-- 1 root root   333 2月   2 06:23 wordpress.conf
+-rw-r--r-- 1 root root 10115 1月  29 19:40 xuetang.conf
+-rw-r--r-- 1 root root  9206 1月  12 15:18 xuetang-dev.conf
+-rw-r--r-- 1 root root   197 2月   9 11:48 zjkweb.conf
+-rw-r--r-- 1 root root   197 2月  25 16:38 vr.conf
+```
+##### 2.3.2.6 配置Nginx文件
+
+```angular2html
+member@ecs-4354:/etc/nginx/sites-enabled$ sudo vim vr.conf 
+```
+
+```angular2html
+server {
+        listen       80;
+        server_name  vr.haomo-tech.com;
+
+        location / {
+                proxy_pass  https://playcanv.as/;
+        }
+        
+        location /demo/ {
+                proxy_pass  https://playcanv.as/p/;
+        }
+        
+        location /css/ {
+                proxy_pass  https://playcanv.as/css/;
+        }
+        
+        location /demo/room/ {
+                proxy_pass  https://playcanv.as/p/zi09Xvld/;
+        }
+        
+        location /demo/bmw/ {
+                proxy_pass  https://playcanv.as/p/RqJJ9oU9/?overlay=fal;
+        }
+}
+```
+
+##### 2.3.2.7 重启Nginx
+
+1. tech服务器重启nginx
+
+```angular2html
+sudo pkill -9 nginx
+sudo nginx -c /etc/nginx/nginx.conf
+```
+
+##### 2.3.2.8 查看效果
+
+访问[http://vr.haomo-tech.com/demo/room](http://vr.haomo-tech.com/demo/room)测试配置是否成功
+访问[http://vr.haomo-tech.com/demo/bmw](http://vr.haomo-tech.com/demo/bmw)测试配置是否成功
+
+#### 2.3.3 以修改服务器接口返回json为例
+
+##### 2.3.3.1 连接服务器
+```angular2html
+➜  ~ ssh member@haomo-studio.com
+```
+
+```angular2html
+Warning: the ECDSA host key for 'haomo-studio.com' differs from the key for the IP address '115.28.80.125'
+Offending key for IP in /Users/haomo/.ssh/known_hosts:2
+Matching host key in /Users/haomo/.ssh/known_hosts:7
+Are you sure you want to continue connecting (yes/no)? yes
+Welcome to Ubuntu 14.04.5 LTS (GNU/Linux 3.13.0-106-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+New release '16.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Welcome to aliyun Elastic Compute Service!
+
+You have new mail.
+Last login: Sat Feb 24 10:26:03 2018 from 117.136.40.205
+```
+##### 2.3.3.2 进入Nginx目录
+   
+```angular2html
+member@AY140710084449224635Z:~$ cd /etc/nginx/
+```
+
+##### 2.3.2.3 查看Nginx目录
+
+```angular2html
+member@AY140710084449224635Z:/etc/nginx$ ll
+```
+
+```angular2html
+total 104
+drwxr-xr-x   6 root root  4096 Jan 30 20:59 ./
+drwxr-xr-x 124 root root 12288 Jan 19 07:35 ../
+drwxr-xr-x   2 root root  4096 Feb 12  2015 conf.d/
+-rw-r--r--   1 root root   911 Mar  5  2014 fastcgi_params
+-rw-r--r--   1 root root  2258 Mar  5  2014 koi-utf
+-rw-r--r--   1 root root  1805 Mar  5  2014 koi-win
+-rw-r--r--   1 root root  2085 Mar  5  2014 mime.types
+-rw-r--r--   1 root root  5287 Mar  5  2014 naxsi_core.rules
+-rw-r--r--   1 root root   287 Mar  5  2014 naxsi.rules
+-rw-r--r--   1 root root   222 Mar  5  2014 naxsi-ui.conf.1.4.1
+-rw-r--r--   1 root root     0 Apr  1  2017 nginx
+-rwxr-xr-x   1 root root  6747 May 18  2017 nginx.backup.conf*
+-rwxrwxrwx   1 root root 14787 Oct 12 15:35 nginx.conf*
+-rw-r--r--   1 root root   180 Mar  5  2014 proxy_params
+-rw-r--r--   1 root root   465 Mar  5  2014 scgi_params
+drwxr-xr-x   2 root root  4096 Mar 29  2017 sites-available/
+drwxr-xr-x   2 root root  4096 Feb 25 12:19 sites-enabled/
+drwxr-xr-x   2 root root  4096 Nov  6 11:46 ssl/
+-rw-r--r--   1 root root   532 Mar  5  2014 uwsgi_params
+-rw-r--r--   1 root root  3071 Mar  5  2014 win-utf
+```
+
+##### 2.3.3.4 配置nginx.conf文件
+
+```angular2html
+member@ecs-4354:/etc/nginx/sites-enabled$ sudo vim nginx.conf 
+```
+```
+server {
+        listen       80;
+        server_name  trendshealth.haomo-studio.com;
+
+        location / {
+                root   /var/www/html/pt/TrendsHealth;
+                index  index.html index.htm;
+                try_files $uri $uri/ @rewrites;
+        }
+
+        location @rewrites {
+                rewrite ^(.+)$ /index.html last;
+        }
+
+        location /api/ {
+                proxy_pass    http://localhost:8081/;
+                proxy_set_header  X-Real-IP  $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+                #add_header Access-Control-Allow-Origin *;
+                #add_header Access-Control-Allow-Methods "POST, GET, OPTIONS";
+                #add_header Access-Control-Allow-Headers "Origin, Authorization, Accept";
+                #add_header Access-Control-Allow-Credentials true;
+        }
+}
+
+server {
+        listen       80;
+        server_name  www.haomo-studio.com haomo-studio.com haomo-tech.com www.haomo-tech.com;
+	default_type 'text/html';
+	charset utf-8;
+
+        location /books {
+                root   /var/www/html/;
+                index  index.html index.htm;
+        }
+
+        location / {
+                root   /var/www/html/official_site;
+                index  index.html index.htm;
+        }
+
+	location /gitbook/ {
+		proxy_pass	https://hxgqh.gitbooks.io/;
+		proxy_set_header  X-Real-IP  $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	}
+
+	location /slides/ {
+		proxy_pass	http://slides.com/hxgqh/;
+		proxy_set_header  X-Real-IP  $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	}
+}
+
+server {
+        listen       80;
+        server_name  skillee.haomo-studio.com;
+
+        location / {
+                root   /var/www/html/skillee/SkilleeWeb;
+                index  index.html index.htm;
+		try_files $uri $uri/ @rewrites;
+        }
+
+	location @rewrites {
+		rewrite ^(.+)$ /index.html last;
+  	}
+
+	location /api/ {
+            	proxy_pass    http://localhost:8083/;
+		proxy_set_header  X-Real-IP  $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+		#add_header Access-Control-Allow-Origin *;
+            	#add_header Access-Control-Allow-Methods "POST, GET, OPTIONS";
+            	#add_header Access-Control-Allow-Headers "Origin, Authorization, Accept";
+            	#add_header Access-Control-Allow-Credentials true;
+        }
+}
+
+server {
+        listen       80;
+        server_name  asmwechat.haomo-studio.com;
+
+	location / {
+            	proxy_pass    http://localhost:8181/;
+		proxy_set_header  X-Real-IP  $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+		add_header Access-Control-Allow-Origin *;
+            	add_header Access-Control-Allow-Methods "POST, GET, OPTIONS";
+            	add_header Access-Control-Allow-Headers "Origin, Authorization, Accept";
+            	add_header Access-Control-Allow-Credentials true;
+        }
+	location /MP_verify_v4p2vSiFQZ9PkvXB.txt {
+		alias /var/www/html/pt/asm/asmwechat/MP_verify_v4p2vSiFQZ9PkvXB.txt;
+        }
+}
+
+server {
+        listen       80;
+        server_name  hmorganization.swagger.haomo-studio.com;
+
+        location / {
+		proxy_pass http://115.28.80.125:8807/hz/;
+		proxy_set_header  X-Real-IP  $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+                #add_header Access-Control-Allow-Origin *;
+                #add_header Access-Control-Allow-Methods "POST, GET, OPTIONS";
+                #add_header Access-Control-Allow-Headers "Origin, Authorization, Accept";
+                #add_header Access-Control-Allow-Credentials true;
+  	}
+}
+
+server {
+        listen       80;
+        server_name  asmwechattest.haomo-studio.com;
+
+        location / {
+                proxy_pass    http://localhost:8181/;
+                proxy_set_header  X-Real-IP  $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+                add_header Access-Control-Allow-Origin *;
+                add_header Access-Control-Allow-Methods "POST, GET, OPTIONS";
+                add_header Access-Control-Allow-Headers "Origin, Authorization, Accept";
+                add_header Access-Control-Allow-Credentials true;
+        }
+        location /MP_verify_v4p2vSiFQZ9PkvXB.txt {
+                alias /var/www/html/pt/asm/asmwechat/MP_verify_v4p2vSiFQZ9PkvXB.txt;
+        }
+}
+
+server {
+        listen       80;
+        server_name  techradar.haomo-studio.com;
+
+        location / {
+                root   /var/www/html/techradar;
+                index  index.html index.htm;
+		try_files $uri $uri/ @rewrites;
+        }
+
+	location @rewrites {
+		rewrite ^(.+)$ /index.html last;
+  	}
+}
+
+server {
+        listen       80;
+        server_name  company.haomo-studio.com;
+
+        location / {
+		proxy_pass http://127.0.0.1:12380/;
+  	}
+}
+
+server {
+        listen       443;
+        server_name  company.haomo-studio.com;
+
+        location / {
+		proxy_pass https://127.0.0.1:12443/;
+  	}
+}
+
+# Store templates  *.tpl.haomo-studio.com
+server {
+        listen       80;
+        server_name  fuse.tpl.haomo-studio.com;
+
+        location / {
+                root   /var/www/html/templates/fuse;
+                index  index.html index.htm;
+        }
+}
+
+server {
+        listen       80;
+        server_name  iview.tpl.haomo-studio.com;
+
+        location / {
+                root   /var/www/html/haomo_tpl/iViewAdminTemplate;
+                index  index.html index.htm;
+		try_files $uri $uri/ @rewrites;
+        }
+
+	location @rewrites {
+		rewrite ^(.+)$ /index.html last;
+  	}
+}
+
+server {
+        listen       1080;
+        server_name  115.28.80.125 haomo-studio.com;
+	default_type 'text/html';
+	charset utf-8;
+
+        location / {
+                root   /var/www/html;
+                index  index.html index.htm;
+        }
+}
+
+server {
+        listen       1081;
+        server_name  115.28.80.125 haomo-studio.com;
+
+        location / {
+                root   /var/www/html/templates/fuse/;
+                index  index.html index.htm;
+        }
+}
+
+server {
+        listen       1085;
+        server_name  115.28.80.125 haomo-studio.com;
+
+        location / {
+                root   /var/www/html/auction/;
+                index  index.html index.htm;
+        }
+}
+
+server {
+        listen       1082;
+        server_name  115.28.80.125 haomo-studio.com;
+
+        location / {
+                root   /var/www/html/pt/seektruth/web/;
+                index  index.html index.htm;
+        }
+}
+
+server {
+        listen       1083;
+        server_name  115.28.80.125 haomo-studio.com;
+
+        location / {
+                root   /var/www/html/pt/Powersaver/;
+                index  index.html index.htm;
+        }
+}
+
+server {
+	listen        1088;
+	server_name   115.28.80.125 haomo-studio.com;
+
+	location / {
+		root    /alidata1/var/www/html/haomo_books/haomotraining/;
+		index   index.html index.htm;
+	}
+
+}
+
+server {
+        listen       81;
+        server_name  115.28.80.125 haomo-studio.com;
+
+        location / {
+                root   /var/www/html/templates/fuse/;
+                index  index.html index.htm;
+        }
+}
+
+server {
+        listen        1085;
+        server_name   115.28.80.125 haomo-studio.com;
+
+        location / {
+                root    /var/www/html/skillee/Skilleeh5;
+                index   index.html index.htm;
+        }
+}
+
+
+server {
+        listen        1086;
+        server_name   115.28.80.125 haomo-studio.com;
+
+        location / {
+                root    /var/www/html/auction;
+                index   index.html index.htm;
+        }
+
+}
+
+server {
+        listen        8191;
+        server_name   115.28.80.125 haomo-studio.com;
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Methods "POST, GET, OPTIONS";
+
+        location ~ ^/get_category {
+            default_type application/json;
+
+            if ( $query_string ~* ^(.*)type=Person(.*)$ ){
+                return 200 '{"categoryName":"资源","categoryId":"23a0a9b812f14a879e0b39c235678dfc","children":[{"categoryName":"服务员","categoryId":"bbe74d31d2064c4586ba040014d2b130","children":[{"categoryName":"技师","categoryId":"bd842c24f36a466ca1a7394c987bae53"}]},{"categoryName":"管理员","categoryId":"0c9074262a594578bd44db73f19dfd78"}]}';
+            }
+
+            if ( $query_string ~* ^(.*)type=Equipment(.*)$ ){
+                return 200 '{"categoryName":"资源","categoryId":"23a0a9b812f14a879e0b39c235678dfc","children":[{"categoryName":"设备","categoryId":"0c9074262a594578bd44db73f19dfd78"}]}';
+            }
+
+            if ( $query_string ~* ^(.*)type=Room(.*)$ ){
+                return 200 '{"categoryName":"资源","categoryId":"23a0a9b812f14a879e0b39c235678dfc","children":[{"categoryName":"大包厢","categoryId":"0c9074262a594578bd44db73f19dfd78"}]}';
+            }
+
+	    return 200 '{"categoryName":"资源","categoryId":"23a0a9b812f14a879e0b39c235678dfc","children":[{"categoryName":"人","categoryId":"bbe74d31d2064c4586ba040014d2b130","children":[{"categoryName":"技师","categoryId":"bd842c24f36a466ca1a7394c987bae53"}]},{"categoryName":"设备","categoryId":"0c9074262a594578bd44db73f19dfd78"}]}';
+	}
+
+        location ~ ^/get_tag {
+            default_type application/json;
+            return 200 '[{"id":"77f90d0b16a24bd3b8d2ffd3c51286ef","tagName":"房>间明亮","tagDescription":""},{"id":"dd48f14b06884de4ae6146bf88b55d0e","tagName":"国外进口","tagDescription":""},{"id":"7789c19cd18c4912bad07f7737a06119","tagName":"英语流利","tagDescription":""}]';
+        }
+
+        location ~ ^/get_info {
+            default_type application/json;
+
+	    if ( $query_string ~* ^(.*)type=Person(.*)$ ){
+                return 200 '[{"resourceId":"176e20dcce8e418caa5fb4cd786fcfad","resourceName":"3号技师","categoryName":"高级健康管理师","organization":">北京健身会所","description":""}]';
+            }
+
+            if ( $query_string ~* ^(.*)type=Equipment(.*)$ ){
+                return 200 '[{"resourceId":"176e20dcce8e418caa5fb4cd786fcfad","resourceName":"大音响","categoryName":"器材","organization":"北京音乐组织","description":""}]';
+            }
+
+            if ( $query_string ~* ^(.*)type=Room(.*)$ ){
+                return 200 '[{"resourceId":"90fba7d22a544e8e90ba7cbadbdc0aab","resourceName":"5号房间","categoryName":"高级房间","organization":"北京健身会所","tag":["静音","有天窗"],"description":""}]';
+            }
+
+            return 200 '[{"resourceId":"90fba7d22a544e8e90ba7cbadbdc0aab","resourceName":"5号房间","categoryName":"高级房间","organization":"北京健身会所","tag":["静音","有天窗"],"description":""},{"resourceId":"176e20dcce8e418caa5fb4cd786fcfad","resourceName":"3号技师","categoryName":"高级健康管理师","organization":">北京健身会所","description":""}]';
+        }
+
+        location ~ ^/get_attribute {
+            default_type application/json;
+            return 200 '[{"id":"96beb787ffb440b795e74ba4f7d10922","name":"颜色","attributeType":"List","attributeValueList":[{"id":"a16265f278ed49cfbb12652aa237fff7","name":"红"},{"id":"2e10b9bb9b094860becf7373624151da","name":"黄"},{"id":"87ad4016d7444466a5c38567cc2ebd9f","name":"蓝"}]},{"id":"bf167d81fac145178956a7ecddd07e46","name":"面积","attributeType":"Double"},{"id":"20471db98eba457c8bf4f745eccec46c","name":"重量","attributeType":"Integer"},{"id":"a68902f32d914e1bae6aabbb54d34fe1","name":"制作日期","attributeType":"Date"},{"id":"02852995f87b4066bc737d3c2c7012fd","name":"制作单位","attributeType":"Text"}]';
+        }
+        location ~ ^/get_position_list {
+            default_type application/json;
+            return 200 '[{"positionKey":"salesman","postionValue":"销售"},{"positionKey":"SalesManager","postionValue":"销售经理"}]';
+        }
+
+        location ~ ^/get_organization {
+            default_type application/json;
+            return 200 '{"orgName": "生命滙总部","orgId": "69EBAE21B3D347ECA09F82A848AE7E4C","children": [{"orgName": "生命汇上海公司","orgId": "EAF2746C2C444C8B8AFEAA482F5B7164","children": []},{"orgName": "生命滙广州公司","orgId": "FECC04D660E3474FA474CDBA0706F2D1","children": []},{"orgName": "生命滙北京公司","orgId": "280649403EF74F09B583C92E55D7EE45","children": [{"orgName": "生命滙北京公司-市场部","orgId": "665630463717408D96AD66C7BE94F7B4","children": []}]},{"orgName": "生命滙海南公司","orgId": "8CBBE14B384D4E969105AAB56C5E475B","children": []}]}';
+        }
+
+        location ~ ^/get_users {
+            default_type application/json;
+            return 200 '[{"id":" 0003B3F3C5464C62853E05FD72FEDC8A","name":"李颜>粉","position":"销售经理","gender":"M","org":"北京分公司","department":"销售部"},{"id":" 0003B3F3C5464C62853E05FD72FEDC8A","name":"丁秀娟","position":"人力总监","gender":"","org":"总公司","department":"人力资源部"}]';
+        }
+
+        location ~ ^/get_roles {
+            default_type application/json;
+            return 200 '[{"id":"ce4717f895ad40858f0570aad1fc266c","name":"Tijs"},{"id":"2bbe35d54071410cbae6ecbef4629622","name":"Admin"},{"id":"c91334a3fc3d43609af735e3d980f8e1","name":"CEO"}]';
+        }
+
+        location ~ ^/get_task_configuration_list {
+            default_type application/json;
+	    return 200 '[{"key":"UIType","name":"对话框类型","valueOptions":[{"key":"EHRRecord","name":"EHR医疗数据录入"},{"key":"EHRProductConvergenceRecord","name":"EHR医疗数据汇聚录入"},{"key":"HealthReportGeneration","name":"健康管理报>告生成"},{"key":"HealthConsulting","name":"健康问卷录入"},{"key":"CommonTaskProcessDialog","name":"通用任务处理对话框"}]},{"key":"UIContent","name":"输入内容"}]';
+	}
+        
+location ~ ^/get_service_task_url_param {
+            default_type application/json;
+	    return 200 '[{"key":"MailTemplate","name":"邮件模板","valueOptions":[{"key":"2bbef753961846d2b7a83619b9b34b80","name":"通知"},{"key":"f93c17ef37354f74bbc5f19fd368d701","name":"预定房间"}]},{"key":"filePath","name":"文件路径"}]';
+	}
+
+        location ~ ^/get_product_name {
+            default_type application/json;
+            return 200 '{"productName":"常规五项检查","productDesc":""}';
+        }
+
+        location ~ ^/get_candidate_users_list {
+            default_type application/json;
+            return 200 '["d7ef624720c34b5a92a08a7dc8a2667a","efbe4ba327d34fb7872acc3654b3502c","3c566a01578f4864bef612b94ae9b463","26e0c623194d4a32ab7a5a2e9c1b00eb"]';
+        }
+
+        location ~ ^/get_task_execution_listener_response {
+            default_type application/json;
+            return 200 '{"age":30,"name":{"firstName":"三无","lastName":"张"}}';
+        }
+
+}
+```
+
+* 找到organization对应接口，修改return里的东西
+
+* 下图为原json
+
+![](../../assets/Nginx/nginx18.png)
+
+* 下图为现json
+
+![](../../assets/Nginx/nginx19.png)
+
+```
+'{
+    "orgName": "生命滙总部",
+    "orgId": "69EBAE21B3D347ECA09F82A848AE7E4C",
+    "children": [
+        {
+            "orgName": "生命汇上海公司",
+            "orgId": "EAF2746C2C444C8B8AFEAA482F5B7164",
+            "children": []
+        },
+        {
+            "orgName": "生命滙广州公司",
+            "orgId": "FECC04D660E3474FA474CDBA0706F2D1",
+            "children": []
+        },
+        {
+            "orgName": "生命滙北京公司",
+            "orgId": "280649403EF74F09B583C92E55D7EE45",
+            "children": [
+                {
+                    "orgName": "生命滙北京公司-市场部",
+                    "orgId": "665630463717408D96AD66C7BE94F7B4",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "orgName": "生命滙海南公司",
+            "orgId": "8CBBE14B384D4E969105AAB56C5E475B",
+            "children": []
+        }
+    ]
+}';
+```
+
+##### 2.3.3.5 重启nginx
+
+```angular2html
+sudo gitlab-ctl restart nginx
+```
+
 ### 2.4 最佳实践
 
+#### 2.4.1 未添加`;`导致报错
+
+* 修改前配置文件为下图
+
+![](../../assets/Nginx/nginx13.jpeg)
+
+* 此时报错为下图
+
+![](../../assets/Nginx/nginx12.jpeg)
+
+* 修改后配置文件为下图
+
+![](../../assets/Nginx/nginx14.jpeg)
+
+#### 2.4.2 重启Nginx未加`sudo`导致没有权限报错
+
+* 此时报错为下图
+
+![](../../assets/Nginx/nginx15.jpeg)
+
+#### 2.4.3 代理网址时网址找不到css等文件导致报错
+
+* 此时报错为下图
+
+![](../../assets/Nginx/nginx16.jpeg)
+![](../../assets/Nginx/nginx17.jpeg)
+
+* 修改前配置文件如下
+
+```angular2html
+server {
+        listen       80;
+        server_name  vr.haomo-tech.com;
+        
+        location /demo/room/ {
+                proxy_pass  https://playcanv.as/p/zi09Xvld/;
+        }
+        
+        location /demo/bmw/ {
+                proxy_pass  https://playcanv.as/p/RqJJ9oU9/?overlay=fal;
+        }
+}
+```
+
+* 需要修改配置文件增加代理地址(哪个地址找不到就代理哪个地址)
+
+```angular2html
+server {
+        listen       80;
+        server_name  vr.haomo-tech.com;
+
+        location / {
+                proxy_pass  https://playcanv.as/;
+        }
+        
+        location /demo/ {
+                proxy_pass  https://playcanv.as/p/;
+        }
+        
+        location /css/ {
+                proxy_pass  https://playcanv.as/css/;
+        }
+        
+        location /demo/room/ {
+                proxy_pass  https://playcanv.as/p/zi09Xvld/;
+        }
+        
+        location /demo/bmw/ {
+                proxy_pass  https://playcanv.as/p/RqJJ9oU9/?overlay=fal;
+        }
+}
+```
 ## 3 同类技术对比
 
 ### 3.1 Nginx VS Apache
