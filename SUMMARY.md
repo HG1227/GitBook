@@ -43,6 +43,7 @@
     * [培训材料撰写](HaoMoBook/TrainingMaterialWriting.md)
     * [报价策略](HaoMoBook/QuoteStrategy.md)
     * [Babel](HaoMoBook/Babel.md)
+    * [view](HaoMoBook/view.md)
 * [代码审查](CodeReview.md)
     * [页面代码结构](HaoMoBook/CodeStructure.md)
     * [代码命名规范](HaoMoBook/CodeNaming.md)
