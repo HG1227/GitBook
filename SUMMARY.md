@@ -61,6 +61,7 @@
     * [命令别名存储](internshiptraining/commandAlias.md)
     * [项目服务器重启](internshiptraining/serverReboot.md)
 * [前端知识积累](WebTips.md)
+    * [图片预览上传](test/uploadImg.md)
     * [CSS解决loading效果](webTips/cssjie-jue-loading-xiao-guo.md)
     * [LESS Sass 编译工具Koala介绍](webTips/less-sass-bian-yi-gong-ju-koala-jie-shao.md)
     * [Markdown 标记示例](webTips/markdown-biao-ji-shi-li.md)
@@ -91,4 +92,5 @@
     * [ElementUI-Vue前端框架项目初始化](webTips/ElementUI-VueProjectInit.md)
 * [毫末科技面试流程](haomointerview.md)
     * [JAVA面试](haomointerview/content.md)
+    
 
