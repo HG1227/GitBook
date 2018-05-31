@@ -140,5 +140,8 @@ left join grade gra on stu_mid.grade_id=gra.id
 
 ```
 CREATE VIEW student_grade_view
-select stu.*,gra.grade_name as gra_gradeName,gra2.grade_name as gra2_gradeName from student stu left join grade gra on stu.grade_id=gra.id left join grade gra2 on stu.grade2_id=gra2.id
+select stu.*,gra.grade_name as gra_gradeName,gra2.grade_name as gra2_gradeName 
+from student stu 
+left join grade gra on stu.grade_id=gra.id 
+left join grade gra2 on stu.grade2_id=gra2.id
 ```
