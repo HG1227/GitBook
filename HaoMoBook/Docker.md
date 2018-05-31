@@ -670,6 +670,54 @@ Status: Downloaded newer image for wordpress:latest
 ![示例图片5](../assets/docker5.jpeg "示例图片5")
 ![示例图片6](../assets/docker6.jpeg "示例图片6")
 
+### 6.2 在docker中起项目
+
+#### 6.2.1 下载镜像
+
+```
+$ docker pull [镜像名称]
+ps. docker pull node
+```
+
+#### 6.2.2 查看已下载的镜像
+
+```
+$ docker image //查看已下载的镜像
+```
+
+#### 6.2.3 运行镜像(需要创建容器时就指定映射端口号)
+
+```
+$ docker run -it -d --name [容器名称] -p [映射端口号] [镜像名称]
+ps. docker run -it -d --name zjkapp -p 8088:80 node
+```
+
+#### 6.2.4 进入容器
+
+```
+4.docker exec -it [容器名称] /bin/bash
+ps. docker exec -it zjkapp /bin/bash
+```
+
+#### 6.2.5 在容器中创建项目目录
+
+```
+$ mkdir -p /var/www/html
+```
+
+#### 6.2.6 退出容器
+
+```
+$ exit
+```
+
+#### 6.2.7 从服务器复制文件至容器
+
+```
+$ docker cp [服务器路径] [容器名称]:[容器中路径]
+docker cp /var/www/html/zjkapp/ 1f37f44e501b:/var/www/html/zjkapp/
+```
+
 ## 参考资料
 
 * [RUNOOB Docker教程](http://www.runoob.com/docker/docker-tutorial.html)
