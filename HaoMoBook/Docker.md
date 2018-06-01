@@ -672,50 +672,83 @@ Status: Downloaded newer image for wordpress:latest
 
 ### 6.2 在docker中起项目
 
-#### 6.2.1 下载镜像
+#### 6.2.1 连接服务器
+```
+$ ssh member@haomo-tech.com
+```
+
+#### 6.2.2 下载镜像
 
 ```
 $ docker pull [镜像名称]
 ps. docker pull node
 ```
 
-#### 6.2.2 查看已下载的镜像
+#### 6.2.3 查看已下载的镜像
 
 ```
 $ docker image //查看已下载的镜像
 ```
 
-#### 6.2.3 运行镜像(需要创建容器时就指定映射端口号)
+#### 6.2.4 运行镜像(需要创建容器时就指定映射端口号)
 
 ```
 $ docker run -it -d --name [容器名称] -p [映射端口号] [镜像名称]
 ps. docker run -it -d --name zjkapp -p 8088:80 node
 ```
 
-#### 6.2.4 进入容器
+#### 6.2.5 进入容器
 
 ```
 4.docker exec -it [容器名称] /bin/bash
 ps. docker exec -it zjkapp /bin/bash
 ```
 
-#### 6.2.5 在容器中创建项目目录
+#### 6.2.6 在容器中创建项目目录
 
 ```
 $ mkdir -p /var/www/html
 ```
 
-#### 6.2.6 退出容器
+#### 6.2.7 退出容器
 
 ```
 $ exit
 ```
 
-#### 6.2.7 从服务器复制文件至容器
+#### 6.2.8 从服务器复制文件至容器
 
 ```
 $ docker cp [服务器路径] [容器名称]:[容器中路径]
-docker cp /var/www/html/zjkapp/ 1f37f44e501b:/var/www/html/zjkapp/
+docker cp /var/www/html/zjkapp/ zjkapp:/var/www/html/zjkapp/
+```
+
+#### 6.2.9 容器中安装软件
+
+* 如果在容器中需要使用vim或lsof软件 需要先安装
+
+```
+$ apt-get update // 更新软件列表
+$ apt-get install vim // 安装vim
+$ apt-get install lsof // 安装lsof
+```
+
+#### 6.2.10 查看端口是否占用
+
+```
+$ lsof -i:8081 // 查看8081端口
+```
+
+```
+COMMAND  PID USER   FD   TYPE    DEVICE SIZE/OFF NODE NAME
+node    1628 root   12u  IPv4 171656104      0t0  TCP *:tproxy (LISTEN)
+```
+
+#### 6.2.11 杀死对应端口(PID)
+
+```
+$ kill -9 [PID] // 查看8081端口
+ps. kill -9 1628
 ```
 
 ## 参考资料
