@@ -210,6 +210,11 @@ element.addEventListener(<event-name>, <callback>, <use-capture>);
 
 * `.{keyCode | keyAlias}`只当事件是从特定键触发时才触发回调。
 
+```
+<!-- 只有在 keyCode 是 13 时调用 vm.submit() -->
+<input v-on:keyup.13="submit">
+```
+
 * `.native`监听组件根元素的原生事件。
 
 * `.once`只触发一次回调。
@@ -272,6 +277,8 @@ element.addEventListener(<event-name>, <callback>, <use-capture>);
 
 方法与事件处理器
 组件 - 自定义事件
+
+[Vue中v-on修饰符记录](https://www.jianshu.com/p/2131124b3742)
 
 #### 9.v-bind
 缩写：:
