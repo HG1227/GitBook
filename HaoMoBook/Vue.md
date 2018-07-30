@@ -173,27 +173,54 @@ key
 参数：event
 修饰符：
 
-`.stop`调用`event.stopPropagation()`。
+* `.stop`调用`event.stopPropagation()`。(阻止事件的冒泡方法，不让事件向documen上蔓延，
+但是默认事件任然会执行，当你掉用这个方法的时候，如果点击一个连接，这个连接仍然会被打开)
 
-`.prevent`调用`event.preventDefault()`。
+* `.prevent`调用`event.preventDefault()`。(这是阻止默认事件的方法，调用此方法是，连接不会被打开，
+但是会发生冒泡，冒泡会传递到上一层的父元素)
 
-`.capture`添加事件侦听器时使用 capture 模式。
+* `.capture`添加事件侦听器时使用 capture 模式。
 
-`.self`只当事件是从侦听器绑定的元素本身触发时才触发回调。
+什么是vuejs v-on的capture模式？
 
-`.{keyCode | keyAlias}`只当事件是从特定键触发时才触发回调。
+这个涉及到了javascript event，事件操作机制。
 
-`.native`监听组件根元素的原生事件。
+我们看下javascript的标准的事件监听函数：
+```
+element.addEventListener(<event-name>, <callback>, <use-capture>);
+```
+表示在 element 这个对象上面添加一个事件监听器，当监听到有 <event-name> 事件发生的时候，调用 <callback> 这个回调函数。 <use-capture> 这个参数，表示该事件监听是在“捕获”阶段中监听（设置为 true）还是在“冒泡”阶段中监听（设置为 false）。
 
-`.once`只触发一次回调。
+第三个参数就是你想要的答案。
 
-`.left`(2.2.0) 只当点击鼠标左键时触发。
+在Vue.js中，我们用[修饰符](https://cn.vuejs.org/v2/api/#v-on)来达到事件监听是捕获还是冒泡阶段中监听的效果。
 
-`.right`(2.2.0) 只当点击鼠标右键时触发。
+看个例子，这会很好帮助你理解冒泡和捕获在dom结构中如何过渡的。
 
-`.middle`(2.2.0) 只当点击鼠标中键时触发。
+> 默认为冒泡阶段中监听事件
 
-`.passive`(2.3.0) 以 { passive: true } 模式添加侦听器
+[示例](https://jsfiddle.net/xiaoluoboding/x02gb8jk/)
+
+> 添加修饰符`capture`后在捕获阶段中监听事件
+
+[示例](https://jsfiddle.net/xiaoluoboding/x02gb8jk/3/)
+
+
+* `.self`只当事件是从侦听器绑定的元素本身触发时才触发回调。
+
+* `.{keyCode | keyAlias}`只当事件是从特定键触发时才触发回调。
+
+* `.native`监听组件根元素的原生事件。
+
+* `.once`只触发一次回调。
+
+* `.left`(2.2.0) 只当点击鼠标左键时触发。
+
+* `.right`(2.2.0) 只当点击鼠标右键时触发。
+
+* `.middle`(2.2.0) 只当点击鼠标中键时触发。
+
+* `.passive`(2.3.0) 以 { passive: true } 模式添加侦听器
 
 用法：
 
