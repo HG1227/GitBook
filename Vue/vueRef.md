@@ -114,3 +114,156 @@ methods: {
 * 参考：子组件 [子组件Refs](https://cn.vuejs.org/v2/guide/components.html#%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6)
 
 ## 3 ref的使用实例
+
+### 3.1 ref使用在外面的组件上
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <title>demo</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div id="ref-outside-component" @click="consoleRef">
+    <component-father ref="outsideComponentRef">
+    </component-father>
+    <p>ref在外面的组件上</p>
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script>
+    var refoutsidecomponentTem={
+        template:"<div class='childComp'><h5>我是子组件</h5></div>"
+    };
+    var  refoutsidecomponent=new Vue({
+        el:"#ref-outside-component",
+        components:{
+            "component-father":refoutsidecomponentTem
+        },
+        methods:{
+            consoleRef:function () {
+                console.log(this); // #ref-outside-component     vue实例
+                console.log(this.$refs.outsideComponentRef);  // div.childComp vue实例
+            }
+        }
+    });
+</script>
+</html>
+```
+### 3.2 ref使用在外面的元素上
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <title>demo</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<!--ref在外面的元素上-->
+<div id="ref-outside-dom" @click="consoleRef" >
+    <component-father>
+    </component-father>
+    <p  ref="outsideDomRef">ref在外面的元素上</p>
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script>
+    var refoutsidedomTem={
+        template:"<div class='childComp'><h5>我是子组件</h5></div>"
+    };
+    var  refoutsidedom=new Vue({
+        el:"#ref-outside-dom",
+        components:{
+            "component-father":refoutsidedomTem
+        },
+        methods:{
+            consoleRef:function () {
+                console.log(this); // #ref-outside-dom    vue实例
+                console.log(this.$refs.outsideDomRef);  //   <p> ref在外面的元素上</p>
+            }
+        }
+    });
+</script>
+</html>
+```
+### 3.3 ref使用在里面的元素上---局部注册组件
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <title>demo</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<!--ref在里面的元素上-->
+<div id="ref-inside-dom">
+    <component-father>
+    </component-father>
+    <p>ref在里面的元素上</p>
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script>
+    var refinsidedomTem={
+        template:"<div class='childComp' @click='consoleRef'>" +
+        "<h5 ref='insideDomRef'>我是子组件</h5>" +
+        "</div>",
+        methods:{
+            consoleRef:function () {
+                console.log(this);  // div.childComp   vue实例
+                console.log(this.$refs.insideDomRef);  // <h5 >我是子组件</h5>
+            }
+        }
+    };
+    var refinsidedom=new Vue({
+        el:"#ref-inside-dom",
+        components:{
+            "component-father":refinsidedomTem
+        }
+    });
+</script>
+</html>
+```
+### 3.4 ref使用在里面的元素上---全局注册组件
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <title>demo4</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<!--ref在里面的元素上--全局注册-->
+<div id="ref-inside-dom-all">
+    <ref-inside-dom-quanjv></ref-inside-dom-quanjv>
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script>
+    Vue.component("ref-inside-dom-quanjv",{
+        template:"<div class='insideFather'> " +
+        "<input type='text' ref='insideDomRefAll' @input='showinsideDomRef'>" +
+        "  <p>ref在里面的元素上--全局注册 </p> " +
+        "</div>",
+        methods:{
+            showinsideDomRef:function () {
+                console.log(this); //这里的this其实还是div.insideFather
+                console.log(this.$refs.insideDomRefAll); // <input  type="text">
+            }
+        }
+    });
+
+    var refinsidedomall=new Vue({
+        el:"#ref-inside-dom-all"
+    });
+</script>
+</html>
+```
