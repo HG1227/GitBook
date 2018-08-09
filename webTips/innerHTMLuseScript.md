@@ -64,7 +64,7 @@ document.body.appendChild(s);
 document.write 接收一个字符串作为参数，并且支持 script 标签以及其他 HTML 标签拼成的字符串，看起来似乎是完美的方案。
 不过鉴于 document.write 的怪属性，只适合 strVal 在首页输出流中的渲染情况，如果是异步的请求，就可以放弃了。
 
-举个栗子：
+code：
 
 ```
 hello world
