@@ -38,24 +38,3 @@
 ## 2 解决方案
 
 ### 2.1 重新构造 script 标签
-
-思路非常简单，构造新的 script 标签，然后该标签的 innerHTML 赋值为需要渲染的脚本。伪代码如下：
-
-```
-var s = document.createElement('script');
-s.innerHTML = text;
-document.body.appendChild(s);
-```
-
-当然如果要写的完美一点，执行完 s 后还需要 `remove` 掉。如何获取 text 值？两个方法，其一可以正则匹配 `strVal`，
-提取 `script` 标签内的内容，这点和 BigRender 类似，而 BigRender 除了提取 script 标签，还需要提取 `style` 标签，
-无疑更复杂；第二个方法是可以用 `document.getElementsByTagName('script')` 获取插入 DOM 但并未执行的 `script` 脚本，
-但是这样会把页面所有脚本全部提取，所以还需要判断。（可以获取某一节点下的 `script` 标签）
-
-如果是外部的 js 文件，需要为新建的 script 元素添加 src 属性即可。
-
-### 2.2 eval 大法
-
-事实上，如果是 `inline` `JavaScript`，方案一求得的 `text`，可以直接 `eval` 之。
-
-但是如果是外联 `js` 文件，同上，需要新建 `script` 标签然后指定 `src` 属性。
