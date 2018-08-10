@@ -1,5 +1,19 @@
 # Docker
 
+#### 作者：高天阳
+#### 邮箱：13683265113@163.com
+
+```
+更改历史
+
+* 2018-8-10	    高天阳	    修改WordPress实例
+* 2018-5-31	    高天阳	    补充实例
+* 2018-2-5	    高天阳	    补充命令内容
+* 2017-9-13	    高天阳	    补充命令内容
+* 2017-7-3      高天阳	    初始化文档
+
+```
+
 ## 1 Docker介绍
 
 ### 1.1 docker简介
@@ -519,8 +533,7 @@ docker start mdexam
 ```
 
 ```angular2html
-WARNING: Error loading config file: /Users/haomo/.docker/config.json - stat /Users/haomo/.docker/config.json: permission denied
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+CONTAINER ID    IMAGE   COMMAND     CREATED     STATUS      PORTS       NAMES
 ```
 
 #### 6.1.2 查看docker全部正在运行的命令
@@ -530,10 +543,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 ```
 
 ```angular2html
-WARNING: Error loading config file: /Users/haomo/.docker/config.json - stat /Users/haomo/.docker/config.json: permission denied
-CONTAINER ID        IMAGE                                            COMMAND                  CREATED             STATUS                      PORTS               NAMES
-9537ff7bc1e4        mysql/mysql-server                               "/entrypoint.sh mysq…"   2 minutes ago       Created                                         mysql3306-TY
-cd66dc4565d6        registry.cn-hangzhou.aliyuncs.com/haomo/mdexam   "/bin/bash"              10 months ago       Exited (255) 8 months ago                       mdexam
+CONTAINER ID    IMAGE   COMMAND     CREATED     STATUS      PORTS       NAMES
 ```
 
 #### 6.1.3 查看docker容器
@@ -543,21 +553,19 @@ cd66dc4565d6        registry.cn-hangzhou.aliyuncs.com/haomo/mdexam   "/bin/bash"
 ```
 
 ```angular2html
-WARNING: Error loading config file: /Users/haomo/.docker/config.json - stat /Users/haomo/.docker/config.json: permission denied
-REPOSITORY                                       TAG                 IMAGE ID            CREATED             SIZE
-mysql/mysql-server                               latest              f92f0896ed95        2 weeks ago         246MB
-registry.cn-hangzhou.aliyuncs.com/haomo/mdexam   latest              3b5b2bc0b22f        11 months ago       267MB
-
+REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
+mysql/mysql-server   latest              1fdf3806e715        26 hours ago        309MB
+wordpress            latest              9414c91da9a8        6 days ago          408MB
+mysql                latest              7bbe2074ef0a        6 days ago          484MB
 ```
 
-#### 6.1.4 起`mysql`容器，命名为`test`
+#### 6.1.4 起`mysql`容器，命名为`mysql3306-TY`
 
 ```angular2html
-➜  ~ docker run -it --name test -p 3316:3306 -e "MYSQL_ROOT_PASSWORD=root" -d mysql/mysql-server
+➜  ~ docker run --name mysql3306-TY -p 3306:3306 -e "MYSQL_ROOT_PASSWORD=root" -d mysql
 ```
 
 ```angular2html
-WARNING: Error loading config file: /Users/haomo/.docker/config.json - stat /Users/haomo/.docker/config.json: permission denied
 cdce57f4147ac6d2e3beb135865e744a548709d12e140585490fad85522c7992
 ```
 
@@ -568,22 +576,21 @@ cdce57f4147ac6d2e3beb135865e744a548709d12e140585490fad85522c7992
 ```
 
 ```angular2html
-WARNING: Error loading config file: /Users/haomo/.docker/config.json - stat /Users/haomo/.docker/config.json: permission denied
-CONTAINER ID        IMAGE                COMMAND                  CREATED             STATUS                            PORTS                               NAMES
-cdce57f4147a        mysql/mysql-server   "/entrypoint.sh mysq…"   9 seconds ago       Up 9 seconds (health: starting)   33060/tcp, 0.0.0.0:3316->3306/tcp   test
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+a1e5380e57b0        mysql               "docker-entrypoint.s…"   2 hours ago         Up 2 hours          0.0.0.0:3306->3306/tcp   mysql3306-TY
 ```
 
-#### 6.1.6 进入test容器
+#### 6.1.6 ~~进入test容器~~（最新版本mysql不需要再修改访问权限）
 
 ```angular2html
-➜  ~ docker exec -it test /bin/bash
+➜  ~ docker mysql3306-TY -it test /bin/bash
 ```
 
 ```angular2html
 WARNING: Error loading config file: /Users/haomo/.docker/config.json - stat /Users/haomo/.docker/config.json: permission denied
 ```
 
-#### 6.1.7 进入mysql并输入密码`root`
+#### 6.1.7 ~~进入mysql并输入密码~~`root`（最新版本mysql不需要再修改访问权限）
 
 ```angular2html
 bash-4.2# mysql -u root -p 
@@ -603,7 +610,7 @@ owners.
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 ```
 
-#### 6.1.8 查看
+#### 6.1.8 ~~修改权限~~（最新版本mysql不需要再修改访问权限）
 
 ```angular2html
 mysql> grant all privileges on *.* to 'root'@'%'identified by 'root' with grant option;
@@ -613,7 +620,7 @@ mysql> grant all privileges on *.* to 'root'@'%'identified by 'root' with grant 
 Query OK, 0 rows affected, 1 warning (0.00 sec)
 ```
 
-#### 6.1.9 退出mysql
+#### 6.1.9 ~~退出mysql~~（最新版本mysql不需要再修改访问权限）
 
 ```
 mysql> exit
@@ -623,7 +630,7 @@ mysql> exit
 Bye
 ```
 
-#### 6.1.10 退出test容器
+#### 6.1.10 ~~退出test容器~~（最新版本mysql不需要再修改访问权限）
 
 ```
 bash-4.2# exit
@@ -636,7 +643,7 @@ exit
 #### 6.1.11 安装WordPress
 
 ```angular2html
-➜  ~ docker run -it --name wo --link test:mysql -p 8011:80 -d wordpress
+➜  ~ docker run --name some-wordpress --link mysql3306-TY:mysql -p 8080:80 -d wordpress
 ```
 
 ```angular2html
