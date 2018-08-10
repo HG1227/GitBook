@@ -1,6 +1,18 @@
 # VIM常用命令
 
-## 保存和退出:
+#### 作者：高天阳
+#### 邮箱：13683265113@163.com
+
+```
+更改历史
+
+* 2018-8-10	    高天阳	    安装vim方法
+* 2017-6-29     高天阳	    初始化文档
+
+```
+## 1 常用命令
+
+### 保存和退出:
 
 ```
 :w 保存
@@ -10,9 +22,24 @@ ZQ|:Q! 不保存退出
 :w filename 另存为
 ```
 
-![](https://camo.githubusercontent.com/df1aed5d381f12ce2ecc82c6a9239536ddab3c2b/687474703a2f2f696d61676573323031352e636e626c6f67732e636f6d2f626c6f672f3535353438322f3230313631322f3535353438322d32303136313230323030303635323631352d313032333432313435342e706e67 "VIM")
+![](../../assets/vimCode.png)
+![](../../assets/vimKeyboard.jpg)
 
-### 原网页链接:
+## 2 安装与使用
 
-[http://www.cnblogs.com/Nice-Boy/p/6124177.html](http://www.cnblogs.com/Nice-Boy/p/6124177.html)
+### 2.1 更新apt-get
+
+```
+$ apt-get update
+```
+
+### 2.2 安装vim
+
+```
+$ apt-get install vim
+```
+
+## 参考资料
+
+* [vim常用命令总结](http://www.cnblogs.com/Nice-Boy/p/6124177.html)
 
