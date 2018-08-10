@@ -53,3 +53,9 @@ document.body.appendChild(s);
 但是这样会把页面所有脚本全部提取，所以还需要判断。（可以获取某一节点下的 script 标签）
 
 如果是外部的 js 文件，需要为新建的 script 元素添加 src 属性即可。
+
+### 2.2 eval 大法
+
+事实上，如果是 inline JavaScript，方案一求得的 text，可以直接 eval 之。
+
+但是如果是外联 js 文件，同上，需要新建 script 标签然后指定 src 属性。
