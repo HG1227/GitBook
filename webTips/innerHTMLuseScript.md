@@ -19,3 +19,18 @@
 那么该段脚本是无法执行的，这并不是 bug，而是 w3c 的文档规定的。
 
 比如如下这段代码，`innerHTML` 插入的脚本`（alert）`并不会执行：
+
+```
+<div id="myDiv">
+</div>
+
+<script>
+  // 模拟接口返回数据
+  var strVar = "";
+    strVar += "<script>alert('hello world')<\/script>";
+
+  document.getElementById('myDiv').innerHTML = strVar;
+</script>
+```
+
+那么问题来了，如何使得 innerHTML 进来的 script 代码能够跑起来？
