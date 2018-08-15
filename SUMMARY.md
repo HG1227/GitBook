@@ -1,7 +1,7 @@
 # Summary
 
 * [简介](README.md)
-* [毫末培训记录](HaoMoTrainingRecord.md)
+* [培训记录](HaoMoTrainingRecord.md)
     * [测试自动化](HaoMoBook/ce-shi-zi-dong-hua.md)
     * [NPM的使用](HaoMoBook/npmde-shi-yong.md)
     * [Gitbook的使用](HaoMoBook/GitBook.md)
@@ -44,6 +44,7 @@
     * [报价策略](HaoMoBook/QuoteStrategy.md)
     * [Babel](HaoMoBook/Babel.md)
     * [view](HaoMoBook/view.md)
+    * [Moment](HaoMoBook/Moment.md)
 * [Vue](CodeReview.md)
     * [Vue常用属性](HaoMoBook/Vue.md)
     * [Vue的Ref属性](Vue/vueRef.md)
