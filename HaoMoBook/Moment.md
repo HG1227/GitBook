@@ -20,6 +20,9 @@ Mac上的Safari 10.8和Linux上的稳定Firefox。
 
 所有代码都适用于这两种环境。所有单元测试都在两种环境中运行。
 
+moment.js不依赖任何第三方库，支持字符串、Date、时间戳以及数组等格式，
+可以像PHP的date()函数一样，格式化日期时间，计算相对时间，获取特定时间后的日期时间等等。
+
 ## 2. 安装和使用
 
 ### 2.1 安装
@@ -116,6 +119,16 @@ meteor add momentjs:moment
 
 为便于参考，`Moment.prototype`将在文档中引用任何方法`moment#method`。
 所以`Moment.prototype.format`=== `moment.fn.format`=== `moment#format`。
+
+#### 2.2.1 格式化时间
+
+#### 2.2.2 相对时间
+
+#### 2.2.3 加减时间
+
+#### 2.2.4 多语言支持
+
+----------
 
 #### 2.2.1 当前时间 `1.0.0+`
 
@@ -343,6 +356,7 @@ moment('2012-10-14', 'YYYY-MM-DD', 'fr', true);
 
 
 
+## 参考资料
 
-
-1
+* [Moment.js 文档](http://momentjs.cn/docs/)
+* [使用moment.js轻松管理日期和时间](https://blog.csdn.net/yelin042/article/details/77878288)
