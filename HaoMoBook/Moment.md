@@ -120,20 +120,10 @@ meteor add momentjs:moment
 为便于参考，`Moment.prototype`将在文档中引用任何方法`moment#method`。
 所以`Moment.prototype.format`=== `moment.fn.format`=== `moment#format`。
 
-#### 2.2.1 格式化时间
-
-#### 2.2.2 相对时间
-
-#### 2.2.3 加减时间
-
-#### 2.2.4 多语言支持
-
-----------
-
 #### 2.2.1 当前时间 `1.0.0+`
 
 ```
-moment();
+moment(String);
 ```
 
 要获取当前日期和时间，只需moment()使用无参数调用即可。
@@ -144,7 +134,48 @@ var now = moment();
 
 这与调用`moment(new Date())`基本相同。
 
-#### 2.2.2 字符串 `1.0.0+`
+```
+var year1995 = moment("1995-12-25");
+```
+
+格式化日期`1995-12-25`。
+
+#### 2.2.2 格式化时间
+
+```
+format(String);
+```
+
+```
+var day = moment().format()  // 2018-08-17T08:41:34+08:00
+var dayMMDoYYYYHHmmssa = moment().format('MMMM Do YYYY, h:mm:ss a')  // 八月 17日 2018, 8:41:34 早上 
+var daydddd = moment().format('dddd')  // 星期五
+var dayMMMDoYY = moment().format('MMM Do YY')  // 8月 17日 18
+var dayYYYYescapedYYYY = moment().format('YYYY [escaped] YYYY')  // 2018 escaped 2018
+```
+
+#### 2.2.3 相对时间
+
+```
+formNow();
+```
+
+```
+var dayYYYYMMDD = moment("20111031", "YYYYMMDD").fromNow(); // 7 年前
+var dayYYYYMMDD2 = moment("20120620", "YYYYMMDD").fromNow(); // 6 年前
+var daystartOfday = moment().startOf('day').fromNow();        // 9 小时前
+var dayendOfday = moment().endOf('day').fromNow();          // 15 小时内
+var daystartOfhour = moment().startOf('hour').fromNow();       // 1 小时前
+```
+
+#### 2.2.4 加减时间
+
+#### 2.2.5 多语言支持
+
+----------
+
+
+#### 2.2.6 字符串 `1.0.0+`
 
 ```
 moment(String);
@@ -208,7 +239,7 @@ ISO 8601字符串需要日期部分。
 moment("not a real date").isValid(); // false
 ```
 
-#### 2.2.3 字符串+格式 `1.0.0+`
+#### 2.2.7 字符串+格式 `1.0.0+`
 
 ```
 moment(String, String);
@@ -331,22 +362,22 @@ moment('2012-10-14', 'YYYY-MM-DD', 'fr', true);
 
 默认情况下，68岁以上的两位数年份假定为1900年，68年或以下年份假定为2000年。可以通过替换`moment.parseTwoDigitYear`方法来更改此设置。
 
-#### 2.2.4 字符串 `1.0.0+`
+#### 2.2.8 字符串 `1.0.0+`
 
 ```
 ```
 
-#### 2.2.5 字符串 `1.0.0+`
+#### 2.2.9 字符串 `1.0.0+`
 
 ```
 ```
 
-#### 2.2.6 字符串 `1.0.0+`
+#### 2.2.10 字符串 `1.0.0+`
 
 ```
 ```
 
-#### 2.2.7 字符串 `1.0.0+`
+#### 2.2.11 字符串 `1.0.0+`
 
 ```
 ```
