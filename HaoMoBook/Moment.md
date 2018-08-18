@@ -140,10 +140,11 @@ var year1995 = moment("1995-12-25");
 
 格式化日期`1995-12-25`。
 
-#### 2.2.2 格式化时间
+#### 2.2.2 格式化时间 `1.0.0+`
 
 ```
-format(String);
+moment().format();
+moment().format(String);
 ```
 
 ```
@@ -154,21 +155,215 @@ var dayMMMDoYY = moment().format('MMM Do YY')  // 8月 17日 18
 var dayYYYYescapedYYYY = moment().format('YYYY [escaped] YYYY')  // 2018 escaped 2018
 ```
 
-#### 2.2.3 相对时间
+| 描述 | 输入 | 输出 |
+|:---:|:----:|:---:|
+| Month| `M` | `1 2 ... 11 12` |
+| Month| `Mo` | `1st 2nd ... 11th 12th` |
+| Month| `MM` | `01 02 ... 11 12` |
+| Month| `MMM` | `Jan Feb ... Nov Dec` |
+| Month| `MMMM` | `January February ... November December` |
+| Quarter| `Q` | `1 2 3 4` |
+| Day of Month| `D` | `1 2 ... 30 31` |
+| Day of Month| `Do` | `1st 2nd ... 30th 31st` |
+| Day of Month| `DD` | `01 02 ... 30 31` |
+| Day of Year| `DDD` | `1 2 ... 364 365` |
+| Day of Year| `DDDo` | `1st 2nd ... 364th 365th` |
+| Day of Year| `DDDD` | `001 002 ... 364 365` |
+| Day of Week| `d` | `0 1 ... 5 6` |
+| Day of Week| `do` | `0th 1st ... 5th 6th` |
+| Day of Week| `dd` | `Su Mo ... Fr Sa` |
+| Day of Week| `ddd` | `Sun Mon ... Fri Sat` |
+| Day of Week| `dddd` | `Sunday Monday ... Friday Saturday` |
+| Day of Week (Locale)| `e` | `0 1 ... 5 6` |
+| Day of Week (ISO)| `E` | `1 2 ... 6 7` |
+| Week of Year| `w` | `1 2 ... 52 53` |
+| Week of Year| `wo` | `1st 2nd ... 52nd 53rd` |
+| Week of Year| `ww` | `01 02 ... 52 53` |
+| Week of Year (ISO)| `W` | `1 2 ... 52 53` |
+| Week of Year (ISO)| `Wo` | `1st 2nd ... 52nd 53rd` |
+| Week of Year (ISO)| `WW` | `01 02 ... 52 53` |
+| Year| `YY` | `70 71 ... 29 30` |
+| Year| `YYYY` | `1970 1971 ... 2029 2030` |
+| Week Year| `gg` | `70 71 ... 29 30` |
+| Week Year| `gggg` | `1970 1971 ... 2029 2030` |
+| Week Year (ISO)| `GG` | `70 71 ... 29 30` |
+| Week Year (ISO)| `GGGG` | `1970 1971 ... 2029 2030` |
+| AM/PM| `A` | `AM PM` |
+| AM/PM| `a` | `am pm` |
+| Hour| `H` | `0 1 ... 22 23` |
+| Hour| `HH` | `00 01 ... 22 23` |
+| Hour| `h` | `1 2 ... 11 12` |
+| Hour| `hh` | `01 02 ... 11 12` |
+| Minute| `m` | `0 1 ... 58 59` |
+| Minute| `mm` | `00 01 ... 58 59` |
+| Second| `s` | `0 1 ... 58 59` |
+| Second| `ss` | `00 01 ... 58 59` |
+| Fractional Second| `S` | `0 1 ... 8 9` |
+| Fractional Second| `SS` | `00 01 ... 98 99` |
+| Fractional Second| `SSS` | `000 001 ... 998 999` |
+| Fractional Second| `SSSS ... SSSSSSSSS` | `000[0..] 001[0..] ... 998[0..] 999[0..]` |
+| Timezone| `z or zz` | `EST CST ... MST PST Note: as of 1.6.0, the z/zz format tokens have been deprecated. Read more about it here.` |
+| Timezone| `Z` | `-07:00 -06:00 ... +06:00 +07:00` |
+| Timezone| `ZZ` | `-0700 -0600 ... +0600 +0700` |
+| Unix Timestamp| `X` | `1360013296` |
+| Unix Millisecond Timestamp| `x` | `1360013296123` |
+
+#### 2.2.3 时差(之前，现在为基准) `1.0.0+`
 
 ```
-formNow();
+moment().fromNow();
+moment().fromNow(Boolean);
 ```
+
+显示时间的常用方法由处理`moment#fromNow`。这有时被称为timeago或相对时间。
 
 ```
 var dayYYYYMMDD = moment("20111031", "YYYYMMDD").fromNow(); // 7 年前
 var dayYYYYMMDD2 = moment("20120620", "YYYYMMDD").fromNow(); // 6 年前
-var daystartOfday = moment().startOf('day').fromNow();        // 9 小时前
-var dayendOfday = moment().endOf('day').fromNow();          // 15 小时内
-var daystartOfhour = moment().startOf('hour').fromNow();       // 1 小时前
 ```
 
-#### 2.2.4 加减时间
+如果通过true，则可以获得不带后缀的值。
+
+```
+var dayYear = moment([2007, 0, 29]).fromNow(true);       // 4 年
+```
+
+| 描述 | 输入 | 输出 |
+|:---:|:----:|:---:|
+| 0 to 45 seconds| `s` | `a few seconds ago` |
+| 45 to 90 seconds| `m` | `a minute ago` |
+| 90 seconds to 45 minutes| `mm` | `2 minutes ago ... 45 minutes ago` |
+| 45 to 90 minutes| `h` | `an hour ago` |
+| 90 minutes to 22 hours| `hh` | `2 hours ago ... 22 hours ago` |
+| 22 to 36 hours| `d` | `a day ago` |
+| 36 hours to 25 days| `dd` | `2 days ago ... 25 days ago` |
+| 25 to 45 days| `M` | `a month ago` |
+| 45 to 345 days| `MM` | `2 months ago ... 11 months ago` |
+| 345 to 545 days (1.5 years)| `y` | `a year ago` |
+| 546 days+| `yy` | `2 years ago ... 20 years ago` |
+
+#### 2.2.4 时差(之前) `1.0.0+`
+
+```
+moment().from(Moment|String|Number|Date|Array);
+moment().from(Moment|String|Number|Date|Array, Boolean);
+```
+
+您可能希望显示与现在不同的时间相关的时刻。在这种情况下，您可以使用`moment#from`。
+
+```
+var a = moment([2007, 0, 28]);
+var b = moment([2007, 0, 29]);
+a.from(b) // "a day ago"
+```
+
+第一个参数是您可以传递给的任何参数`moment()`或实际参数`Moment`。
+
+```
+var a = moment([2007, 0, 28]);
+var b = moment([2007, 0, 29]);
+a.from(b);                     // "a day ago"
+a.from([2007, 0, 29]);         // "a day ago"
+a.from(new Date(2007, 0, 29)); // "a day ago"
+a.from("2007-01-29");          // "a day ago"
+```
+
+比如`moment#fromNow`，传递`true`第二个参数返回没有后缀的值。只要您需要具有人类可读的时间长度，这就非常有用。
+
+```
+var start = moment([2007, 0, 5]);
+var end   = moment([2007, 0, 10]);
+end.from(start);       // "in 5 days"
+end.from(start, true); // "5 days"
+```
+
+#### 2.2.5 操纵时间(加法) `1.0.0+`
+
+通过增加时间来改变原始时刻。
+
+这是一个非常强大的功能，可以为现有时刻增加时间。要添加时间，请传递要添加的时间键以及要添加的金额。
+
+```
+moment().add(Number, String);
+moment().add(Duration);
+moment().add(Object);
+```
+
+如果你涉及整个简洁的事情，也有一些速记键。
+
+```
+moment().add(7, 'days');
+moment().add(7, 'd');
+```
+
+| 描述 | 输入 |
+|:---:|:----:|
+| years| `y` |
+| quarters| `Q` |
+| months| `M` |
+| weeks| `w` |
+| days| `d` |
+| hours| `h` |
+| minutes| `m` |
+| seconds| `s` |
+| milliseconds| `ms` |
+
+如果要同时添加多个不同的键，可以将它们作为对象文字传递。
+
+```
+moment().add(7, 'days').add(1, 'months'); // with chaining
+moment().add({days:7,months:1}); // with object literal
+```
+
+金额没有上限，因此您可以重载任何参数。
+
+```
+moment().add(1000000, 'milliseconds'); // a million milliseconds
+moment().add(360, 'days'); // 360 days
+```
+
+#### 几个月和几年的特殊考虑
+
+如果原始日期的月份日期大于最后一个月的天数，则该月的日期将更改为最后一个月的最后一天。
+
+```
+moment([2010, 0, 31]);                  // January 31
+moment([2010, 0, 31]).add(1, 'months'); // February 28
+```
+
+在添加跨越夏令时的时间时，还要特别注意。如果您要添加年，月，周或天，则原始小时将始终与添加的小时相匹配。
+
+```
+var m = moment(new Date(2011, 2, 12, 5, 0, 0)); // the day before DST in the US
+m.hours(); // 5
+m.add(1, 'days').hours(); // 5
+```
+
+如果要添加小时，分钟，秒或毫秒，则假设您需要精确到小时，并且将导致不同的小时。
+
+```
+var m = moment(new Date(2011, 2, 12, 5, 0, 0)); // the day before DST in the US
+m.hours(); // 5
+m.add(24, 'hours').hours(); // 6
+```
+
+或者，您可以使用持续时间添加到时刻。
+
+```
+var duration = moment.duration({'days' : 1});
+moment([2012, 0, 31]).add(duration); // February 1
+```
+
+在版本之前`2.8.0`，`moment#add(String, Number)`还支持语法。它已经被弃用了`moment#add(Number, String)`。
+
+```
+moment().add('seconds', 1); // Deprecated in 2.8.0
+moment().add(1, 'seconds');
+```
+
+#### 2.2.6 操纵时间(减法) `1.0.0+`
+
+
 
 #### 2.2.5 多语言支持
 
