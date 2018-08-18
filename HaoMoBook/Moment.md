@@ -363,9 +363,95 @@ moment().add(1, 'seconds');
 
 #### 2.2.6 操纵时间(减法) `1.0.0+`
 
+```
+moment().subtract(Number, String);
+moment().subtract(Duration);
+moment().subtract(Object);
+```
 
+通过减去时间来改变原始时刻。
+
+这与完全相同`moment#add`，只是减去时间，而不是增加时间。
+
+```
+moment().subtract(7, 'days');
+```
+
+在版本之前`2.8.0`，`moment#subtract(String, Number)`还支持语法。它已经被弃用了`moment#subtract(Number, String)`。
+
+```
+moment().subtract('seconds', 1); // Deprecated in 2.8.0
+moment().subtract(1, 'seconds');
+```
+
+#### 2.2.7 开始时间 `1.7.0+`
+
+```
+moment().startOf(String);
+```
+
+通过将其设置为单位时间的开始来突变原始时刻。
+
+```
+moment().startOf('year');    // set to January 1st, 12:00 am this year
+moment().startOf('month');   // set to the first of this month, 12:00 am
+moment().startOf('quarter');  // set to the beginning of the current quarter, 1st day of months, 12:00 am
+moment().startOf('week');    // set to the first day of this week, 12:00 am
+moment().startOf('isoWeek'); // set to the first day of this week according to ISO 8601, 12:00 am
+moment().startOf('day');     // set to 12:00 am today
+moment().startOf('hour');    // set to now, but with 0 mins, 0 secs, and 0 ms
+moment().startOf('minute');  // set to now, but with 0 seconds and 0 milliseconds
+moment().startOf('second');  // same as moment().milliseconds(0);
+```
+
+这些快捷方式基本上与以下内容相同。
+
+```
+moment().startOf('year');
+moment().month(0).date(1).hours(0).minutes(0).seconds(0).milliseconds(0);
+```
+
+```
+moment().startOf('hour');
+moment().minutes(0).seconds(0).milliseconds(0)
+```
+
+从版本2.0.0开始，`moment#startOf('day')`替换`moment#sod`。
+
+注意： `moment#startOf('week')`在2.0.0版中添加了。
+
+从版本2.1.0开始，`moment#startOf('week')`使用区域设置感知周开始日。
+
+注意： `moment#startOf('isoWeek')`在2.2.0版中添加了。
+
+#### 2.2.8 结束时间 `1.7.0+`
+
+```
+moment().endOf(String);
+```
+
+通过将其设置为单位时间的结尾来突变原始时刻。
+
+这与`moment#startOf`仅设置为单位时间的开始，而不是设置为单位时间的结束。
+
+```
+moment().endOf("year"); // set the moment to 12-31 11:59:59.999 pm this year
+```
+
+从版本2.0.0开始，`moment#endOf('day')`替换`moment#eod`。
+
+注意： `moment#endOf('week')`在2.0.0版中添加了。
+
+从版本2.1.0开始，`moment#endOf('week')`使用区域设置感知周开始日。
 
 #### 2.2.5 多语言支持
+
+```
+
+```
+```
+
+```
 
 ----------
 
