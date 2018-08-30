@@ -62,6 +62,7 @@
     * [Linux](internshiptraining/linux.md)
     * [Linux面试题](internshiptraining/linuxCaseInterview.md)
     * [Linux常用指令](internshiptraining/linuxCommonInstructions.md)
+    * [rsync](internshiptraining/rsync.md)
     * [VIM](internshiptraining/vim.md)
     * [Webpack](internshiptraining/Webpack.md)
     * [tmate命令行分享](internshiptraining/tmate.md)

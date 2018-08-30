@@ -45,7 +45,7 @@ GitBook可以把你的书本生成为静态网站以及PDF、ePub\(苹果和goog
 
 ### 2.1 安装
 
-#### 2.1.1 安装gitbook 
+#### 2.1.1 安装gitbook
 
 [gitbook](https://github.com/GitbookIO/gitbook)的安装非常简单，详细指南可以参考
 [gitbook 文档](https://github.com/GitbookIO/gitbook)。
