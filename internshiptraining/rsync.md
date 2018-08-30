@@ -346,6 +346,8 @@ total size is 150995011 speedup is 452080.87
 
 #### 2.4.1 部署后属主、属组变化
 
+> 方案一
+
 ```
 rsync -avz --delete page/ root@172.16.78.192:www/page
 ```
@@ -358,6 +360,24 @@ rsync -avzog --delete page/ root@172.16.78.192:www/page
 ```
 
 尝试后并未生效
+
+[rsync命令介绍](https://blog.csdn.net/u010339879/article/details/54987880)
+
+> 方案二
+
+使用ftp用户上传
+
+```
+rsync -avz --delete page/ ftp@172.16.78.192:www/page
+```
+
+ftp账号无登录权限或不知道ftp账号密码
+
+> 方案三
+
+将机械性修改操作写在脚本中执行
+
+[使用脚本远程登录服务器并执行操作](https://www.jianshu.com/p/d4c1ac10204d?utm_campaign)
 
 ## 3 同类型技术比较
 
