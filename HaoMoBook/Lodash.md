@@ -56,7 +56,7 @@ $ npm install --save lodash
 
 * node.js使用：
 
-```angular2html
+```
 var _ = require('lodash');
 ```
 
@@ -79,7 +79,7 @@ arrays、array buffers、 booleans、 date objects、maps、 numbers， Object �
 * 返回
     * (*): 返回拷贝后的值。
 
-```angular2html
+```
 vm.objects = [{ 'a': 1 }, { 'b': 2 }];
 
 vm.shallow = vm.objects;
@@ -106,7 +106,7 @@ $log.log(vm.shallow[0] === vm.objects[0]);
 * 返回
     * (*): 返回拷贝后的值。
 
-```angular2html
+```
 vm.objects = [{ 'a': 1 }, { 'b': 2 }];
 
 vm.shallow = _.cloneDeep(vm.objects);
@@ -132,7 +132,7 @@ $log.log(vm.shallow[0] === vm.objects[0]);
 * 返回
     * (*): 返回集合 collection。
 
-```angular2html
+```
 _([1, 2]).forEach(function(value) {
   $log.log(value);
 });
@@ -175,7 +175,7 @@ rangeRight, repeat, sampleSize, slice, some, sortBy, split, take, takeRight, tem
 * 返回
     * (Array): 返回新的映射后数组。
 
-```angular2html
+```
 vm.users = [
   { 'user': 'barney',  'age': 36, 'active': true },
   { 'user': 'fred',    'age': 40, 'active': false },
@@ -200,7 +200,7 @@ vm.test2 = _.each(vm.users , function(v) {
 $log.log(vm.test2);
 ```
 
-```angular2html
+```
 <script type="text/javascript">
    function square(n) {
        return n * n;
@@ -335,7 +335,7 @@ _.reject(users, 'active');
 `_.filter()`返回真值的所有元素的数组。
 `_.reject()`是`_.filter()`的反向方法，不返回真值的（集合）元素
 
-```angular2html
+```
 <script type="text/javascript">
     var users = [
         {'user': 'barney', 'age': 36, 'active': true},
@@ -367,7 +367,7 @@ _.reject(users, 'active');
 * 返回
     * (Array): 返回新的去重后的数组。
 
-```angular2html
+```
 <script type="text/javascript">
     var arr1 = [2, 1, 2];
 
@@ -403,7 +403,7 @@ iteratee 调用时会传入一个参数：(value)。
 * 返回
     * (Array): 返回新的去重后的数组。
 
-```angular2html
+```
 _.uniqBy([2.1, 1.2, 2.3], Math.floor);
 // => [2.1, 1.2]
  
@@ -429,7 +429,7 @@ Math.floor只是向下取整，去重，并没有改变原有的数组，所以�
 * 返回
     * (Array): 返回一个过滤值后的新数组。
 
-```angular2html
+```
 _.difference([3, 2, 1], [4, 2]);
 // => [3, 1]
 ```
@@ -442,7 +442,7 @@ _.difference([3, 2, 1], [4, 2]);
 * 返回值
     * (Array): 返回 array.
 
-```angular2html
+```
 var array = [1, 2, 3, 1, 2, 3];
  
 _.pull(array, 2, 3);
@@ -464,7 +464,7 @@ console.log(array);
 * 返回
     * (Array): 返回移除元素组成的新数组。
 
-```angular2html
+```
 var array = [1, 2, 3, 4];
 var evens = _.remove(array, function(n) {
   return n % 2 == 0;
@@ -545,7 +545,7 @@ for语句是执行循环的不二选择，但在上面代码的使用场景下�
 * 返回
     * (Array): 返回调用结果的数组。
 
-```angular2html
+```
 <script type="text/javascript">
 console.log('------- javascript -------');
 //js原生的循环方法
@@ -566,7 +566,7 @@ _.times(3, String);
 </script>
 ```
 
-```angular2html
+```
  var i = 0;
  var time1 = _.times(3, function(){
      console.log(i++);
@@ -575,7 +575,7 @@ _.times(3, String);
 ```
 > 输出结果为：0, 1, 2
 
-```angular2html
+```
  var time2 = _.times(4, _.constant(0));
  console.log(time1, time2);
 
@@ -583,7 +583,7 @@ _.times(3, String);
 > 输出结果为： [1, 2, 3]    [0, 0, 0, 0]
 
 使用_.times方法创建一个有相同前缀的值的数组；
-```angular2html
+```
  var newArr = _.times(6, _.partial(_.uniqueId, 'time_'));
  console.log(newArr);
 
@@ -606,7 +606,7 @@ _.assign 方法也可以接收多个参数对象进行扩展，都是往后面�
 * 返回
     * (Object): 返回 object.
 
-```angular2html
+```
 <script type="text/javascript">
 Object.prototype.extend = function(obj) {
     for (var i in obj) {
@@ -645,7 +645,7 @@ Lodash中的 _.random 方法要比上面的原生方法更强大与灵活。你�
 * 返回
     * (number): 返回随机数。
 
-```angular2html
+```
 <script type="text/javascript">
 _.random(0, 5);
 // => an integer between 0 and 5
@@ -759,7 +759,7 @@ _.indexOf([1, 2, 1, 2], 2, 2);
 * 返回
     (*): 返回随机元素。
 
-```angular2html
+```
 <script type="text/javascript">
 _.sample([1, 2, 3, 4]);
 // => 2
@@ -797,7 +797,7 @@ _.includes()第一个参数是需要查询的对象，第二个参数是需要�
 * 返回
     * (boolean): 如果找到 value 返回 true， 否则返回 false。
 
-```angular2html
+```
 <script type="text/javascript">
 _.includes([1, 2, 3], 1);
 // => true
@@ -840,7 +840,7 @@ length 大于 0 的 arguments object, array, string 或类jquery选择器。
 * 返回
     * (boolean): 如果 value 为空，那么返回 true，否则返回 false。
 
-```angular2html
+```
 _.isEmpty(null);
 // => true
  
@@ -882,7 +882,7 @@ _.isEmpty({ 'a': 1 });
 * 返回
     * (Function): 返回编译模板函数。
 
-```angular2html
+```
 // 使用 "interpolate" 分隔符创建编译模板
 var compiled = _.template('hello <%= user %>!');
 compiled({ 'user': 'fred' });
@@ -960,7 +960,7 @@ fs.writeFileSync(path.join(cwd, 'jst.js'), '\
 * 返回
     * (Object): 返回新对象。
 
-```angular2html
+```
 var objA = {"name": "colin", "car": "suzuki", "age": 17};
 console.log(_.pick(objA, ['car', 'age']));
 // => {"car": "suzuki", "age": 17}
@@ -983,7 +983,7 @@ _.pick(object, ['a', 'c']);
 * 返回
     * (Object): 返回新对象。
 
-```angular2html
+```
 var object = { 'a': 1, 'b': '2', 'c': 3 };
  
 _.omit(object, ['a', 'c']);
