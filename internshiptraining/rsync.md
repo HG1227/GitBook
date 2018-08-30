@@ -212,6 +212,136 @@ rsync -avzP nemo@192.168.10.1::nemo /backup
 
 ### 2.3 示例
 
+#### 2.3.1 SSH方式
+
+首先在服务端启动ssh服务：
+
+```
+service sshd start
+启动 sshd： [确定]
+```
+
+#### 2.3.2 使用rsync进行同步
+
+接下来就可以在客户端使用rsync命令来备份服务端上的数据了，SSH方式是通过系统用户来进行备份的，如下：
+
+```
+rsync -vzrtopg --progress -e ssh --delete work@172.16.78.192:/www/* /databack/experiment/rsync
+work@172.16.78.192's password:
+receiving file list ...
+5 files to consider
+test/
+a
+0 100% 0.00kB/s 527:35:41 (1, 20.0% of 5)
+b
+67 100% 65.43kB/s 0:00:00 (2, 40.0% of 5)
+c
+0 100% 0.00kB/s 527:35:41 (3, 60.0% of 5)
+dd
+100663296 100% 42.22MB/s 0:00:02 (4, 80.0% of 5)
+sent 96 bytes received 98190 bytes 11563.06 bytes/sec
+total size is 100663363 speedup is 1024.19
+```
+
+上面的信息描述了整个的备份过程，以及总共备份数据的大小。
+
+#### 2.3.3 后台服务方式
+
+启动rsync服务，编辑`/etc/xinetd.d/rsync`文件，将其中的`disable=yes`改为`disable=no`，并重启xinetd服务，如下：
+
+```
+vi /etc/xinetd.d/rsync
+
+#default: off
+# description: The rsync server is a good addition to an ftp server, as it \
+# allows crc checksumming etc.
+service rsync {
+    disable = no
+    socket_type = stream
+    wait = no
+    user = root
+    server = /usr/bin/rsync
+    server_args = --daemon
+    log_on_failure += USERID
+}
+```
+
+```
+/etc/init.d/xinetd restart
+停止 xinetd： [确定]
+启动 xinetd： [确定]
+```
+
+创建配置文件，默认安装好rsync程序后，并不会自动创建rsync的主配置文件，需要手工来创建，
+其主配置文件为“/etc/rsyncd.conf”，创建该文件并插入如下内容：
+
+```
+vi /etc/rsyncd.conf
+
+uid=root
+gid=root
+max connections=4
+log file=/var/log/rsyncd.log
+pid file=/var/run/rsyncd.pid
+lock file=/var/run/rsyncd.lock
+secrets file=/etc/rsyncd.passwd
+hosts deny=172.16.78.0/22
+
+[www]
+comment= backup web
+path=/www
+read only = no
+exclude=test
+auth users=work
+```
+
+创建密码文件，采用这种方式不能使用系统用户对客户端进行认证，所以需要创建一个密码文件，其格式为“username:password”，
+用户名可以和密码可以随便定义，最好不要和系统帐户一致，同时要把创建的密码文件权限设置为600，这在前面的模块参数做了详细介绍。
+
+```
+echo "work:abc123" > /etc/rsyncd.passwd
+chmod 600 /etc/rsyncd.passwd
+```
+
+备份，完成以上工作，现在就可以对数据进行备份了，如下：
+
+```
+rsync -avz --progress --delete work@172.16.78.192::www /databack/experiment/rsync
+
+Password:
+receiving file list ...
+6 files to consider
+./ files...
+a
+0 100% 0.00kB/s 528:20:41 (1, 50.0% of 6)
+b
+67 100% 65.43kB/s 0:00:00 (2, 66.7% of 6)
+c
+0 100% 0.00kB/s 528:20:41 (3, 83.3% of 6)
+dd
+100663296 100% 37.49MB/s 0:00:02 (4, 100.0% of 6)
+sent 172 bytes received 98276 bytes 17899.64 bytes/sec
+total size is 150995011 speedup is 1533.75
+```
+
+恢复，当服务器的数据出现问题时，那么这时就需要通过客户端的数据对服务端进行恢复，
+但前提是服务端允许客户端有写入权限，否则也不能在客户端直接对服务端进行恢复，使用rsync对数据进行恢复的方法如下：
+
+```
+rsync -avz --progress /databack/experiment/rsync/ work@172.16.78.192::www
+
+Password:
+building file list ...
+6 files to consider
+./
+a
+b
+67 100% 0.00kB/s 0:00:00 (2, 66.7% of 6)
+c
+sent 258 bytes received 76 bytes 95.43 bytes/sec
+total size is 150995011 speedup is 452080.87
+```
+
 ### 2.4 最佳实践
 
 ## 3 同类型技术比较
