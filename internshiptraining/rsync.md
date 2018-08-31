@@ -346,7 +346,7 @@ total size is 150995011 speedup is 452080.87
 
 #### 2.4.1 部署后属主、属组变化
 
-> 方案一
+> 方案一(失败)
 
 ```
 rsync -avz --delete page/ root@172.16.78.192:www/page
@@ -363,7 +363,7 @@ rsync -avzog --delete page/ root@172.16.78.192:www/page
 
 [rsync命令介绍](https://blog.csdn.net/u010339879/article/details/54987880)
 
-> 方案二
+> 方案二(失败)
 
 使用ftp用户上传
 
@@ -373,11 +373,28 @@ rsync -avz --delete page/ ftp@172.16.78.192:www/page
 
 ftp账号无登录权限或不知道ftp账号密码
 
-> 方案三
+> 方案三(成功)
 
 将机械性修改操作写在脚本中执行
 
 [使用脚本远程登录服务器并执行操作](https://www.jianshu.com/p/d4c1ac10204d?utm_campaign)
+
+```
+# deploy.sh
+rsync -avz --delete page/ root@172.16.78.192:www/page
+expect chown.exp
+```
+
+```
+# chown.exp
+# 修改用户组权限 chown -R www:ftp page
+spawn ssh root@172.16.78.192 "
+cd www;
+chown -R www:ftp page"
+expect eof
+```
+
+成功
 
 ## 3 同类型技术比较
 
