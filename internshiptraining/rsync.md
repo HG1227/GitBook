@@ -36,6 +36,8 @@ rsync 在传输数据的过程中可以实行压缩及解压缩操作，因此�
 
 ### 2.1 安装
 
+#### 2.1.1 Linux安装
+
 Ubuntu安装: 
 
 ```
@@ -58,6 +60,107 @@ rsync的编译安装非常简单，只需要以下简单的几步：
 
 但是需要注意的是必须在服务器A和B上都安装rsync，其中A服务器上是以服务器模式运行rsync，而B上则以客户端方式运行rsync。
 这样在web服务器A上运行rsync守护进程，在B上定时运行客户程序来备份web服务器A上需要备份的内容。
+
+#### 2.1.2 Windows安装
+
+##### 2.1.2.1 服务器端启动获取 windows上实现rsync的软件（cwRsync）
+
+cwRsync是Windows 客户端GUI的一个包含Rsync的包装。您可以使用cwRsync快速远程文件备份和同步。
+
+1 [官网下载地址](https://www.itefix.net/cwrsync)
+
+下载方法：
+
+1.1 点击面页中的get，获取Free（免费版本）
+
+1.2 转跳后点击  Download cwRsync Free Edition! 进行下载
+
+![](../../assets/rsyncDownload1.png)
+
+![](../../assets/rsyncDownload2.png)
+
+2 下载完成后得到一个cwRsync_5.5.0_x86_Free.zip的压缩包
+
+包内容如下：
+
+```
+[root@backup backup]# tree cwRsync_5.5.0_x86_Free
+
+cwRsync_5.5.0_x86_Free
+├── bin
+│   ├── cygcrypto-1.0.0.dll
+│   ├── cyggcc_s-1.dll
+│   ├── cygiconv-2.dll
+│   ├── cygintl-8.dll
+│   ├── cygpopt-0.dll
+│   ├── cygssp-0.dll
+│   ├── cygwin1.dll
+│   ├── cygz.dll
+│   ├── rsync.exe
+│   ├── ssh.exe
+│   └── ssh-keygen.exe
+├── cwrsync.cmd
+├── README.cwrsync.txt
+└── README.rsync.txt
+```
+
+##### 2.1.2.2 cwrsync的使用方法
+
+1 将压缩包解压出来
+
+双击 `cwrsync[.cmd]`进行安装
+
+![](../../assets/rsyncInstall1.png)
+
+2 安装完成会有多一个home目录
+
+该目录下存放的是ssh认证信息
+
+![](../../assets/rsyncInstall2.png)
+
+到此安装完成。
+
+##### 2.1.2.3 cwrsync的使用
+
+1 在windows上打开cmd（命令提示符）
+
+打开后，将cmd的路径切换到cwrysnc的安装目录的bin目录下，作为工作目录。
+
+![](../../assets/rsyncUse.png)
+
+2 window上的推送测试
+
+```
+C:\Users\Administrator\Desktop\cwRsync_5.5.0_x86_Free\bin>rsync.exe -avzP ./cwRs
+
+ync_5.5.0_x86_Free.zip rsync_backup@172.16.1.41::backup --password-file=./rsync.
+
+password
+
+sending incremental file list
+
+cwRsync_5.5.0_x86_Free.zip
+
+      3,486,341 100%   21.11MB/s    0:00:00 (xfr#1, to-chk=0/1)
+
+ 
+
+sent 3,475,491 bytes  received 34 bytes  2,317,016.67 bytes/sec
+
+total size is 3,486,341  speedup is 1.00
+```
+
+在windows上rsync的命令与在linux上基本类似。
+
+3 服务端上检查
+
+```
+[root@backup backup]# ll cwRsync_5.5.0_x86_Free.zip
+
+-rwxrwx--- 1 rsync rsync 3486341 Oct 12 13:25 cwRsync_5.5.0_x86_Free.zip
+```
+
+至此windows上的rsync的客户端可以正常使用。
 
 ### 2.2 使用
 
