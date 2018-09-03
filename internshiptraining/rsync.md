@@ -63,7 +63,7 @@ rsync的编译安装非常简单，只需要以下简单的几步：
 
 #### 2.1.2 Windows安装
 
-##### 2.1.2.1 服务器端启动获取 windows上实现rsync的软件（cwRsync）
+##### 2.1.2.1 ~~服务器端启动获取 windows上实现rsync的软件（cwRsync）目前官方版本已收费~~
 
 cwRsync是Windows 客户端GUI的一个包含Rsync的包装。您可以使用cwRsync快速远程文件备份和同步。
 
@@ -104,7 +104,15 @@ cwRsync_5.5.0_x86_Free
 └── README.rsync.txt
 ```
 
-##### 2.1.2.2 cwrsync的使用方法
+##### 2.1.2.2 [cwrsync三方下载地址](http://dl.pconline.com.cn/download/402117.html)
+
+1 安装
+
+2 环境变量配置
+
+* 注意：windows版本目前尚未找到方式使用`git bash`调用，且在`cmd`中无法调用`sh`命令。目前暂时只能通过`cmd`直接复制部署命令进行部署。
+
+##### 2.1.2.3 cwrsync的使用方法
 
 1 将压缩包解压出来
 
@@ -120,7 +128,7 @@ cwRsync_5.5.0_x86_Free
 
 到此安装完成。
 
-##### 2.1.2.3 cwrsync的使用
+##### 2.1.2.4 cwrsync的使用
 
 1 在windows上打开cmd（命令提示符）
 
