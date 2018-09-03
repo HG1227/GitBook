@@ -504,3 +504,4 @@ expect eof
 ## 参考资料
 
 * [rsync百度百科](https://baike.baidu.com/item/rsync/80863389)
+* [rsync(在window端使用常见错误)](http://blog.51cto.com/cold2076goddess/1634825)
