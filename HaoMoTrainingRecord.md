@@ -3,7 +3,7 @@
 在毫末培训的课程记录
 
 * 4月1日培训
-    * [测试自动化](HaoMoBook/ce-shi-zi-dong-hua.md)
+    * [测试自动化](HaoMoBook/testAuto.md)
     * [NPM的使用](HaoMoBook/npmde-shi-yong.md)
     * [Gitbook的使用](HaoMoBook/GitBook.md)
     * [Git](HaoMoBook/git.md)
@@ -26,7 +26,7 @@
     * [bower](HaoMoBook/bower.md)
     * [gulp](HaoMoBook/gulp.md)
 * 5月21日培训
-    * [工作流](HaoMoBook/gong-zuo-liu.md)
+    * [工作流](HaoMoBook/activity.md)
     * [SmartClient](HaoMoBook/SmartClient.md)
 * 6月4日培训
     * [Docker](HaoMoBook/Docker.md)
