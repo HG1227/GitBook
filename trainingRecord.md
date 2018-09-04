@@ -1,0 +1,59 @@
+# 毫末培训归总记录
+
+在毫末培训的课程记录
+
+* 4月1日培训
+    * [测试自动化](TraingRecord/testAuto.md)
+    * [NPM的使用](TraingRecord/npm.md)
+    * [Gitbook的使用](TraingRecord/GitBook.md)
+    * [Git](TraingRecord/git.md)
+    * [Markdown](TraingRecord/markdown.md)
+* 4月16日培训
+    * [Navicat&Jmeteer](TraingRecord/navicatandjmeteer.md)
+    * [JEST](TraingRecord/jest.md)
+    * [KPI&OKR](TraingRecord/kpiandokr.md)
+    * [设计模式](TraingRecord/DesignPattern.md)
+* 4月23日培训
+    * [Kama](TraingRecord/kama.md)
+    * [GitLab](TraingRecord/GitLab.md)
+    * [SonarQube](TraingRecord/sonarqube.md)
+* 5月7日培训
+    * [Yarn](TraingRecord/yarn.md)
+    * [PM2](TraingRecord/pm2.md)
+    * [Istanbul](TraingRecord/istanbul.md)
+    * [codecov](TraingRecord/codecov.md)
+* 5月14日培训
+    * [bower](TraingRecord/bower.md)
+    * [gulp](TraingRecord/gulp.md)
+* 5月21日培训
+    * [工作流](TraingRecord/activity.md)
+    * [SmartClient](TraingRecord/SmartClient.md)
+* 6月4日培训
+    * [Docker](TraingRecord/Docker.md)
+* 6月18日培训
+    * [cycleJs](TraingRecord/cycleJs.md)
+    * [Nginx](TraingRecord/Nginx.md)
+* 7月2日培训
+    * [自动化接口使用](TraingRecord/portDocument.md)
+    * [Swagger使用](TraingRecord/Swagger.md)
+    * [Angular使用](TraingRecord/Angular.md)
+    * [Maven使用](TraingRecord/Maven.md)
+* 7月16日培训
+    * [Yeoman使用](TraingRecord/Yeoman.md)
+    * [react使用](TraingRecord/react.md)
+    * [swagger-codegen后端使用](TraingRecord/Swagger.md)
+* 8月13日培训
+    * [Echarts](TraingRecord/Echarts.md)
+    * [Lodash](TraingRecord/Lodash.md)
+    * [Vue](TraingRecord/Vue.md)
+* 9月10日培训
+    * [Gitbook的使用](TraingRecord/GitBook.md)
+    * [Markdown](TraingRecord/markdown.md)
+    * [Docker](TraingRecord/Docker.md)
+    * [Webpack](TraingRecord/Webpack.md)
+* 9月24日培训
+    * [项目经理培训](TraingRecord/projectManager.md)
+    * [ES6模块](TraingRecord/ES6Module.md)
+* 11月12日培训
+    * [如何提高编程技能](TraingRecord/HowCanBest.md)
+    * [培训材料撰写](TraingRecord/TrainingMaterialWriting.md)
