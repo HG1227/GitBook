@@ -4,7 +4,7 @@
 
 * 4月1日培训
     * [测试自动化](HaoMoBook/testAuto.md)
-    * [NPM的使用](HaoMoBook/npmde-shi-yong.md)
+    * [NPM的使用](HaoMoBook/npm.md)
     * [Gitbook的使用](HaoMoBook/GitBook.md)
     * [Git](HaoMoBook/git.md)
     * [Markdown](HaoMoBook/markdown.md)
@@ -12,7 +12,7 @@
     * [Navicat&Jmeteer](HaoMoBook/navicatandjmeteer.md)
     * [JEST](HaoMoBook/jest.md)
     * [KPI&OKR](HaoMoBook/kpiandokr.md)
-    * [设计模式](HaoMoBook/she-ji-mo-shi.md)
+    * [设计模式](HaoMoBook/DesignPattern.md)
 * 4月23日培训
     * [Kama](HaoMoBook/kama.md)
     * [GitLab](HaoMoBook/GitLab.md)
