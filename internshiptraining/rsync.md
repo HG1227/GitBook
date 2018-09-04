@@ -63,7 +63,7 @@ rsync的编译安装非常简单，只需要以下简单的几步：
 
 #### 2.1.2 Windows安装
 
-##### 2.1.2.1 ~~服务器端启动获取 windows上实现rsync的软件（cwRsync）目前官方版本已收费~~
+##### 2.1.2.1 ~~rsync的客户端官方版本(cwRsync)目前官方版本已收费~~
 
 cwRsync是Windows 客户端GUI的一个包含Rsync的包装。您可以使用cwRsync快速远程文件备份和同步。
 
@@ -104,23 +104,15 @@ cwRsync_5.5.0_x86_Free
 └── README.rsync.txt
 ```
 
-##### 2.1.2.2 [cwrsync三方下载地址](http://dl.pconline.com.cn/download/402117.html)
+2 rsync的安装(cwRsync)
 
-1 安装
-
-2 环境变量配置
-
-* 注意：windows版本目前尚未找到方式使用`git bash`调用，且在`cmd`中无法调用`sh`命令。目前暂时只能通过`cmd`直接复制部署命令进行部署。
-
-##### 2.1.2.3 cwrsync的使用方法
-
-1 将压缩包解压出来
+2.1 将压缩包解压出来
 
 双击 `cwrsync[.cmd]`进行安装
 
 ![](../../assets/rsyncInstall1.png)
 
-2 安装完成会有多一个home目录
+2.2 安装完成会有多一个home目录
 
 该目录下存放的是ssh认证信息
 
@@ -128,15 +120,15 @@ cwRsync_5.5.0_x86_Free
 
 到此安装完成。
 
-##### 2.1.2.4 cwrsync的使用
+3 cwrsync的使用
 
-1 在windows上打开cmd（命令提示符）
+3.1 在windows上打开cmd（命令提示符）
 
 打开后，将cmd的路径切换到cwrysnc的安装目录的bin目录下，作为工作目录。
 
 ![](../../assets/rsyncUse.png)
 
-2 window上的推送测试
+3.2 window上的推送测试
 
 ```
 C:\Users\Administrator\Desktop\cwRsync_5.5.0_x86_Free\bin>rsync.exe -avzP ./cwRs
@@ -160,7 +152,7 @@ total size is 3,486,341  speedup is 1.00
 
 在windows上rsync的命令与在linux上基本类似。
 
-3 服务端上检查
+3.3 服务端上检查
 
 ```
 [root@backup backup]# ll cwRsync_5.5.0_x86_Free.zip
@@ -169,6 +161,69 @@ total size is 3,486,341  speedup is 1.00
 ```
 
 至此windows上的rsync的客户端可以正常使用。
+
+##### 2.1.2.2 rsync的客户端三方版本(cwRsync)
+
+1 [第三方下载地址](http://dl.pconline.com.cn/download/402117.html)
+
+2 下载完成后得到一个cwRsync的安装包
+
+安装后包内容如下：
+
+```
+[root@backup backup]# tree cwRsync
+
+cwRsync
+├── bin
+│   ├── chmod.exe
+│   ├── cygcrypto-0.9.8.dll
+│   ├── cyggcc_s-1.dll
+│   ├── cygiconv-2.dll
+│   ├── cygintl-3.dll
+│   ├── cygintl-8.dll
+│   ├── cygpopt-0.dll
+│   ├── cygminires.dll
+│   ├── cygpath.exe
+│   ├── cygssp-0.dll
+│   ├── cygwin1.dll
+│   ├── cygz.dll
+│   ├── plink.exe
+│   ├── puttygen.exe
+│   ├── rsync.exe
+│   ├── sechaw.exe
+│   ├── SecureChanne|Wizard.exe
+│   ├── ssh.exe
+│   └── ssh-keygen.exe
+│   └── ssh-keyscan.exe
+├── doc
+│   ├── plink.html
+│   ├── puttygen.html
+│   ├── rsync.html
+│   ├── sechaw.html
+│   ├── ssh.html
+│   └── ssh-keygen.html
+├── cwrsync.cmd
+├── license.txt
+└── uninstall.exe
+```
+
+2 环境变量配置
+
+右键我的电脑->属性->高级系统设置->环境变量->环境变量选择`PATH`系统变量选择`PATH`->编辑->在结尾添加`cwRsync`的`bin`目录
+
+例如：
+
+```
+C:\Program Files (x86)\cwRsync\bin
+```
+
+* 注意：windows版本目前尚未找到方式使用`git bash`调用，且在`cmd`中无法调用`sh`命令。目前暂时只能通过`cmd`直接复制部署命令进行部署。
+
+| \ | cmd | git bash |
+|:---:|:----:|:----:|
+| sh | X | √ |
+| rsync | √ | X |
+| expect | X | ? |
 
 ### 2.2 使用
 
@@ -509,7 +564,21 @@ expect eof
 
 ## 3 同类型技术比较
 
+> Rsync、Unison及DRBD的比较
+
+| \ | Rsync | Unison | DRBD |
+|:---|:----|:----|:----|
+| 简介 | 远程数据同步工具，可通过LAN/WAN快速同步多台主机间的文件。 目前由rsync.samba.org维护 | Unison是windows和unix平台下都可以使用的双向文件同步工具，它能使两个文件夹（本地或网络 上的）保持内容的一致。目前已停止开发。 | DRBD，是分布式复制块设备，是一种通过TCP/IP网络实现块设备数据实时镜像的方案。,可以被用于高可用(HA)之中.它类似于一个网络RAID-1功能. |
+| 功能及特点 | 1.镜像保存整个目录树和文件系统；<br>2.保持原来文件的权限、时间、软硬链接等；<br>3.无须特殊权限即可安装；<br>4.优化的流程，文件传输效率高；使用“Rsync算法”同步两个文件的不同部分，而不是每次都整份传送；<br>5.可以使用rsh、ssh等方式来传输文件，也可以通过直接的socket连接；<br>6.支持匿名传输。 | 1、跨平台使用；<br>2、对内核和用户 权限 没有特别要求；<br>3、支持双向同步，能自动处理两份拷贝中更新没有冲突的部分，有冲突的部分将会显示出来让用户选择更新策略；<br>4、可以直接使用 socket 连接或安全的 ssh 连接方式，对带宽的要求不高，使用类似 rsync 的压缩传输协议。 | 1、DRBD是一种块设备<br>2、可用于高可用集群（HA）<br>3、通过网络实现块设备数据实时镜像<br>4、类似于一个网络RAID-1 |
+| 使用平台 | 类unix平台(Linux、Solaris、BSD) Windows平台相应版本：cwRsync | Windows平台 Unix/Linux平台 | Linux平台 |
+| 依赖性 | 无 | 无 | 需要内核支持 |
+| 传输方式 | rsh、ssh、socket连接、daemon模式 | socket 连接或安全的 ssh 连接方式 | 通过TCP/IP网络实现块设备数据实时镜像 |
+| 稳定性 | 高 | 一般（超时严重） | 高 |
+| 同步速度 | 快 | 小文件同步速度：快 大文件同步速度：一般 | 小文件同步速度：快 大文件同步速度：慢 |
+| 缺点 | 不支持双向传输 | 超时严重 | 不支持双向传输，传输速度慢 |
+
 ## 参考资料
 
 * [rsync百度百科](https://baike.baidu.com/item/rsync/80863389)
 * [rsync(在window端使用常见错误)](http://blog.51cto.com/cold2076goddess/1634825)
+* [Rsync、Unison及DRBD的比较](http://qq85609655.iteye.com/blog/1879416)
