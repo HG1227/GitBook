@@ -107,7 +107,7 @@
 
 ## 3 网络管理
 
-### 3.1 ssh-copy-id命令
+### 3.1 ssh-copy-id命令(免密登录)
 
 `ssh-copy-id`命令可以把本地主机的公钥复制到远程主机的`authorized_keys`文件上，
 `ssh-copy-id`命令也会给远程主机的用户主目录（home）和`~/.ssh`, 和`~/.ssh/authorized_keys`设置合适的权限。
