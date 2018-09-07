@@ -562,6 +562,14 @@ expect eof
 
 成功
 
+#### 2.4.2 同步服务器文件至本地
+
+同步服务器www/page下的文件内容至本地page文件夹下
+
+```vue
+rsync -avz root@172.16.78.192:www/page page
+```
+
 ## 3 同类型技术比较
 
 > Rsync、Unison及DRBD的比较
