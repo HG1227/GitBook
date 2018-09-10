@@ -210,14 +210,12 @@ var instance = axios.create({
   // 后面数组中的函数必须返回一个字符串，或 ArrayBuffer，或 Stream
   transformRequest: [function (data) {
     // 对 data 进行任意转换处理
-
     return data;
   }],
 
   // `transformResponse` 在传递给 then/catch 前，允许修改响应数据
   transformResponse: [function (data) {
     // 对 data 进行任意转换处理
-
     return data;
   }],
 
@@ -304,7 +302,7 @@ var instance = axios.create({
 
   // 'proxy' 定义代理服务器的主机名称和端口
   // `auth` 表示 HTTP 基础验证应当用于连接代理，并提供凭据
-  // 这将会设置一个 `Proxy-Authorization` 头，覆写掉已有的通过使用 `header` 设置的自定义 `Proxy-Authorization` 头。
+  // 这将会设置一个 `Proxy-Authorization` 头，覆写掉已有的通用 `header` 设置的自定义 `Proxy-Authorization` 头。
   proxy: {
     host: '127.0.0.1',
     port: 9000,
@@ -534,7 +532,13 @@ import axios from 'axios';
 axios.get('/user?ID=12345');
 ```
 
-## 3 同类型技术比较
+## 3 最佳实践
+
+### 3.1 后台接参需要form传参
+
+使用qs处理参数
+
+## 4 同类型技术比较
 
 > jQuery的ajax、axios和fetch的比较
 
@@ -623,3 +627,4 @@ axios 是一个基于Promise 用于浏览器和 nodejs 的 HTTP 客户端，它�
 
 * [Axios 中文说明](https://www.kancloud.cn/yunye/axios/234845)
 * [ajax、axios、fetch之间的详细区别以及优缺点](https://blog.csdn.net/twodogya/article/details/80223508)
+* [axios面试题及答案](http://www.bslxx.com/a/vue/mianshiti/2017/1107/1409.html)
