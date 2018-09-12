@@ -32,6 +32,7 @@
     * [PM2](TraingRecord/pm2.md)
     * [自动化接口使用](TraingRecord/portDocument.md)
     * [项目经理培训](TraingRecord/projectManager.md)
+    * [Qs](TraingRecord/Qs.md)
     * [报价策略](TraingRecord/QuoteStrategy.md)
     * [react使用](TraingRecord/react.md)
     * [SmartClient](TraingRecord/SmartClient.md)
