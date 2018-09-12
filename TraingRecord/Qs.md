@@ -22,6 +22,24 @@ qs 是一个增加了一些安全性的查询字符串解析和序列化字符�
 
 ### 2.1 安装
 
+#### 2.1.1 npm
+
+qs是一个npm仓库所管理的包,可通过npm命令进行安装. 
+
+```
+npm install qs
+```
+
+#### 2.1.2 script引入
+
+qs是一个npm仓库所管理的包,可通过npm命令进行安装. 
+
+```
+<script src="https://cdn.bootcss.com/qs/6.5.1/qs.min.js"></script>
+```
+
+[bootcdn](https://www.bootcdn.cn/qs/)
+
 ### 2.2 使用
 
 ## 3 最佳实践
@@ -30,4 +48,8 @@ qs 是一个增加了一些安全性的查询字符串解析和序列化字符�
 
 ## 参考资料
    
+* [npm-qs](https://www.npmjs.com/package/qs)
 * [npm qs 模块(中文)](https://blog.csdn.net/sansan_7957/article/details/82227040)
+* [通过script标签引入qs](https://blog.csdn.net/weixin_41769582/article/details/80063517)
+* [qs.parse()、qs.stringify()使用方法](https://blog.csdn.net/suwu150/article/details/78333452)
+* [qs.js - 更好的处理url参数](https://www.cnblogs.com/small-coder/p/9115972.html)
