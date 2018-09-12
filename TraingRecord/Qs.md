@@ -38,7 +38,7 @@ qs是一个npm仓库所管理的包,可通过npm命令进行安装.
 <script src="https://cdn.bootcss.com/qs/6.5.1/qs.min.js"></script>
 ```
 
-[bootcdn](https://www.bootcdn.cn/qs/)
+[qs不同版本bootcdn链接](https://www.bootcdn.cn/qs/)
 
 ### 2.2 使用
 
