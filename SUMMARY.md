@@ -19,6 +19,7 @@
     * [gulp](TraingRecord/gulp.md)
     * [如何提高编程技能](TraingRecord/HowCanBest.md)
     * [Istanbul](TraingRecord/istanbul.md)
+    * [JavaScript标准编码风格](TraingRecord/JSStandardStyle.md)
     * [JEST](TraingRecord/jest.md)
     * [Kama](TraingRecord/kama.md)
     * [KPI&OKR](TraingRecord/kpiandokr.md)
