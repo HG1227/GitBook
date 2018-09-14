@@ -4,7 +4,7 @@
 
 测试分层：
 
-![](https://hxgqh.gitbooks.io/testautomization/content/files/TestPyramid.png "TestPyramid")
+![](../../assets/TestPyramid.png "TestPyramid")
 
 #### 1.1.1 TDD {#111-tdd}
 
@@ -76,7 +76,7 @@ Sonar
 
 ### 前端 {#前端}
 
-![](https://hxgqh.gitbooks.io/testautomization/content/files/前端测试工具.svg "前端测试工具")
+![](../../assets/WebTestTool.svg "前端测试工具")
 
 #### 参考 {#参考}
 
@@ -84,7 +84,7 @@ Sonar
 
 ### Java {#java}
 
-![](https://hxgqh.gitbooks.io/testautomization/content/files/Java测试工具.svg "Java测试工具")
+![](../../assets/JavaTestTool.svg "Java测试工具")
 
 ## 参考资料 {#参考资料}
 
