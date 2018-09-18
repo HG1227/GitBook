@@ -148,3 +148,16 @@ var silent = true,
 
 #### [答案]
 * C
+
+## [选择题] 11. 下列选项不符合标准编码风格的是
+#### 标签
+* JSStyle
+
+#### [选项]
+* A.`let name = undefined`
+* B.`let name = null`
+* C.`let name = 'John'`
+* D.`var name = 'John'`
+
+#### [答案]
+* A
