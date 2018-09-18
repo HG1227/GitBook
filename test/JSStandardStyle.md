@@ -161,3 +161,42 @@ var silent = true,
 
 #### [答案]
 * A
+
+## [选择题] 12. 下列选项符合标准编码风格的是
+#### 标签
+* JSStyle
+
+#### [选项]
+* A.`for (let i = 0 ;i < items.length ;i++) {...}`
+* B.`for (let i = 0; i < items.length; i++) {...}`
+* C.`for (let i = 0 ; i < items.length ; i++) {...}`
+* D.`for ( let i = 0 ;i < items.length ;i++ ) {...}`
+
+#### [答案]
+* B
+
+## [选择题] 12. 下列选项符合标准编码风格的是
+#### 标签
+* JSStyle
+
+#### [选项]
+* A.`//comment`
+* B.`// comment`
+* C.`/*comment*/`
+* D.`/* comment */`
+
+#### [答案]
+* BD
+
+## [选择题] 13. 下列选项符合标准编码风格的是
+#### 标签
+* JSStyle
+
+#### [选项]
+* A.`if (price === NaN) { }`
+* B.`if (isNaN(price)) { }`
+* C.`if (age === 42) { }`
+* D.`if (42 === age) { }`
+
+#### [答案]
+* BC
