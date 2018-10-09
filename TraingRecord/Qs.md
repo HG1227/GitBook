@@ -575,8 +575,6 @@ qs.stringify(json, {allowDots: true});
 //结果 'a.b.c=d&a.b.e=f'
 ```
 
-## 4 同类型技术比较
-
 ## 参考资料
    
 * [npm-qs](https://www.npmjs.com/package/qs)
