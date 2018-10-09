@@ -411,9 +411,6 @@ qs.stringify({ a: ['b', 'c', 'd'], e: 'f' }, { filter: ['a', 0, 2] });
 // 'a[0]=b&a[2]=d'
 ```
 
-```
-
-```
 ### 2.3 示例
 
 #### 2.3.1 qs.parse()
@@ -506,6 +503,77 @@ console.log(Qs.stringify(obj));
 如上所示，前者是采用JSON.stringify(param)进行处理，后者是采用Qs.stringify(param)进行处理的。
 
 ## 3 最佳实践
+
+### 3.1 qs.stringify进阶使用
+
+* 基本用法
+
+`qs.stringify` 则和 `qs.parse` 相反，是把一个参数对象格式化为一个字符串。
+
+```
+let params = { c: 'b', a: 'd' };
+qs.stringify(params)
+
+// 结果是
+'c=b&a=d'
+```
+
+* 排序
+
+甚至可以对格式化后的参数进行排序：
+
+```
+let params = { c: 'd', a: 'b' };
+qs.stringify(params, (a,b) => a.localeCompare(b))
+
+// 结果是
+'a=b&c=d'
+```
+
+* 指定数组编码格式
+
+``` 
+let params = [1, 2, 3];
+
+// indices(默认)
+qs.stringify({a: params}, {
+    arrayFormat: 'indices'
+})
+// 结果是
+'a[0]=1&a[1]=2&a[2]=3'
+
+// brackets 
+qs.stringify({a: params}, {
+    arrayFormat: 'brackets'
+})
+// 结果是
+'a[]=1&a[]=2&a[]=3'
+
+// repeat
+qs.stringify({a: params}, {
+    arrayFormat: 'repeat'
+})
+// 结果是
+'a=1&a=2&a=3'
+```
+
+* 处理json格式的参数
+
+在默认情况下，json格式的参数会用 `[]` 方式编码，
+
+```
+let json = { a: { b: { c: 'd', e: 'f' } } };
+
+qs.stringify(json);
+//结果 'a[b][c]=d&a[b][e]=f'
+```
+
+但是某些服务端框架，并不能很好的处理这种格式，所以需要转为下面的格式
+
+```
+qs.stringify(json, {allowDots: true});
+//结果 'a.b.c=d&a.b.e=f'
+```
 
 ## 4 同类型技术比较
 
