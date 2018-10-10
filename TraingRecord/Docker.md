@@ -6,6 +6,7 @@
 ```
 更改历史
 
+* 2018-10-10	高天阳	    容器自启动
 * 2018-8-10	    高天阳	    修改WordPress实例
 * 2018-5-31	    高天阳	    补充实例
 * 2018-2-5	    高天阳	    补充命令内容
@@ -758,7 +759,53 @@ $ kill -9 [PID] // 查看8081端口
 ps. kill -9 1628
 ```
 
+### 6.3 容器开机自动启动
+
+部署项目服务器时，为了应对停电等情况影响正常web项目的访问，会把Docker容器设置为开机自动启动。
+
+Docker提供了restart policy机制，可以在容器退出或者Docker重启时控制容器能够自启动。
+这种Restart policy可以保证相关容器按照正确顺序启动。
+虽然也可以通过进程监控的方式(如systemd)来完成这种动作，但Docker还是建议尽量避免使用进程监控的方式来 "自启动" 容器。
+
+Docker的 Restart policy与docker命令的--live-restore启动标志还有区别：
+--live-restore标志可以在Docker升级的时候保证容器继续运行，但是网络以及用户终端输入会被中断。
+
+那到底什么是restart policy呢。我们来看看实际的情况吧。 
+
+#### 使用restart policy
+
+restart policy在使用docker run启动容器时通过--restart标志指定，这个标志有多个value可选，不同的value有不同的行为，如下表所列：
+
+|状态|含义|
+
+
+在使用docker run启动容器时，使用--restart参数来设置：
+
+```
+$ docker run -m 512m --memory-swap 1G -it -p 58080:8080 --restart=always   
+--name bvrfis --volumes-from logdata mytomcat:4.0 /root/run.sh  
+```
+
+restart具体参数值详细信息：
+
+* no -  容器退出时，不重启容器；
+* on-failure - 只有在非0状态退出时才从新启动容器；
+* always - 无论退出状态是如何，都重启容器；
+
+如果创建时未指定 --restart=always ,可通过update 命令设置
+
+```
+$ docker update --restart=always [容器ID/容器别名]
+```
+
+还可以在使用on - failure策略时，指定Docker将尝试重新启动容器的最大次数。默认情况下，Docker将尝试永远重新启动容器。
+
+```
+$ sudo docker run --restart=on-failure:10 redis
+```
+
 ## 参考资料
 
 * [RUNOOB Docker教程](http://www.runoob.com/docker/docker-tutorial.html)
 * [Docker中文文档](http://www.docker.org.cn/)
+* [Docker容器开机自动启动](http://blog.csdn.net/lin521lh/article/details/78413631)
