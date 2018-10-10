@@ -776,8 +776,40 @@ Docker的 Restart policy与docker命令的--live-restore启动标志还有区别
 
 restart policy在使用docker run启动容器时通过--restart标志指定，这个标志有多个value可选，不同的value有不同的行为，如下表所列：
 
-|状态|含义|
+| 状态 | 含义 |
+| ------ | ------ |
+| no | 不自动重启容器. (默认value) |
+| on-failure | 容器发生error而退出(容器退出状态不为0)重启容器 |
+| unless-stopped | 在容器已经stop掉或Docker stoped/restarted的时候才重启容器 |
+| always | 在容器已经stop掉或Docker stoped/restarted的时候才重启容器 |
 
+举个例子：下面的命令启动一个Redis容器，当Redis容器停止后或者Docker被重启时，Redis容器都会重启。
+
+```
+html">$ docker run -dit --restart unless-stopped redis
+```
+
+#### Restart policy细节
+
+使用restart policies时需要注意如下细节：
+
+1. 容器只有在成功启动后restart policy才能生效。这里的"成功启动"是指容器处于up至少10秒且已经处于docker监管。
+这是避免没有成功启动的容器陷入restart的死循环。 
+1. 如果手动（manually）的stop(与前面的explicitly stopped有何区别)一个容器，容器设置的restart policy将会被忽略，
+除非Docker daemon重启或者容器手动重启。这是避免了另外一种死循环。 
+1. restart policies只能用于容器，对于swarm services其restart policies有不通过的配置。 
+
+参考: flags related to service restart 
+
+#### 进程监控
+
+如果上面讲的restart policies无法满足需求，也可以采用进程监控的管理方案，如upstart，systemd或者supervisor等等。 
+
+这种方案中，进程监控服务运行在容器中。它可以监控一个进程是否运行，并可以在此进程没有运行的时候去启动该进程。
+而这发生的一切Docker都毫无知觉。 
+Docker不推荐此种方法来进行进程监控，理由很简单，这种方法和系统平台甚至linux发行版相关。
+
+#### 自启动实例：
 
 在使用docker run启动容器时，使用--restart参数来设置：
 
@@ -785,12 +817,6 @@ restart policy在使用docker run启动容器时通过--restart标志指定，�
 $ docker run -m 512m --memory-swap 1G -it -p 58080:8080 --restart=always   
 --name bvrfis --volumes-from logdata mytomcat:4.0 /root/run.sh  
 ```
-
-restart具体参数值详细信息：
-
-* no -  容器退出时，不重启容器；
-* on-failure - 只有在非0状态退出时才从新启动容器；
-* always - 无论退出状态是如何，都重启容器；
 
 如果创建时未指定 --restart=always ,可通过update 命令设置
 
@@ -809,3 +835,4 @@ $ sudo docker run --restart=on-failure:10 redis
 * [RUNOOB Docker教程](http://www.runoob.com/docker/docker-tutorial.html)
 * [Docker中文文档](http://www.docker.org.cn/)
 * [Docker容器开机自动启动](http://blog.csdn.net/lin521lh/article/details/78413631)
+* [Docker容器自启动](https://yq.aliyun.com/ziliao/283518?spm=a2c4e.11155472.blogcont.16.347715b92QS06R)
