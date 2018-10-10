@@ -786,7 +786,7 @@ restart policy在使用docker run启动容器时通过--restart标志指定，�
 举个例子：下面的命令启动一个Redis容器，当Redis容器停止后或者Docker被重启时，Redis容器都会重启。
 
 ```
-html">$ docker run -dit --restart unless-stopped redis
+$ docker run -dit --restart unless-stopped [容器ID/容器别名]
 ```
 
 #### Restart policy细节
@@ -827,7 +827,7 @@ $ docker update --restart=always [容器ID/容器别名]
 还可以在使用on - failure策略时，指定Docker将尝试重新启动容器的最大次数。默认情况下，Docker将尝试永远重新启动容器。
 
 ```
-$ sudo docker run --restart=on-failure:10 redis
+$ sudo docker run --restart=on-failure:10 [容器ID/容器别名]
 ```
 
 ## 参考资料
