@@ -68,7 +68,7 @@ JavaScript 没有官方的编码风格指南，或许 Douglas Crockford 的 The 
 * 使用两个空格 – 进行缩进
 * 字符串使用单引号 – 需要转义的地方除外
 * 不再有冗余的变量 – 这是导致 大量 bug 的源头!
-* 无分号 – 这里有3篇文章说明不用分号的好处：[文章1](http://inimino.org/~inimino/blog/javascript_semicolons) [文章2](https://www.youtube.com/watch?v=gsfbh17Ax9I)
+* 无分号 – 这里有2篇文章说明不用分号的好处：[文章1](http://inimino.org/~inimino/blog/javascript_semicolons) [文章2](https://www.youtube.com/watch?v=gsfbh17Ax9I)
 * 行首不要以 `(`, `[`, or ``` ` ``` 开头
 * 这是省略分号时唯一会造成问题的地方 – 工具里已加了自动检测！
 * 关键字后加空格 `if (condition) { ... }`
