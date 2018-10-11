@@ -131,7 +131,7 @@ ssh-copy-id root@172.16.78.192
 ssh-copy-id -i ~/.ssh/id_rsa.pub root@172.16.78.192
 ```
 
-## 参考资料:
+## 参考资料
 
 * [LINUX下常用SHELL指令](http://www.cnblogs.com/nezha/p/3239601.html)
 * [linux命令大全](http://man.linuxde.net/par/5)
