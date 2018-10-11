@@ -19,7 +19,9 @@
 
 视频
 
-![](../../assets/tmate.mov)
+![](../../assets/tmate.mp4)
+
+<iframe width="560" height="315" src="https://mitudegaoyang.gitbooks.io/mybook/assets/tmate.mp4" frameborder="0" allowfullscreen></iframe>
 
 [`tmate`](https://tmate.io/)的意思是`teammates`，它是`tmux`的一个分支，并且使用相同的配置信息（例如快捷键配置，配色方案等）。
 它是一个终端多路复用器，同时具有即时分享终端的能力。它允许在单个屏幕中创建并操控多个终端，同时这些终端还能与其他同事分享。
