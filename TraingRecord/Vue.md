@@ -21,7 +21,7 @@ Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模�
 2.在用 Vue.js 构建大型应用时推荐使用 NPM 安装， NPM 能很好地和诸如Webpack或Browserify模块打包器配合使用。 Vue.js 也提供配套工具来开发单文件组件。
 
 #### 最新稳定版
-```angular2html
+```
 $ npm install vue
 Bower 只提供 UMD 构建。
 ```
@@ -35,15 +35,15 @@ $ bower install vue
 Vue.js 提供一个官方命令行工具，可用于快速搭建大型单页应用。该工具提供开箱即用的构建工具配置，带来现代化的前端开发流程。只需几分钟即可创建并启动一个带热重载、保存时静态检查以及可用于生产环境的构建配置的项目：
 
 * 全局安装 vue-cli
-```angular2html
+```
 $ npm install --global vue-cli
 ```
 * 创建一个基于 webpack 模板的新项目
-```angular2html
+```
 $ vue init webpack my-project
 ```
 * 安装依赖，走你
-```angular2html
+```
 $ cd my-project
 $ npm install
 $ npm run dev
@@ -71,7 +71,7 @@ $ npm run dev
 更新元素的innerHTML。注意：内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译。如果试图使用v-html组合模板,可以重新考虑是否通过使用组件来替代。
 在网站上动态渲染任意 HTML 是非常危险的，因为容易导致XSS 攻击。只在可信内容上使用v-html，永不用在用户提交的内容上。
 示例：
-```angular2html
+```
 <div v-html="html"></div>
 ```
 参考：数据绑定语法 - 插值
@@ -122,7 +122,7 @@ v-if也是惰性的：如果在初始渲染时条件为假，则什么也不做�
 用法:
 
 表示v-if的 “else if 块”。可以链式调用。
-```angular2html
+```
 <div v-if="type === 'A'">
   A
 </div>
@@ -143,19 +143,19 @@ v-if也是惰性的：如果在初始渲染时条件为假，则什么也不做�
 用法：
 
 基于源数据多次渲染元素或模板块。此指令之值，必须使用特定语法alias in expression，为当前遍历的元素提供别名：
-```angular2html
+```
 <div v-for="item in items">
   {{ item.text }}
 </div>
 ```
 另外也可以为数组索引指定别名（或者用于对象的键）：
-```angular2html
+```
 <div v-for="(item, index) in items"></div>
 <div v-for="(val, key) in object"></div>
 <div v-for="(val, key, index) in object"></div>
 ```
 v-for默认行为试着不改变整体，而是替换元素。迫使其重新排序的元素,您需要提供一个key的特殊属性:
-```angular2html
+```
 <div v-for="item in items" :key="item.id">
   {{ item.text }}
 </div>
@@ -239,7 +239,7 @@ element.addEventListener(<event-name>, <callback>, <use-capture>);
 
 示例：
 
-```angular2html
+```
 <!-- 方法处理器 -->
 <button v-on:click="doThis"></button>
 <!-- 对象语法 (2.4.0+) -->
@@ -265,7 +265,7 @@ element.addEventListener(<event-name>, <callback>, <use-capture>);
 ```
 
 在子组件上监听自定义事件（当子组件触发 “my-event” 时将调用事件处理器）：
-```angular2html
+```
 <my-component @my-event="handleThis"></my-component>
 <!-- 内联语句 -->
 <my-component @my-event="handleThis(123, $event)"></my-component>
@@ -327,7 +327,7 @@ element.addEventListener(<event-name>, <callback>, <use-capture>);
 ```
 
 .camel修饰符允许在使用 DOM 模板时将v-bind属性名称驼峰化，例如 SVG 的viewBox属性：
-```angular2html
+```
 <svg :view-box.camel="viewBox"></svg>
 ```
 
@@ -343,7 +343,7 @@ Class 与 Style 绑定
 预期：随表单控件类型不同而不同。
 限制：
 
-```angular2html
+```
 <inpit></inpit>
 <select></select>
 <textarea></textarea>
@@ -371,7 +371,7 @@ components
 
 跳过这个元素和它的子元素的编译过程。可以用来显示原始 Mustache 标签。跳过大量没有指令的节点会加快编译。
 示例：
-```angular2html
+```
 <span v-pre>{{ "this will not be compiled" }}</span>
 ```
 
@@ -382,7 +382,7 @@ components
 这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如`[v-cloak]` { display: none }一起用时，这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕。
 示例：
 
-```angular2html
+```
 [v-cloak]{
   display: none;
 }
@@ -397,7 +397,7 @@ components
 详细：
 
 只渲染元素和组件一次。随后的重新渲染,元素/组件及其所有的子节点将被视为静态内容并跳过。这可以用于优化更新性能。
-```angular2html
+```
 <!-- 单个元素 -->
 <span v-once>This will never change: {{msg}}</span>
 <!-- 有子元素 -->
@@ -422,7 +422,7 @@ components
 
 除了默认设置的核心指令( v-model 和 v-show ),Vue 也允许注册自定义指令。注意，在 Vue2.0 里面，代码复用的主要形式和抽象是组件——然而，有的情况下,你仍然需要对纯 DOM 元素进行底层操作,这时候就会用到自定义指令。
 下面这个例子将聚焦一个 input 元素,代码如下：
-```angular2html
+```
 // 注册一个全局自定义指令 v-focus
 Vue.directive('focus', {
   // 当绑定元素插入到 DOM 中。
@@ -434,7 +434,7 @@ Vue.directive('focus', {
 ```
 
 然后你可以在模板中任何元素上使用新的 v-focus 属性：
-```angular2html
+```
 <input v-focus>
 ```
 
@@ -463,7 +463,7 @@ vnode: Vue 编译生成的虚拟节点，查阅VNode API了解更多详情。
 oldVnode: 上一个虚拟节点，仅在update和componentUpdated钩子中可用。
 样例：
 
-```angular2html
+```
 <div id="hook-arguments-example" v-demo:foo.a.b="message"></div>
 Vue.directive('demo', {
   bind: function (el, binding, vnode) {
@@ -492,7 +492,7 @@ vnode keys: tag, data, children, text, elm, ns, context, functionalContext, key,
 ### 4.4 函数简写
 
 大多数情况下，我们可能想在bind和update钩子上做重复动作，并且不想关心其它的钩子函数。可以这样写:
-```angular2html
+```
 Vue.directive('color-swatch', function (el, binding) {
   el.style.backgroundColor = binding.value
 })
@@ -501,7 +501,7 @@ Vue.directive('color-swatch', function (el, binding) {
 4.5 对象自变量
 
 如果指令需要多个值，可以传入一个 JavaScript 对象字面量。记住，指令函数能够接受所有合法类型的 JavaScript 表达式。
-```angular2html
+```
 <div v-demo="{ color: 'white', text: 'hello!' }"></div>
 Vue.directive('demo', function (el, binding) {
   console.log(binding.value.color) // => "white"
@@ -512,7 +512,7 @@ Vue.directive('demo', function (el, binding) {
 ## 第五章 过滤器
 
 Vue.js 允许你自定义过滤器，可被用作一些常见的文本格式化。过滤器可以用在两个地方：mustache 插值和v-bind表达式。过滤器应该被添加在 JavaScript 表达式的尾部，由“管道”符指示：
-```angular2html
+```
 <!-- in mustaches -->
 {{ message | capitalize }}
 <!-- in v-bind -->
@@ -521,7 +521,7 @@ Vue.js 允许你自定义过滤器，可被用作一些常见的文本格式化�
 
 过滤器函数总接受表达式的值 (之前的操作链的结果) 作为第一个参数。在这个例子中，capitalize过滤器函数将会收到message
 的值作为第一个参数。
-```angular2html
+```
 new Vue({
   // ...
   filters: {
@@ -535,13 +535,13 @@ new Vue({
 ```
 
 过滤器可以串联：
-```angular2html
+```
 {{ message | filterA | filterB }}
 ```
 
 在这个例子中，filterA拥有单个参数，它会接收message的值，然后调用filterB，且filterA的处理结果将会作为filterB的单个参数传递进来。
 过滤器是 JavaScript 函数，因此可以接受参数：
-```angular2html
+```
 {{ message | filterA('arg1', arg2) }}
 ```
 
