@@ -9,3 +9,4 @@ XMLhHttpRequest对象
     var XHR = new XMLHttpRequest();
 (```)
 Http 无状态服务 不建立持久的链接
+123
