@@ -6,10 +6,11 @@
 ```
 更改历史
 
-* 2018-1-7	    高天阳	gitbook serve报错处理方法
-* 2017-11-12	高天阳	增加类比内容，更改页面格式
-* 2017-7-15	    高天阳	更改内容
-* 2017-6-1      江伟	    初始化文档
+* 2018-09-14	    高天阳	gitbook生成PDF
+* 2018-01-07	    高天阳	gitbook serve报错处理方法
+* 2017-11-12	    高天阳	增加类比内容，更改页面格式
+* 2017-07-15	    高天阳	更改内容
+* 2017-06-01        江伟	    初始化文档
 
 ```
 
@@ -352,6 +353,53 @@ $ gitbook build
 $ gitbook serve
 ```
 
+#### 2.4.4 gitbook生成pdf
+
+安装calibre插件
+
+玩过kindle的都知道，calibre是一款非常方便的开源电子书转换软件。在这里，我们也是用到ebook-convert这个插件。
+
+首先在calibre官网下载插件，[插件下载地址](https://calibre-ebook.com/download)。下载适合自己系统的版本。
+
+下载到电脑之后我做了很多尝试，刚下载之后我兴冲冲的去使用`gitbook pdf .mypdf.pdf`指令，结果发现提示ebook-convert未安装。
+
+这里我通过咨询了一些大神，在这个过程中他们给了我很大的帮助。也查看了很多教程，所有教程中都说了两个问题
+
+将安装的calibre放在系统应用中，然后将app添加到path中。
+
+> 这个说实话我也没怎么看懂，但是下面我会详细的说这一步如何操作。
+
+执行一个命令
+
+```
+sudo ln -s /Applications/calibre.app/Contents/MacOS/ebook-convert /usr/local/bin
+```
+
+以上两部我都做了，最终也成功的将Gitbook导出了PDF，但具体是哪一步起了作用，我估计是第二步，不过在教程中我优先推荐使用第二步。
+第二步遇到的坑是，在网上我们找到的教程只是输入`ln -s /Applications/calibre.app/Contents/MacOS/ebook-convert /usr/local/bin`，
+但是执行多次都没有结果，WIN系统执行这步可能已经正确了。因为Mac环境权限的原因，这里加入sudo重新执行即可。
+
+执行完成之后，重新进入书籍目录。
+
+``` 
+huixingdeMacBook-Air:import huixing$ cd jianli
+huixingdeMacBook-Air:jianli huixing$ gitbook pdf . jianli.pdf
+info: 7 plugins are installed 
+info: 6 explicitly listed 
+info: loading plugin "highlight"... OK 
+info: loading plugin "search"... OK 
+info: loading plugin "lunr"... OK 
+info: loading plugin "sharing"... OK 
+info: loading plugin "fontsettings"... OK 
+info: loading plugin "theme-default"... OK 
+info: found 1 pages 
+info: found 7 asset files 
+info: >> generation finished with success in 7.5s ! 
+info: >> 1 file(s) generated
+```
+
+执行完以上代码，进入书籍目录，即可看到已经转换完成的PDF了。大功告成！
+
 ## 3 同类技术对比(列表)
 
 ### 3.1 gitbook
@@ -430,3 +478,4 @@ Penflip似乎更适合你的想法（注意：现在我知道它为什么适合�
 * [Gitbook实用配置及插件介绍](https://www.cnblogs.com/zhangjk1993/p/5066771.html)
 * [Gitbook对比评论](https://news.ycombinator.com/item?id=8215620)
 * [Gitbook提交报403](http://www.jianshu.com/p/77b0340a02f3)
+* [Mac环境安装Gitbook，并导出PDF教程](https://www.jianshu.com/p/4824d216ad10)

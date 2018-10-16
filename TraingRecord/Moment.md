@@ -6,7 +6,8 @@
 ```
 更改历史
 
-* 2018-8-15	    高天阳      初始化文档
+* 2018-09-25	    高天阳      添加.diff()方法文档
+* 2018-08-15	    高天阳      初始化文档
 
 ```
 ## 1. 简介
@@ -464,7 +465,74 @@ end.from(start);       // "in 5 days"
 end.from(start, true); // "5 days"
 ```
 
-#### 2.2.7 操纵时间(加法) `1.0.0+`
+#### 2.2.7 时差(毫秒) `1.0.0+`
+
+```
+moment().diff(Moment|String|Number|Date|Array);
+moment().diff(Moment|String|Number|Date|Array, String);
+moment().diff(Moment|String|Number|Date|Array, String, Boolean);
+```
+
+要获得以毫秒为单位的差异，请`moment#diff`像使用一样使用`moment#from`。
+
+```
+var a = moment([2007, 0, 29]);
+var b = moment([2007, 0, 28]);
+a.diff(b) // 86400000
+```
+
+为了获得另一个测量单位的差异，将该测量值作为第二个参数传递。
+
+```
+var a = moment([2007, 0, 29]);
+var b = moment([2007, 0, 28]);
+a.diff(b, 'days') // 1
+```
+
+支持的测量包括年，月，周，日，小时，分钟和秒。为了便于开发，从**2.0.0**开始支持单数形式。版本**1.1.1**中提供了毫秒以外的度量单位。
+
+默认情况下，`moment#diff`将向下舍入数字。如果需要浮点数，则传递`true`为第三个参数。
+在**2.0.0**之前，`moment#diff`返回舍入的数字，而不是向下舍入的数字。
+
+```
+var a = moment([2008, 6]);
+var b = moment([2007, 0]);
+a.diff(b, 'years');       // 1
+a.diff(b, 'years', true); // 1.5
+```
+
+如果时刻早于您传递的时刻`moment.fn.diff`，则返回值将为负数。
+
+```
+var a = moment();
+var b = moment().add(1, 'seconds');
+a.diff(b) // -1000
+b.diff(a) // 1000
+```
+
+想到这一点的简单方法是用`.diff(`减号运算符替换。
+
+```
+          // a < b
+a.diff(b) // a - b < 0
+b.diff(a) // b - a > 0
+```
+
+##### 月和年的差异
+
+`moment#diff`有一些特殊的处理月和年差异。它经过优化，可确保相同日期的两个月始终是一个整数。
+
+所以1月15日到2月15日应该是1个月。
+
+2月28日至3月28日应该是1个月。
+
+2011年2月28日至2012年2月28日应该是1年。
+
+请在此处查看有关月份和年度差异的更多讨论
+
+月份和年份差异的变化是在**2.0.0**中进行的。截至**2.9.0**版本，差异也支持季度单位。
+
+#### 2.2.8 操纵时间(加法) `1.0.0+`
 
 通过增加时间来改变原始时刻。
 
@@ -548,7 +616,7 @@ moment().add('seconds', 1); // Deprecated in 2.8.0
 moment().add(1, 'seconds');
 ```
 
-#### 2.2.8 操纵时间(减法) `1.0.0+`
+#### 2.2.9 操纵时间(减法) `1.0.0+`
 
 ```
 moment().subtract(Number, String);
@@ -571,7 +639,7 @@ moment().subtract('seconds', 1); // Deprecated in 2.8.0
 moment().subtract(1, 'seconds');
 ```
 
-#### 2.2.9 开始时间 `1.7.0+`
+#### 2.2.10 开始时间 `1.7.0+`
 
 ```
 moment().startOf(String);
@@ -611,7 +679,7 @@ moment().minutes(0).seconds(0).milliseconds(0)
 
 注意： `moment#startOf('isoWeek')`在2.2.0版中添加了。
 
-#### 2.2.10 结束时间 `1.7.0+`
+#### 2.2.11 结束时间 `1.7.0+`
 
 ```
 moment().endOf(String);

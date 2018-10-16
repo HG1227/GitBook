@@ -1,5 +1,18 @@
 # markdown培训
 
+#### 作者：高天阳
+
+#### 邮箱：13683265113@163.com
+
+```
+更改历史
+
+* 2018-10-10    高天阳    添加表格
+* 2018-09-14    高天阳    添加锚点
+* 2017-09-08    高天阳    格式化文档
+* 2017-07-03    高天阳    初始化文档
+```
+
 ## 第一章 markdown简介
 
 Markdown 是一个 Web 上使用的文本到HTML的转换工具，可以通过简单、易读易写的文本格式生成结构化的HTML文档。
@@ -17,7 +30,7 @@ This is an H1
 This is an H2
 ----
 
-```angular2html
+```
 Code:
 
 This is an H1
@@ -25,7 +38,8 @@ This is an H1
 This is an H2
 ----
 ```
-```angular2html
+
+```
 备注:任何数量的=和-都可以有效果<br/>
 =表示最高阶标题,-表示第二阶标题
 ```
@@ -44,7 +58,7 @@ This is an H2
 
 ###### This is an H6
 
-```angular2html
+```
 Code:
 
 # This is an H1
@@ -60,7 +74,7 @@ Code:
 ###### This is an H6
 ```
 
-```angular2html
+```
 也可以表示成这样 # This is an H1 #
 备注: 行首n个#表示n阶标题，n最大为6
 ```
@@ -74,7 +88,7 @@ Code:
 1. Bird
 2. McHale
 
-```angular2html
+```
 Code:
 1. Bird
 2. McHale
@@ -88,7 +102,7 @@ Code:
 + Green
 * Blue
 
-```angular2html
+```
 Code:
 - Red
 + Green
@@ -101,7 +115,7 @@ Code:
 
 示例
 
-```angular2html
+```
 > 简单引用1
 > 简单引用2
 >
@@ -145,33 +159,39 @@ Code:
 也可以使用` 来表示
 
 使用缩进表示代码块
+
 ### 2.5 分隔线
 
 一行中用三个以上的星号、减号、底线来建立一个分隔线,行内不能有其他东西,
 也可以在星号或是减号中间插入空格
 
 
-```angular2html
----
 ```
 
 ---
+```
 
-```angular2html
-- - -
+---
+
 ```
 - - -
+```
 
-```angular2html
-***
+- - -
+
 ```
 ***
+```
 
-```angular2html
-* * *
+***
+
 ```
 * * *
-```angular2html
+```
+
+* * *
+```
+
 ——————————————
 ```
 ——————————————
@@ -188,21 +208,25 @@ Code:
 
 Mardown允许段落内的强迫换行(插入换行符)<br/>
 要依赖Markdown来插入`<br/>`标签的话,在`<br/>`插入处要先按入两个以上的空格然后回车
+
 ### 2.7 链接
 
 支持两种形式的连接语法: 行内式和参考式 链接字符不区分大小写
 * 行内式
 This is [baidu](http://www.baidu.com/ "度娘")
 [baidu](https://www.baidu.com/)
-```angular2html
+
+```
 Code:
 This is [baidu](http://www.baidu.com/ "度娘")
 
 [baidu](https://www.baidu.com/)
 ```
+
 * 参考式
 This is [baidu example][id] reference-style link.
 [id]: https://www.baidu.com/ "度娘"
+
 ```
 Code:
 This is [baidu example][id] reference-style link.
@@ -210,10 +234,12 @@ This is [baidu example][id] reference-style link.
 或者: [id]: https://www.baidu.com/ '度娘'
 或者 [id]: https://www.baidu.com/ (度娘)
 ```
+
 * 隐式链接标记功能
 [Baidu][]
 标记可以这样写: [Baidu]: http://baidu.com
-```angular2html
+
+```
 Code:
 [Baidu][]
 标记可以这样写: [Baidu]: http://baidu.com
@@ -221,7 +247,8 @@ Code:
 
 * 参考式链接范例:
 ---
-```angular2html
+
+```
 --I get 10 times more traffic from [Google] [1] than from
 --[Yahoo] [2] or [MSN] [3].
 --[1]: http://google.com/ "Google"
@@ -234,9 +261,11 @@ Code:
 --[msn]: http://search.msn.com/ "MSN Search"
 (备注: 上述代码在使用时需删掉前面的--)
 ```
+
 * 自动链接
 https://www.baidu.com
-```angular2html
+
+```
 示例如下:
 
 http://www.baidu.com
@@ -246,13 +275,14 @@ http://www.baidu.com
 
 Markdown使用性星号(*)和底线(_)作为标记强调字词的符号 两端被一个*或_包围的单词会被转换成斜体 两端被两个*或_包围的单词会被转换成粗体 *或_的两端不能有空白 用什么符号就以什么符号结尾
 
-```angular2html
+```
 示例
 *斜体*
 _斜体_
 **粗体**
 __粗体__
 ```
+
 ### 2.9 代码
 
 如果要标记一段行内代码,可以用反引号 ` 把它包起来 用多个反引号来开启和结束代码区段
@@ -263,7 +293,7 @@ __粗体__
 ``包含 `两个反引号` ``
 ``<特殊符号&>``
 
-```angular2html
+```
 示例:
 
 ``段落代码``
@@ -280,7 +310,7 @@ __粗体__
 ![September](http://a3.topitme.com/4/9b/8f/11644743891028f9b4o.jpg)
 ![花瓣网](http://img.hb.aicdn.com/8b794b37c8aa6ec016d87f2608d5bddb2af37d66e7f7-Dhl91t_fw658 "孤影摇动")
 
-```angular2html
+```
 示例
 ![September](http://a3.topitme.com/4/9b/8f/11644743891028f9b4o.jpg)
 ![花瓣网](http://img.hb.aicdn.com/8b794b37c8aa6ec016d87f2608d5bddb2af37d66e7f7-Dhl91t_fw658 "孤影摇动")
@@ -292,17 +322,39 @@ __粗体__
 [xd]:http://img.hb.aicdn.com/8b794b37c8aa6ec016d87f2608d5bddb2af37d66e7f7-Dhl91t_fw658 "孤影摇动"
 
 
-```angular2html
+```
 示例:
 --![花瓣网][xd]
 --[xd]:http://img.hb.aicdn.com/8b794b37c8aa6ec016d87f2608d5bddb2af37d66e7f7-Dhl91t_fw658 "孤影摇动"
 (备注: 上述代码在使用时需删掉前面的--)
 ```
 
-### 2.11 转义
+### 2.11 锚点
+
+网页中，锚点其实就是页内超链接，也就是链接本文档内部的某些元素，实现当前页面中的跳转。
+比如我这里写下一个锚点，点击回到目录，就能跳转到目录。 在目录中点击这一节，就能跳过来。还有下一节的注脚。这些根本上都是用锚点来实现的。
+
+注意： Markdown Extra 只支持在标题后插入锚点，其它地方无效。
+
+语法描述：
+在你准备跳转到的指定标题后插入锚点{#标记}，然后在文档的其它地方写上连接到锚点的链接。
+
+代码：
+
+```
+## 0. 目录{#index}
+跳转到[目录](#index)
+```
+
+显示效果：
+
+跳转到目录
+
+### 2.12 转义
+
 使用反斜杠来插入一些在语法中有其它意义的符号,如* 需要转义的字符:
 
-```angular2html
+```
 \ 反斜线
 ` 反引号
 * 星号
@@ -317,3 +369,20 @@ _ 底线
 ! 惊叹号
 ```
 
+### 2.13 表格
+
+示例：
+
+| 一个普通标题 | 一个普通标题 | 一个普通标题 |
+| ------ | ------ | ------ |
+| 短文本 | 中等文本 | 稍微长一点的文本 |
+| 稍微长一点的文本 | 短文本 | 中等文本 |
+
+代码：
+
+```
+| 一个普通标题 | 一个普通标题 | 一个普通标题 |
+| ------ | ------ | ------ |
+| 短文本 | 中等文本 | 稍微长一点的文本 |
+| 稍微长一点的文本 | 短文本 | 中等文本 |
+```
