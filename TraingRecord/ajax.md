@@ -10,3 +10,9 @@ XMLhHttpRequest对象
 (```)
 Http 无状态服务 不建立持久的链接
 123
+
+
+###解析json
+(''')
+var jsonStr='{result:[{"name":"zhiwei","age":"18"},{"name":"gaogao","age":"20"},{"name":"xiaoyu":"age":"14"}]}'
+(''')
