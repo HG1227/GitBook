@@ -132,7 +132,48 @@ module.exports = vuxLoader.merge(webpackConfig, {
 
 > vux@0.x 已经停止维护，请尽快迁移到 vue@2.x & vuex@2.x & vux@2.x，虽然要花点时间，但是完全值得。
 
-### 2.2 使用
+### 2.2 快速开始
+
+> vux@2.x 推荐webpack+vue-loader方式的开发，如果要使用umd文件，请参照文档。
+不建议使用引入script的方式进行开发，因为它会带来一系列的开发、维护、效率、部署问题。
+> 
+> Life is short, use webpack.
+
+#### vux2 模板
+
+------
+
+> vux2 模板 fork 自 webpack 模板，基本和官方同步。
+
+默认为 webpack2 模板
+
+```
+npm install vue-cli -g # 如果还没安装
+vue init airyland/vux2 projectPath
+
+cd projectPath
+npm install --registry=https://registry.npm.taobao.org # 或者 cnpm install 或者  yarn
+npm run dev #  或者  yarn dev
+```
+
+#### 使用淘宝 npm 镜像
+
+------
+
+**cnpm**
+
+你可以直接使用 cnpm 来加速模块下载。
+
+**yarn**
+
+或者如果你已经用上了 yarn，建议配置淘宝源：
+
+```
+yarn config set registry https://registry.npm.taobao.org
+yarn
+```
+
+### 2.3 使用
 
 ## 3 最佳实践
 
