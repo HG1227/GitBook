@@ -62,4 +62,18 @@ $ gitbook build
 
 test
 
+## 4 常见问题
+
+### 4.1 推送权限不足
+
+设置remotes为https格式
+
+#### 添加远程仓库(https格式)
+
+![](assets/githubClone.jpeg)
+![](assets/webstormChange.png)
+![](assets/webstormChange2.png)
+
 ## 参考
+
+* [webstorm 推送项目到github](https://blog.csdn.net/mjth2014/article/details/80256224)
