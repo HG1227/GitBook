@@ -70,9 +70,16 @@ test
 
 #### 添加远程仓库(https格式)
 
+复制仓库http格式
+
 ![](assets/githubClone.jpeg)
+
+设置webstorm的gitRemotes为https模式
+
 ![](assets/webstormChange.png)
 ![](assets/webstormChange2.png)
+
+再次执行push
 
 ## 参考
 
