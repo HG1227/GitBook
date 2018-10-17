@@ -104,12 +104,14 @@ v-if也是惰性的：如果在初始渲染时条件为假，则什么也不做�
 用法：
 
 为v-if或者v-else-if添加 “else 块”。
-    <div v-if="Math.random() > 0.5">
-      Now you see me
-    </div>
-    <div v-else>
-      Now you don't
-    </div>
+```
+<div v-if="Math.random() > 0.5">
+  Now you see me
+</div>
+<div v-else>
+  Now you don't
+</div>
+```
 参考：
 
 条件渲染 - v-else
@@ -536,13 +538,13 @@ new Vue({
 
 过滤器可以串联：
 ```
-{{ message | filterA | filterB }}
+{ message | filterA | filterB }{}
 ```
 
 在这个例子中，filterA拥有单个参数，它会接收message的值，然后调用filterB，且filterA的处理结果将会作为filterB的单个参数传递进来。
 过滤器是 JavaScript 函数，因此可以接受参数：
 ```
-{{ message | filterA('arg1', arg2) }}
+{ message | filterA('arg1', arg2) }{}
 ```
 
 这里，filterA是个拥有三个参数的函数。message的值将会作为第一个参数传入。字符串'arg1'将作为第二个参数传给filterA，表达式arg2的值将作为第三个参数。

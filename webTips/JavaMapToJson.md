@@ -95,7 +95,7 @@ commonApi.formatJsonMap = function(obj){
     /**
      * 分析：将字符串中的{}去除，变成基本的字符串，然后使用正则的方法将map转成标准的json个数
      * \s匹配任何不可见字符，包括空格、制表符、换页符等等。等价于[ \f\n\r\t\v]
-     * @type {{}}
+     * @type {}{}
      */
     var json={};
     var newObj= obj.substring(1,obj.length-1);
