@@ -33,7 +33,7 @@
 > 
 > 用以表示该组件库时请使用大写名字 VUX，用在说明版本号时使用小写 vux@2.x。
 
-### 1.1 在使用VUX之前
+### 在使用VUX之前
 
 > 如果你刚从后端转到前端，可能会被目前前端(表面的)工程复杂度惊吓到，但是放心，使用`vue-cli`从模板创建项目可以快速开始编码、构建，
 仅仅是几行简单的命令不是么？
@@ -90,17 +90,90 @@ webpack loader，用于编译`.vue`文件，官方模板已经帮你配置好。
 VUX组件库的webpack loader，实现按需加载等功能。它不是替代`vue-loader`而是配合`vue-loader`使用。
 如果你使用vux2模板，暂不需要手动使用它。
 
-### 1.2 现状
-
-### 1.3 发展
-
-### 1.4 特点
-
 ## 2 安装和使用
 
 ### 2.1 安装
 
-### 2.2 使用
+> 如果你从没使用过 VUX，请参考 快速入门。
+>
+> 不推荐使用 umd 方式引用组件，但是如果不得不使用，可以参考 umd 构建
+
+直接安装或者更新：
+
+```
+npm install vux --save
+```
+
+或者使用`yarn`
+
+```
+yarn add vux // 安装
+yarn upgrade vux // 更新
+```
+
+如果你想直接从Github安装，请指定 `v2` 分支
+
+```
+npm install git://github.com/airyland/vux.git#v2
+```
+
+如果你是从`0.x`更新，请参考： [更新到2.x](https://doc.vux.li/zh-CN/install/upgrade-to-vux2.html)
+
+> vux2必须配合vux-loader使用, 请在build/webpack.base.conf.js里参照如下代码进行配置：
+
+```
+const vuxLoader = require('vux-loader')
+const webpackConfig = originalConfig // 原来的 module.exports 代码赋值给变量 webpackConfig
+
+module.exports = vuxLoader.merge(webpackConfig, {
+  plugins: ['vux-ui']
+})
+```
+
+> vux@0.x 已经停止维护，请尽快迁移到 vue@2.x & vuex@2.x & vux@2.x，虽然要花点时间，但是完全值得。
+
+### 2.2 快速开始
+
+> vux@2.x 推荐webpack+vue-loader方式的开发，如果要使用umd文件，请参照文档。
+不建议使用引入script的方式进行开发，因为它会带来一系列的开发、维护、效率、部署问题。
+> 
+> Life is short, use webpack.
+
+#### vux2 模板
+
+------
+
+> vux2 模板 fork 自 webpack 模板，基本和官方同步。
+
+默认为 webpack2 模板
+
+```
+npm install vue-cli -g # 如果还没安装
+vue init airyland/vux2 projectPath
+
+cd projectPath
+npm install --registry=https://registry.npm.taobao.org # 或者 cnpm install 或者  yarn
+npm run dev #  或者  yarn dev
+```
+
+#### 使用淘宝 npm 镜像
+
+------
+
+**cnpm**
+
+你可以直接使用 cnpm 来加速模块下载。
+
+**yarn**
+
+或者如果你已经用上了 yarn，建议配置淘宝源：
+
+```
+yarn config set registry https://registry.npm.taobao.org
+yarn
+```
+
+### 2.3 使用
 
 ## 3 最佳实践
 
