@@ -46,7 +46,7 @@
 
 > 工作台->审批->人事行政->招聘需求->填写必填项->提交->审批流程
 
-[物品领用使用视频演示](https://mitudegaoyang.gitbooks.io/mybook/content/assets/DingDing/hires.mp4)
+[招聘需求使用视频演示](https://mitudegaoyang.gitbooks.io/mybook/content/assets/DingDing/hires.mp4)
 
 #### 2.2.4 离职申请单
 
@@ -64,10 +64,10 @@
 
 > 工作台->审批->出勤休假->请假->填写必填项->提交->审批流程
 
-[用印申请使用视频演示](https://mitudegaoyang.gitbooks.io/mybook/content/assets/DingDing/leave.mp4)
+[请假使用视频演示](https://mitudegaoyang.gitbooks.io/mybook/content/assets/DingDing/leave.mp4)
 
 #### 2.2.7 日报/项目进度表
 
 > 工作台->日志->日报/项目进度表->填写必填项->提交
 
-[用印申请使用视频演示](https://mitudegaoyang.gitbooks.io/mybook/content/assets/DingDing/daily.mp4)
+[日报/项目进度表使用视频演示](https://mitudegaoyang.gitbooks.io/mybook/content/assets/DingDing/daily.mp4)
