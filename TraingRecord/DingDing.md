@@ -50,7 +50,7 @@
 
 > PC: 工作台->审批->人事行政->招聘需求->填写必填项->提交->审批流程
 >
-> Phone: 工作->人事管理->离职申请单->填写必填项->提交->审批流程
+> Phone: 工作->人事管理->招聘需求->填写必填项->提交->审批流程
 
 [Phone招聘需求使用视频演示](https://mitudegaoyang.gitbooks.io/mybook/content/assets/DingDing/hires.mp4)
 
