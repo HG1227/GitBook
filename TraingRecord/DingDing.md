@@ -47,6 +47,7 @@
 > 工作台->审批->人事行政->招聘需求->填写必填项->提交->审批流程
 
 [物品领用使用视频演示](https://mitudegaoyang.gitbooks.io/mybook/content/assets/DingDing/hires.mp4)
+
 #### 2.2.4 离职申请单
 
 > 工作台->审批->人事行政->离职申请单->填写必填项->提交->审批流程
