@@ -10,6 +10,7 @@
     * [codecov](TraingRecord/codecov.md)
     * [cycleJs](TraingRecord/cycleJs.md)
     * [设计模式](TraingRecord/DesignPattern.md)
+    * [DingDing使用](TraingRecord/DingDing.md)
     * [Docker](TraingRecord/Docker.md)
     * [Echarts](TraingRecord/Echarts.md)
     * [ES6模块](TraingRecord/ES6Module.md)
