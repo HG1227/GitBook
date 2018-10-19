@@ -32,42 +32,49 @@
 
 #### 2.2.1 周报
 
-> 工作台->日志->周报->填写必填项->提交
+> PC: 工作台->日志->周报->填写必填项->提交
+> Phone: 工作->绩效管理->周报->填写必填项->提交
 
 [周报使用视频演示](https://mitudegaoyang.gitbooks.io/mybook/content/assets/DingDing/weekly.mp4)
 
 #### 2.2.2 物品领用
 
-> 工作台->审批->行政管理->物品领用->填写必填项->提交->审批流程
+> PC: 工作台->审批->行政管理->物品领用->填写必填项->提交->审批流程
+> Phone: 工作->行政管理->物品领用->填写必填项->提交->审批流程
 
 [物品领用使用视频演示](https://mitudegaoyang.gitbooks.io/mybook/content/assets/DingDing/items.mp4)
 
 #### 2.2.3 招聘需求
 
-> 工作台->审批->人事行政->招聘需求->填写必填项->提交->审批流程
+> PC: 工作台->审批->人事行政->招聘需求->填写必填项->提交->审批流程
+> Phone: 工作->人事管理->离职申请单->填写必填项->提交->审批流程
 
 [招聘需求使用视频演示](https://mitudegaoyang.gitbooks.io/mybook/content/assets/DingDing/hires.mp4)
 
 #### 2.2.4 离职申请单
 
-> 工作台->审批->人事行政->离职申请单->填写必填项->提交->审批流程
+> PC: 工作台->审批->人事行政->离职申请单->填写必填项->提交->审批流程
+> Phone: 工作->人事管理->离职申请单->填写必填项->提交->审批流程
 
 [离职申请单使用视频演示](https://mitudegaoyang.gitbooks.io/mybook/content/assets/DingDing/leaving.mp4)
 
 #### 2.2.5 用印申请
 
-> 工作台->审批->行政管理->用印申请->填写必填项->提交->审批流程
+> PC: 工作台->审批->行政管理->用印申请->填写必填项->提交->审批流程
+> Phone: 工作->行政管理->用印申请->填写必填项->提交->审批流程
 
 [用印申请使用视频演示](https://mitudegaoyang.gitbooks.io/mybook/content/assets/DingDing/seal.mp4)
 
 #### 2.2.6 请假申请
 
-> 工作台->审批->出勤休假->请假->填写必填项->提交->审批流程
+> PC: 工作台->审批->出勤休假->请假->填写必填项->提交->审批流程
+> Phone: 工作台->审批->内外勤管理->请假->填写必填项->提交->审批流程
 
 [请假使用视频演示](https://mitudegaoyang.gitbooks.io/mybook/content/assets/DingDing/leave.mp4)
 
 #### 2.2.7 日报/项目进度表
 
-> 工作台->日志->日报/项目进度表->填写必填项->提交
+> PC: 工作台->日志->日报/项目进度表->填写必填项->提交
+> Phone: 工作->绩效管理->日报->填写必填项->提交
 
 [日报/项目进度表使用视频演示](https://mitudegaoyang.gitbooks.io/mybook/content/assets/DingDing/daily.mp4)
