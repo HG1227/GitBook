@@ -10,7 +10,6 @@
     * [codecov](TraingRecord/codecov.md)
     * [cycleJs](TraingRecord/cycleJs.md)
     * [设计模式](TraingRecord/DesignPattern.md)
-    * [DingDing使用](TraingRecord/DingDing.md)
     * [Docker](TraingRecord/Docker.md)
     * [Echarts](TraingRecord/Echarts.md)
     * [ES6模块](TraingRecord/ES6Module.md)
@@ -104,6 +103,8 @@
     * [AngularJs-toaster-Angular提示弹框插件](webTips/AngularJS-Toaster.md)
     * [Windows部署时脚本报错](webTips/WinDeployment.md)
     * [ElementUI-Vue前端框架项目初始化](webTips/ElementUI-VueProjectInit.md)
-* [毫末科技面试流程](haomointerview.md)
-    * [JAVA面试](haomointerview/content.md)
+* [其他文件](other.md)
+    * [JAVA面试](other/content.md)
+    * [钉钉使用](other/DingDing.md)
+    * [sd360](other/sd360.md)
 
