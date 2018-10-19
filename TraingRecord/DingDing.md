@@ -34,13 +34,14 @@
 
 > 工作台->日志->周报->填写必填项->提交
 
-![](../assets/DingDing/weekly.gif)
+[周报使用视频演示](https://mitudegaoyang.gitbooks.io/mybook/content/assets/DingDing/weekly.mp4)
+
 
 #### 2.2.2 物品领用
 
 > 工作台->审批->行政管理->物品领用->填写必填项->提交->审批流程
 
-![](../assets/DingDing/items.gif)
+[物品领用使用视频演示](https://mitudegaoyang.gitbooks.io/mybook/content/assets/DingDing/items.mp4)
 
 #### 2.2.3 招聘需求
 
@@ -49,12 +50,14 @@
 #### 2.2.4 离职申请单
 
 > 工作台->审批->人事行政->离职申请单->填写必填项->提交->审批流程
+
+[离职申请单使用视频演示](https://mitudegaoyang.gitbooks.io/mybook/content/assets/DingDing/leaving.mp4)
 	
 #### 2.2.5 用印申请
 
 > 工作台->审批->行政管理->用印申请->填写必填项->提交->审批流程
 
-![](../assets/DingDing/seal.gif)
+[用印申请使用视频演示](https://mitudegaoyang.gitbooks.io/mybook/content/assets/DingDing/seal.mp4)
 	
 #### 2.2.6 请假申请
 
