@@ -62,7 +62,11 @@
 #### 2.2.6 请假申请
 
 > 工作台->审批->出勤休假->请假->填写必填项->提交->审批流程
+
+[用印申请使用视频演示](https://mitudegaoyang.gitbooks.io/mybook/content/assets/DingDing/leave.mp4)
 	
 #### 2.2.7 日报/项目进度表
 
 > 工作台->日志->日报/项目进度表->填写必填项->提交
+
+[用印申请使用视频演示](https://mitudegaoyang.gitbooks.io/mybook/content/assets/DingDing/daily.mp4)
