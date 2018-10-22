@@ -536,9 +536,47 @@ export default new Router({
 })
 ```
 
-### 6.2 
+### 6.2 VUX tabber切换图标及字体颜色
 
-### 6.3 
+### 6.3 报错处理:Failed to load resource: net::ERR_FILE_NOT_FOUND
+
+### 6.4 x-header、tabbar固定位置
+
+### 6.5 下拉加载更多
+
+### 6.6 报错处理:warning：component lists rendered with v-for should have explicit keys
+
+### 6.7 Vue下路由History模式打包后页面空白
+
+### 6.8 scroller下拉失败回弹
+
+### 6.9 打包后css引用图片资源找不到
+
+### 6.10 打包后js引用图片资源找不到
+
+### 6.11 上传图片组件
+
+### 6.12 上传图片组件引入报错
+
+### 6.13 报错处理：exports is not defined
+
+### 6.14 报错处理：Default export is not declared in imported module
+
+### 6.15 vux中fullpage的使用
+
+### 6.16 Vue Router 的params和query传参的使用和区别
+
+### 6.17 vux框架组件自定义样式
+
+### 6.18 vux-cell title 插槽使用
+
+### 6.19 vux-cell title 插槽可添加样式并使得超长文字隐藏
+
+### 6.20 复制至剪贴板插件
+
+### 6.21 vue-cookies使用
+
+### 6.22 
 
 ## 7 同类型技术比较
 
