@@ -451,10 +451,88 @@ import router from './router'
 
 > 这里，to里边的参数和配置时，path的路径一样即可
 
-示例：
+#### 示例
+
+`/src/main.js`
 
 ```
+import Vue from 'vue'
+import App from './App'
+import router from 'vue-router'
 
+/* eslint-disable no-new */
+new Vue({
+  router,
+  render: h => h(App)
+}).$mount('#app-box')
+```
+
+`/src/router/index.js`
+
+```
+import Vue from 'vue'
+import Router from 'vue-router'
+import Container from '../components/container/Container'
+import Start from '../components/start/Start'
+import Gesture from '../components/start/gesture/Gesture'
+import Registered from '../components/start/registered/Registered'
+import RegisteredDetail from '../components/start/registered/RegisteredDetail'
+import Lending from '../components/lending/Lending'
+import FinanceDetail from '../components/lending/financeDetail/FinanceDetail'
+
+Vue.use(Router)
+
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      redirect: '/start'
+    },
+    {
+      path: '/start',
+      component: Container,
+      children: [
+        {
+          path: '/',
+          component: Start
+        },
+        {
+          path: 'gesture',
+          component: Gesture
+        },
+        {
+          path: 'registered',
+          component: Container,
+          children: [
+            {
+              path: '/',
+              component: Registered
+            },
+            {
+              path: 'registeredDetail',
+              component: RegisteredDetail
+            }
+          ]
+        }
+      ]
+    },
+    {
+      path: '/lending',
+      component: Container,
+      children: [
+        {
+          path: '/',
+          component: Lending
+        },
+        {
+          path: 'financeDetail',
+          name: 'financeDetail',
+          component: FinanceDetail
+        }
+      ]
+    },
+  ]
+})
 ```
 
 ### 6.2 
