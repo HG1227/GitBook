@@ -484,3 +484,7 @@ import router from './router'
 * VChart异步加载表格数据时，tooltip在初始化、请求后需要渲染两次，否则无法加载具体比例。
 * [Vue Router 的params和query传参的使用和区别](https://blog.csdn.net/mf_717714/article/details/81945218)
 * [vux框架组件自定义样式](https://blog.csdn.net/linggty/article/details/81512211)
+* [vux cell title 插槽使用](https://segmentfault.com/q/1010000014234606/a-1020000014653614)
+* vux cell title插槽可添加样式并使得超长文字隐藏。demo在：Message.vue
+* [复制至剪贴板插件](https://www.cnblogs.com/wyhlightstar/p/8950430.html)
+* [vue-cookies](https://www.cnblogs.com/s313139232/p/9341762.html)
