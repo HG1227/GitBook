@@ -255,34 +255,78 @@ resolve: {
 
 ### 2.4 代码示例
 
-* 
+* .vue文件中调用组件
 
 ```
+<template>
+  <div>
+    <group>
+      <cell title="title" value="value"></cell>
+    </group>
+  </div>
+</template>
 
+<script>
+import { Group, Cell } from 'vux'
+
+export default {
+  components: {
+    Group,
+    Cell
+  }
+}
+</script>
 ```
 
-* 
+* main.js中调用plugin
 
 ```
+import { AlertPlugin, ToastPlugin } from 'vux'
 
-```
-* 
+Vue.use(AlertPlugin)
+Vue.use(ToastPlugin)
 
-```
-
-```
-
-* 
-
+// 详细使用请参考对应组件文档
 ```
 
+## 3 定制
+
+### 3.1 主题颜色配置
+
+#### 配置插件
+
+> 暂时只支持配合`vux-loader`使用。
+>  
+> 注意的是主题文件不能引入其他less文件，只能为简单变量列表。
+
+请配置vux-loader的`less-theme`插件，指定用以覆盖的less文件路径：
+
+```
+{
+  name: 'less-theme',
+  path: 'src/styles/theme.less' // 相对项目根目录路径
+}
 ```
 
-## 3 最佳实践
+#### 可配置颜色
 
-### 3.1 
+源码地址：https://github.com/airyland/vux/blob/v2/src/styles/variable.less
 
-## 4 同类型技术比较
+> 更多配置需求请通过 issue 提出。
+
+#### demo站点的示例配置
+
+源代码地址：https://github.com/airyland/vux/blob/v2/src/theme.less
+
+#### 内部如何实现的？
+
+`vux-loader`在每个`less`文件的编译过程中重写了`less-loader`的变量参数，使其能直接覆盖原来变量。
+
+## 4 最佳实践
+
+### 4.1 
+
+## 5 同类型技术比较
 
 ## 参考资料
 
