@@ -322,11 +322,146 @@ Vue.use(ToastPlugin)
 
 `vux-loader`在每个`less`文件的编译过程中重写了`less-loader`的变量参数，使其能直接覆盖原来变量。
 
-## 4 最佳实践
+## 4 开发
 
-### 4.1 
+### 4.1 路由
 
-## 5 同类型技术比较
+### 4.2 在Nuxt.js中使用
+
+### 4.3 TypeScript 支持
+
+### 4.4 Ajax 请求
+
+### 4.5 点击延迟
+
+### 4.6 使用微信 jssdk
+ 
+### 4.7 添加谷歌统计
+ 
+### 4.8 页面切换显示 Loading
+
+### 4.9 异步加载组件
+
+### 4.10 区分测试环境和生产环境
+
+### 4.11 全局公共函数
+
+### 4.12 autoprefix 配置
+
+### 4.13 禁用 eslint
+
+## 5 vux-loader
+
+### 5.1 vux-loader 是什么？
+
+### 5.2 安装使用
+
+### 5.3 插件列表
+
+## 6 最佳实践
+
+### 6.1 vue-router配置方式
+
+#### 介绍
+
+路由：控制组件之间的跳转，不会实现请求、不用页面刷新，直接跳转-切换组件
+
+#### 安装
+
+本地环境安装路由插件vue-router：
+
+```
+cnpm install vue-router --save-dev  
+```
+
+* 没有安装淘宝镜像的可以将`cnpm`替换成`npm`
+
+想要安装的可以看这篇[文章](http://www.cnblogs.com/padding1015/p/7162024.html)，（打开搜索`镜像`即可跳转到对应位置）
+
+#### 配置
+
+两种配置方法：在main.js中 || 在src/router文件夹下的index.js中
+
+这里只说在src/router/index.js中的
+
+* 引入
+
+``` 
+import Vue from 'vue'
+import Router from 'vue-router'
+```
+
+注意这个Router是自定义的名字，这里叫这个名字后，下边都要用到的
+
+* 使用/注册：
+
+```
+Vue.use(Router)
+```
+
+* 配置
+
+配置路由
+
+```
+export default new Router({
+  routes: [
+   {
+        path : ‘/’,  //到时候地址栏会显示的路径
+        name : ‘Home’,
+        component :  Home   // Home是组件的名字，这个路由对应跳转到的组件。。注意component没有加“s”.
+    },
+    {
+        path : ‘/content’,
+        name : ‘Content’,
+        component :  Content
+    }
+],
+    mode: "history"
+})
+```
+
+* 引入路由对应的组件地址
+
+``` 
+import Home from '@/components/Home'
+import Home from '@/components/Content’
+```
+
+* 在main.js中调用index.js的配置
+
+```
+import router from './router'
+```
+
+* App.vue页面使用（展示）路由：<!-- 展示router -->
+
+把这个标签放到对应位置
+
+```
+<router-view></router-view>
+```
+
+* 路由切换（原来的<a href=”XXX.html”>等地方）：把切换标签和链接改成
+
+```
+<router-link  to="/">切换到Home组件</router-link>
+<router-link  to="/content">切换到Content组件</router-link>
+```
+
+> 这里，to里边的参数和配置时，path的路径一样即可
+
+示例：
+
+```
+
+```
+
+### 6.2 
+
+### 6.3 
+
+## 7 同类型技术比较
 
 ## 参考资料
 
