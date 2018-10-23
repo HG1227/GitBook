@@ -49,7 +49,7 @@
 * [HybridAPP](HybridAPP.md)
     * [HybridApp混合开发](HybridAPP/HybridAppDev.md)
     * [uniapp](HybridAPP/uniapp.md)
-* [Vue](CodeReview.md)
+* [Vue](Vue.md)
     * [Vue常用属性](TraingRecord/Vue.md)
     * [Vue的Ref属性](Vue/vueRef.md)
     * [Vue生命周期图例](webTips/vuesheng-ming-zhou-qi-tu-li.md)
