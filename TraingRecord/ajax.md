@@ -4,8 +4,9 @@
 #####邮箱：wangzhiwei@yumaomoney.com
 
 ```
-
 更改历史
+
+*2018-10-23     高天阳     迁移jquery使用Ajax示例
 *2018-10-17     王志伟     初始化文档
 
 ```
@@ -169,6 +170,32 @@ https://jsonlint.com/
 
 ##4.Jquery中的ajax使用
 
+```
+$.ajax({
+    type: 'GET', 
+    url: '999.php', 
+    data: {
+        uname:'Tom', age: 20
+    }, 
+    beforeSend: function(){ 
+        console.log('before send....'); 
+        console.log(arguments); 
+    }, 
+    success: function(){ 
+        console.log('success....'); 
+        console.log(arguments); 
+    }, 
+    error: function(){ 
+        console.log('error....'); 
+        console.log(arguments); 
+    }, 
+    complete: function(){ 
+        console.log('complete....'); 
+        console.log(arguments); 
+    } 
+});
+```
+
 ##5.跨越问题
 ![](../../assets/ajax/ajax-8.jpg)
 
@@ -207,7 +234,7 @@ $.ajax({
 ##4、请解释 JSONP 的工作原理，以及它为什么不是真正的 AJAX
 ##5、XMLHttpRequest对象在IE和Firefox中创建方式有没有不同
   //IE中通过new ActiveXObject()得到，Firefox中通过newXMLHttpRequest()得到
-##6　　
+##6、常见状态码的含义
 * 200 OK 客户端请求成功
 * 301 资源(网页等)被永久转移到其他URL
 * 400 Bad Request 客户端请求有语法错误，不能被服务器所理解
