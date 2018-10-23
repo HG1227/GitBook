@@ -912,6 +912,45 @@ See https://vuejs.org/guide/list.html#key for more info.
 
 ### 6.7 Vue下路由History模式打包后页面空白
 
+vue的路由在默认的hash模式下,默认打包一般不会有什么问题,不过hash模式由于url会带有一个#,不美观,而且在微信分享,
+授权登录等都会有一些坑.所以history模式也会有一些应用场景.新手往往会碰到history模式打包后页面一片空白的情况,
+而且没有资源加载错误的报错信息.这个其实仔细研究下会发现,如果项目直接放的跟目录, 那么是没有问题的,如果是子目录,
+那么就会一片空白了.这个vue官方有解释,需要加一个base
+
+```
+// base: '/history',
+// mode: 'history',
+```
+
+这个base即为项目路径.以上两个都解决了,还是会发现,此时只有首页能访问,通过首页点进去其他路由也是可以的,
+但是如果在其他路由刷新就有错误了,这个懂history模式的也应该知道,history模式是h5 api的 history.pushState,
+相对于是浏览器模拟了一条历史,而真正服务器上没有这个路径资源,为什么hash模式不存在这个问题呢?hash模式是带#,
+这个服务器不会解析,相对于还是返回html而已,index.html会根据vue路由去解析,而history模式则会请求服务器上的此地址,
+服务器上没有相关路径就会报错了,vue-router的官方文档有介绍各种配置,比如ngnix的配置
+
+```
+location / {
+  try_files $uri $uri/ /index.html;
+}
+```
+
+上面这个对于直接项目的根目录是可以的,但是如果项目不是根目录还是会有问题,
+
+```
+location /history {
+           root   C:/web/static;
+ index  index.html index.htm;
+  #error_page 404 /history/index.html;
+    if (!-e $request_filename) {
+        rewrite ^/(.*) /history/index.html last;
+        break;
+    }
+}
+```
+
+上面这个是项目路径名为history,这样配置后就不会有vue打包后页面空白问题了,history路由也可以自由访问了,
+不过要记得上面说的,非根目录的项目需要加上base 的路径 
+
 ### 6.8 scroller下拉失败回弹
 
 ### 6.9 打包后css引用图片资源找不到
