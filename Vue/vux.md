@@ -953,6 +953,10 @@ location /history {
 
 ### 6.8 scroller下拉失败回弹
 
+引用vux中的scroller插件注意事项： 
+1、scroller标签内部必须紧套一层div标签 
+2、注意sceoller的enabled属性，表示可以下拉刷新
+
 ### 6.9 打包后css引用图片资源找不到
 
 ### 6.10 打包后js引用图片资源找不到
