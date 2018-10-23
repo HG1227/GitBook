@@ -759,7 +759,7 @@ background: url('../../static/img/loginback.png') no-repeat top left ;
 
 ### 6.21 vue-cookies使用
 
-### 6.22 
+### 6.22 级联选择器使用
 
 ## 7 同类型技术比较
 
@@ -788,3 +788,4 @@ background: url('../../static/img/loginback.png') no-repeat top left ;
 * vux cell title插槽可添加样式并使得超长文字隐藏。demo在：Message.vue
 * [复制至剪贴板插件](https://www.cnblogs.com/wyhlightstar/p/8950430.html)
 * [vue-cookies](https://www.cnblogs.com/s313139232/p/9341762.html)
+* [级联选择器](https://blog.csdn.net/oulihong123/article/details/58327247/)
