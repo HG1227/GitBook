@@ -959,6 +959,42 @@ location /history {
 
 ### 6.9 打包后css引用图片资源找不到
 
+使用vue打包，通过css引用图片资源。
+
+```
+.img {
+    height: 500px;
+    width: 100%;
+    background: url("./assets/img/1.jpg") no-repeat;
+    background-size: 100%;
+}
+```
+
+热更新开发环境的效果是这样
+
+![](../assets/VUX/cssError.png)
+
+但打完包出来的页面却报找不到资源的错误。
+
+![](../assets/VUX/cssError2.png)
+
+查了一下原因，css引入图片再打包后，style-loader无法设置自己的publicPath，于是我改变了ExtractTextPlugin的css路径publicPath。
+
+```
+if (options.extract) {
+  return ExtractTextPlugin.extract({
+    use: loaders,
+    // css 引用图片打包问题
+    publicPath: '../../../',
+    fallback: 'vue-style-loader'
+  })
+} else {
+  return ['vue-style-loader'].concat(loaders)
+}
+```
+
+在build一次，没有报错，正常显示！
+
 ### 6.10 打包后js引用图片资源找不到
 
 ### 6.11 上传图片组件
