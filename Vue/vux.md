@@ -592,7 +592,74 @@ export default new Router({
 
 ### 6.3 报错处理:Failed to load resource: net::ERR_FILE_NOT_FOUND
 
+> Failed to load resource: net::ERR_FILE_NOT_FOUND或者vue dist文件下的index.html没显示
+
+```
+vue-cli  npm run dev 可以看到，但是通过dist文件下的index.html直接打开没显示，没看到  
+
+知乎上：webpack.prod.conf.js 中output添加参数publicPath:'./'
+
+具体：
+
+在webpack.base.conf.js里
+
+publicPath: process.env.NODE_ENV === 'production'
+     ? './' +config.build.assetsPublicPath
+     : './' + config.dev.assetsPublicPath
+```
+
+#### vue的图片路径，和背景图片路径打包后错误解决
+
+![](../assets/VUX/vuxBug.png)
+
+![](../assets/VUX/vuxBug2.png)
+
+* 找到 config->index.js里面，如下修改
+
+![](../assets/VUX/vuxBug3.png)
+
+* 找到 build->utils.js,在里面加入一句publicPath:’../../’
+
+![](../assets/VUX/vuxBug4.png)
+
+配置修改完成，接下来，使用有两种方式，这里一般和文件结构有关，下面是我的文件结构下的使用
+
+1、图片资源放在 assets->img文件夹下面
+
+img标签引入图片
+
+```
+<img src="../assets/img/loginback.png" class="test-img" />
+```
+
+css使用图片
+
+```
+background: url('../assets/img/loginback.png') no-repeat top left ;
+```
+
+2、图片资源放在static->img文件夹下面
+
+img标签引入图片
+
+```
+<img src="../../static/img/loginback.png" class="test-img" /><br><img src="static/img/loginback.png" class="test-img" />
+```
+
+css使用图片
+
+```
+background: url('../../static/img/loginback.png') no-repeat top left ;
+```
+
 ### 6.4 x-header、tabbar固定位置
+
+
+
+```
+
+```
+
 
 ### 6.5 下拉加载更多
 
