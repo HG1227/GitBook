@@ -874,7 +874,41 @@ background: url('../../static/img/loginback.png') no-repeat top left ;
 </script>
 ```
 
-### 6.6 报错处理:warning：component lists rendered with v-for should have explicit keys
+### 6.6 警告处理:warning：component lists rendered with v-for should have explicit keys
+
+> 命令行warning(Emitted value instead of an instance of Error)。
+component lists rendered with v-for should have explicit keys。
+See https://vuejs.org/guide/list.html#key for more info. 
+
+截图如下:
+
+![](../assets/VUX/warning1.png)
+
+这里只是推荐使用key. 
+原本的代码如下：
+
+```
+<el-tag
+    v-for = "feiLei of ruleForm.fenLeis"          
+    :closable = "true"
+    type = "primary"
+    @close = "handleCloseFenLei(feiLei)">{{feiLei.name}}
+</el-tag>
+```
+
+运行时显示warning，添加：key即可，如下：
+
+```
+<el-tag
+    v-for = "feiLei of ruleForm.fenLeis"
+    :key="feiLei1"        
+    :closable = "true"
+    type = "primary"
+    @close = "handleCloseFenLei(feiLei)">{{feiLei.name}}
+</el-tag>
+```
+
+这样就不会报错啦，具体看文档，key不是必须的，仅仅是warning
 
 ### 6.7 Vue下路由History模式打包后页面空白
 
@@ -917,7 +951,7 @@ background: url('../../static/img/loginback.png') no-repeat top left ;
 * [打包报错处理：Failed to load resource: net::ERR_FILE_NOT_FOUND](https://blog.csdn.net/lhb_11/article/details/79455015)
 * [x-header、tabbar固定位置](https://github.com/airyland/vux/issues/285)
 * [下拉加载更多](https://www.jb51.net/article/132455.htm)
-* [运行警告处理：warning：component lists rendered with v-for should have explicit keys](https://blog.csdn.net/twinkle2star/article/details/73741120)
+* [警告处理：warning：component lists rendered with v-for should have explicit keys](https://blog.csdn.net/twinkle2star/article/details/73741120)
 * [Vue下路由History模式打包后页面空白](https://blog.csdn.net/sky2714/article/details/80887081)
 * [scroller下拉失败回弹](https://blog.csdn.net/hh_liweihong/article/details/77066023)
 * [打包后css引用图片资源找不到](https://blog.csdn.net/gdut_luoyifei/article/details/79001397)
