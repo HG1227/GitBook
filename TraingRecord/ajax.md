@@ -1,7 +1,7 @@
 # Ajax的深度解析
 
-#####作者：王志伟
-#####邮箱：wangzhiwei@yumaomoney.com
+#### 作者：王志伟
+#### 邮箱：wangzhiwei@yumaomoney.com
 
 ```
 更改历史
