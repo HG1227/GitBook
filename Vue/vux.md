@@ -538,6 +538,58 @@ export default new Router({
 
 ### 6.2 VUX tabber切换图标及字体颜色
 
+通过path判断当前页面，并切换选中tabbar，如果tabbar不多，使用组件一般方式即可(即在每个子模块引入tabbar并写好默认选中项)
+
+`/src/App.vue`
+
+```
+<!-- 入口文件 -->
+<template>
+  <div id="app">
+    <!-- 视图层 -->
+    <router-view></router-view>
+    <div class="footer-box" v-if="$route.path === '/events' || $route.path === '/lending' || $route.path === '/user'">
+      <!-- 底部选项卡 -->
+      <tabbar class="footer-fixed">
+        <tabbar-item link="/lending" :selected="$route.path === '/lending'">
+          <img slot="icon" src="./assets/images/foot-tz.png">
+          <img slot="icon-active" src="./assets/images/foot-tz-active.png">
+          <span slot="label">首页</span>
+        </tabbar-item>
+        <tabbar-item link="/events" :selected="$route.path === '/events'">
+          <img slot="icon" src="./assets/images/foot-xx.png">
+          <img slot="icon-active" src="./assets/images/foot-xx-active.png">
+          <span slot="label">活动</span>
+        </tabbar-item>
+        <tabbar-item link="/user" :selected="$route.path === '/user'">
+          <img slot="icon" src="./assets/images/foot-wd.png">
+          <img slot="icon-active" src="./assets/images/foot-wd-active.png">
+          <span slot="label">我的</span>
+        </tabbar-item>
+      </tabbar>
+    </div>
+  </div>
+</template>
+
+<script>
+  // 引入 vux tabbar 组件
+  import { Tabbar, TabbarItem, XHeader } from 'vux'
+  export default {
+    name: 'app',
+    components: {
+      Tabbar,
+      TabbarItem,
+      XHeader
+    }
+  }
+</script>
+
+<style src="./assets/style/main.less"></style>
+<style lang="less">
+  @import '~vux/src/styles/reset.less';
+</style>
+```
+
 ### 6.3 报错处理:Failed to load resource: net::ERR_FILE_NOT_FOUND
 
 ### 6.4 x-header、tabbar固定位置
