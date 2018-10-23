@@ -727,6 +727,153 @@ background: url('../../static/img/loginback.png') no-repeat top left ;
 
 ### 6.5 下拉加载更多
 
+先上效果图
+
+![](../assets/VUX/scroller.gif)
+
+* 创建项目
+
+使用vue-cli 创建一个vue项目
+
+安装vux，可以参考：[vux快速入门](https://doc.vux.li/zh-CN/install/biolerplate.html)
+
+* 配置
+
+官方文档中声明，该组件已经不再维护，也不建议使用，大部分情况下也不需要用到该组件。
+建议使用第三方相关组件，相关 issue 将不会处理。不知道作者为啥不维护了，明明需求挺多的
+        
+我没有用demo里的 LoadMore 组件，用的是 Scroller里自带的 use-pullup, use-pulldown 下面是我的配置
+
+代码示例:
+
+```
+<template>
+  <div>
+    <scroller use-pullup :pullup-config="pullupDefaultConfig" @on-pullup-loading="loadMore"
+              use-pulldown :pulldown-config="pulldownDefaultConfig" @on-pulldown-loading="refresh"
+              lock-x ref="scrollerBottom" height="-48">
+      <div>
+        <group label-width="4.5em" label-margin-right="2em" label-align="right" v-for="item in list" :key="item.key">
+          <panel :list="item.panel" :type="item.type" @on-img-error="onImgError" @click.native="goto(item)"></panel>
+          <x-progress :percent="item.progress" :show-cancel="false"></x-progress>
+        </group>
+      </div>
+    </scroller>
+  </div>
+</template>
+```
+
+```
+<script>
+  import axios from 'axios'
+  import _ from 'lodash'
+  import { Group, Panel, XProgress, Scroller } from 'vux'
+
+  const pulldownDefaultConfig = {
+    content: '下拉刷新',
+    height: 40,
+    autoRefresh: true,
+    downContent: '下拉刷新',
+    upContent: '释放后刷新',
+    loadingContent: '正在刷新...',
+    clsPrefix: 'xs-plugin-pulldown-'
+  }
+  const pullupDefaultConfig = {
+    content: '上拉加载更多',
+    pullUpHeight: 60,
+    height: 40,
+    autoRefresh: false,
+    downContent: '释放后加载',
+    upContent: '上拉加载更多',
+    loadingContent: '加载中...',
+    clsPrefix: 'xs-plugin-pullup-'
+  }
+
+  export default {
+    name: 'Lending',
+    components: {
+      Group,
+      Panel,
+      XProgress,
+      Scroller
+    },
+    data () {
+      return {
+        list: [],
+        curPage: 1,
+        swiper_index: 1,
+        pullupDefaultConfig: pullupDefaultConfig,
+        pulldownDefaultConfig: pulldownDefaultConfig
+      }
+    },
+    methods: {
+      swiper_onIndexChange (index) {
+        this.swiper_index = index
+      },
+      onImgError (item, $event) {
+        console.log(item, $event)
+      },
+      /**
+       * 刷新页面
+       */
+      refresh () {
+        console.log('refresh')
+      },
+      /**
+       * 加载更多列表
+       */
+      loadMore () {
+        var self = this
+        console.log('加载更多')
+        self.$refs.scrollerBottom.donePullup()
+        self.curPage++
+        self.getList()
+      },
+      /**
+       * 获取列表
+       */
+      getList () {
+        var self = this
+        axios.get(process.env.BASE_API + '/financeJson.do', {params: { 'curPage': self.curPage }})
+          .then(function (res) {
+            _.each(res.data, function (v, k) {
+              var item = {
+                data: v,
+                key: v.id,
+                type: '4',
+                progress: parseInt(v.progress),
+                panel: [
+                  {
+                    title: v.borrowTitle,
+                    desc: '融资额度:' + v.borrowAmount + ' 期限：' + v.deadline,
+                    meta: {
+                      source: '年利率',
+                      date: '7% + ' + (parseInt(v.annualRate) - 7) + '%',
+                      other: '完成比例： ' + parseInt(v.progress) + '%'
+                    }
+                  }
+                ]
+              }
+              self.list.push(item)
+            })
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      },
+      goto (item) {
+        var self = this
+        self.$router.push({name: 'financeDetail', params: {data: item}})
+      }
+    },
+    created () {
+      var self = this
+      self.getList()
+    }
+  }
+</script>
+```
+
 ### 6.6 报错处理:warning：component lists rendered with v-for should have explicit keys
 
 ### 6.7 Vue下路由History模式打包后页面空白
