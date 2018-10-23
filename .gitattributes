@@ -1,4 +1,4 @@
-*.js linguist-language=php
-*.css linguist-language=php
-*.html linguist-language=php
-*.md linguist-language=php
+*.js linguist-language=markdown
+*.css linguist-language=markdown
+*.html linguist-language=markdown
+*.md linguist-language=markdown
