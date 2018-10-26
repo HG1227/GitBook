@@ -102,7 +102,7 @@
     * [AngularJs-toaster-Angular提示弹框插件](webTips/AngularJS-Toaster.md)
     * [Windows部署时脚本报错](webTips/WinDeployment.md)
     * [ElementUI-Vue前端框架项目初始化](webTips/ElementUI-VueProjectInit.md)
-* [其他(other.md)
+* [其他](other.md)
     * [JAVA面试](other/content.md)
     * [钉钉使用](other/DingDing.md)
     * [sd360](other/sd360.md)
