@@ -1038,9 +1038,34 @@ vux-uploader是一个vue的上传组件，是对vux组件库的一个补充。
 
 ```
 npm install vux-uploader --save
+
+npm install --save-dev babel-preset-es2015
 ```
 
-##### 6.11.3.3 使用`vux-uploader`
+##### 6.11.3.3 配置`.babelrc`
+
+```
+{
+  "presets": [
+    ["env", {
+      "modules": false,
+      "targets": {
+        "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
+      }
+    }],
+    "es2015",
+    "stage-2"
+  ],
+  "plugins": ["transform-runtime"],
+  "env": {
+    "test": {
+      "presets": ["env", "es2015", "stage-2"],
+      "plugins": ["istanbul"]
+    }
+  }
+}
+```
+##### 6.11.3.4 使用`vux-uploader`
 
 ```
 // 引入组件
@@ -1176,27 +1201,25 @@ export default {
     * 参数: formData,图片内容生成的formData
     * 备注: 可以通过vm.$refs.input获取图片的input元素
 
-### 6.12 上传图片组件引入报错
+### 6.12 报错处理：exports is not defined
 
-### 6.13 报错处理：exports is not defined
+### 6.13 报错处理：Default export is not declared in imported module
 
-### 6.14 报错处理：Default export is not declared in imported module
+### 6.14 vux中fullpage的使用
 
-### 6.15 vux中fullpage的使用
+### 6.15 Vue Router 的params和query传参的使用和区别
 
-### 6.16 Vue Router 的params和query传参的使用和区别
+### 6.16 vux框架组件自定义样式
 
-### 6.17 vux框架组件自定义样式
+### 6.17 vux-cell title 插槽使用
 
-### 6.18 vux-cell title 插槽使用
+### 6.18 vux-cell title 插槽可添加样式并使得超长文字隐藏
 
-### 6.19 vux-cell title 插槽可添加样式并使得超长文字隐藏
+### 6.19 复制至剪贴板插件
 
-### 6.20 复制至剪贴板插件
+### 6.20 vue-cookies使用
 
-### 6.21 vue-cookies使用
-
-### 6.22 级联选择器使用
+### 6.21 级联选择器使用
 
 ## 7 同类型技术比较
 
