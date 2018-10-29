@@ -1472,6 +1472,35 @@ this.name = this.$route.params.name
 
 ### 6.16 vux框架组件自定义样式
 
+### 6.16.1 全局方式
+
+> 方法一 在webpack.base.conf.js文件中配置
+
+```
+{
+    name: 'less-theme', 
+    path: 'src/styles/theme.less' // 相对项目根目录路径
+}
+```
+
+![](../assets/VUX/vuxCss.png)
+
+然后在配置的路径写入对应的.less文件，类似下图这样
+
+![](../assets/VUX/vuxCss2.png)
+
+### 6.16.2 局部方式
+
+> 方法二 使用/deep/或>>>
+
+在引用的组件包一个div，例如类名为sample
+
+要改变里面组件样式可以用在<style>标签中用.sample /deep/ xxxxx组件样式类来选择
+
+![](../assets/VUX/vuxCss3.png)
+
+> 注意:/deep/在less和sass中不支持，本人在使用>>>测试的时候没有生效
+
 ### 6.17 vux-cell title 插槽使用
 
 ### 6.18 vux-cell title 插槽可添加样式并使得超长文字隐藏
