@@ -1495,7 +1495,7 @@ this.name = this.$route.params.name
 
 在引用的组件包一个div，例如类名为sample
 
-要改变里面组件样式可以用在<style>标签中用.sample /deep/ xxxxx组件样式类来选择
+要改变里面组件样式可以用在`<style>`标签中用`.sample /deep/ xxxxx`组件样式类来选择
 
 ![](../assets/VUX/vuxCss3.png)
 
@@ -1526,72 +1526,7 @@ this.name = this.$route.params.name
 vux cell title插槽可添加样式并使得超长文字隐藏。
 可参考/yumaomoney_WeChat/src/components/user/message/Message.vue `.cell-overflow`
 
-### 6.18 复制至剪贴板插件
-
-vue 实现复制到粘贴板功能需要依赖到 clipboard.js
-
-#### 6.18.1 首先需要安装依赖  `* 出现错误的话，可以试试 cnpm`
-
-```
-npm install --save vue-clipboard2
-```
-
-#### 6.18.2 安装成功之后就可以开始使用了
-
-对于vue-cli
-
-```
-import Vue from 'vue'
-import VueClipboard from 'vue-clipboard2'
-```
-
-对于常规的用法
-
-```
-<script src="vue.min.js"></script>
-<!-- 必须在vue.js之后放置这一行 -->
-<script src="vue-clipboard.min.js"></script>
-```
-
-#### 6.18.3 Dome的使用
-
-```
-<template>
-  <div class="wxsmallcode-page publicCon">
-    <div class="copyBox">
-      sysAppId：<span>{{sysAppIds}}</span>
-      <el-button class="ml10" type="text" size="medium"
-        v-clipboard:copy="sysAppIds"
-        v-clipboard:success="onCopy"
-        v-clipboard:error="onError">点击复制</el-button>
-    </div>
-</template>
-<script>
-export default {
-  data(){
-    return {
-      sysAppIds: 'xxxxxxxxxxxsx'
-    }
-  },
-  methods: {
-    // 复制成功
-    onCopy(e){
-      console.log(e);
-    },
-    // 复制失败
-    onError(e){
-      alert("失败");
-    },
-  }
-}
-</script>
-```
-
-* 注：cnpm 为安装了淘宝镜像之后的命令工具
-
-### 6.19 vue-cookies使用
-
-### 6.20 级联选择器使用
+### 6.18 级联选择器使用
 
 ## 7 同类型技术比较
 
@@ -1615,6 +1550,6 @@ export default {
 * [Vue Router 的params和query传参的使用和区别](https://blog.csdn.net/mf_717714/article/details/81945218)
 * [vux框架组件自定义样式](https://blog.csdn.net/linggty/article/details/81512211)
 * [vux cell title 插槽使用](https://segmentfault.com/q/1010000014234606/a-1020000014653614)
-* [复制至剪贴板插件](https://www.cnblogs.com/wyhlightstar/p/8950430.html)
-* [vue-cookies](https://www.cnblogs.com/s313139232/p/9341762.html)
+* [clipboard.js使用](./clipboard.md)
+* [vue-cookies使用](./vue-cookies.md)
 * [级联选择器](https://blog.csdn.net/oulihong123/article/details/58327247/)
