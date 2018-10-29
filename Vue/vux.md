@@ -637,7 +637,13 @@ Vue.use(ToastPlugin)
 </script>
 ```
 
-### 6.4 Vue下路由History模式打包后页面空白
+### 6.4 scroller下拉失败回弹
+
+引用vux中的scroller插件注意事项： 
+1、scroller标签内部必须紧套一层div标签 
+2、注意sceoller的enabled属性，表示可以下拉刷新
+
+### 6.5 Vue下路由History模式打包后页面空白
 
 vue的路由在默认的hash模式下,默认打包一般不会有什么问题,不过hash模式由于url会带有一个#,不美观,而且在微信分享,
 授权登录等都会有一些坑.所以history模式也会有一些应用场景.新手往往会碰到history模式打包后页面一片空白的情况,
@@ -677,12 +683,6 @@ location /history {
 
 上面这个是项目路径名为history,这样配置后就不会有vue打包后页面空白问题了,history路由也可以自由访问了,
 不过要记得上面说的,非根目录的项目需要加上base 的路径 
-
-### 6.5 scroller下拉失败回弹
-
-引用vux中的scroller插件注意事项： 
-1、scroller标签内部必须紧套一层div标签 
-2、注意sceoller的enabled属性，表示可以下拉刷新
 
 ### 6.6 打包后css引用图片资源找不到
 
@@ -920,8 +920,8 @@ See https://vuejs.org/guide/list.html#key for more info.
     * [tabber切换图标及颜色](https://blog.csdn.net/wandoumm/article/details/80168445)
     * [x-header、tabbar固定位置](https://github.com/airyland/vux/issues/285)
     * [下拉加载更多](https://www.jb51.net/article/132455.htm)
-    * [Vue下路由History模式打包后页面空白](https://blog.csdn.net/sky2714/article/details/80887081)
     * [scroller下拉失败回弹](https://blog.csdn.net/hh_liweihong/article/details/77066023)
+    * [Vue下路由History模式打包后页面空白](https://blog.csdn.net/sky2714/article/details/80887081)
     * [打包后css引用图片资源找不到](https://blog.csdn.net/gdut_luoyifei/article/details/79001397)
     * [打包后js引用图片资源找不到](https://blog.csdn.net/github_37533433/article/details/78937645)
     * [vux框架组件自定义样式](https://blog.csdn.net/linggty/article/details/81512211)
