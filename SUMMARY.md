@@ -54,6 +54,7 @@
     * [Vue的Ref属性](Vue/vueRef.md)
     * [Vue生命周期图例](webTips/vuesheng-ming-zhou-qi-tu-li.md)
     * [Vux使用](Vue/vux.md)
+    * [vue-cookies使用](Vue/vue-cookies.md)
 * [代码审查](CodeReview.md)
     * [代码命名规范](TraingRecord/CodeNaming.md)
     * [页面代码结构](TraingRecord/CodeStructure.md)
