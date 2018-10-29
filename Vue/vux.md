@@ -590,69 +590,7 @@ export default new Router({
 </style>
 ```
 
-### 6.3 报错处理:Failed to load resource: net::ERR_FILE_NOT_FOUND
-
-> Failed to load resource: net::ERR_FILE_NOT_FOUND或者vue dist文件下的index.html没显示
-
-```
-vue-cli  npm run dev 可以看到，但是通过dist文件下的index.html直接打开没显示，没看到  
-
-知乎上：webpack.prod.conf.js 中output添加参数publicPath:'./'
-
-具体：
-
-在webpack.base.conf.js里
-
-publicPath: process.env.NODE_ENV === 'production'
-     ? './' +config.build.assetsPublicPath
-     : './' + config.dev.assetsPublicPath
-```
-
-#### vue的图片路径，和背景图片路径打包后错误解决
-
-![](../assets/VUX/vuxBug.png)
-
-![](../assets/VUX/vuxBug2.png)
-
-* 找到 config->index.js里面，如下修改
-
-![](../assets/VUX/vuxBug3.png)
-
-* 找到 build->utils.js,在里面加入一句publicPath:’../../’
-
-![](../assets/VUX/vuxBug4.png)
-
-配置修改完成，接下来，使用有两种方式，这里一般和文件结构有关，下面是我的文件结构下的使用
-
-1、图片资源放在 assets->img文件夹下面
-
-img标签引入图片
-
-```
-<img src="../assets/img/loginback.png" class="test-img" />
-```
-
-css使用图片
-
-```
-background: url('../assets/img/loginback.png') no-repeat top left ;
-```
-
-2、图片资源放在static->img文件夹下面
-
-img标签引入图片
-
-```
-<img src="../../static/img/loginback.png" class="test-img" /><br><img src="static/img/loginback.png" class="test-img" />
-```
-
-css使用图片
-
-```
-background: url('../../static/img/loginback.png') no-repeat top left ;
-```
-
-### 6.4 x-header、tabbar固定位置
+### 6.3 x-header、tabbar固定位置
 
 ```
 <template>
@@ -725,7 +663,7 @@ background: url('../../static/img/loginback.png') no-repeat top left ;
 }
 ```
 
-### 6.5 下拉加载更多
+### 6.4 下拉加载更多
 
 先上效果图
 
@@ -874,43 +812,7 @@ background: url('../../static/img/loginback.png') no-repeat top left ;
 </script>
 ```
 
-### 6.6 警告处理:warning：component lists rendered with v-for should have explicit keys
-
-> 命令行warning(Emitted value instead of an instance of Error)。
-component lists rendered with v-for should have explicit keys。
-See https://vuejs.org/guide/list.html#key for more info. 
-
-截图如下:
-
-![](../assets/VUX/warning1.png)
-
-这里只是推荐使用key. 
-原本的代码如下：
-
-```
-<el-tag
-    v-for = "feiLei of ruleForm.fenLeis"          
-    :closable = "true"
-    type = "primary"
-    @close = "handleCloseFenLei(feiLei)">{{feiLei.name}}
-</el-tag>
-```
-
-运行时显示warning，添加：key即可，如下：
-
-```
-<el-tag
-    v-for = "feiLei of ruleForm.fenLeis"
-    :key="feiLei1"        
-    :closable = "true"
-    type = "primary"
-    @close = "handleCloseFenLei(feiLei)">{{feiLei.name}}
-</el-tag>
-```
-
-这样就不会报错啦，具体看文档，key不是必须的，仅仅是warning
-
-### 6.7 Vue下路由History模式打包后页面空白
+### 6.5 Vue下路由History模式打包后页面空白
 
 vue的路由在默认的hash模式下,默认打包一般不会有什么问题,不过hash模式由于url会带有一个#,不美观,而且在微信分享,
 授权登录等都会有一些坑.所以history模式也会有一些应用场景.新手往往会碰到history模式打包后页面一片空白的情况,
@@ -951,13 +853,13 @@ location /history {
 上面这个是项目路径名为history,这样配置后就不会有vue打包后页面空白问题了,history路由也可以自由访问了,
 不过要记得上面说的,非根目录的项目需要加上base 的路径 
 
-### 6.8 scroller下拉失败回弹
+### 6.6 scroller下拉失败回弹
 
 引用vux中的scroller插件注意事项： 
 1、scroller标签内部必须紧套一层div标签 
 2、注意sceoller的enabled属性，表示可以下拉刷新
 
-### 6.9 打包后css引用图片资源找不到
+### 6.7 打包后css引用图片资源找不到
 
 使用vue打包，通过css引用图片资源。
 
@@ -995,7 +897,7 @@ if (options.extract) {
 
 在build一次，没有报错，正常显示！
 
-### 6.10 打包后js引用图片资源找不到
+### 6.8 打包后js引用图片资源找不到
 
 在vue组件的js部分导入图片要使用require的形式导入，否则webpack不能正常导入，因为其路径不符合其解析规范
 
@@ -1007,31 +909,7 @@ if (options.extract) {
 
 ![](../assets/VUX/jsError.jpg)
 
-### 6.11 报错处理：exports is not defined
-
-在引入插件后，控制台报错`Uncaught ReferenceError: exports is not defined`
-
-处理方法：
-
-* 引入插件需重新编译，重新`npm run dev`
-* webpack 2后不允许混合使用import和module.exports
-    * 统一修改为`export default XXX`
-    * 找到`.babelrcf`删除`transform-runtime`
-* 去掉 { "modules": false }其中{ "modules": false }阻止了babel进行模块转换，具体见[modules配置的说明](https://babeljs.io/docs/en/babel-preset-env/)。
-    * 将modules改为默认设置即可
-    * 删除该配置
-
-![](../assets/VUX/exportsError.png)
-
-### 6.12 报错处理：Default export is not declared in imported module
-
-![](../assets/VUX/importError.png)
-
-升级 webstorm 到 2016.1 即可解决，以前的版本有这个规则但是没选项关闭
-
-可参考yumaomoney_WeChat/src/components/container/Container.vue，export default为必要内容。
-
-### 6.13 Vue Router 的params和query传参的使用和区别
+### 6.9 Vue Router 的params和query传参的使用和区别
 
 首先简单来说明一下`$router`和`$route`的区别
 
@@ -1053,7 +931,7 @@ this.name = this.$route.params.name
 this.age = this.$route.params.age
 ```
 
-### 6.13.1 query传递参数
+### 6.9.1 query传递参数
 
 我看了很多人都说query传参要用path来引入，params传参要用name来引入，只是我测试了一下，query使用name来引入也可以传参，使用path也可以。
 
@@ -1087,7 +965,7 @@ this.queryId = this.$route.query.queryId
 
 ![](../assets/VUX/VueRouter2.png)
 
-### 6.13.2 params传递参数
+### 6.9.2 params传递参数
 
 注：使用params传参只能使用name进行引入
 
@@ -1161,7 +1039,7 @@ this.name = this.$route.params.name
 
 ![](../assets/VUX/VueRouter7.png)
 
-### 6.13.3 总结
+### 6.9.3 总结
 
 1. 传参可以使用params和query两种方式。
 1. 使用params传参只能用name来引入路由，即push里面只能是name:’xxxx’,不能是path:’/xxx’,
@@ -1171,9 +1049,9 @@ this.name = this.$route.params.name
 1. 二者还有点区别，直白的来说query相当于get请求，页面跳转的时候，可以在地址栏看到请求参数，
 而params相当于post请求，参数不会再地址栏中显示。
 
-### 6.14 vux框架组件自定义样式
+### 6.10 vux框架组件自定义样式
 
-### 6.14.1 全局方式
+### 6.10.1 全局方式
 
 > 方法一 在webpack.base.conf.js文件中配置
 
@@ -1190,7 +1068,7 @@ this.name = this.$route.params.name
 
 ![](../assets/VUX/vuxCss2.png)
 
-### 6.14.2 局部方式
+### 6.10.2 局部方式
 
 > 方法二 使用/deep/或>>>
 
@@ -1202,7 +1080,7 @@ this.name = this.$route.params.name
 
 > 注意:/deep/在less和sass中不支持，本人在使用>>>测试的时候没有生效
 
-### 6.15 vux-cell title 插槽使用
+### 6.11 vux-cell title 插槽使用
 
 ```
 <group>
@@ -1227,23 +1105,144 @@ this.name = this.$route.params.name
 vux cell title插槽可添加样式并使得超长文字隐藏。
 可参考/yumaomoney_WeChat/src/components/user/message/Message.vue `.cell-overflow`
 
-### 6.16 级联选择器使用
+### 6.12 报错处理:Failed to load resource: net::ERR_FILE_NOT_FOUND
+
+> Failed to load resource: net::ERR_FILE_NOT_FOUND或者vue dist文件下的index.html没显示
+
+```
+vue-cli  npm run dev 可以看到，但是通过dist文件下的index.html直接打开没显示，没看到  
+
+知乎上：webpack.prod.conf.js 中output添加参数publicPath:'./'
+
+具体：
+
+在webpack.base.conf.js里
+
+publicPath: process.env.NODE_ENV === 'production'
+     ? './' +config.build.assetsPublicPath
+     : './' + config.dev.assetsPublicPath
+```
+
+#### vue的图片路径，和背景图片路径打包后错误解决
+
+![](../assets/VUX/vuxBug.png)
+
+![](../assets/VUX/vuxBug2.png)
+
+* 找到 config->index.js里面，如下修改
+
+![](../assets/VUX/vuxBug3.png)
+
+* 找到 build->utils.js,在里面加入一句publicPath:’../../’
+
+![](../assets/VUX/vuxBug4.png)
+
+配置修改完成，接下来，使用有两种方式，这里一般和文件结构有关，下面是我的文件结构下的使用
+
+1、图片资源放在 assets->img文件夹下面
+
+img标签引入图片
+
+```
+<img src="../assets/img/loginback.png" class="test-img" />
+```
+
+css使用图片
+
+```
+background: url('../assets/img/loginback.png') no-repeat top left ;
+```
+
+2、图片资源放在static->img文件夹下面
+
+img标签引入图片
+
+```
+<img src="../../static/img/loginback.png" class="test-img" /><br><img src="static/img/loginback.png" class="test-img" />
+```
+
+css使用图片
+
+```
+background: url('../../static/img/loginback.png') no-repeat top left ;
+```
+
+### 6.13 警告处理:warning：component lists rendered with v-for should have explicit keys
+
+> 命令行warning(Emitted value instead of an instance of Error)。
+component lists rendered with v-for should have explicit keys。
+See https://vuejs.org/guide/list.html#key for more info. 
+
+截图如下:
+
+![](../assets/VUX/warning1.png)
+
+这里只是推荐使用key. 
+原本的代码如下：
+
+```
+<el-tag
+    v-for = "feiLei of ruleForm.fenLeis"          
+    :closable = "true"
+    type = "primary"
+    @close = "handleCloseFenLei(feiLei)">{{feiLei.name}}
+</el-tag>
+```
+
+运行时显示warning，添加：key即可，如下：
+
+```
+<el-tag
+    v-for = "feiLei of ruleForm.fenLeis"
+    :key="feiLei1"        
+    :closable = "true"
+    type = "primary"
+    @close = "handleCloseFenLei(feiLei)">{{feiLei.name}}
+</el-tag>
+```
+
+这样就不会报错啦，具体看文档，key不是必须的，仅仅是warning
+
+### 6.14 报错处理：exports is not defined
+
+在引入插件后，控制台报错`Uncaught ReferenceError: exports is not defined`
+
+处理方法：
+
+* 引入插件需重新编译，重新`npm run dev`
+* webpack 2后不允许混合使用import和module.exports
+    * 统一修改为`export default XXX`
+    * 找到`.babelrcf`删除`transform-runtime`
+* 去掉 { "modules": false }其中{ "modules": false }阻止了babel进行模块转换，具体见[modules配置的说明](https://babeljs.io/docs/en/babel-preset-env/)。
+    * 将modules改为默认设置即可
+    * 删除该配置
+
+![](../assets/VUX/exportsError.png)
+
+### 6.15 报错处理：Default export is not declared in imported module
+
+![](../assets/VUX/importError.png)
+
+升级 webstorm 到 2016.1 即可解决，以前的版本有这个规则但是没选项关闭
+
+可参考yumaomoney_WeChat/src/components/container/Container.vue，export default为必要内容。
 
 ## 7 同类型技术比较
 
 ## 参考资料
 
-* [router配置位置](https://www.cnblogs.com/padding1015/p/7884861.html)
-* [tabber切换图标及颜色](https://blog.csdn.net/wandoumm/article/details/80168445)
-* [x-header、tabbar固定位置](https://github.com/airyland/vux/issues/285)
-* [下拉加载更多](https://www.jb51.net/article/132455.htm)
-* [Vue下路由History模式打包后页面空白](https://blog.csdn.net/sky2714/article/details/80887081)
-* [scroller下拉失败回弹](https://blog.csdn.net/hh_liweihong/article/details/77066023)
-* [打包后css引用图片资源找不到](https://blog.csdn.net/gdut_luoyifei/article/details/79001397)
-* [打包后js引用图片资源找不到](https://blog.csdn.net/github_37533433/article/details/78937645)
-* [Vue Router 的params和query传参的使用和区别](https://blog.csdn.net/mf_717714/article/details/81945218)
-* [vux框架组件自定义样式](https://blog.csdn.net/linggty/article/details/81512211)
-* [vux cell title 插槽使用](https://segmentfault.com/q/1010000014234606/a-1020000014653614)
+* 常见问题及处理
+    * [router配置位置](https://www.cnblogs.com/padding1015/p/7884861.html)
+    * [tabber切换图标及颜色](https://blog.csdn.net/wandoumm/article/details/80168445)
+    * [x-header、tabbar固定位置](https://github.com/airyland/vux/issues/285)
+    * [下拉加载更多](https://www.jb51.net/article/132455.htm)
+    * [Vue下路由History模式打包后页面空白](https://blog.csdn.net/sky2714/article/details/80887081)
+    * [scroller下拉失败回弹](https://blog.csdn.net/hh_liweihong/article/details/77066023)
+    * [打包后css引用图片资源找不到](https://blog.csdn.net/gdut_luoyifei/article/details/79001397)
+    * [打包后js引用图片资源找不到](https://blog.csdn.net/github_37533433/article/details/78937645)
+    * [Vue Router 的params和query传参的使用和区别](https://blog.csdn.net/mf_717714/article/details/81945218)
+    * [vux框架组件自定义样式](https://blog.csdn.net/linggty/article/details/81512211)
+    * [vux cell title 插槽使用](https://segmentfault.com/q/1010000014234606/a-1020000014653614)
 * 报错的处理
     * [打包报错处理：Failed to load resource: net::ERR_FILE_NOT_FOUND](https://blog.csdn.net/lhb_11/article/details/79455015)
     * [警告处理：warning：component lists rendered with v-for should have explicit keys](https://blog.csdn.net/twinkle2star/article/details/73741120)
