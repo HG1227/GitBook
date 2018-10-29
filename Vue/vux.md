@@ -1332,6 +1332,144 @@ css部分： page-container 需要固定宽度和高度， fullpage 会使用父
 
 ### 6.15 Vue Router 的params和query传参的使用和区别
 
+首先简单来说明一下`$router`和`$route`的区别
+
+```
+//$router : 是路由操作对象，只写对象
+//$route : 路由信息对象，只读对象
+
+//操作 路由跳转
+this.$router.push({
+      name:'hello',
+      params:{
+          name:'word',
+          age:'11'
+     }
+})
+
+//读取 路由参数接收
+this.name = this.$route.params.name
+this.age = this.$route.params.age
+```
+
+### 6.15.1 query传递参数
+
+我看了很多人都说query传参要用path来引入，params传参要用name来引入，只是我测试了一下，query使用name来引入也可以传参，使用path也可以。
+
+```
+//query传参，使用name跳转
+this.$router.push({
+    name:'second',
+    query: {
+        queryId:'20180822',
+        queryName: 'query'
+    }
+})
+
+//query传参，使用path跳转
+this.$router.push({
+    path:'second',
+    query: {
+        queryId:'20180822',
+        queryName: 'query'
+    }
+})
+
+//query传参接收
+this.queryName = this.$route.query.queryName
+this.queryId = this.$route.query.queryId
+```
+
+![](../assets/VUX/VueRouter.png)
+
+最终不管是path引入还是name引入效果都一样如下图
+
+![](../assets/VUX/VueRouter2.png)
+
+### 6.15.2 params传递参数
+
+注：使用params传参只能使用name进行引入
+
+使用params传参
+
+```
+//params传参 使用name
+this.$router.push({
+  name:'second',
+  params: {
+    id:'20180822',
+     name: 'query'
+  }
+})
+
+//params接收参数
+this.id = this.$route.params.id 
+this.name = this.$route.params.name 
+
+//路由
+
+{
+path: '/second/:id/:name',
+name: 'second',
+component: () => import('@/view/second')
+}
+```
+
+![](../assets/VUX/VueRouter3.png)
+
+效果如下图
+
+![](../assets/VUX/VueRouter4.png)
+
+需要注意的是：
+
+* params是路由的一部分,必须要在路由后面添加参数名。query是拼接在url后面的参数，没有也没关系。
+* params一旦设置在路由，params就是路由的一部分，如果这个路由有params传参，但是在跳转的时候没有传这个参数，
+会导致跳转失败或者页面会没有内容。
+
+如果路由后面没有 /:id/:name效果如下图，地址栏没有参数
+
+![](../assets/VUX/VueRouter5.png)
+
+但是如果你刷新一下，就会发现页面失败，效果如下图
+
+![](../assets/VUX/VueRouter6.png)
+
+因此我们不可能让用户不要刷新，所以我们必须在路由后面加上 /:id/:name
+
+如果使用path进行传参
+
+```
+//params传参 使用path
+this.$router.push({
+  path:'second',
+   params: {
+    id:'20180822',
+     name: 'query'
+  }
+})
+
+//params接收参数
+this.id = this.$route.params.id
+this.name = this.$route.params.name 
+```
+
+效果如下图
+
+使用path传参什么效果都没有。
+
+![](../assets/VUX/VueRouter7.png)
+
+### 6.15.3 总结
+
+1. 传参可以使用params和query两种方式。
+1. 使用params传参只能用name来引入路由，即push里面只能是name:’xxxx’,不能是path:’/xxx’,
+因为params只能用name来引入路由，如果这里写成了path，接收参数页面会是undefined！！！。
+1. 使用query传参使用path来引入路由。
+1. params是路由的一部分,必须要在路由后面添加参数名。query是拼接在url后面的参数，没有也没关系。
+1. 二者还有点区别，直白的来说query相当于get请求，页面跳转的时候，可以在地址栏看到请求参数，
+而params相当于post请求，参数不会再地址栏中显示。
+
 ### 6.16 vux框架组件自定义样式
 
 ### 6.17 vux-cell title 插槽使用
