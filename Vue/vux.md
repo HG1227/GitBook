@@ -1215,7 +1215,13 @@ export default {
     * 将modules改为默认设置即可
     * 删除该配置
 
+![](../assets/VUX/exportsError.png)
+
 ### 6.13 报错处理：Default export is not declared in imported module
+
+![](../assets/VUX/importError.png)
+
+升级 webstorm 到 2016.1 即可解决，以前的版本有这个规则但是没选项关闭
 
 ### 6.14 vux中fullpage的使用
 
