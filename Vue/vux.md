@@ -641,7 +641,7 @@ Vue.use(ToastPlugin)
 
 引用vux中的scroller插件注意事项： 
 1、scroller标签内部必须紧套一层div标签 
-2、注意sceoller的enabled属性，表示可以下拉刷新
+2、注意scroller的enabled属性，表示可以下拉刷新
 
 ### 6.5 Vue下路由History模式打包后页面空白
 
