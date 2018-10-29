@@ -1528,6 +1528,67 @@ vux cell title插槽可添加样式并使得超长文字隐藏。
 
 ### 6.18 复制至剪贴板插件
 
+vue 实现复制到粘贴板功能需要依赖到 clipboard.js
+
+#### 6.18.1 首先需要安装依赖  `* 出现错误的话，可以试试 cnpm`
+
+```
+npm install --save vue-clipboard2
+```
+
+#### 6.18.2 安装成功之后就可以开始使用了
+
+对于vue-cli
+
+```
+import Vue from 'vue'
+import VueClipboard from 'vue-clipboard2'
+```
+
+对于常规的用法
+
+```
+<script src="vue.min.js"></script>
+<!-- 必须在vue.js之后放置这一行 -->
+<script src="vue-clipboard.min.js"></script>
+```
+
+#### 6.18.3 Dome的使用
+
+```
+<template>
+  <div class="wxsmallcode-page publicCon">
+    <div class="copyBox">
+      sysAppId：<span>{{sysAppIds}}</span>
+      <el-button class="ml10" type="text" size="medium"
+        v-clipboard:copy="sysAppIds"
+        v-clipboard:success="onCopy"
+        v-clipboard:error="onError">点击复制</el-button>
+    </div>
+</template>
+<script>
+export default {
+  data(){
+    return {
+      sysAppIds: 'xxxxxxxxxxxsx'
+    }
+  },
+  methods: {
+    // 复制成功
+    onCopy(e){
+      console.log(e);
+    },
+    // 复制失败
+    onError(e){
+      alert("失败");
+    },
+  }
+}
+</script>
+```
+
+* 注：cnpm 为安装了淘宝镜像之后的命令工具
+
 ### 6.19 vue-cookies使用
 
 ### 6.20 级联选择器使用
