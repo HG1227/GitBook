@@ -927,6 +927,9 @@ See https://vuejs.org/guide/list.html#key for more info.
     * [打包后js引用图片资源找不到](https://blog.csdn.net/github_37533433/article/details/78937645)
     * [vux框架组件自定义样式](https://blog.csdn.net/linggty/article/details/81512211)
     * [vux cell title 插槽使用](https://segmentfault.com/q/1010000014234606/a-1020000014653614)
+    * [输入框验证](https://blog.csdn.net/honnyee/article/details/80691445)
+    * [声明公共方法](https://blog.csdn.net/sinat_17775997/article/details/78341907?locationNum=9&fps=1)
+    * [声明公共变量](https://www.jianshu.com/p/7547ff8760c3)
 * 报错的处理
     * [打包报错处理：Failed to load resource: net::ERR_FILE_NOT_FOUND](https://blog.csdn.net/lhb_11/article/details/79455015)
     * [警告处理：warning：component lists rendered with v-for should have explicit keys](https://blog.csdn.net/twinkle2star/article/details/73741120)
