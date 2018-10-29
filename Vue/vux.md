@@ -361,182 +361,7 @@ Vue.use(ToastPlugin)
 
 ## 6 最佳实践
 
-### 6.1 vue-router配置方式
-
-#### 介绍
-
-路由：控制组件之间的跳转，不会实现请求、不用页面刷新，直接跳转-切换组件
-
-#### 安装
-
-本地环境安装路由插件vue-router：
-
-```
-cnpm install vue-router --save-dev  
-```
-
-* 没有安装淘宝镜像的可以将`cnpm`替换成`npm`
-
-想要安装的可以看这篇[文章](http://www.cnblogs.com/padding1015/p/7162024.html)，（打开搜索`镜像`即可跳转到对应位置）
-
-#### 配置
-
-两种配置方法：在main.js中 || 在src/router文件夹下的index.js中
-
-这里只说在src/router/index.js中的
-
-* 引入
-
-``` 
-import Vue from 'vue'
-import Router from 'vue-router'
-```
-
-注意这个Router是自定义的名字，这里叫这个名字后，下边都要用到的
-
-* 使用/注册：
-
-```
-Vue.use(Router)
-```
-
-* 配置
-
-配置路由
-
-```
-export default new Router({
-  routes: [
-   {
-        path : ‘/’,  //到时候地址栏会显示的路径
-        name : ‘Home’,
-        component :  Home   // Home是组件的名字，这个路由对应跳转到的组件。。注意component没有加“s”.
-    },
-    {
-        path : ‘/content’,
-        name : ‘Content’,
-        component :  Content
-    }
-],
-    mode: "history"
-})
-```
-
-* 引入路由对应的组件地址
-
-``` 
-import Home from '@/components/Home'
-import Home from '@/components/Content’
-```
-
-* 在main.js中调用index.js的配置
-
-```
-import router from './router'
-```
-
-* App.vue页面使用（展示）路由：<!-- 展示router -->
-
-把这个标签放到对应位置
-
-```
-<router-view></router-view>
-```
-
-* 路由切换（原来的<a href=”XXX.html”>等地方）：把切换标签和链接改成
-
-```
-<router-link  to="/">切换到Home组件</router-link>
-<router-link  to="/content">切换到Content组件</router-link>
-```
-
-> 这里，to里边的参数和配置时，path的路径一样即可
-
-#### 示例
-
-`/src/main.js`
-
-```
-import Vue from 'vue'
-import App from './App'
-import router from 'vue-router'
-
-/* eslint-disable no-new */
-new Vue({
-  router,
-  render: h => h(App)
-}).$mount('#app-box')
-```
-
-`/src/router/index.js`
-
-```
-import Vue from 'vue'
-import Router from 'vue-router'
-import Container from '../components/container/Container'
-import Start from '../components/start/Start'
-import Gesture from '../components/start/gesture/Gesture'
-import Registered from '../components/start/registered/Registered'
-import RegisteredDetail from '../components/start/registered/RegisteredDetail'
-import Lending from '../components/lending/Lending'
-import FinanceDetail from '../components/lending/financeDetail/FinanceDetail'
-
-Vue.use(Router)
-
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      redirect: '/start'
-    },
-    {
-      path: '/start',
-      component: Container,
-      children: [
-        {
-          path: '/',
-          component: Start
-        },
-        {
-          path: 'gesture',
-          component: Gesture
-        },
-        {
-          path: 'registered',
-          component: Container,
-          children: [
-            {
-              path: '/',
-              component: Registered
-            },
-            {
-              path: 'registeredDetail',
-              component: RegisteredDetail
-            }
-          ]
-        }
-      ]
-    },
-    {
-      path: '/lending',
-      component: Container,
-      children: [
-        {
-          path: '/',
-          component: Lending
-        },
-        {
-          path: 'financeDetail',
-          name: 'financeDetail',
-          component: FinanceDetail
-        }
-      ]
-    },
-  ]
-})
-```
-
-### 6.2 VUX tabber切换图标及字体颜色
+### 6.1 VUX tabber切换图标及字体颜色
 
 通过path判断当前页面，并切换选中tabbar，如果tabbar不多，使用组件一般方式即可(即在每个子模块引入tabbar并写好默认选中项)
 
@@ -590,7 +415,7 @@ export default new Router({
 </style>
 ```
 
-### 6.3 x-header、tabbar固定位置
+### 6.2 x-header、tabbar固定位置
 
 ```
 <template>
@@ -663,7 +488,7 @@ export default new Router({
 }
 ```
 
-### 6.4 下拉加载更多
+### 6.3 下拉加载更多
 
 先上效果图
 
@@ -812,7 +637,7 @@ export default new Router({
 </script>
 ```
 
-### 6.5 Vue下路由History模式打包后页面空白
+### 6.4 Vue下路由History模式打包后页面空白
 
 vue的路由在默认的hash模式下,默认打包一般不会有什么问题,不过hash模式由于url会带有一个#,不美观,而且在微信分享,
 授权登录等都会有一些坑.所以history模式也会有一些应用场景.新手往往会碰到history模式打包后页面一片空白的情况,
@@ -853,13 +678,13 @@ location /history {
 上面这个是项目路径名为history,这样配置后就不会有vue打包后页面空白问题了,history路由也可以自由访问了,
 不过要记得上面说的,非根目录的项目需要加上base 的路径 
 
-### 6.6 scroller下拉失败回弹
+### 6.5 scroller下拉失败回弹
 
 引用vux中的scroller插件注意事项： 
 1、scroller标签内部必须紧套一层div标签 
 2、注意sceoller的enabled属性，表示可以下拉刷新
 
-### 6.7 打包后css引用图片资源找不到
+### 6.6 打包后css引用图片资源找不到
 
 使用vue打包，通过css引用图片资源。
 
@@ -897,7 +722,7 @@ if (options.extract) {
 
 在build一次，没有报错，正常显示！
 
-### 6.8 打包后js引用图片资源找不到
+### 6.7 打包后js引用图片资源找不到
 
 在vue组件的js部分导入图片要使用require的形式导入，否则webpack不能正常导入，因为其路径不符合其解析规范
 
@@ -909,149 +734,9 @@ if (options.extract) {
 
 ![](../assets/VUX/jsError.jpg)
 
-### 6.9 Vue Router 的params和query传参的使用和区别
+### 6.8 vux框架组件自定义样式
 
-首先简单来说明一下`$router`和`$route`的区别
-
-```
-//$router : 是路由操作对象，只写对象
-//$route : 路由信息对象，只读对象
-
-//操作 路由跳转
-this.$router.push({
-      name:'hello',
-      params:{
-          name:'word',
-          age:'11'
-     }
-})
-
-//读取 路由参数接收
-this.name = this.$route.params.name
-this.age = this.$route.params.age
-```
-
-### 6.9.1 query传递参数
-
-我看了很多人都说query传参要用path来引入，params传参要用name来引入，只是我测试了一下，query使用name来引入也可以传参，使用path也可以。
-
-```
-//query传参，使用name跳转
-this.$router.push({
-    name:'second',
-    query: {
-        queryId:'20180822',
-        queryName: 'query'
-    }
-})
-
-//query传参，使用path跳转
-this.$router.push({
-    path:'second',
-    query: {
-        queryId:'20180822',
-        queryName: 'query'
-    }
-})
-
-//query传参接收
-this.queryName = this.$route.query.queryName
-this.queryId = this.$route.query.queryId
-```
-
-![](../assets/VUX/VueRouter.png)
-
-最终不管是path引入还是name引入效果都一样如下图
-
-![](../assets/VUX/VueRouter2.png)
-
-### 6.9.2 params传递参数
-
-注：使用params传参只能使用name进行引入
-
-使用params传参
-
-```
-//params传参 使用name
-this.$router.push({
-  name:'second',
-  params: {
-    id:'20180822',
-     name: 'query'
-  }
-})
-
-//params接收参数
-this.id = this.$route.params.id 
-this.name = this.$route.params.name 
-
-//路由
-
-{
-path: '/second/:id/:name',
-name: 'second',
-component: () => import('@/view/second')
-}
-```
-
-![](../assets/VUX/VueRouter3.png)
-
-效果如下图
-
-![](../assets/VUX/VueRouter4.png)
-
-需要注意的是：
-
-* params是路由的一部分,必须要在路由后面添加参数名。query是拼接在url后面的参数，没有也没关系。
-* params一旦设置在路由，params就是路由的一部分，如果这个路由有params传参，但是在跳转的时候没有传这个参数，
-会导致跳转失败或者页面会没有内容。
-
-如果路由后面没有 /:id/:name效果如下图，地址栏没有参数
-
-![](../assets/VUX/VueRouter5.png)
-
-但是如果你刷新一下，就会发现页面失败，效果如下图
-
-![](../assets/VUX/VueRouter6.png)
-
-因此我们不可能让用户不要刷新，所以我们必须在路由后面加上 /:id/:name
-
-如果使用path进行传参
-
-```
-//params传参 使用path
-this.$router.push({
-  path:'second',
-   params: {
-    id:'20180822',
-     name: 'query'
-  }
-})
-
-//params接收参数
-this.id = this.$route.params.id
-this.name = this.$route.params.name 
-```
-
-效果如下图
-
-使用path传参什么效果都没有。
-
-![](../assets/VUX/VueRouter7.png)
-
-### 6.9.3 总结
-
-1. 传参可以使用params和query两种方式。
-1. 使用params传参只能用name来引入路由，即push里面只能是name:’xxxx’,不能是path:’/xxx’,
-因为params只能用name来引入路由，如果这里写成了path，接收参数页面会是undefined！！！。
-1. 使用query传参使用path来引入路由。
-1. params是路由的一部分,必须要在路由后面添加参数名。query是拼接在url后面的参数，没有也没关系。
-1. 二者还有点区别，直白的来说query相当于get请求，页面跳转的时候，可以在地址栏看到请求参数，
-而params相当于post请求，参数不会再地址栏中显示。
-
-### 6.10 vux框架组件自定义样式
-
-### 6.10.1 全局方式
+### 6.8.1 全局方式
 
 > 方法一 在webpack.base.conf.js文件中配置
 
@@ -1068,7 +753,7 @@ this.name = this.$route.params.name
 
 ![](../assets/VUX/vuxCss2.png)
 
-### 6.10.2 局部方式
+### 6.8.2 局部方式
 
 > 方法二 使用/deep/或>>>
 
@@ -1080,7 +765,7 @@ this.name = this.$route.params.name
 
 > 注意:/deep/在less和sass中不支持，本人在使用>>>测试的时候没有生效
 
-### 6.11 vux-cell title 插槽使用
+### 6.9 vux-cell title 插槽使用
 
 ```
 <group>
@@ -1105,7 +790,7 @@ this.name = this.$route.params.name
 vux cell title插槽可添加样式并使得超长文字隐藏。
 可参考/yumaomoney_WeChat/src/components/user/message/Message.vue `.cell-overflow`
 
-### 6.12 报错处理:Failed to load resource: net::ERR_FILE_NOT_FOUND
+### 6.10 报错处理:Failed to load resource: net::ERR_FILE_NOT_FOUND
 
 > Failed to load resource: net::ERR_FILE_NOT_FOUND或者vue dist文件下的index.html没显示
 
@@ -1167,7 +852,7 @@ css使用图片
 background: url('../../static/img/loginback.png') no-repeat top left ;
 ```
 
-### 6.13 警告处理:warning：component lists rendered with v-for should have explicit keys
+### 6.11 警告处理:warning：component lists rendered with v-for should have explicit keys
 
 > 命令行warning(Emitted value instead of an instance of Error)。
 component lists rendered with v-for should have explicit keys。
@@ -1203,7 +888,7 @@ See https://vuejs.org/guide/list.html#key for more info.
 
 这样就不会报错啦，具体看文档，key不是必须的，仅仅是warning
 
-### 6.14 报错处理：exports is not defined
+### 6.12 报错处理：exports is not defined
 
 在引入插件后，控制台报错`Uncaught ReferenceError: exports is not defined`
 
@@ -1219,7 +904,7 @@ See https://vuejs.org/guide/list.html#key for more info.
 
 ![](../assets/VUX/exportsError.png)
 
-### 6.15 报错处理：Default export is not declared in imported module
+### 6.13 报错处理：Default export is not declared in imported module
 
 ![](../assets/VUX/importError.png)
 
@@ -1232,7 +917,6 @@ See https://vuejs.org/guide/list.html#key for more info.
 ## 参考资料
 
 * 常见问题及处理
-    * [router配置位置](https://www.cnblogs.com/padding1015/p/7884861.html)
     * [tabber切换图标及颜色](https://blog.csdn.net/wandoumm/article/details/80168445)
     * [x-header、tabbar固定位置](https://github.com/airyland/vux/issues/285)
     * [下拉加载更多](https://www.jb51.net/article/132455.htm)
@@ -1240,7 +924,6 @@ See https://vuejs.org/guide/list.html#key for more info.
     * [scroller下拉失败回弹](https://blog.csdn.net/hh_liweihong/article/details/77066023)
     * [打包后css引用图片资源找不到](https://blog.csdn.net/gdut_luoyifei/article/details/79001397)
     * [打包后js引用图片资源找不到](https://blog.csdn.net/github_37533433/article/details/78937645)
-    * [Vue Router 的params和query传参的使用和区别](https://blog.csdn.net/mf_717714/article/details/81945218)
     * [vux框架组件自定义样式](https://blog.csdn.net/linggty/article/details/81512211)
     * [vux cell title 插槽使用](https://segmentfault.com/q/1010000014234606/a-1020000014653614)
 * 报错的处理
@@ -1249,6 +932,7 @@ See https://vuejs.org/guide/list.html#key for more info.
     * [报错处理：exports is not defined](https://segmentfault.com/q/1010000011817644/a-1020000011818193)
     * [报错处理：Default export is not declared in imported module](https://segmentfault.com/q/1010000004664827)
 * 插件的使用
+    * [vue-router使用](./vue-router.md)
     * [vux-uploader使用](./vux-uploader.md)
     * [vux中fullpage的使用](./vue-fullpage.md)
     * [clipboard.js使用](./clipboard.md)

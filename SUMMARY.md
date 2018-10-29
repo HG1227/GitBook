@@ -55,6 +55,7 @@
     * [mobileSelect.js使用](Vue/mobileSelect.md)
     * [vue-cookies使用](Vue/vue-cookies.md)
     * [vue-fullpage使用](Vue/vue-fullpage.md)
+    * [vue-router使用](Vue/vue-router.md)
     * [Vue的Ref属性](Vue/vueRef.md)
     * [Vux使用](Vue/vux.md)
     * [vux-uploader使用](Vue/vux-uploader.md)
