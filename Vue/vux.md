@@ -1503,13 +1503,34 @@ this.name = this.$route.params.name
 
 ### 6.17 vux-cell title 插槽使用
 
-### 6.18 vux-cell title 插槽可添加样式并使得超长文字隐藏
+```
+<group>
+    <cell title="消息中心">
+        <span slot="default"><span style="vertical-align:middle;"></span> <badge text="99"></badge></span>
+    </cell>
+    <cell>
+        <span slot="title" class="edit-left">手机号码</span>
+        <span slot="default">{{phone}}</span>
+    </cell>
+    <cell title="第三方登录授权" >
+        <span slot="default"><img class="icon" slot="icon" src="../../assets/wx_icon.png"></span>
+    </cell>
+    <cell title="登录密码">
+        <span slot="default"></span>
+    </cell>
+</group>
+```
 
-### 6.19 复制至剪贴板插件
+* 注意:样式被修改，可能是公共样式或其他模块样式在打包后被修改
 
-### 6.20 vue-cookies使用
+vux cell title插槽可添加样式并使得超长文字隐藏。
+可参考/yumaomoney_WeChat/src/components/user/message/Message.vue `.cell-overflow`
 
-### 6.21 级联选择器使用
+### 6.18 复制至剪贴板插件
+
+### 6.19 vue-cookies使用
+
+### 6.20 级联选择器使用
 
 ## 7 同类型技术比较
 
@@ -1533,7 +1554,6 @@ this.name = this.$route.params.name
 * [Vue Router 的params和query传参的使用和区别](https://blog.csdn.net/mf_717714/article/details/81945218)
 * [vux框架组件自定义样式](https://blog.csdn.net/linggty/article/details/81512211)
 * [vux cell title 插槽使用](https://segmentfault.com/q/1010000014234606/a-1020000014653614)
-* vux cell title插槽可添加样式并使得超长文字隐藏。demo在：Message.vue
 * [复制至剪贴板插件](https://www.cnblogs.com/wyhlightstar/p/8950430.html)
 * [vue-cookies](https://www.cnblogs.com/s313139232/p/9341762.html)
 * [级联选择器](https://blog.csdn.net/oulihong123/article/details/58327247/)
