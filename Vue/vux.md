@@ -1203,6 +1203,18 @@ export default {
 
 ### 6.12 报错处理：exports is not defined
 
+在引入插件后，控制台报错`Uncaught ReferenceError: exports is not defined`
+
+处理方法：
+
+* 引入插件需重新编译，重新`npm run dev`
+* webpack 2后不允许混合使用import和module.exports
+    * 统一修改为`export default XXX`
+    * 找到`.babelrcf`删除`transform-runtime`
+* 去掉 { "modules": false }其中{ "modules": false }阻止了babel进行模块转换，具体见[modules配置的说明](https://babeljs.io/docs/en/babel-preset-env/)。
+    * 将modules改为默认设置即可
+    * 删除该配置
+
 ### 6.13 报错处理：Default export is not declared in imported module
 
 ### 6.14 vux中fullpage的使用
