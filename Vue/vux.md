@@ -1225,112 +1225,7 @@ export default {
 
 可参考yumaomoney_WeChat/src/components/container/Container.vue，export default为必要内容。
 
-### 6.14 vux中fullpage的使用
-
-#### 功能概述
-
-可实现移动端的单页滚动效果，支持横向滚动和纵向滚动
-
-#### 兼容性
-
-目前还未进行大规模兼容性测试。有bug请提问至issues
-
-#### 安装
-
-```
-npm install vue-fullpage --save
-```
-
-`commonjs`
-
-```
-import VueFullpage from 'vue-fullpage'
-Vue.use(VueFullpage)
-```
-
-或
-
-```
-var vueFullpage = require('vue-fullpage')
-Vue.use(vueFullpage)
-```
-
-#### 快速上手
-
-模板部分：在`page-container`容器加入`v-cover`指令防止闪烁在`page-wp`容器上加`v-page`指令，指令值是`fullpage`的配置
-
-```
-<div class="page-container">
-    <div v-page="opts" class="page-wp">
-        <div class="page page1">
-            <p class="part part1" v-animate="'slideIn'">
-            vue-fullpage
-            </p>
-        </div>
-        <div class="page page2">
-            <p class="part part2" v-animate="'slideIn'">
-            vue-fullpage
-            </p>
-        </div>
-        <div class="page page3">
-            <p class="part part3" v-animate="'slideIn'">
-            vue-fullpage
-            </p>
-        </div>
-        <div class="page page4">
-            <p class="part part4" v-animate="'fadeIn'">
-            vue-fullpage
-            </p>
-        </div>
-    </div>
-</div>
-```
-
-js部分：提供 vue-fullpage 的自定义指令
-
-```
-<script>
-export default {
-    data () {
-        return {
-            opts: {
-                start: 0,
-                dir: 'v',
-                loop: false,
-                duration: 500,
-                stopPageScroll: true,
-                beforeChange: function (prev, next) {
-                },
-                afterChange: function (prev, next) {
-                }
-            }
-        }
-    }
-}
-</script>
-```
-
-css部分： page-container 需要固定宽度和高度， fullpage 会使用父元素的宽度和高度。
-
-如下设置可使滚动页面充满全屏
-
-```
-<style>
-    .page-container {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-    }
-</style>
-```
-
-[demo地址](http://vue.wendaosanshou.top/vue_fullpage_demo/)
-
-* 注意:VChart异步加载表格数据时，tooltip在初始化、请求后需要渲染两次，否则无法加载具体比例。
-
-### 6.15 Vue Router 的params和query传参的使用和区别
+### 6.14 Vue Router 的params和query传参的使用和区别
 
 首先简单来说明一下`$router`和`$route`的区别
 
@@ -1352,7 +1247,7 @@ this.name = this.$route.params.name
 this.age = this.$route.params.age
 ```
 
-### 6.15.1 query传递参数
+### 6.14.1 query传递参数
 
 我看了很多人都说query传参要用path来引入，params传参要用name来引入，只是我测试了一下，query使用name来引入也可以传参，使用path也可以。
 
@@ -1386,7 +1281,7 @@ this.queryId = this.$route.query.queryId
 
 ![](../assets/VUX/VueRouter2.png)
 
-### 6.15.2 params传递参数
+### 6.14.2 params传递参数
 
 注：使用params传参只能使用name进行引入
 
@@ -1460,7 +1355,7 @@ this.name = this.$route.params.name
 
 ![](../assets/VUX/VueRouter7.png)
 
-### 6.15.3 总结
+### 6.14.3 总结
 
 1. 传参可以使用params和query两种方式。
 1. 使用params传参只能用name来引入路由，即push里面只能是name:’xxxx’,不能是path:’/xxx’,
@@ -1470,9 +1365,9 @@ this.name = this.$route.params.name
 1. 二者还有点区别，直白的来说query相当于get请求，页面跳转的时候，可以在地址栏看到请求参数，
 而params相当于post请求，参数不会再地址栏中显示。
 
-### 6.16 vux框架组件自定义样式
+### 6.15 vux框架组件自定义样式
 
-### 6.16.1 全局方式
+### 6.15.1 全局方式
 
 > 方法一 在webpack.base.conf.js文件中配置
 
@@ -1489,7 +1384,7 @@ this.name = this.$route.params.name
 
 ![](../assets/VUX/vuxCss2.png)
 
-### 6.16.2 局部方式
+### 6.15.2 局部方式
 
 > 方法二 使用/deep/或>>>
 
@@ -1501,7 +1396,7 @@ this.name = this.$route.params.name
 
 > 注意:/deep/在less和sass中不支持，本人在使用>>>测试的时候没有生效
 
-### 6.17 vux-cell title 插槽使用
+### 6.16 vux-cell title 插槽使用
 
 ```
 <group>
@@ -1526,7 +1421,7 @@ this.name = this.$route.params.name
 vux cell title插槽可添加样式并使得超长文字隐藏。
 可参考/yumaomoney_WeChat/src/components/user/message/Message.vue `.cell-overflow`
 
-### 6.18 级联选择器使用
+### 6.17 级联选择器使用
 
 ## 7 同类型技术比较
 
@@ -1546,7 +1441,7 @@ vux cell title插槽可添加样式并使得超长文字隐藏。
 * [上传图片组件引入报错](https://blog.csdn.net/wandoumm/article/details/80167708)
 * [报错处理：exports is not defined](https://segmentfault.com/q/1010000011817644/a-1020000011818193)
 * [报错处理：Default export is not declared in imported module](https://segmentfault.com/q/1010000004664827)
-* [vux中fullpage的使用](https://www.jb51.net/article/108893.htm)
+* [vux中fullpage的使用](./vue-fullpage.md)
 * [Vue Router 的params和query传参的使用和区别](https://blog.csdn.net/mf_717714/article/details/81945218)
 * [vux框架组件自定义样式](https://blog.csdn.net/linggty/article/details/81512211)
 * [vux cell title 插槽使用](https://segmentfault.com/q/1010000014234606/a-1020000014653614)
