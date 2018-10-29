@@ -1007,201 +1007,7 @@ if (options.extract) {
 
 ![](../assets/VUX/jsError.jpg)
 
-### 6.11 vux-uploader上传图片组件
-
-#### 6.11.1 vux-uploader是什么
-
-vux-uploader是一个vue的上传组件，是对vux组件库的一个补充。
-
-因为vux并没有对weui的uploader组件进行封装，理由见vux issue 682，但这又是一个常见需求。
-在使用vux过程中，作者实现了这个组件，现整理开源出来，命名为vux-uploader。
-
-#### 6.11.2 vux-uploader的特点
-
-* 基于vux，适合vux项目
-* 暂时不支持vux $t方式的多语言功能
-* 增加了删除按钮，点击则删除第一张图片
-* 内置图片上传、增加、删除功能，但暂时每次只能操作一张图片
-* 接上，允许用户监听事件，自己实现上传、增加、删除功能
-* 使用axios进行图片上传
-
-#### 6.11.3 快速使用
-
-##### 6.11.3.1 检查项目是否符合使用条件
-
-* 需要是使用vux2的项目
-* 需要安装babel对ES6部分语法进行转码
-* 需要安装less-loader正确编译less源码
-* 只支持webpack的方式，暂不提供umd版
-
-##### 6.11.3.2 安装`vux-uploader`
-
-```
-npm install vux-uploader --save
-
-npm install --save-dev babel-preset-es2015
-```
-
-##### 6.11.3.3 配置`.babelrc`
-
-```
-{
-  "presets": [
-    ["env", {
-      "modules": false,
-      "targets": {
-        "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
-      }
-    }],
-    "es2015",
-    "stage-2"
-  ],
-  "plugins": ["transform-runtime"],
-  "env": {
-    "test": {
-      "presets": ["env", "es2015", "stage-2"],
-      "plugins": ["istanbul"]
-    }
-  }
-}
-```
-##### 6.11.3.4 使用`vux-uploader`
-
-```
-// 引入组件
-import Uploader from 'vux-uploader'
-```
-
-```
-// 子组件
-export default {
-  ...
-  components: {
-    ...
-    Uploader,
-    ...
-  }
-  ...
-}
-```
-
-```
-// 使用组件
-<uploader
-    :max="varmax"
-    :images="images"
-    :handle-click="true"
-    :show-header="false"
-    :readonly="true"
-    :upload-url="uploadUrl"
-    name="img"
-    :params="params"
-    size="small"
-    @preview="previewMethod"
-    @add-image="addImageMethod"
-    @remove-image="removeImageMethod"
-></uploader>
-```
-
-##### props说明
-
-* images
-    * 类型: Array
-    * 默认值: []，空数组
-    * 含义: 图片数组，格式为 `[ { url: '/url/of/img.ong' }, ...]`
-    * 备注: 变量为数组时，数据流为双向，在组件内部改变数组的值影响父组件
-* max
-    * 类型: Number
-    * 默认值: 1
-    * 含义: 图片最大张数
-    * 备注: 图片达到max值时，新增按钮消失
-* showHeader
-    * 类型: Boolean
-    * 默认值: true
-    * 含义: 是否显示头部
-    * 备注: 控制整个头部的显示
-* title
-    * 类型: String
-    * 默认值: 图片上传
-    * 含义: 头部的标题
-    * 备注: 不显示则留空
-* showTip
-    * 类型: Boolean
-    * 默认值: true
-    * 含义: 是否显示头部数字部分，即1/3部分
-    * 备注: 当showHeader为false时，header整体隐藏，此时本参数无效
-* readonly
-    * 类型: Boolean
-    * 默认值: false
-    * 含义: 是否只读
-    * 备注: 只读时，新增和删除按钮隐藏
-* handleClick
-    * 类型: Boolean
-    * 默认值: false
-    * 含义: 是否接管新增按钮的点击事件，如果是，点击新增按钮不再自动出现选择图片界面
-    * 备注: true时，点击新增按钮，则$emit('add-image')，可以在此事件内进行自定义的选择图片等操作,此后图片的新增、上传、删除都由使用者接管
-* autoUpload
-    * 类型: Boolean
-    * 默认值: true
-    * 含义: 选择图片后是否自动上传。是，则调用内部上传接口。否，则$emit('upload-image', formData)',formData`为图片内容，用户可监听事件自己上传
-    * 备注: handleClick为true时，无法进行图片选择，故此参数无效。此参数为false时，选择图片后,$emit('upload-image', formData)',formData`为图片内容
-* uploadUrl
-    * 类型: String
-    * 默认值: ''
-    * 含义: 接收上传图片的url
-    * 备注: 需要返回如下格式的json字符串，否则请设置autoUpload为false自行上传
-
-```
- { 
-    result: 0,
-    message: "result不是0时候的错误信息",
-    data: {
-      url: "http://image.url.com/image.png"
-    }
-  }
-```
-
-* name
-    * 类型: String
-    * 默认值: img
-    * 含义: 默认上传的时候，图片使用的表单name
-    * 备注: 无
-* params
-    * 类型: Object
-    * 默认值: null
-    * 含义: 上传文件时携带参数
-    * 备注: 无
-* size
-    * 类型: String
-    * 默认值: normal
-    * 含义: 尺寸类型
-    * 备注: normal为weui默认尺寸，small为作者定义的小一些的尺寸
-* capture
-    * 类型: String
-    * 默认值: ''
-    * 含义: input 的capture属性
-    * 备注: 可以设置为camera，此时点击新增按钮，部分机型会直接调起相机，注意，各型号手机表现不同，请谨慎使用。handleClick为true时，此属性无效
-
-##### emit事件说明
-
-* add-image
-    * emit时机: 当handleClick参数为true时，点击新增按钮
-    * 参数: 无
-    * 备注: 无
-* remove-image
-    * emit时机: 当handleClick参数为true时，点击删除按钮
-    * 参数: 无
-    * 备注: 当handleClick为false时，点击删除按钮，组件内部删除第一张图片；否则，用户需要监听本事件，并进行相应删除操作
-* preview
-    * emit时机: 点击任意一张图片的时候
-    * 参数: 图片对象，格式为 { url: 'imgUrl' }
-    * 备注: 暂时没有实现自动预览功能，如果需要用户监听事件自行实现
-* upload-image
-    * emit时机: handleClick和autoUpload都为false`时，选择图片
-    * 参数: formData,图片内容生成的formData
-    * 备注: 可以通过vm.$refs.input获取图片的input元素
-
-### 6.12 报错处理：exports is not defined
+### 6.11 报错处理：exports is not defined
 
 在引入插件后，控制台报错`Uncaught ReferenceError: exports is not defined`
 
@@ -1217,7 +1023,7 @@ export default {
 
 ![](../assets/VUX/exportsError.png)
 
-### 6.13 报错处理：Default export is not declared in imported module
+### 6.12 报错处理：Default export is not declared in imported module
 
 ![](../assets/VUX/importError.png)
 
@@ -1225,7 +1031,7 @@ export default {
 
 可参考yumaomoney_WeChat/src/components/container/Container.vue，export default为必要内容。
 
-### 6.14 Vue Router 的params和query传参的使用和区别
+### 6.13 Vue Router 的params和query传参的使用和区别
 
 首先简单来说明一下`$router`和`$route`的区别
 
@@ -1247,7 +1053,7 @@ this.name = this.$route.params.name
 this.age = this.$route.params.age
 ```
 
-### 6.14.1 query传递参数
+### 6.13.1 query传递参数
 
 我看了很多人都说query传参要用path来引入，params传参要用name来引入，只是我测试了一下，query使用name来引入也可以传参，使用path也可以。
 
@@ -1281,7 +1087,7 @@ this.queryId = this.$route.query.queryId
 
 ![](../assets/VUX/VueRouter2.png)
 
-### 6.14.2 params传递参数
+### 6.13.2 params传递参数
 
 注：使用params传参只能使用name进行引入
 
@@ -1355,7 +1161,7 @@ this.name = this.$route.params.name
 
 ![](../assets/VUX/VueRouter7.png)
 
-### 6.14.3 总结
+### 6.13.3 总结
 
 1. 传参可以使用params和query两种方式。
 1. 使用params传参只能用name来引入路由，即push里面只能是name:’xxxx’,不能是path:’/xxx’,
@@ -1365,9 +1171,9 @@ this.name = this.$route.params.name
 1. 二者还有点区别，直白的来说query相当于get请求，页面跳转的时候，可以在地址栏看到请求参数，
 而params相当于post请求，参数不会再地址栏中显示。
 
-### 6.15 vux框架组件自定义样式
+### 6.14 vux框架组件自定义样式
 
-### 6.15.1 全局方式
+### 6.14.1 全局方式
 
 > 方法一 在webpack.base.conf.js文件中配置
 
@@ -1384,7 +1190,7 @@ this.name = this.$route.params.name
 
 ![](../assets/VUX/vuxCss2.png)
 
-### 6.15.2 局部方式
+### 6.14.2 局部方式
 
 > 方法二 使用/deep/或>>>
 
@@ -1396,7 +1202,7 @@ this.name = this.$route.params.name
 
 > 注意:/deep/在less和sass中不支持，本人在使用>>>测试的时候没有生效
 
-### 6.16 vux-cell title 插槽使用
+### 6.15 vux-cell title 插槽使用
 
 ```
 <group>
@@ -1421,7 +1227,7 @@ this.name = this.$route.params.name
 vux cell title插槽可添加样式并使得超长文字隐藏。
 可参考/yumaomoney_WeChat/src/components/user/message/Message.vue `.cell-overflow`
 
-### 6.17 级联选择器使用
+### 6.16 级联选择器使用
 
 ## 7 同类型技术比较
 
@@ -1429,22 +1235,23 @@ vux cell title插槽可添加样式并使得超长文字隐藏。
 
 * [router配置位置](https://www.cnblogs.com/padding1015/p/7884861.html)
 * [tabber切换图标及颜色](https://blog.csdn.net/wandoumm/article/details/80168445)
-* [打包报错处理：Failed to load resource: net::ERR_FILE_NOT_FOUND](https://blog.csdn.net/lhb_11/article/details/79455015)
 * [x-header、tabbar固定位置](https://github.com/airyland/vux/issues/285)
 * [下拉加载更多](https://www.jb51.net/article/132455.htm)
-* [警告处理：warning：component lists rendered with v-for should have explicit keys](https://blog.csdn.net/twinkle2star/article/details/73741120)
 * [Vue下路由History模式打包后页面空白](https://blog.csdn.net/sky2714/article/details/80887081)
 * [scroller下拉失败回弹](https://blog.csdn.net/hh_liweihong/article/details/77066023)
 * [打包后css引用图片资源找不到](https://blog.csdn.net/gdut_luoyifei/article/details/79001397)
 * [打包后js引用图片资源找不到](https://blog.csdn.net/github_37533433/article/details/78937645)
-* [上传图片组件](https://www.npmjs.com/package/vux-uploader)
-* [上传图片组件引入报错](https://blog.csdn.net/wandoumm/article/details/80167708)
-* [报错处理：exports is not defined](https://segmentfault.com/q/1010000011817644/a-1020000011818193)
-* [报错处理：Default export is not declared in imported module](https://segmentfault.com/q/1010000004664827)
-* [vux中fullpage的使用](./vue-fullpage.md)
 * [Vue Router 的params和query传参的使用和区别](https://blog.csdn.net/mf_717714/article/details/81945218)
 * [vux框架组件自定义样式](https://blog.csdn.net/linggty/article/details/81512211)
 * [vux cell title 插槽使用](https://segmentfault.com/q/1010000014234606/a-1020000014653614)
-* [clipboard.js使用](./clipboard.md)
-* [vue-cookies使用](./vue-cookies.md)
-* [级联选择器](https://blog.csdn.net/oulihong123/article/details/58327247/)
+* 报错的处理
+    * [打包报错处理：Failed to load resource: net::ERR_FILE_NOT_FOUND](https://blog.csdn.net/lhb_11/article/details/79455015)
+    * [警告处理：warning：component lists rendered with v-for should have explicit keys](https://blog.csdn.net/twinkle2star/article/details/73741120)
+    * [报错处理：exports is not defined](https://segmentfault.com/q/1010000011817644/a-1020000011818193)
+    * [报错处理：Default export is not declared in imported module](https://segmentfault.com/q/1010000004664827)
+* 插件的使用
+    * [vux-uploader使用](./vux-uploader.md)
+    * [vux中fullpage的使用](./vue-fullpage.md)
+    * [clipboard.js使用](./clipboard.md)
+    * [vue-cookies使用](./vue-cookies.md)
+    * [mobileSelect.js使用](./mobileSelect.md)
