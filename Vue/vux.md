@@ -328,16 +328,132 @@ Vue.use(ToastPlugin)
 
 ### 4.1 路由
 
+推荐直接使用官方[`vue-router`](https://github.com/vuejs/vue-router)，
+VUX部分组件支持`link`属性直接支持`vue-router`的路由参数，`vux2`模板内置了`vue-router`。
+
+> ~~如果使用了过渡(转场动画)，在`iPhone`上使用`左划返回`时动画会再执行一遍，目前没有找到可行的处理方法，如果你有处理方案，欢迎`PR`。~~
+> https://github.com/airyland/vux/pull/2259
+
 ### 4.2 在Nuxt.js中使用
+
+请直接参考源码目录[/ssr/nuxt](https://github.com/airyland/vux/tree/v2/ssr/nuxt)
 
 ### 4.3 TypeScript 支持
 
+> 即将支持
+
 ### 4.4 Ajax 请求
+
+> `AjaxPlugin` 插件依赖于 [axios](https://github.com/axios/axios)
+> 详细 API 文档请查看：[axios](https://github.com/axios/axios)
+
+#### 版本要求
+
+`AjaxPlugin`在`vux@^2.1.0-rc.20`开始支持
+
+#### 引入
+
+`main.js`入口文件中引入：
+
+```
+import { AjaxPlugin } from 'vux'
+Vue.use(AjaxPlugin)
+```
+
+#### 兼容性问题
+
+需要注意的是`axios`是基于`Promise`的，因此如果你需要兼容低版本浏览器([caniuse](https://caniuse.com/#feat=promises))，需要引入`polyfill`。
+
+`Polyfill`推荐使用 [es6-promise](https://github.com/stefanpenner/es6-promise)
+
+```
+require('es6-promise').polyfill()
+```
+
+#### 全局使用
+
+```
+Vue.http.post('/api').then()
+```
+
+#### 组件中使用
+
+```
+export default {
+  created () {
+    this.$http.post('/api').then(({data}) => {
+      console.log(data)
+    })
+  }
+}
+```
 
 ### 4.5 点击延迟
 
+> 直接使用`WeUI`样式并引入`fastclick`会导致一些点击问题，VUX组件内部已经做了相关处理。
+
+#### 引入 fastclick
+
+在`main.js`里引用`fastclick`
+
+```
+const FastClick = require('fastclick')
+FastClick.attach(document.body)
+// done
+```
+
 ### 4.6 使用微信 jssdk
+
+> 分享接口只有认证公众号才能使用，域名必须备案且在微信后台设置。
+> 先确认已经满足使用`jssdk`的要求再进行开发。
+
+`WechatPlugin`插件提供了`commonJS`的引入方式，因此你不需要在`index.html`引入文件。
  
+#### 版本要求
+
+`WechatPlugin`在`vux@^2.1.0-rc.19`开始支持
+
+#### 引入
+
+在`main.js`中全局引入：
+
+```
+import { WechatPlugin } from 'vux'
+Vue.use(WechatPlugin)
+
+console.log(Vue.wechat) // 可以直接访问 wx 对象。
+```
+
+#### 组件外使用
+
+考虑到你需要在引入插件后调用`config`方法进行配置，你可以通过`Vue.wechat`在组件外部访问`wx`对象。
+
+`jssdk`需要请求签名配置接口，你可以直接使用 VUX 基于`Axios`封装的`AjaxPlugin`。
+
+```
+import { WechatPlugin, AjaxPlugin } from 'vux'
+Vue.use(WechatPlugin)
+Vue.use(AjaxPlugin)
+
+Vue.http.get('/api', ({data}) => {
+  Vue.wechat.config(data.data)
+})
+```
+
+#### 组件中使用
+
+那么之后任何组件中都可以通过`this.$wechat`访问到`wx`对象。
+
+```
+export default {
+  created () {
+    this.$wechat.onMenuShareTimeline({
+      title: 'hello VUX'
+    })
+  }
+}
+```
+
 ### 4.7 添加谷歌统计
  
 ### 4.8 页面切换显示 Loading
