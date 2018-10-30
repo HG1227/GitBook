@@ -1014,6 +1014,19 @@ if (options.extract) {
 vux cell title插槽可添加样式并使得超长文字隐藏。
 可参考/yumaomoney_WeChat/src/components/user/message/Message.vue `.cell-overflow`
 
+#### 6.1.10 输入框验证
+
+[输入框验证](https://blog.csdn.net/honnyee/article/details/80691445)
+
+#### 6.1.11 声明公共方法、变量
+
+[声明公共方法](https://blog.csdn.net/sinat_17775997/article/details/78341907?locationNum=9&fps=1)
+[声明公共变量](https://www.jianshu.com/p/7547ff8760c3)
+
+#### 6.1.12 全局注册第三方插件
+
+[全局注册第三方插件](https://www.jb51.net/article/121740.htm)
+
 ### 6.2 报错、警告处理
 
 #### 6.2.1 报错处理:Failed to load resource: net::ERR_FILE_NOT_FOUND
@@ -1155,7 +1168,7 @@ See https://vuejs.org/guide/list.html#key for more info.
     * [输入框验证](https://blog.csdn.net/honnyee/article/details/80691445)
     * [声明公共方法](https://blog.csdn.net/sinat_17775997/article/details/78341907?locationNum=9&fps=1)
     * [声明公共变量](https://www.jianshu.com/p/7547ff8760c3)
-    * [全局声明第三方插件](https://www.jb51.net/article/121740.htm)
+    * [全局注册第三方插件](https://www.jb51.net/article/121740.htm)
 * 报错的处理
     * [打包报错处理：Failed to load resource: net::ERR_FILE_NOT_FOUND](https://blog.csdn.net/lhb_11/article/details/79455015)
     * [警告处理：warning：component lists rendered with v-for should have explicit keys](https://blog.csdn.net/twinkle2star/article/details/73741120)
