@@ -6,6 +6,7 @@
 ```
 更改历史
 
+* 2018-10-30        高天阳     补充最佳实践
 * 2018-10-29        高天阳     整理文档、补充最佳实践
 * 2018-10-22        高天阳     补充安装与使用、最佳实践
 * 2018-10-15        高天阳     初始化文档
@@ -1172,7 +1173,104 @@ vux使用x-input情形如下：
 ![](../assets/VUX/vux-ui4.png)
 ![](../assets/VUX/vux-ui5.png)
 
-#### 6.1.11 声明公共方法、变量
+#### 6.1.11 声明公共变量、函数
+
+在项目中，经常有些函数和变量是需要复用，比如说网站服务器地址，从后台拿到的：用户的登录token，
+用户的地址信息等，这时候就需要设置一波全局变量和全局函数，这两个设置不太难，而且有一些共通之处。
+
+##### 定义全局变量
+
+###### 原理：
+
+设置一个专用的的全局变量模块文件，模块里面定义一些变量初始状态，用export default 暴露出去，
+在main.js里面使用Vue.prototype挂载到vue实例上面或者在其它地方需要使用时，引入该模块便可。
+
+###### 全局变量模块文件：
+
+Global.vue文件：
+
+```
+<script>
+const serverSrc='www.baidu.com';
+const token='12345678';
+const hasEnter=false;
+const userSite="中国钓鱼岛";
+  export default
+  {
+    userSite,//用户地址
+    token,//用户token身份
+    serverSrc,//服务器地址
+    hasEnter,//用户登录状态
+  }
+</script>
+```
+
+###### 使用方式1：
+
+在需要的地方引用进全局变量模块文件，然后通过文件里面的变量名字获取全局变量参数值。
+
+在text1.vue组件中使用：
+
+```
+<template>
+    <div>{{ token }}</div>
+</template>
+ 
+<script>
+import global_ from '../../components/Global'//引用模块进来
+export default {
+ name: 'text',
+data () {
+    return {
+         token:global_.token,//将全局变量赋值到data里面，也可以直接使用global_.token
+        }
+    }
+}
+</script>
+<style lang="scss" scoped>
+ 
+</style>
+```
+
+###### 使用方式2：
+
+在程序入口的main.js文件里面，将上面那个Global.vue文件挂载到Vue.prototype。
+
+```
+import global_ from './components/Global'//引用文件
+Vue.prototype.GLOBAL = global_//挂载到Vue实例上面
+```
+
+接着在整个项目中不需要再通过引用Global.vue模块文件，直接通过this就可以直接访问Global文件里面定义的全局变量。
+
+text2.vue：
+
+```
+<template>
+    <div>{{ token }}</div>
+</template>
+ 
+<script>
+export default {
+ name: 'text',
+data () {
+    return {
+         token:this.GLOBAL.token,//直接通过this访问全局变量。
+        }
+    }
+}
+</script>
+<style lang="scss" scoped>
+</style>
+```
+
+Vuex也可以设置全局变量：
+
+通过vuex来存放全局变量，这里东西比较多，也相对复杂一些，有兴趣的小伙伴们，可自行查阅资料，折腾一波、
+
+##### 声明公共方法
+
+
 
 [声明公共方法](https://blog.csdn.net/sinat_17775997/article/details/78341907?locationNum=9&fps=1)
 [声明公共变量](https://www.jianshu.com/p/7547ff8760c3)
