@@ -12,9 +12,29 @@
 
 ## 1 简介
 
+MD5:信息-摘要算法，是让大容量信息在用数字签名软件签署私人密匙前被"压缩"成一种保密的格式
+
+一般我们把登录和注册信息的密码进行加密
+
 ## 2 安装
 
-## 3 配置
+```
+npm install js-md5 -D
+```
+
+## 3 使用
+
+```
+import md5 from 'js-md5'
+
+CalcuMD5 = function (pwd) {
+  pwd = pwd.toUpperCase();
+  pwd = md5(pwd);
+  return pwd;
+}
+
+CalcuMD5（'password'）
+```
 
 ## 4 示例
 
