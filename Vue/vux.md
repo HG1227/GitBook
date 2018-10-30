@@ -455,8 +455,91 @@ export default {
 ```
 
 ### 4.7 添加谷歌统计
- 
+
+单页面应用切换时要手动发送页面统计，首先在`index.html`或者`main.js`里引入谷歌统计代码：
+
+```
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-yourID', 'auto')
+ga('send', 'pageview') // 是否要统计着陆页面访问，取决于你的需求，这个不一定需要，会和`router`统计有重复
+```
+
+```
+// main.js 里，如果你使用了 vue-router
+router.afterEach(function (to) {
+  if (window.ga) {
+    window.ga('set', 'page', to.fullPath) // 你可能想根据请求参数添加其他参数，可以修改这里的 to.fullPath
+    window.ga('send', 'pageview')
+  }
+})
+```
+
 ### 4.8 页面切换显示 Loading
+
+移动端如果使用异步组件加载那么还是需要一点等待时间的，在网络慢时等待时间会更长。显示`Loading`状态缓解一下用户等待情绪就十分重要。
+
+如果你使用`vue-router`和`vuex`，那么可以很容易实现。
+
+首先，注册一个`module`来保存状态
+
+```
+const store = new Vuex.Store({}) // 这里你可能已经有其他 module
+
+store.registerModule('vux', { // 名字自己定义
+  state: {
+    isLoading: false
+  },
+  mutations: {
+    updateLoadingStatus (state, payload) {
+      state.isLoading = payload.isLoading
+    }
+  }
+})
+```
+
+然后使用`vue-router`的`beforeEach`和`afterEach`来更改`loading`状态
+
+
+```
+router.beforeEach(function (to, from, next) {
+  store.commit('updateLoadingStatus', {isLoading: true})
+  next()
+})
+
+router.afterEach(function (to) {
+  store.commit('updateLoadingStatus', {isLoading: false})
+})
+```
+
+在`App.vue`里使用`loading`组件并从`vuex`获取`isLoading`状态
+
+```
+<loading v-model="isLoading"></loading>
+```
+
+```
+import { Loading } from 'vux'
+import { mapState } from 'vuex'
+
+export default {
+  components: {
+    Loading
+  },
+  computed: {
+    ...mapState({
+      isLoading: state => state.vux.isLoading
+    })
+  }
+}
+```
+
+done.
+
+如果你觉得在加载比较快时`Loading`组件一闪而过体验也不大好，那么你可以延迟设置`loading=false`。
 
 ### 4.9 异步加载组件
 
