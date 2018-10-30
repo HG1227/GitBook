@@ -583,7 +583,9 @@ const Foo = () => import('./Foo.vue').then(m => m.default)
 
 ## 6 最佳实践
 
-### 6.1 VUX tabber切换图标及字体颜色
+### 6.1 常见问题及处理
+
+#### 6.1.1 VUX tabber切换图标及字体颜色
 
 通过path判断当前页面，并切换选中tabbar，如果tabbar不多，使用组件一般方式即可(即在每个子模块引入tabbar并写好默认选中项)
 
@@ -637,7 +639,7 @@ const Foo = () => import('./Foo.vue').then(m => m.default)
 </style>
 ```
 
-### 6.2 x-header、tabbar固定位置
+#### 6.1.2 x-header、tabbar固定位置
 
 ```
 <template>
@@ -710,7 +712,7 @@ const Foo = () => import('./Foo.vue').then(m => m.default)
 }
 ```
 
-### 6.3 下拉加载更多
+#### 6.1.3 下拉加载更多
 
 先上效果图
 
@@ -859,13 +861,13 @@ const Foo = () => import('./Foo.vue').then(m => m.default)
 </script>
 ```
 
-### 6.4 scroller下拉失败回弹
+#### 6.1.4 scroller下拉失败回弹
 
 引用vux中的scroller插件注意事项： 
 1、scroller标签内部必须紧套一层div标签 
 2、注意scroller的enabled属性，表示可以下拉刷新
 
-### 6.5 Vue下路由History模式打包后页面空白
+#### 6.1.5 Vue下路由History模式打包后页面空白
 
 vue的路由在默认的hash模式下,默认打包一般不会有什么问题,不过hash模式由于url会带有一个#,不美观,而且在微信分享,
 授权登录等都会有一些坑.所以history模式也会有一些应用场景.新手往往会碰到history模式打包后页面一片空白的情况,
@@ -906,7 +908,7 @@ location /history {
 上面这个是项目路径名为history,这样配置后就不会有vue打包后页面空白问题了,history路由也可以自由访问了,
 不过要记得上面说的,非根目录的项目需要加上base 的路径 
 
-### 6.6 打包后css引用图片资源找不到
+#### 6.1.6 打包后css引用图片资源找不到
 
 使用vue打包，通过css引用图片资源。
 
@@ -944,7 +946,7 @@ if (options.extract) {
 
 在build一次，没有报错，正常显示！
 
-### 6.7 打包后js引用图片资源找不到
+#### 6.1.7 打包后js引用图片资源找不到
 
 在vue组件的js部分导入图片要使用require的形式导入，否则webpack不能正常导入，因为其路径不符合其解析规范
 
@@ -956,9 +958,9 @@ if (options.extract) {
 
 ![](../assets/VUX/jsError.jpg)
 
-### 6.8 vux框架组件自定义样式
+#### 6.1.8 vux框架组件自定义样式
 
-### 6.8.1 全局方式
+##### 6.1.8.1 全局方式
 
 > 方法一 在webpack.base.conf.js文件中配置
 
@@ -975,7 +977,7 @@ if (options.extract) {
 
 ![](../assets/VUX/vuxCss2.png)
 
-### 6.8.2 局部方式
+##### 6.1.8.2 局部方式
 
 > 方法二 使用/deep/或>>>
 
@@ -987,7 +989,7 @@ if (options.extract) {
 
 > 注意:/deep/在less和sass中不支持，本人在使用>>>测试的时候没有生效
 
-### 6.9 vux-cell title 插槽使用
+#### 6.1.9 vux-cell title 插槽使用
 
 ```
 <group>
@@ -1012,7 +1014,9 @@ if (options.extract) {
 vux cell title插槽可添加样式并使得超长文字隐藏。
 可参考/yumaomoney_WeChat/src/components/user/message/Message.vue `.cell-overflow`
 
-### 6.10 报错处理:Failed to load resource: net::ERR_FILE_NOT_FOUND
+### 6.2 报错、警告处理
+
+#### 6.2.1 报错处理:Failed to load resource: net::ERR_FILE_NOT_FOUND
 
 > Failed to load resource: net::ERR_FILE_NOT_FOUND或者vue dist文件下的index.html没显示
 
@@ -1030,7 +1034,7 @@ publicPath: process.env.NODE_ENV === 'production'
      : './' + config.dev.assetsPublicPath
 ```
 
-#### vue的图片路径，和背景图片路径打包后错误解决
+##### vue的图片路径，和背景图片路径打包后错误解决
 
 ![](../assets/VUX/vuxBug.png)
 
@@ -1074,7 +1078,7 @@ css使用图片
 background: url('../../static/img/loginback.png') no-repeat top left ;
 ```
 
-### 6.11 警告处理:warning：component lists rendered with v-for should have explicit keys
+#### 6.2.2 警告处理:warning：component lists rendered with v-for should have explicit keys
 
 > 命令行warning(Emitted value instead of an instance of Error)。
 component lists rendered with v-for should have explicit keys。
@@ -1110,7 +1114,7 @@ See https://vuejs.org/guide/list.html#key for more info.
 
 这样就不会报错啦，具体看文档，key不是必须的，仅仅是warning
 
-### 6.12 报错处理：exports is not defined
+#### 6.2.3 报错处理：exports is not defined
 
 在引入插件后，控制台报错`Uncaught ReferenceError: exports is not defined`
 
@@ -1126,7 +1130,7 @@ See https://vuejs.org/guide/list.html#key for more info.
 
 ![](../assets/VUX/exportsError.png)
 
-### 6.13 报错处理：Default export is not declared in imported module
+#### 6.2.4 报错处理：Default export is not declared in imported module
 
 ![](../assets/VUX/importError.png)
 
@@ -1151,6 +1155,7 @@ See https://vuejs.org/guide/list.html#key for more info.
     * [输入框验证](https://blog.csdn.net/honnyee/article/details/80691445)
     * [声明公共方法](https://blog.csdn.net/sinat_17775997/article/details/78341907?locationNum=9&fps=1)
     * [声明公共变量](https://www.jianshu.com/p/7547ff8760c3)
+    * [全局声明第三方插件](https://www.jb51.net/article/121740.htm)
 * 报错的处理
     * [打包报错处理：Failed to load resource: net::ERR_FILE_NOT_FOUND](https://blog.csdn.net/lhb_11/article/details/79455015)
     * [警告处理：warning：component lists rendered with v-for should have explicit keys](https://blog.csdn.net/twinkle2star/article/details/73741120)
