@@ -1205,7 +1205,7 @@ const userSite="中国钓鱼岛";
 </script>
 ```
 
-###### 使用方式1：
+###### 1：全局变量专用模块
 
 在需要的地方引用进全局变量模块文件，然后通过文件里面的变量名字获取全局变量参数值。
 
@@ -1232,7 +1232,7 @@ data () {
 </style>
 ```
 
-###### 使用方式2：
+###### 2：全局变量模块挂载到Vue.prototype 里
 
 在程序入口的main.js文件里面，将上面那个Global.vue文件挂载到Vue.prototype。
 
@@ -1268,12 +1268,56 @@ Vuex也可以设置全局变量：
 
 通过vuex来存放全局变量，这里东西比较多，也相对复杂一些，有兴趣的小伙伴们，可自行查阅资料，折腾一波、
 
-##### 声明公共方法
+##### 定义全局函数
 
+原理
 
+新建一个模块文件，然后在main.js里面通过Vue.prototype将函数挂载到Vue实例上面，通过this.函数名，来运行函数。
 
-[声明公共方法](https://blog.csdn.net/sinat_17775997/article/details/78341907?locationNum=9&fps=1)
-[声明公共变量](https://www.jianshu.com/p/7547ff8760c3)
+1. 在main.js里面直接写函数
+
+简单的函数可以直接在main.js里面直接写
+
+```
+Vue.prototype.changeData = function (){//changeData是函数名
+  alert('执行成功');
+}
+```
+
+组件中调用：
+
+```
+this.changeData();//直接通过this运行函数
+```
+
+2. 写一个模块文件，挂载到main.js上面。
+
+base.js文件，文件位置可以放在跟main.js同一级，方便引用
+
+```
+exports.install = function (Vue, options) {
+    Vue.prototype.text1 = function (){ //全局函数1
+        alert('执行成功1')
+    }
+    Vue.prototype.text2 = function (){ //全局函数2
+        alert('执行成功2')
+    }
+}
+```
+};
+main.js入口文件：
+
+```
+import base from './base'//引用
+Vue.use(base);//将全局函数当做插件来进行注册
+```
+    
+组件里面调用：
+
+```
+this.text1()
+this.text2()
+```
 
 #### 6.1.12 全局注册第三方插件
 
@@ -1418,8 +1462,8 @@ See https://vuejs.org/guide/list.html#key for more info.
     * [vux框架组件自定义样式](https://blog.csdn.net/linggty/article/details/81512211)
     * [vux cell title 插槽使用](https://segmentfault.com/q/1010000014234606/a-1020000014653614)
     * [输入框验证](https://blog.csdn.net/honnyee/article/details/80691445)
-    * [声明公共方法](https://blog.csdn.net/sinat_17775997/article/details/78341907?locationNum=9&fps=1)
-    * [声明公共变量](https://www.jianshu.com/p/7547ff8760c3)
+    * [VUE 全局变量的几种实现方式](https://www.jianshu.com/p/7547ff8760c3)
+    * [在vue项目中如何定义全局变量全局函数](https://blog.csdn.net/sinat_17775997/article/details/78341907?locationNum=9&fps=1)
     * [全局注册第三方插件](https://www.jb51.net/article/121740.htm)
 * 报错的处理
     * [打包报错处理：Failed to load resource: net::ERR_FILE_NOT_FOUND](https://blog.csdn.net/lhb_11/article/details/79455015)
