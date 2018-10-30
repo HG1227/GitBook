@@ -717,7 +717,7 @@ const Foo = () => import('./Foo.vue').then(m => m.default)
 
 先上效果图
 
-![](../assets/VUX/ms_scroller.gif)
+`![](../assets/VUX/ms_scroller.gif)`
 
 * 创建项目
 
