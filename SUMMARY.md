@@ -26,6 +26,7 @@
     * [Lodash](TraingRecord/Lodash.md)
     * [Markdown](TraingRecord/markdown.md)
     * [Maven使用](TraingRecord/Maven.md)
+    * [md5使用](TraingRecord/md5.md)
     * [Moment](TraingRecord/Moment.md)
     * [Navicat&Jmeteer](TraingRecord/navicatandjmeteer.md)
     * [Nginx](TraingRecord/Nginx.md)
