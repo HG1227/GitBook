@@ -1016,7 +1016,60 @@ vux cell title插槽可添加样式并使得超长文字隐藏。
 
 #### 6.1.10 输入框验证
 
-[输入框验证](https://blog.csdn.net/honnyee/article/details/80691445)
+##### 使用is-type的情况
+
+vux使用x-input情形如下：
+
+表单中需要填写手机号，填完手机号之后，进行提交。点击“提交”按钮的时候，
+需要判断手机号是否通过校验，vux提供了is-type内置验证器，我们省去了自己校验手机号的过程。
+
+![](../assets/VUX/is-type.png)
+
+有3点需要注意:
+
+1. x-input控件上加了 ref ，加了ref才能使用this.$refs.mobile.valid
+1. x-input控件上加required将其变成必填项
+1. @click需要加上 .native 才能触发submitData方法
+
+[参考文章地址](https://www.jianshu.com/p/33d7e674dbe6)
+
+##### 使用vux-ui自定义表单验证
+
+[参考文章地址](http://www.php.cn/js-tutorial-399235.html)
+
+```
+<x-input type="number" v-model="code" placeholder="请输入验证码" :is-type="codeValue" ref="refcode" @on-change="keyDown" />
+<x-button action-type="submit" :disabled="disabled">完成</x-button>
+ export default {
+    data() {
+      return{
+        code: '',
+        disabled: true,
+        codeValue: function(value){
+          return {
+            valid: value.length === 4,
+            msg: "验证码有误!"
+          }
+        }
+      }
+    },
+    methods: {
+      keyDown(){
+        if(this.$refs.refcode.valid == true && this.code != ''){
+          this.disabled = false;
+        }else{
+          this.disabled = true;
+        }
+      }
+    }
+  }
+```
+
+表单内容都填写无误之后，提交表单的按钮才能被触发（如图）
+
+![](../assets/VUX/vux-ui.png)
+
+注意：使用x-input组件的@on-change事件，及使用 ref
 
 #### 6.1.11 声明公共方法、变量
 
