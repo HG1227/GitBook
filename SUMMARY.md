@@ -32,6 +32,7 @@
     * [Navicat&Jmeteer](TraingRecord/navicatandjmeteer.md)
     * [Nginx](TraingRecord/Nginx.md)
     * [NPM的使用](TraingRecord/npm.md)
+    * [NVM的使用](TraingRecord/nvm.md)
     * [PM2](TraingRecord/pm2.md)
     * [自动化接口使用](TraingRecord/portDocument.md)
     * [项目经理培训](TraingRecord/projectManager.md)
