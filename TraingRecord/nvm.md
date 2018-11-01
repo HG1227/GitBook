@@ -145,7 +145,8 @@ nvm cache clear                         # 清空nvm的cache
 
 ![](../assets/NVM/nvmHelp.png)
 
-## 5 最佳实践
+## 5 同类技术比较
+
 
 
 ## 参考资料
