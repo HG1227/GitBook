@@ -1472,6 +1472,7 @@ See https://vuejs.org/guide/list.html#key for more info.
     * [报错处理：Default export is not declared in imported module](https://segmentfault.com/q/1010000004664827)
 * 插件的使用
     * [vue-router使用](./vue-router.md)
+    * [vuex使用](./vuex.md)
     * [vux-uploader使用](./vux-uploader.md)
     * [vux中fullpage的使用](./vue-fullpage.md)
     * [clipboard.js使用](./clipboard.md)

@@ -60,6 +60,7 @@
     * [vue-fullpage使用](Vue/vue-fullpage.md)
     * [vue-router使用](Vue/vue-router.md)
     * [Vue的Ref属性](Vue/vueRef.md)
+    * [Vuex使用](Vue/Vuex.md)
     * [Vux使用](Vue/vux.md)
     * [vux-uploader使用](Vue/vux-uploader.md)
     * [Vue生命周期图例](webTips/vuesheng-ming-zhou-qi-tu-li.md)
