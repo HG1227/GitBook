@@ -216,6 +216,196 @@ console.log(store.state.count) // -> 1
 
 ## 3 示例
 
+> Vue登录注册，并保持登录状态
+
+关于vue登录注册，并保持登录状态，是vue玩家必经之路，网上也有很多的解决方法，
+但是有一些太过于复杂，新手可能会看的一脸懵逼，现在给大家介绍一种我自己写项目在用而且并不难理解的一种方法。
+
+项目中有一些路由是**需要登录**才可以进入的，比如首页，个人中心等等
+有一些路由是**不需要登录**就可以进入，比如登录页，注册页，忘记密码等等
+那如何判断路由是否需要登录呢？就要在路由JS里面做文章
+
+**在router.js中添加meta区分**
+  
+比如登录注册页面，尚未登录才可进入，那么我们把meta中的isLogin标志设置为**false**
+
+> yumaomoney_WeChat/src/router/index.js
+
+```
+// 登录
+{
+  path: 'login',
+  name: 'login',
+  component: Login,
+  meta: {
+    isLogin: false
+  }
+},
+{
+  path: 'registered',
+  component: Container,
+  children: [
+    // 注册
+    {
+      path: '/',
+      component: Registered,
+      meta: {
+        isLogin: false
+      }
+    },
+    // 确认注册
+    {
+      path: 'registeredDetail',
+      name: 'registeredDetail',
+      component: RegisteredDetail,
+      meta: {
+        isLogin: false
+      }
+    }
+  ]
+},
+```
+
+而在个人中心我们需要登录才能进入，那么我们把meta中的isLogin标志设置为true
+
+```
+{
+  //首页
+  path: '/user',
+  component: User,
+  meta: {
+    isLogin: true
+  },
+}
+```
+
+而在首页我们登录、未登录均能进入，那么我们不设置meta
+
+```
+{
+  //首页
+  path: '/home',
+  component: Home
+}
+```
+
+这样我们就为进入各个路由是否需要登录做了区分。
+
+接下来我们在login.vue中修改登录后状态
+
+我们使用axios向后台发起登录请求
+
+> yumaomoney_WeChat/src/components/start/login/Login.vue
+
+```
+this.$axios.post("/xxx/login", {user:name,password:pwd})
+  .then(data => {
+    if (res.data === 1) {
+      //登录成功
+      self.$store.dispatch('userLogin', true)
+      // Vuex在用户刷新的时候userLogin会回到默认值false，所以我们需要用到HTML5储存
+      // 我们设置一个名为Flag，值为isLogin的字段，作用是如果Flag有值且为isLogin的时候，证明用户已经登录了。
+      localStorage.setItem('Flag', 'isLogin')
+      // 登录成功后跳转到指定页面
+      self.$router.push('/home')
+    } else if (res.data === 2) {
+      // 登录失败,先不讨论
+      self.data.toastMsg = '验证码不正确!'
+      self.data.toastType = true
+    }
+ })
+```
+
+Vuex里面我是这样写的（如果项目不需要Vuex，那么直接使用HTML5储存就可以了）：
+
+> yumaomoney_WeChat/src/store/index.js
+
+```
+import Vue from 'vue'
+import Vuex from 'vuex'
+Vue.use(Vuex)
+
+export const store = new Vuex.Store({
+  // 设置属性
+  state: {
+    isLogin: false
+  },
+
+  // 获取属性的状态
+  getters: {
+    // 获取登录状态
+    isLogin: state => state.isLogin
+  },
+
+  // 设置属性状态
+  mutations: {
+    // 保存登录状态
+    userStatus (state, flag) {
+      state.isLogin = flag
+    }
+  },
+
+  // 应用mutations
+  actions: {
+    // 获取登录状态
+    setUser ({commit}, flag) {
+      commit('userStatus', flag)
+    }
+  }
+})
+module.exports = store
+```
+
+重点来了~，在mian.js里
+
+> yumaomoney_WeChat/src/main.js
+```
+import Vuex from 'vuex'
+import store from './store/index'
+Vue.use(Vuex)
+
+/* eslint-disable no-new */
+new Vue({
+  router,
+  store,
+  render: h => h(App)
+}).$mount('#app-box')
+
+router.beforeEach((to, from, next) => {
+  // 获取用户登录成功后储存的登录标志
+  let getFlag = localStorage.getItem('Flag')
+  // 如果登录标志存在且为isLogin，即用户已登录
+  if (getFlag === 'isLogin') {
+    // 设置vuex登录状态为已登录
+    store.state.isLogin = true
+    next()
+    // 如果已登录，还想想进入登录注册界面，则定向回首页
+    if (to.meta && (to.meta.isLogin === false)) {
+      next({
+        path: '/home'
+      })
+    }
+    // 如果登录标志不存在，即未登录
+  } else {
+    // 用户想进入需要登录的页面，则定向回登录界面
+    if (to.meta.isLogin) {
+      next({
+        path: '/start/login'
+      })
+      // 用户进入无需登录的界面，则跳转继续
+    } else {
+      next()
+    }
+  }
+})
+
+router.afterEach(route => {
+  window.scroll(0, 0)
+})
+```
+
+这样就已经完成了Vue的登录注册，当用户关闭浏览器或者第二天再次进入网站，用户依旧可以保持着登录的状态直到用户手动退出登录。
+
 ## 4 最佳实践
 
 ## 5 同类技术比较
@@ -225,5 +415,5 @@ console.log(store.state.count) // -> 1
 
 * [vux官网](https://vuex.vuejs.org/zh/)
 * [vux登录注册并保持登录状态](https://blog.csdn.net/sinat_17775997/article/details/83450620)
-* [vux登录注册并保持登录状态](https://segmentfault.com/a/1190000005780326)
+* [使用Vue.js和Vuex实现购物车场景](https://segmentfault.com/a/1190000005780326)
 * [报错处理：router is not defined](https://segmentfault.com/q/1010000014461113)
