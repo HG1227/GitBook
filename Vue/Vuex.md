@@ -221,7 +221,8 @@ console.log(store.state.count) // -> 1
 关于vue登录注册，并保持登录状态，是vue玩家必经之路，网上也有很多的解决方法，
 但是有一些太过于复杂，新手可能会看的一脸懵逼，现在给大家介绍一种我自己写项目在用而且并不难理解的一种方法。
 
-项目中有一些路由是**需要登录**才可以进入的，比如首页，个人中心等等
+项目中有一些路由是**登录与否**均可以进入的，比如首页，活动页等等
+有一些路由是**需要登录**才可以进入的，比如个人中心，业务详情等等
 有一些路由是**不需要登录**就可以进入，比如登录页，注册页，忘记密码等等
 那如何判断路由是否需要登录呢？就要在路由JS里面做文章
 
@@ -359,6 +360,7 @@ module.exports = store
 重点来了~，在mian.js里
 
 > yumaomoney_WeChat/src/main.js
+
 ```
 import Vuex from 'vuex'
 import store from './store/index'
@@ -405,6 +407,18 @@ router.afterEach(route => {
 ```
 
 这样就已经完成了Vue的登录注册，当用户关闭浏览器或者第二天再次进入网站，用户依旧可以保持着登录的状态直到用户手动退出登录。
+
+用户退出只需要`localStorage.removeItem("Flag")`即可
+
+> yumaomoney_WeChat/src/components/user/center/Center.vue
+
+```
+  logout () {
+    var self = this
+    window.localStorage.removeItem("Flag")
+    self.$router.push('/home')
+  }
+```
 
 ## 4 最佳实践
 
