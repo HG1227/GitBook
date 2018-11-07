@@ -302,8 +302,8 @@ console.log(store.state.count) // -> 1
 this.$axios.post("/xxx/login", {user:name,password:pwd})
   .then(data => {
     if (res.data === 1) {
-      //登录成功
-      self.$store.dispatch('userLogin', true)
+      // 登录成功
+      self.$store.dispatch('setUser', true)
       // Vuex在用户刷新的时候userLogin会回到默认值false，所以我们需要用到HTML5储存
       // 我们设置一个名为Flag，值为isLogin的字段，作用是如果Flag有值且为isLogin的时候，证明用户已经登录了。
       localStorage.setItem('Flag', 'isLogin')
@@ -416,6 +416,7 @@ router.afterEach(route => {
   logout () {
     var self = this
     window.localStorage.removeItem("Flag")
+    self.$store.dispatch('setUser', false)
     self.$router.push('/home')
   }
 ```
