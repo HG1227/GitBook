@@ -1,34 +1,35 @@
 # Ajax的深度解析
 
-##### 作者：王志伟
-##### 邮箱：wangzhiwei@yumaomoney.com
+#### 作者：王志伟
+#### 邮箱：wangzhiwei@yumaomoney.com
 
 ```
-
 更改历史
+
+*2018-10-23     高天阳     迁移jquery使用Ajax示例
 *2018-10-17     王志伟     初始化文档
 
 ```
 
-## 1 什么是Ajax
+##1 什么是Ajax
 
 Ajax全称：Asynchronous JavaScript and XML
 Ajax不是某种变成语言
 而是一种无需重新加载整个网页的情况下能够更新部分网页的技术。
 
-### 1.1 同步
+###1.1 同步
 ![](../../assets/ajax/ajax-1.jpg)
 
-### 1.2 异步
-![](../../assets/ajax/ajax-2.jpg)
+###1.2 异步
+![](../../assets/ajax/ajax-1.jpg)
 
-## 2 XMLHttpRequest对象
-### 2.1 创建XMLHttpRequest对象
+##2 XMLhHttpRequest对象
+###2.1 创建XMLhHttpRequest对象
 ```
-    //实例化XMLHttpRequest对象
+    //实例化XMLhHttpRequest对象
     var XHR = new XMLHttpRequest();
 ```
-IE6以下浏览器不支持XMLHttpRequest对象
+IE6以下浏览器不支持XMLhHttpRequest对象
 ```
     if(window.XMLHttpRequest === undefined){
         window.XMLHttpRequest = function(){
@@ -51,11 +52,11 @@ IE6以下浏览器不支持XMLHttpRequest对象
 ```
 
 
-## 2.2 XMLHttpRequest和本地文件
-开发和测试时XMLHttpRequest对象的使用差异
+##2.2 XMLhHttpRequest和本地文件
+开发和测试时XMLhHttpRequest对象的使用差异
 ![](../../assets/ajax/ajax-3.jpg)
 
-## 2.3 了解HTTP
+##2.3 了解HTTP
 *Http 是计算机通过网络进行通信的规则
 *http 是一种无状态的信息
 是指比如客户获得一张网页之后关闭浏览器，然后再一次启动浏览器，再登录该网站，但是服务器并不知道客户关闭了一次浏览器
@@ -69,33 +70,33 @@ IE6以下浏览器不支持XMLHttpRequest对象
 * Web服务器向Web浏览器发送数据
 * Web服务器关闭TCP连接
 
-## 一个HTTP请求包括四个部分
+##一个HTTP请求包括四个部分
 * HTTP请求方法或“动作”GET/POST
 * 正在请求的地址(url)
 * 一个可选的请求头集合，其中可能包括身份验证信息(客户端环境信息)
 * 一个可选的请求主体（查询字符串、表单信息）
 
-## 服务器返回HTTP响应包括3个部分
+##服务器返回HTTP响应包括3个部分
 * 一个数字和文字组成的状态码，用来显示请求的成功和失败
 * 一个响应头集合
 * 响应主体
 
 ![](../../assets/ajax/ajax-4.jpg)
 
-## 2.4 GET请求与POST请求的差异
-## GET
+##2.4 GET请求与POST请求的差异
+##GET
 * 一般用于信息获取
 * 使用URL传递参数
 * 对发送的信息数量有限制 2000个字符
 
-## POST
+##POST
 * 一般用于修改服务器上的资源
 * 对所发的信息数量无限制
 
-## 2.5 HTTP状态码
+##2.5 HTTP状态码
 ![](../../assets/ajax/ajax-5.jpg)
 
-## 2.6 XMLHttpRequest发送请求
+##2.6 XMLHttpRequest发送请求
 `open(method,url,async)`
 `send(string)`
 
@@ -113,18 +114,15 @@ request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 request.send("name=高天阳&age=26");
 ```
 
-## 2.7 XMLHttpRequest取得响应
+##2.7 XMLHttpRequest取得响应
 ![](../../assets/ajax/ajax-6.jpg)
 ![readyState属性](../../assets/ajax/ajax-7.jpg)
 
 ```
     var request = new XMLHttpRequest();
-    //0
     request.open("GET","get.php",true);
-    //1
     request.send();
     request.onreadystatechange = function(){
-    //234
         if(request.readyState ===4&& request.status===200){
             request.responseText
             //做你的操作
@@ -135,14 +133,14 @@ request.send("name=高天阳&age=26");
 
 
 
-### 3.JSON基本概念
+###3.JSON基本概念
 JSON:Javascript对象表示法（Javascript Object Notation）
 JSON是存储和交换文本信息的语法，类似XML。它采用键值对的方式来组织，易于人们阅读与编写，同时也易于机器解析与生成。
 JSON是独立语言，也就是说不管什么语言都可以解析Json,只需要按照JSON的规则即可
 ```
 var jsonStr='{"result":[{"name":"zhiwei","age":"18"},{"name":"gaogao","age":"20"},{"name":"xiaoyu":"age":"14"}]}'
 ```
-## 3.1 解析JSON
+##3.1 解析JSON
 eval和JSON.parse()的区别
 
 禁止使用eval的原因
@@ -159,7 +157,7 @@ alert(jsonObject[0].age)
 推荐json检测工具
 https://jsonlint.com/
 
-## 规范的JSON返回值
+##规范的JSON返回值
 ```
 {
     "status":"success"
@@ -170,15 +168,41 @@ https://jsonlint.com/
 }
 ```
 
-## 4.Jquery中的ajax使用
+##4.Jquery中的ajax使用
 
-## 5.跨越问题
+```
+$.ajax({
+    type: 'GET', 
+    url: '999.php', 
+    data: {
+        uname:'Tom', age: 20
+    }, 
+    beforeSend: function(){ 
+        console.log('before send....'); 
+        console.log(arguments); 
+    }, 
+    success: function(){ 
+        console.log('success....'); 
+        console.log(arguments); 
+    }, 
+    error: function(){ 
+        console.log('error....'); 
+        console.log(arguments); 
+    }, 
+    complete: function(){ 
+        console.log('complete....'); 
+        console.log(arguments); 
+    } 
+});
+```
+
+##5.跨越问题
 ![](../../assets/ajax/ajax-8.jpg)
 
 Javascript出于安全方面的考虑，不允许跨域调用其他页面的对象、什么是跨域呢，简单地理解就是因为Javascript同源策略的限制
-## 5.1判断跨域
+##5.1判断跨域
 ![](../../assets/ajax/ajax-9.jpg)
-## 5.2如何解决跨域
+##5.2如何解决跨域
 方法一 代理
 ![](../../assets/ajax/ajax-10.jpg)
 
@@ -204,13 +228,13 @@ $.ajax({
 ![](../../assets/ajax/ajax-13.jpg)
 
 相关面试题
-## 1、ajax的实现和原理
-## 2、Ajax的优缺点各说三条
-## 3、AJAX机制，open的参数是什么
-## 4、请解释 JSONP 的工作原理，以及它为什么不是真正的 AJAX
-## 5、XMLHttpRequest对象在IE和Firefox中创建方式有没有不同
+##1、ajax的实现和原理
+##2、Ajax的优缺点各说三条
+##3、AJAX机制，open的参数是什么
+##4、请解释 JSONP 的工作原理，以及它为什么不是真正的 AJAX
+##5、XMLHttpRequest对象在IE和Firefox中创建方式有没有不同
   //IE中通过new ActiveXObject()得到，Firefox中通过newXMLHttpRequest()得到
-## 6　　
+##6、常见状态码的含义
 * 200 OK 客户端请求成功
 * 301 资源(网页等)被永久转移到其他URL
 * 400 Bad Request 客户端请求有语法错误，不能被服务器所理解
