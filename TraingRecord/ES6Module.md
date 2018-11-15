@@ -86,13 +86,17 @@ ES6是前端开发的主力语言 （Vue、 React）如果你不能熟练掌握 
 ```
     //for 循环的计数器，就很合适使用let 命令
     var a = []
-    for (var i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i++) {
         a[i] = function () {
             console.log(i);
             // 这里的i
         }
     }
     a[6]() // 10
+    a[7]()
+
+    console.log(i)// ? 10
+    let i = 10 // 报错
 ```
 答案：这是因为 JavaScript 引擎内部会记住上一轮循环的值，初始化本轮的变量i 时，就在上一轮循环的基础上进行计算
 
