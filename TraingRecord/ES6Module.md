@@ -6,7 +6,7 @@
 ```
 更改历史
 
-* 2018-11-20        高天阳     模板字符串、增强的对象字面量、默认参数、import 和 export
+* 2018-11-20        高天阳     默认参数、模板字符串、增强的对象字面量
 * 2018-11-19        高天阳     整理文档
 * 2018-11-13        王志伟     初始化文档
 
@@ -42,11 +42,13 @@ ES6是前端开发的主力语言 （Vue、 React）如果你不能熟练掌握 
 在ES5我们给函数定义参数默认值是怎么样？
 
 ```javascript
-function action(num) {
+function action(num, color, url) {
     num = num || 200
     //当传入num时，num为传入的值
     //当没传入参数时，num即有了默认值200
-    return num
+    color = color || 'red';
+    url = url || 'http://azat.co';
+    return (num, color, url)
 }
 ```
 
@@ -70,13 +72,6 @@ action()    //200
 action(300) //300
 -->
 
-```javascript
-function bar(x = y, y = 2) {
-    return [x, y];
-}
-bar();  //
-```
-
 #### 2.1.2 箭头函数
 
 ```javascript
@@ -91,6 +86,19 @@ bar();  //
     var odds = evens.map(v => v + 1)
     console.log(odds)
 ```
+
+#### 2.1.3 面试题
+
+```javascript
+function bar(x = y, y = 2) {
+    return [x, y];
+}
+bar();  //
+```
+
+<!--
+报错(y is not defined) 2
+-->
 
 ### 2.2 字符串
 
@@ -284,16 +292,16 @@ let [foo] = {};
 
 ```javascript
 var serviceBase = {port: 3000, url: 'azat.co'},
- getAccounts = function(){return [1,2,3]};
+    getAccounts = function(){return [1,2,3]};
 var accountServiceES5 = {
- port: serviceBase.port,
- url: serviceBase.url,
- getAccounts: getAccounts,
- toString: function() {
- return JSON.stringify(this.valueOf());
- },
- getUrl: function() {return "http://" + this.url + ':' + this.port},
- valueOf_1_2_3: getAccounts()
+    port: serviceBase.port,
+    url: serviceBase.url,
+    getAccounts: getAccounts,
+    toString: function() {
+        return JSON.stringify(this.valueOf());
+    },
+    getUrl: function() {return "http://" + this.url + ':' + this.port},
+    valueOf_1_2_3: getAccounts()
 }
 ```
 
