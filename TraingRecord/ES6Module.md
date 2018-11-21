@@ -7,7 +7,7 @@
 更改历史
 
 * 2018-11-20        高天阳     模板字符串、对象扩展、默认参数、import 和 export
-* 2018-11-20        高天阳     整理文档
+* 2018-11-19        高天阳     整理文档
 * 2018-11-13        王志伟     初始化文档
 
 ```
@@ -21,8 +21,9 @@ ES6是前端开发的主力语言 （Vue、 React）如果你不能熟练掌握 
 > ES6主要新特性
 
 1. Default Parameters（默认参数） in ES6
-1. Template Literals （模板文本）in ES6
-1. Multi-line Strings （多行字符串）in ES6
+1. Strings （字符串）in ES6
+    1. Template Literals （模板字符串）in ES6
+    1. Multi-line Strings （多行字符串）in ES6
 1. Destructuring Assignment （解构赋值）in ES6
 1. Enhanced Object Literals （增强的对象文本）in ES6
 1. Arrow Functions （箭头函数）in ES6
@@ -32,22 +33,31 @@ ES6是前端开发的主力语言 （Vue、 React）如果你不能熟练掌握 
 1. Modules（模块） in ES6
 
 ### 2.1 默认参数
-### 2.2 模板文本
+### 2.2 字符串
 
-在其它语言中，使用模板和插入值是在字符串里面输出变量的一种方式。因此，在ES5，我们可以这样组合一个字符串：
+#### 2.2.1 模板字符串
+
+基本的字符串格式化。将表达式嵌入字符串中进行拼接。用${}来界定。
 
 ```javascript
+//ES5 
 var name = 'Your name is ' + first + ' ' + last + '.';
 var url = 'http://localhost:3000/api/messages/' + id;
-```
-幸运的是，在ES6中，我们可以使用新的语法$ {NAME}，并把它放在反引号里：
-
-```javascript
+//ES6
 var name = `Your name is ${first} ${last}. `;
 var url = `http://localhost:3000/api/messages/${id}`;
+
+//ES5 
+var name = 'lux'
+console.log('hello' + name)
+//ES6
+const name = 'lux'
+console.log(`hello ${name}`) //hello lux
 ```
 
-### 2.3 多行字符串
+#### 2.2.2 多行字符串
+
+在ES5时我们通过反斜杠(\)来做多行字符串或者字符串一行行拼接。ES6反引号(``)直接搞定。
 
 ```javascript
 // ES6的多行字符串是一个非常实用的功能。在ES5中，我们不得不使用以下方法来表示多行字符串：
@@ -57,7 +67,7 @@ var roadPoem = 'Then took the other, as just as fair,nt'
    + 'Because it was grassy and wanted wear,nt'
    + 'Though as for that the passing therent'
    + 'Had worn them really about the same,nt';
-var fourAgreements = 'You have the right to be you.n
+var fourAgreements = 'You have the right to be you.\
    You can only be you when you do your best.';
    
 // 然而在ES6中，仅仅用反引号就可以解决了：
@@ -71,7 +81,82 @@ var fourAgreements = `You have the right to be you.
    You can only be you when you do your best.`;
 ```
 
-### 2.4 解构赋值
+#### 2.2.3 字符串判断、处理
+
+对于字符串 ES6+ 当然也提供了很多厉害也很有意思的方法 说几个常用的。
+
+```javascript
+// 1.includes：判断是否包含然后直接返回布尔值
+const str = 'hahay'
+console.log(str.includes('y')) // true
+
+// 2.repeat: 获取字符串重复n次
+const str = 'he'
+console.log(str.repeat(3)) // 'hehehe'
+//如果你带入小数, Math.floor(num) 来处理
+// s.repeat(3.1) 或者 s.repeat(3.9) 都当做成 s.repeat(3) 来处理
+
+// 3. startsWith 和 endsWith 判断是否以 给定文本 开始或者结束
+const str =  'hello world!'
+console.log(str.startsWith('hello')) // true
+console.log(str.endsWith('!')) // true
+
+// 4. padStart 和 padEnd 填充字符串，应用场景：时分秒
+setInterval(() => {
+    const now = new Date()
+    const hours = now.getHours().toString()
+    const minutes = now.getMinutes().toString()
+    const seconds = now.getSeconds().toString()
+    console.log(`${hours.padStart(2, 0)}:${minutes.padStart(2, 0)}:${seconds.padStart(2, 0)}`)
+}, 1000)
+```
+
+#### 2.2.4 面试题
+
+* 模拟一个模板字符串的实现。
+
+```javascript
+let address = '北京海淀区'
+let name = 'lala'
+let str = '${name}在${address}上班...'
+// 模拟一个方法 myTemplate(str) 最终输出 'lala在北京海淀区上班...'
+function myTemplate(str) {
+    // try it
+}
+console.log(myTemplate(str)) // lala在北京海淀区上班...
+```
+
+参考链接:[面试题：模板字符串的执行问题？](http://bugshouji.com/shareweb/t542)、
+[Javascript动态执行JS（new Function与eval比较）](https://www.cnblogs.com/EasonJim/p/6228027.html)
+
+<!--
+var str =  'return ' + '`'+str+'`'
+let func = new Function('name','address', str);
+return func(name,address)
+-->
+
+* 实现标签化模板(自定义模板规则)。
+
+```javascript
+const name = 'cc'
+const gender = 'male'
+const hobby = 'basketball'
+// 实现tag最终输出 '姓名：**cc**，性别：**male**，爱好：**basketball**'
+function tag(strings) {
+    // do it
+}
+const str = tag`姓名：${name}，性别：${gender}，爱好：${hobby}`
+console.log(str) // '姓名：**cc**，性别：**male**，爱好：**basketball**'
+```
+
+<!--
+  var str =  'return `姓名：**${name}**，性别：**${gender}**，爱好：**${hobby}**`'
+  // var str =  'return ' + '`' + strings + '`'
+  let func = new Function('name','gender','hobby', str);
+  return func(name,gender,hobby,str)
+-->
+
+### 2.3 解构赋值
 
 ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。
 本质上，这种写法属于“模式匹配”，只要等号两边的模式相同，左边的变量就会被赋予对应的值。下面是一些使用嵌套数组进行解构的例子
@@ -132,8 +217,8 @@ let [foo] = null;
 let [foo] = {};
 ```
 
-### 2.5 增强的对象文本
-### 2.6 箭头函数
+### 2.4 增强的对象文本
+### 2.5 箭头函数
 
 ```javascript
     //ES5
@@ -148,10 +233,10 @@ let [foo] = {};
     console.log(odds)
 ```
 
-### 2.7 Promise构造函数
-### 2.8 块作用域构造Let and Const
+### 2.6 Promise构造函数
+### 2.7 块作用域构造Let and Const
 
-#### 2.8.1 Let 命令
+#### 2.7.1 Let 命令
 
 用来声明变量。它的用法类似于var ，但是所声明的变量，只在let 命令所在的代码块内有效。
 
@@ -260,7 +345,7 @@ ES6 明确规定，如果区块中存在let 和const 命令，这个区块对这
     }
 ```
 
-#### 2.8.2 块作用域
+#### 2.7.2 块作用域
 
 内层变量可能会覆盖外层变量
 
@@ -304,7 +389,7 @@ function f1() {
 ```
 块级作用域的出现，实际上使得获得广泛应用的立即执行函数表达式（IIFE）不再必要了
 
-```javascript
+```
 // IIFE 写法(立即执行函数)
 (function () {
     var tmp = ...; //此处是块级（私有）作用域
@@ -317,9 +402,9 @@ function f1() {
 }
 ```
 
-#### 2.8.3 const
+#### 2.7.3 const
 
-```javascript
+```
     //ES5中的写法 大写
     Object.defineProperty(window,"PI2",{
         value: 3.1415926,
@@ -333,7 +418,7 @@ function f1() {
 
 声明一个只读的常量。一旦声明，常量的值就不能改变。
 
-```javascript
+```
     const PI = 3.1415;
     PI // 3.1415
     PI = 3;
@@ -344,7 +429,7 @@ function f1() {
 const 声明的变量不得改变值，这意味着， const 一旦声明变量，就必须立即初始化，不能留到以后赋值。
 同样存在暂时性死区 不可重复声明
 
-```javascript
+```
 const a = [];
 a.push('Hello'); //
 a.length = 0; //
@@ -360,10 +445,10 @@ a = ['Dave']; //
     foo.prop = 123;
 ```
 
-### 2.9 类
-### 2.10 模块
-### 2.11 扩展运算符
-### 2.12 顶层对象的属性
+### 2.8 类
+### 2.9 模块
+### 2.10 扩展运算符
+### 2.11 顶层对象的属性
 
 ```javascript
     window.a = 1;
