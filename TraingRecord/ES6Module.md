@@ -221,7 +221,7 @@ console.log(str) // '姓名：**cc**，性别：**male**，爱好：**basketball
   let result = `${strings[0]}**${name}**${strings[1]}**${gender}**${strings[2]}**${hobby}**`
   
   //方案2
-  let result = "";
+  let result = '';
   for (let i = 0; i < strings.length-1; i++) {
     result += strings[i];
     result += '**';
