@@ -6,7 +6,7 @@
 ```
 更改历史
 
-* 2018-11-20        高天阳     模板字符串、对象扩展、默认参数、import 和 export
+* 2018-11-20        高天阳     模板字符串、增强的对象字面量、默认参数、import 和 export
 * 2018-11-19        高天阳     整理文档
 * 2018-11-13        王志伟     初始化文档
 
@@ -20,19 +20,78 @@ ES6是前端开发的主力语言 （Vue、 React）如果你不能熟练掌握 
 
 > ES6主要新特性
 
-1. Default Parameters（默认参数） in ES6
+1. Functions （函数）in ES6
+    1. Default Parameters（默认参数） in ES6
+    1. Arrow Functions （箭头函数）in ES6
 1. Strings （字符串）in ES6
     1. Template Literals （模板字符串）in ES6
     1. Multi-line Strings （多行字符串）in ES6
 1. Destructuring Assignment （解构赋值）in ES6
-1. Enhanced Object Literals （增强的对象文本）in ES6
-1. Arrow Functions （箭头函数）in ES6
+1. Enhanced Object Literals （增强的对象字面量）in ES6
 1. Promises in ES6
 1. Block-Scoped Constructs Let and Const（块作用域构造Let and Const）
 1. Classes（类） in ES6
 1. Modules（模块） in ES6
+1. Extension operators（扩展运算符） in ES6
+1. Properties of top-level objects（顶层对象的属性） in ES6
 
-### 2.1 默认参数
+### 2.1 函数
+
+#### 2.1.1 默认参数
+
+在ES5我们给函数定义参数默认值是怎么样？
+
+```javascript
+function action(num) {
+    num = num || 200
+    //当传入num时，num为传入的值
+    //当没传入参数时，num即有了默认值200
+    return num
+}
+```
+
+但细心观察的同学们肯定会发现，num传入为0的时候就是false，但是我们实际的需求就是要拿到num = 0，
+此时num = 200 明显与我们的实际想要的效果明显不一样
+
+ES6为参数提供了默认值。在定义函数时便初始化了这个参数，以便在参数没有被传递进去时使用。
+
+```javascript
+function action(num = 200) {
+    console.log(num)
+}
+action(0)   //
+action()    //
+action(300) //
+```
+
+<!--
+action(0)   //0
+action()    //200
+action(300) //300
+-->
+
+```javascript
+function bar(x = y, y = 2) {
+    return [x, y];
+}
+bar();  //
+```
+
+#### 2.1.2 箭头函数
+
+```javascript
+    //ES5
+    var evens = [1,3,5,7];
+    var odds = evens.map(function(val){
+        return val + 1
+    })
+    console.log(odds)
+    //ES6
+    var evens = [1,3,5,7];
+    var odds = evens.map(v => v + 1)
+    console.log(odds)
+```
+
 ### 2.2 字符串
 
 #### 2.2.1 模板字符串
@@ -217,26 +276,75 @@ let [foo] = null;
 let [foo] = {};
 ```
 
-### 2.4 增强的对象文本
-### 2.5 箭头函数
+### 2.4 增强的对象字面量
+
+使用对象文本可以做许多让人意想不到的事情！通过ES6，我们可以把ES5中的JSON变得更加接近于一个类。
+
+下面是一个典型ES5对象文本，里面有一些方法和属性：
 
 ```javascript
-    //ES5
-    var evens = [1,3,5,7];
-    var odds = evens.map(function(val){
-        return val + 1
-    })
-    console.log(odds)
-    //ES6
-    var evens = [1,3,5,7];
-    var odds = evens.map(v => v + 1)
-    console.log(odds)
+var serviceBase = {port: 3000, url: 'azat.co'},
+ getAccounts = function(){return [1,2,3]};
+var accountServiceES5 = {
+ port: serviceBase.port,
+ url: serviceBase.url,
+ getAccounts: getAccounts,
+ toString: function() {
+ return JSON.stringify(this.valueOf());
+ },
+ getUrl: function() {return "http://" + this.url + ':' + this.port},
+ valueOf_1_2_3: getAccounts()
+}
 ```
 
-### 2.6 Promise构造函数
-### 2.7 块作用域构造Let and Const
+如果我们想让它更有意思，我们可以用Object.create从serviceBase继承原型的方法：
 
-#### 2.7.1 Let 命令
+```javascript
+var accountServiceES5ObjectCreate = Object.create(serviceBase)
+var accountServiceES5ObjectCreate = {
+  getAccounts: getAccounts,
+  toString: function() {
+    return JSON.stringify(this.valueOf());
+  },
+  getUrl: function() {return "http://" + this.url + ':' + this.port},
+  valueOf_1_2_3: getAccounts()
+}
+```
+
+我们知道，accountServiceES5ObjectCreate 和accountServiceES5 并不是完全一致的，
+因为一个对象(accountServiceES5)在proto对象中将有下面这些属性：
+
+![](../assets/Es6/ES6-proto.png)
+
+为了方便举例，我们将考虑它们的相似处。所以在ES6的对象文本中，既可以直接分配getAccounts: getAccounts,
+也可以只需用一个getAccounts，此外，我们在这里通过proto（并不是通过’proto’）设置属性，如下所示：
+
+```javascript
+var serviceBase = {port: 3000, url: 'azat.co'},
+getAccounts = function(){return [1,2,3]};
+var accountService = {
+    __proto__: serviceBase,
+    getAccounts,
+    // 另外，我们可以调用super防范，以及使用动态key值(valueOf_1_2_3):
+    toString() 
+    {
+      return JSON.stringify((super.valueOf()));
+    },
+    getUrl() 
+    {return "http://" + this.url + ':' + this.port},
+    [ 'valueOf_' + getAccounts().join('_') ]: getAccounts()
+};
+console.log(accountService)
+```
+
+![](../assets/Es6/ES6-accountService.png)
+
+ES6对象文本是一个很大的进步对于旧版的对象文本来说。
+
+### 2.5 Promise构造函数
+### 2.6 块作用域构造Let and Const
+
+#### 2.6.1 Let 命令
 
 用来声明变量。它的用法类似于var ，但是所声明的变量，只在let 命令所在的代码块内有效。
 
@@ -345,7 +453,7 @@ ES6 明确规定，如果区块中存在let 和const 命令，这个区块对这
     }
 ```
 
-#### 2.7.2 块作用域
+#### 2.6.2 块作用域
 
 内层变量可能会覆盖外层变量
 
@@ -402,7 +510,7 @@ function f1() {
 }
 ```
 
-#### 2.7.3 const
+#### 2.6.3 const
 
 ```
     //ES5中的写法 大写
@@ -445,10 +553,10 @@ a = ['Dave']; //
     foo.prop = 123;
 ```
 
-### 2.8 类
-### 2.9 模块
-### 2.10 扩展运算符
-### 2.11 顶层对象的属性
+### 2.7 类
+### 2.8 模块
+### 2.9 扩展运算符
+### 2.10 顶层对象的属性
 
 ```javascript
     window.a = 1;
