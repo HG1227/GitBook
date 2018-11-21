@@ -217,10 +217,26 @@ console.log(str) // '姓名：**cc**，性别：**male**，爱好：**basketball
 ```
 
 <!--
-  var str =  'return `姓名：**${name}**，性别：**${gender}**，爱好：**${hobby}**`'
-  // var str =  'return ' + '`' + strings + '`'
-  let func = new Function('name','gender','hobby', str);
-  return func(name,gender,hobby,str)
+  //方案1
+  let result = `${strings[0]}**${name}**${strings[1]}**${gender}**${strings[2]}**${hobby}**`
+  
+  //方案2
+  let result = "";
+  for (let i = 0; i < strings.length-1; i++) {
+    result += strings[i];
+    result += '**';
+    if(i===0){
+      result += name
+    }else if(i===1){
+      result += gender
+    }else if(i===2){
+      result += hobby
+    }
+    result += '**';
+  }
+  //加上最后一个普通字符串。
+  result += strings[strings.length - 1];
+  return result;
 -->
 
 ### 2.3 解构赋值
