@@ -91,8 +91,8 @@ action(300) //300
 
 > 参数默认值的位置
 
-通常情况下，定义了默认值的参数，应该是函数的尾参数。因为这样比较容易看出来，到底省略了哪些参数。如果非尾部的参数设置默认值，实际上这个
-参数是没法省略的。
+通常情况下，定义了默认值的参数，应该是函数的尾参数。因为这样比较容易看出来，到底省略了哪些参数。如果非尾部的参数设置默认值，
+实际上这个参数是没法省略的。
 
 // 例一
 
@@ -140,8 +140,11 @@ function foo(x = 5, y = 6) {
   console.log(x, y);
 }
 foo(undefined, null)
-// 5 null
 ```
+
+<!--
+// 5 null
+-->
 
 上面代码中， x 参数对应 undefined ，结果触发了默认值， y 参数等于 null ，就没有触发默认值。
 
@@ -586,6 +589,8 @@ var accountServiceES5 = {
 如果我们想让它更有意思，我们可以用Object.create从serviceBase继承原型的方法：
 
 ```javascript
+var serviceBase = {port: 3000, url: 'azat.co'},
+    getAccounts = function(){return [1,2,3]};
 var accountServiceES5ObjectCreate = Object.create(serviceBase)
 var accountServiceES5ObjectCreate = {
   getAccounts: getAccounts,
@@ -595,6 +600,30 @@ var accountServiceES5ObjectCreate = {
   getUrl: function() {return "http://" + this.url + ':' + this.port},
   valueOf_1_2_3: getAccounts()
 }
+```
+
+```javascript
+var serviceBase = {port: 3000, url: 'azat.co'},
+    getAccounts = function(){return [1,2,3]};
+var accountServiceES5ObjectCreate = Object.create(serviceBase,{
+    getAccounts: {
+        get: getAccounts
+    },
+    toString: {
+        get: function() {
+             return JSON.stringify(this.valueOf());
+        }
+    },
+    getUrl: {
+        get: function() {
+          return "http://" + this.url + ':' + this.port
+        }
+    },
+    valueOf_1_2_3: {
+        value: getAccounts()
+    }
+})
+console.log(accountServiceES5ObjectCreate)
 ```
 
 我们知道，accountServiceES5ObjectCreate 和accountServiceES5 并不是完全一致的，
