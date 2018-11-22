@@ -89,25 +89,107 @@ action(300) //300
 
 #### 2.1.3 面试题
 
+> 参数默认值的位置
+
+通常情况下，定义了默认值的参数，应该是函数的尾参数。因为这样比较容易看出来，到底省略了哪些参数。如果非尾部的参数设置默认值，实际上这个
+参数是没法省略的。
+
+// 例一
+
+```javascript
+function f(x = 1, y) {
+  return [x, y];
+}
+f()             //
+f(2)            //
+f(, 1)          //
+f(undefined, 1) //
+```
+
+<!--
+f()             // [1, undefined] 
+f(2)            // [2, undefined]) 
+f(, 1)          // 报错 
+f(undefined, 1) // [1, 1]
+-->
+
+// 例二
+
+```javascript
+function f(x, y = 5, z) {
+    return [x, y, z];
+}
+f()                 //
+f(1)                //
+f(1, ,2)            //
+f(1, undefined, 2)  //
+```
+
+<!--
+f()                 // [undefined, 5, undefined] 
+f(1)                // [1, 5, undefined]
+f(1, ,2)            // 报错
+f(1, undefined, 2)  // [1, 5, 2]
+-->
+
+上面代码中，有默认值的参数都不是尾参数。这时，无法只省略该参数，而不省略它后面的参数，除非显式输入 undefined 。
+ 如果传入 undefined ，将触发该参数等于默认值， null 则没有这个效果。
+ 
+```javascript
+function foo(x = 5, y = 6) {
+  console.log(x, y);
+}
+foo(undefined, null)
+// 5 null
+```
+
+上面代码中， x 参数对应 undefined ，结果触发了默认值， y 参数等于 null ，就没有触发默认值。
+
+> 函数的 length 属性
+
 ```javascript
 function calc(x=0, y=0) {
     // ...
     console.log(x, y)
 }
-function ajax(url, async=true, dataType="JSON") {
+function ajax(url, async = true, dataType = "JSON") {
     // ...
     console.log(url, async, dataType)
 }
+function foo(a, b, c = 5) {
+    // ...
+    console.log(a, b, c)
+}
 console.log(calc.length); //
 console.log(ajax.length); //
+console.log(foo.length);  //
 ```
 
 <!--
 console.log(calc.length); // 0
 console.log(ajax.length); // 1
+console.log(foo.length);  // 2
 -->
 
 定义了默认参数后，函数的length属性会减少，即有几个默认参数不包含在length的计算当中
+
+```javascript
+function foo (a = 0, b, c) {
+    console.log(a, b, c)
+}
+function bar (a, b = 1, c) {
+    console.log(a, b, c)
+}
+console.log(foo.length); //
+console.log(bar.length); //
+```
+
+<!--
+console.log(foo.length); // 0
+console.log(bar.length); // 1
+-->
+
+如果设置了默认值的参数不是尾参数，那么 length 属性也不再计入后面的参数了。
 
 ```javascript
 function ajax(url="../user.action", async=true, success) {
@@ -144,6 +226,42 @@ ajax(); // Error: 少传了参数
 则会执行getCallback函数，该函数返回一个新函数赋值给success。
 这是一个很强大的功能，给程序员以很大的想象发挥空间。
 
+一旦设置了参数的默认值，函数进行声明初始化时，参数会形成一个单独的作用域(context)。
+等到初始化结束，这个作用域就会消失。这种语法行为， 在不设置参数默认值时，是不会出现的。
+
+```javascript
+var x = 1;
+function f(x, y = x) { 
+    console.log(y);
+}
+f(2) //
+```
+
+<!--
+f(2) // 2
+-->
+
+上面代码中，参数 y 的默认值等于变量 x 。调用函数 f 时，参数形成一个单独的作用域。
+在这个作用域里面，默认值变量 x 指向第一个参数 x ，而不是全局变量x，所以输出是2。
+
+再看下面的例子。
+
+```javascript
+let x = 1;
+function f(y = x) { 
+      let x = 2;
+      console.log(y);
+}
+f() //
+```
+
+<!--
+f() // 1
+-->
+
+上面代码中，函数 f 调用时，参数 y = x 形成一个单独的作用域。这个作用域里面，变量 x 本身没有定义，所以指向外层的全局变量 x 。
+函数调用时，函数体内部的局部变量 x 影响不到默认值变量 x 。
+
 ```javascript
 function bar(x = y, y = 2) {
     return [x, y];
@@ -156,6 +274,93 @@ bar();  //
 -->
 
 默认参数赋值会按照传入参数先后顺序进行，因此未定义就使用会报错
+
+```javascript
+var x = 1;
+function foo(x = x) {
+    // ...
+}
+foo();  //
+```
+
+<!--
+报错(x is not defined)
+-->
+
+上面代码中，参数 x = x 形成一个单独作用域。实际执行的是 let x = x ，由于暂时性死区的原因，这行代码会报错”x 未定义“。
+
+如果参数的默认值是一个函数，该函数的作用域也遵守这个规则。请看下面的例子。
+
+```javascript
+let foo = 'outer';
+function bar(func = () => foo ) {
+    let foo = 'inner'
+    console.log(func());
+}
+bar();  //
+```
+
+<!--
+bar();  // outer
+-->
+
+上面代码中，函数 bar 的参数 func 的默认值是一个匿名函数，返回值为变量 foo 。
+函数参数形成的单独作用域里面，并没有定义变量 foo ，所以 foo 指向 外层的全局变量 foo ，因此输出 outer 。
+
+如果写成下面这样，会如何呢。
+
+```javascript
+function bar(func = () => foo) {
+    let foo = 'inner';
+    console.log(func());
+}
+bar() //
+```
+
+<!--
+bar();  // ReferenceError: foo is not defined
+-->
+
+上面代码中，匿名函数里面的 foo 指向函数外层，但是函数外层并没有声明变量 foo，所以就报错了。
+
+下面是一个更复杂的例子。
+
+```javascript
+    var x = 1;
+    function foo(x, y = function() { x = 2; }) {
+        var x = 3;
+        y(); console.log(x);
+    }
+    foo() //
+    x     //
+```
+
+<!--
+foo()   // 3
+x       // 1
+-->
+
+上面代码中，函数 foo 的参数形成一个单独作用域。这个作用域里面，首先声明了变量 x ，然后声明了变量 y ， y 的默认值是一个匿名函数。
+这个匿名函数内部的变量 x ，指向同一个作用域的第一个参数 x 。函数 foo 内部又声明了一个内部变量 x ，
+该变量与第一个参数 x 由于不是同一个作用域，所以不是同一个变量，因此执行 y 后，内部变量 x 和外部全局变量 x 的值都没变。
+
+```javascript
+    var x = 1;
+    function foo(x, y = function() { x = 2; }) {
+        x = 3;
+        y(); console.log(x);
+    }
+    foo() //
+    x     //
+```
+
+<!--
+foo()   // 2
+x       // 1
+-->
+
+如果将 var x = 3 的 var 去除，函数 foo 的内部变量 x 就指向第一个参数 x ，与匿名函数内部的 x 是一致的，
+所以最后输出的就是 2 ，而外层的全局变量 x 依然不受影响。
 
 ### 2.2 字符串
 
