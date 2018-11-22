@@ -90,6 +90,61 @@ action(300) //300
 #### 2.1.3 面试题
 
 ```javascript
+function calc(x=0, y=0) {
+    // ...
+    console.log(x, y)
+}
+function ajax(url, async=true, dataType="JSON") {
+    // ...
+    console.log(url, async, dataType)
+}
+console.log(calc.length); //
+console.log(ajax.length); //
+```
+
+<!--
+console.log(calc.length); // 0
+console.log(ajax.length); // 1
+-->
+
+定义了默认参数后，函数的length属性会减少，即有几个默认参数不包含在length的计算当中
+
+```javascript
+function ajax(url="../user.action", async=true, success) {
+    var url = ''; //
+    let async = 3; //
+    const success = function(){}; //
+}
+```
+
+<!--
+var url = '';   // 允许
+let async = 3;  // 报错
+const success = function(){}; // 报错
+-->
+
+不能用let和const再次声明默认值，var可以
+
+```javascript
+function throwIf() {
+    throw new Error('少传了参数');
+}
+ 
+function ajax(url=throwIf(), async=true, success) {
+    return url;
+}
+ajax(); //
+```
+
+<!--
+ajax(); // Error: 少传了参数
+-->
+
+可以看到这里参数success是一个函数调用，调用ajax时如果没有传第三个参数，
+则会执行getCallback函数，该函数返回一个新函数赋值给success。
+这是一个很强大的功能，给程序员以很大的想象发挥空间。
+
+```javascript
 function bar(x = y, y = 2) {
     return [x, y];
 }
@@ -99,6 +154,8 @@ bar();  //
 <!--
 报错(y is not defined) 2
 -->
+
+默认参数赋值会按照传入参数先后顺序进行，因此未定义就使用会报错
 
 ### 2.2 字符串
 
