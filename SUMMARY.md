@@ -114,6 +114,7 @@
     * [ElementUI-Vue前端框架项目初始化](webTips/ElementUI-VueProjectInit.md)
 * [其他](other.md)
     * [JAVA面试](other/content.md)
+    * [测试面试](other/test.md)
     * [钉钉使用](other/DingDing.md)
     * [sd360](other/sd360.md)
 
