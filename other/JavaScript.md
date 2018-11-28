@@ -186,6 +186,20 @@ accMul(7, 0.8)    // 得到结果：5.6
 
 答：
 
+* 基本数据类型
+    * Number
+    * String
+    * Boolean
+    * Null
+    * Undefined
+* 引用数据类型
+    * Object
+    * Array
+    * Function
+    * Data
+
+[JavaScript中基本数据类型和引用数据类型的区别](https://www.cnblogs.com/cxying93/p/6106469.html)
+
 ## 4 解决以下异步代码问题。
 
 获取并计算属于某个班级（假设 ID 为 75）的每个学生的平均分数。每个学生在一年内可以参加一门或多门课程。以下 API 可用于获取所需的数据。
