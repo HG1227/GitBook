@@ -246,6 +246,10 @@ Response:
 
 答：
 
+[RxJS Observable 与 Promises 和 Async-Await 交互](https://www.jianshu.com/p/29d701bd613e)
+[js异步回调Async/Await与Promise区别](https://blog.csdn.net/weixin_42470791/article/details/82560734)
+[总结一下ES6中promise、generator和async/await中的错误处理](https://blog.csdn.net/liwusen/article/details/79617903)
+
 ## 5 使用 JavaScript 代理实现简单的数据绑定:
      
 > 提示：ES Proxy 允许你拦截对任何对象属性或方法的调用。首先，每当底层绑定对象发生变更时，都应更新 DOM。
