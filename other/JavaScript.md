@@ -256,6 +256,8 @@ Response:
 
 答：
 
+[手把手教你写一个 Javascript 框架：使用 ES6 Proxy 实现数据绑定](https://www.zcfy.cc/article/writing-a-javascript-framework-data-binding-with-es6-proxies-risingstack-1655.html)
+
 ## 6 解释 JavaScript 的并发模型:
 
 你是否熟悉 Elixir、Clojure、Java 等其他编程语言中使用的并发模型？
