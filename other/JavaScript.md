@@ -24,6 +24,21 @@ console.log(a); // [1, 2, 3, 4, 5, 1, 4, 9, 16, 25]
 
 答：
 
+```javascript
+const a = [1, 2, 3, 4, 5];
+// Implement this
+const multiply = function() {
+  // do something
+  // 如果不存储a.length，会导致a.length无限增长导致死循环
+  var b = a.length
+  for (var i = 0; i < b; i++) {
+    a.push(a[i]*a[i])
+  }
+}
+a.multiply();
+console.log(a); // [1, 2, 3, 4, 5, 1, 4, 9, 16, 25]
+```
+
 ## 2 以下代码会返回false，解释为什么会这样：
 
 ```javascript
@@ -164,6 +179,9 @@ function makeAPIRequest(url, timeout = 2000, headers) {
       
 > 提示：截至 2018 年，没有。
       
-
-
 答：
+
+## 参考资料
+
+* [这是今年前端最常见的面试题，你都会了吗？](https://www.toutiao.com/a6628352915134218765/?tt_from=weixin&utm_campaign=client_share&wxshare_count=1&timestamp=1543372749&app=news_article&utm_source=weixin&iid=51295460021&utm_medium=toutiao_ios&group_id=6628352915134218765)
+
