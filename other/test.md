@@ -210,4 +210,6 @@ $ adb shell monkey –p com.ddinfo.ddmall –v –v –v 100
 
 ## 参考资料
 
+* [bug不稳定复现](http://www.51testing.com/html/69/413269-814683.html)
+* [Charles的使用](https://www.jianshu.com/p/fb2bdde5b498)
 * [Charles](https://blog.csdn.net/qq_42543244/article/details/81670242)
