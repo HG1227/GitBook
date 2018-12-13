@@ -105,6 +105,7 @@
     * [JS开发工具大全](webTips/JsTools.md)
     * [LESS Sass 编译工具Koala介绍](webTips/Koala.md)
     * [Markdown 标记示例](webTips/markdownDemo.md)
+    * [微信小程序](webTips/miniprogram.md)
     * [移动端插件](webTips/MobilePlug-ins.md)
     * [移动端页面通过前端方法禁止ios页面横屏方法](webTips/mobileWebOnlyVerticalScreen.md)
     * [ng-file-upload-Angular上传图片插件](webTips/ng-file-upload.md)
