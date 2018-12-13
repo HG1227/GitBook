@@ -73,7 +73,12 @@
 
 ## 2 开发环境
 
+### 2.1 开发工具下载
 
+[开发工具下载地址](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
+
+* 新建小程序项目
+* 微信Web开发者工具界面功能介绍
 
 
 
