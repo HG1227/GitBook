@@ -120,12 +120,12 @@ var data = [
     {genre: 'Strategy', sold: 115},
     {genre: 'Action', sold: 120},
     {genre: 'Shooter', sold: 350},
-    {genre: 'Other', sold: 150},
+    {genre: 'Other', sold: 150}
   ];
   var chart = new G2.Chart({
     container: 'c1',
     forceFit: true,
-    height : 400
+    height: 400
   });
   chart.source(data);
   chart.interval().position('genre*sold').color('genre')
@@ -171,10 +171,202 @@ var data = [
 </html>
 ```
 
-##### 2.2.1.3 在 Vue 中使用 G2
+#### 2.2.2 在 Vue 中使用 G2
 
+##### 2.2.2.1 创建 `div` 图表容器
+
+在页面的 `template` 部分创建一个 div，并制定必须的属性 `id`：
+
+##### 2.2.1.2 编写图表绘制代码
+
+创建 `div` 容器后，我们就可以进行简单的图表绘制:
+
+1. 创建 Chart 图表对象，指定图表所在的容器 ID、指定图表的宽高、边距等信息；
+1. 载入图表数据源；
+1. 使用图形语法进行图表的绘制；
+1. 渲染图表。
+
+这部分代码，可以在mounted函数中调用。
+
+```javascript
+// Step 1: 创建 Chart 对象
+this.chart = new G2.Chart({
+  container: 'c1', // 指定图表容器 ID
+  width : 600, // 指定图表宽度
+  height : 300 // 指定图表高度
+})
+// Step 2: 载入数据源
+chart.source(this.data)
+// Step 3：创建图形语法，绘制柱状图，由 genre 和 sold 两个属性决定图形位置，genre 映射至 x 轴，sold 映射至 y 轴
+chart.interval().position('genre*sold').color('genre')
+// Step 4: 渲染图表
+chart.render()
+```
+
+完成上述两步之后，保存文件并用浏览器打开，一张柱状图就绘制成功了：
+
+![](../assets/AntV/column-demo.png)
+
+```javascript
+export default {
+  name: 'demo',
+  data () {
+    return {
+      data: [
+        {genre: 'Sports', sold: 275},
+        {genre: 'Strategy', sold: 115},
+        {genre: 'Action', sold: 120},
+        {genre: 'Shooter', sold: 350},
+        {genre: 'Other', sold: 150}
+      ]
+    }
+  },
+  methods: {
+    drawChart: function () {
+      this.chart = new G2.Chart({
+        container: 'c1',
+        forceFit: true,
+        height: 400
+      })
+      this.chart.source(this.data)
+      this.chart.interval().position('genre*sold').color('genre')
+      this.chart.render()
+    }
+  },
+  mounted () {
+    this.drawChart()
+  }
+}
+```
+
+完整的代码如下：
+
+```
+<template>
+  <el-row type="flex" :gutter="20" justify="space-around">
+    <el-col :span="16">
+      <div :id="'c1'"></div>
+    </el-col>
+  </el-row>
+</template>
+
+<script>
+import G2 from '@antv/g2'
+
+export default {
+  name: 'demo',
+  data () {
+    return {
+      data: [
+        {genre: 'Sports', sold: 275},
+        {genre: 'Strategy', sold: 115},
+        {genre: 'Action', sold: 120},
+        {genre: 'Shooter', sold: 350},
+        {genre: 'Other', sold: 150}
+      ]
+    }
+  },
+  methods: {
+    drawChart: function () {
+      this.chart = new G2.Chart({
+        container: 'c1',
+        forceFit: true,
+        height: 400
+      })
+      this.chart.source(this.data)
+      this.chart.interval().position('genre*sold').color('genre')
+      this.chart.render()
+    }
+  },
+  mounted () {
+    this.drawChart()
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+</style>
+```
 
 ### 2.3 API
+
+[Chart 图表](https://www.yuque.com/antv/g2-docs/api-chart#yxcxnu)
+
+获取方式： G2.Chart。创建 Chart 的方式如下：
+
+```
+new G2.Chart({
+  container: {string} | {HTMLDivElement},
+  width?: {number},
+  height?: {number},
+  padding?: {object} | {number} | {array},
+  background?: {object},
+  plotBackground?: {object},
+  forceFit?: {boolean},
+  animate?: {boolean},
+  pixelRatio?: {number},
+  data?: {array} | {DataSet.View},
+  theme?: {string} | {object},
+  renderer?: {string},
+})
+```
+
+创建一个 chart 实例，返回一个 Chart 对象，建议在单个容器上只初始化一个 Chart 实例。
+
+#### 2.3.1 属性
+
+##### container
+
+> 容器
+
+##### width
+
+> 宽度
+
+##### height
+
+> 高度
+
+##### padding
+
+> 内边距
+
+##### background
+
+> 图表整体的边框和背景样式
+
+##### plotBackground
+
+> 图表绘图区域的边框和背景样式
+
+##### forceFit
+
+> 宽度自适应开关
+
+##### animate
+
+> 动画开关
+
+##### pixelRatio
+
+> 设备像素比
+
+##### data
+
+> 图表的数据源
+
+##### theme
+
+> 图表的主题
+
+##### renderer
+
+> 图表的使用的渲染方案(Canvas/SVG)
+
+#### 2.3.2 方法
+
+#### 2.3.3 事件
 
 ## 3 最佳实践
 
@@ -274,4 +466,6 @@ var data = [
 
 ## 参考资料
 
+* [antv g2的理解总结](https://segmentfault.com/a/1190000013413771?utm_source=tag-newest)
 * [D3 vs G2 vs Echarts](https://www.jianshu.com/p/7792544e680c)
+* [如何成为一名数据可视化工程师？](https://www.zhihu.com/question/49749071)
