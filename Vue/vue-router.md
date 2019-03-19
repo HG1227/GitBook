@@ -7,6 +7,7 @@
 更改历史
 
 * 2018-10-29        高天阳     初始化文档
+* 2019-03-19        高天阳     添加vue-router history模式示例
 
 ```
 
@@ -51,27 +52,26 @@ Vue.use(Router)
 
 配置路由
 
-```
+```javascript
 export default new Router({
   routes: [
-   {
-        path : ‘/’,  //到时候地址栏会显示的路径
-        name : ‘Home’,
-        component :  Home   // Home是组件的名字，这个路由对应跳转到的组件。。注意component没有加“s”.
+    {
+        path: '/',  // 到时候地址栏会显示的路径
+        name: 'Home',
+        component: Home   // Home是组件的名字，这个路由对应跳转到的组件。。注意component没有加“s”.
     },
     {
-        path : ‘/content’,
-        name : ‘Content’,
-        component :  Content
+        path: '/content',
+        name: 'Content',
+        component: Content
     }
-],
-    mode: "history"
+  ]
 })
 ```
 
 * 引入路由对应的组件地址
 
-``` 
+```
 import Home from '@/components/Home'
 import Home from '@/components/Content’
 ```
@@ -103,7 +103,7 @@ import router from './router'
 
 `/src/main.js`
 
-```
+```javascript
 import Vue from 'vue'
 import App from './App'
 import router from 'vue-router'
@@ -117,7 +117,7 @@ new Vue({
 
 `/src/router/index.js`
 
-```
+```javascript
 import Vue from 'vue'
 import Router from 'vue-router'
 import Container from '../components/container/Container'
@@ -178,7 +178,7 @@ export default new Router({
           component: FinanceDetail
         }
       ]
-    },
+    }
   ]
 })
 ```
@@ -189,7 +189,7 @@ export default new Router({
 
 首先简单来说明一下`$router`和`$route`的区别
 
-```
+```javascript
 //$router : 是路由操作对象，只写对象
 //$route : 路由信息对象，只读对象
 
@@ -211,7 +211,7 @@ this.age = this.$route.params.age
 
 我看了很多人都说query传参要用path来引入，params传参要用name来引入，只是我测试了一下，query使用name来引入也可以传参，使用path也可以。
 
-```
+```javascript
 //query传参，使用name跳转
 this.$router.push({
     name:'second',
@@ -324,6 +324,164 @@ this.name = this.$route.params.name
 1. params是路由的一部分,必须要在路由后面添加参数名。query是拼接在url后面的参数，没有也没关系。
 1. 二者还有点区别，直白的来说query相当于get请求，页面跳转的时候，可以在地址栏看到请求参数，
 而params相当于post请求，参数不会再地址栏中显示。
+
+### 5.2 Vue-Router的History模式
+
+`vue-router` 默认 hash 模式 —— 使用 URL 的 hash 来模拟一个完整的 URL，于是当 URL 改变时，页面不会重新加载。
+
+如果不想要很丑的 hash，我们可以用路由的 **history** 模式，这种模式充分利用 `history.pushState` API 来完成 URL 跳转而无须重新加载页面。
+
+```
+const router = new VueRouter({
+  mode: 'history',
+  routes: [...]
+})
+```
+
+当你使用 history 模式时，URL 就像正常的 url，例如 `http://yoursite.com/user/id`，也好看！
+
+不过这种模式要玩好，还需要后台配置支持。因为我们的应用是个单页客户端应用，如果后台没有正确的配置，
+当用户在浏览器直接访问 `http://oursite.com/user/id` 就会返回 404，这就不好看了。
+
+所以呢，你要在服务端增加一个覆盖所有情况的候选资源：如果 URL 匹配不到任何静态资源，则应该返回同一个 `index.html` 页面，
+这个页面就是你 app 依赖的页面。
+
+### 5.2.1 前端配置
+
+#### 5.2.1.1 路由配置
+
+> 修改后 uri跳转时携带固定url前缀
+
+```
+// src/router/index.js
+export const constantRouterMap = [...]
+export default new Router({
+  mode: 'history', // hisroty模式
+  base: '/wechat/', // 路由跳转时携带url
+  routes: constantRouterMap // 路由结构
+})
+```
+
+> 原跳转为 `http://localhost:8081/home`=>`http://localhost:8081/content`
+
+> 现跳转为 `http://localhost:8081/wechat/home`=>`http://localhost:8081/wechat/content`
+
+![](../assets/VUX/VueRouter8.png)
+
+#### 5.2.1.2 配置文件
+
+> 修改后js、css资源请求地址为`assetsPublicPath`+打包地址
+
+```
+// config/index.js
+build: {
+    // Template for index.html
+    index: path.resolve(__dirname, '../dist/index.html'),
+    
+    // Paths
+    assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsSubDirectory: 'static',
+    /**
+     * You can set by youself according to actual condition
+     * You will need to set this if you plan to deploy your site under a sub path,
+     * for example GitHub pages. If you plan to deploy your site to https://foo.github.io/bar/,
+     * then assetsPublicPath should be set to "/bar/".
+     * In most cases please use '/' !!!
+     */
+    // assetsPublicPath: './',
+    assetsPublicPath: '/wechat/',
+    
+    /**
+     * Source Maps
+     */
+    
+    productionSourceMap: true,
+    // https://webpack.js.org/configuration/devtool/#production
+    devtool: '#source-map',
+    
+    // Run the build command with an extra argument to
+    // View the bundle analyzer report after build finishes:
+    // `npm run build --report`
+    // Set to `true` or `false` to always turn it on or off
+    bundleAnalyzerReport: process.env.npm_config_report
+}
+```
+
+![](../assets/VUX/VueRouter9.png)
+
+### 5.2.2 后端配置
+
+#### 5.2.2.1 tomcat配置文件
+
+> 修改后页面刷新404时指向index.html
+
+```
+// tomcat-x/conf/web.xml
+
+<error-page> 
+    <error-code>404</error-code> 
+    <location>/index.html</location> 
+</error-page>
+```
+
+#### 5.2.2.2 项目配置文件
+
+> 修改后异常页面404指向404.html
+
+```
+// tomcat-x/webapps/ROOT/WEB-INF/web.xml
+
+<error-page> 
+    <error-code>404</error-code> 
+    <location>/404.html</location> 
+</error-page>
+```
+
+### 5.2.3 采坑记录
+
+之前为处理js、css打包后找不到 修改了webpack配置文件 导致在修改history模式时 资源路径不正常
+
+```
+// build/webpack.base.conf.js
+
+let webpackConfig = {
+  context: path.resolve(__dirname, '../'),
+  entry: {
+    app: './src/main.js'
+  },
+  output: {
+    path: config.build.assetsRoot,
+    filename: '[name].js',
+    publicPath: process.env.NODE_ENV === 'production'
+      ? './'+config.build.assetsPublicPath // 此处'./'+应省略
+      : './'+config.dev.assetsPublicPath // 此处'./'+应省略
+  }
+  // ...
+}
+```
+
+若不修改`webpack.base.conf.js` 可修改`webpack.prod.conf.js`
+
+```
+// build/webpack.prod.conf.js
+const webpackConfig = merge(baseWebpackConfig, {
+  module: {
+    rules: utils.styleLoaders({
+      sourceMap: config.build.productionSourceMap,
+      extract: true,
+      usePostCSS: true
+    })
+  },
+  devtool: config.build.productionSourceMap ? config.build.devtool : false,
+  output: {
+    publicPath: '/wechat/', // 添加打包时资源请求前缀为/wechat/
+    path: config.build.assetsRoot,
+    filename: utils.assetsPath('js/[name].[chunkhash].js'),
+    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
+  }
+  // ...
+}
+```
 
 ## 参考资料
 
