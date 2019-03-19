@@ -424,6 +424,8 @@ build: {
 </error-page>
 ```
 
+![](../assets/VUX/VueRouter10.png)
+
 #### 5.2.2.2 项目配置文件
 
 > 修改后异常页面404指向404.html
@@ -436,6 +438,8 @@ build: {
     <location>/404.html</location> 
 </error-page>
 ```
+
+![](../assets/VUX/VueRouter11.png)
 
 ### 5.2.3 采坑记录
 
@@ -460,6 +464,8 @@ let webpackConfig = {
 }
 ```
 
+![](../assets/VUX/VueRouter12.png)
+
 若不修改`webpack.base.conf.js` 可修改`webpack.prod.conf.js`
 
 ```
@@ -482,6 +488,8 @@ const webpackConfig = merge(baseWebpackConfig, {
   // ...
 }
 ```
+
+![](../assets/VUX/VueRouter13.png)
 
 ## 参考资料
 
