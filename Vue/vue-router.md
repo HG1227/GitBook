@@ -443,6 +443,8 @@ build: {
 
 ### 5.2.3 采坑记录
 
+#### 5.2.3.1 资源路径异常
+
 之前为处理js、css打包后找不到 修改了webpack配置文件 导致在修改history模式时 资源路径不正常
 
 ```
@@ -491,9 +493,107 @@ const webpackConfig = merge(baseWebpackConfig, {
 
 ![](../assets/VUX/VueRouter13.png)
 
+#### 5.2.3.2 安卓版微信浏览器404挟持
+
+PC、iOS均可正常跳转 但安卓版微信浏览器会挟持跳转至404公益页面
+
+原因是当安卓版微信发现接口返回404时 直接做了跳转处理
+
+那么就需要把请求的404完全消除 才能解决此问题
+
+使用Nginx反向代理
+
+```
+location / {
+  try_files $uri $uri/ /index.html;
+}
+```
+
+结果reload配置之后 页面出现空白 状态改成200了 但是static路径找不到了
+
+```
+location /static/ {
+  root /;
+  try_files /tmp$uri /srv/www/site$uri =404;
+  expires 30d;
+  access_log off;
+}
+```
+
+可以把`/static/`单独拎出来做匹配 其他路由都跳到`/index.html`
+
+```
+upstream ups_ucar_wx {
+  #ip_hash;
+  #consistent_hash $remote_addr;
+  server 192.168.8.59:8080;
+  #check interval=10000 rise=2 fall=5 timeout=1000 type=http default_down=false;
+  #check_http_send "GET /health HTTP/1.0\r\n\r\n";
+}
+
+server {
+  listen      80;
+  server_name   xxx.com;
+  charset     utf-8;
+  access_log  logs/xxx.access.log  main;
+  error_log   logs/xxx.error.log;
+  
+  #include /etc/nginx/agent_deny.conf;
+
+  location / {
+    proxy_pass  http://ups_ucar_wx;
+    # 具体做什么，不懂，不过不加会显示400
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header REMOTE-HOST $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    # 匹配不到的路径，都跳/index.html
+    try_files $uri $uri/ /index.html;
+  }
+
+  location /static/ {
+    root /;
+    proxy_pass  http://ups_ucar_wx;
+    # 具体做什么，不懂，不过不加会显示400
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header REMOTE-HOST $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    # 设置过期时间
+    expires 30d;
+  }
+}
+```
+
+重点
+
+```
+try_files $uri $uri/ /index.html;
+```
+
+```
+location /static/ {
+    root /;
+    proxy_pass  http://ups_ucar_wx;
+    # 具体做什么，不懂，不过不加会显示400
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header REMOTE-HOST $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    # 设置过期时间
+    expires 30d;
+  }
+```
+
+### 5.2.4 vue-router不同模式对比
+
+![](../assets/VUX/VueRouter14.png)
+
 ## 参考资料
 
 * [官方文档](https://router.vuejs.org/zh/)
 * [router配置位置](https://www.cnblogs.com/padding1015/p/7884861.html)
 * [Vue Router 的params和query传参的使用和区别](https://blog.csdn.net/mf_717714/article/details/81945218)
+* [vue-cli history模式 tomcat部署 报404 解决方式](https://blog.csdn.net/elisunli/article/details/79823245)
+* [vue history模式 手机微信分享 安卓机显示404](https://www.jianshu.com/p/47e73f84ef15)
     
