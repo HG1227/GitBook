@@ -111,6 +111,7 @@
     * [移动端页面通过前端方法禁止ios页面横屏方法](webTips/mobileWebOnlyVerticalScreen.md)
     * [ng-file-upload-Angular上传图片插件](webTips/ng-file-upload.md)
     * [ngclipboard-Angular复制到剪贴板插件](webTips/ngclipboard.md)
+    * [particles.js粒子效果](webTips/particles.md)
     * [图片资源网站](webTips/PictureResources.md)
     * [排序方式](webTips/Sort.md)
     * [图片预览上传](webTips/uploadImg.md)
