@@ -356,6 +356,193 @@ bower install particles.js --save
 
 ![](../assets/particles/particles-effect.png)
 
+## 6 最佳实践
+
+### 6.1 vue中使用
+
+#### 6.1.1 安装
+
+```
+npm install --save particles.js
+```
+
+#### 6.1.2 引入
+
+当你的使用范围比较小时，可以直接在当前vue文件的script中引入，即
+
+```
+//vue单文件
+import particles from 'particles.js'
+```
+
+又或者你觉得这样不好管理，一定要放在main文件中也可以
+
+```
+//main文件
+import particles from 'particles.js'
+Vue.use(particles)
+```
+
+#### 6.1.3 配置
+
+#### 6.1.3.1 template
+
+这个就是动态粒子要展示的位置。
+
+```html
+<div id="particles"></div>
+```
+
+#### 6.1.3.2 script
+
+因为涉及到dom树，所以必须在挂载结束后初始化particles.js。第一个参数id就是你在template上取得id名，
+像我要写的话就是particles。第二个参数是你的data存放的路径，个人建议使用相对路径。
+
+```
+mounted(){
+    particlesJS.load('id','path to your particles.data');
+    // particlesJS('id', 'particles.data') // 配置文件直接写在vue之中时
+}
+```
+
+#### 6.1.3.3 script
+
+```stylus
+#particles{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #b61924;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: 50% 50%;
+}
+```
+
+#### 6.1.3.4 particles.json
+
+这个文件就相当于配置文件，用于控制粒子在页面中所呈现的状态。通过修改里边的字段，来得到自己想要的效果。
+如修改particles.color.value 的值就是修改粒子的颜色；修改particle.shape就是修改粒子的外观。
+至于详细的参数解析可以参考官网ps：建议放在静态资源文件夹里
+
+```stylus
+{
+  "particles": {
+    "number": {
+      "value": 60,
+      "density": {
+        "enable": true,
+        "value_area": 800
+      }
+    },
+    "color": {
+      "value": "#ffffff"
+    },
+    "shape": {
+      "type": "circle",
+      "stroke": {
+        "width": 0,
+        "color": "#000000"
+      },
+      "polygon": {
+        "nb_sides": 5
+      },
+      "image": {
+        "src": "img/github.svg",
+        "width": 100,
+        "height": 100
+      }
+    },
+    "opacity": {
+      "value": 0.5,
+      "random": false,
+      "anim": {
+        "enable": false,
+        "speed": 1,
+        "opacity_min": 0.1,
+        "sync": false
+      }
+    },
+    "size": {
+      "value": 3,
+      "random": true,
+      "anim": {
+        "enable": false,
+        "speed": 40,
+        "size_min": 0.1,
+        "sync": false
+      }
+    },
+    "line_linked": {
+      "enable": true,
+      "distance": 150,
+      "color": "#ffffff",
+      "opacity": 0.4,
+      "width": 1
+    },
+    "move": {
+      "enable": true,
+      "speed": 4,
+      "direction": "none",
+      "random": false,
+      "straight": false,
+      "out_mode": "out",
+      "bounce": false,
+      "attract": {
+        "enable": false,
+        "rotateX": 100,
+        "rotateY": 1200
+      }
+    }
+  },
+  "interactivity": {
+    "detect_on": "Window",
+    "events": {
+      "onhover": {
+        "enable": true,
+        "mode": "grab"
+      },
+      "onclick": {
+        "enable": true,
+        "mode": "push"
+      },
+      "resize": true
+    },
+    "modes": {
+      "grab": {
+        "distance": 140,
+        "line_linked": {
+          "opacity": 1
+        }
+      },
+      "bubble": {
+        "distance": 400,
+        "size": 40,
+        "duration": 2,
+        "opacity": 8,
+        "speed": 3
+      },
+      "repulse": {
+        "distance": 200,
+        "duration": 0.4
+      },
+      "push": {
+        "particles_nb": 4
+      },
+      "remove": {
+        "particles_nb": 2
+      }
+    }
+  },
+  "retina_detect": true
+}
+```
+
+### 6.2 效果加载失败
+
+在实际使用过程中 出现了虽然加载 但是未能成功显示粒子效果 原因是particles的dom节点样式加载在配置文件之后 导致加载配置文件时 dom的尺寸异常
+解决方案为把css样式移动到js之前 即可正常展示
+
 ## 参考资料
 
 * [particles.js github](https://github.com/VincentGarreau/particles.js)
