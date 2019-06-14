@@ -118,6 +118,7 @@
     * [Windows部署时脚本报错](webTips/WinDeployment.md)
 * [其他](other.md)
     * [JAVA面试](other/Java.md)
+    * [前端面试](other/Web.md)
     * [JavaScript面试](other/JavaScript.md)
     * [测试面试](other/test.md)
     * [钉钉使用](other/DingDing.md)
