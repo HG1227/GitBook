@@ -1079,7 +1079,7 @@ var promise2 = new Promise(function(resolve){
     },1000);
 });
 Promise.all([promise1,promise2]).then(function(value){
-    console.log(value); // 打印[1,2]
+    console.log(value);
 });
 ```
 下面代码如何输出(理解Promise.race)
