@@ -7,6 +7,7 @@
 更改历史
 
 * 2019-06-14        高天阳     初始化文档
+* 2019-06-17        高天阳     补充Js中那些隐式转换
 
 ```
 
@@ -394,6 +395,137 @@ ToBoolean ([]); // true
 
 答：4、6
 
+> 基本类型练习： 运算符（+,-,*,/,%）操作时,转换类型 ”+“ 号运算符： 
+
+```javascript
+var a=1;var b=2
+console.log('Number 类型不会转换', a+b)
+
+var a='hello';var b='world'
+console.log('String 类型不会转换', a+b)
+
+var a=false;var b=true
+console.log('Boolean 类型会转换', a+b, a+a, b+b)
+
+var a=null
+console.log('Null 类型会转换', a+a)
+
+var a=undefined
+console.log('Undefined 类型会转换', a+a)
+```
+
+```javascript
+var a=1;var b='hi'
+console.log('Number和String，Number会转换', a+b)
+
+var a=1;var b=false;var c=true
+console.log('Number和Boolean，Boolean会转换', a+b, a+c)
+
+var a=1;var b=null
+console.log('Number和Null，Null类型会转换', a+b, b+a)
+
+var a=1;var b=undefined
+console.log('Number和undefined，undefined类型会转换', a+b, b+a)
+```
+
+```javascript
+var a='Hi';var b=false;var c=true
+console.log('String和Boolean，Boolean会转换', a+b, b+a, a+c)
+
+var a='Hi';var b=null
+console.log( 'String和Null，Null类型会转换', a+b, b+a)
+
+var a='Hi';var b=undefined
+console.log('String和undefined，undefined类型会转换', a+b, b+a)
+```
+
+```javascript
+var a=false;var b=undefined;var c=true
+console.log('Boolean和undefined，都会转换为Number', a+b, b+a, b+c)
+
+var a=false;var b=null;var c=true
+console.log( 'Boolean和null，都会转换为Number', a+b, b+a, b+c)
+```
+
+```javascript
+var a=null;var b=undefined
+console.log('undefined和Null，都会转换为Number', a+b, b+a)
+```
+
+> 总结： 
+>
+> 当加号运算符时，String和其他类型时，其他类型都会转为 String；其他情况，都转化为Number类型，
+> 注： undefined 转化为Number是 为’NaN‘， 任何Number与NaN相加都为NaN。
+> 其他运算符时， 基本类型都转换为 Number，String类型的带有字符的比如： '1a' ,'a1' 转化为 NaN 与undefined 一样。
+> 
+> tips： 
+>
+> (1)NaN 不与 任何值相等 包括自身，所以判断一个值 是否为 NaN， 即用 "!==" 即可。
+> (2)转换为 Boolean类型为 false 的有：null，0，''，undefined，NaN，false
+> (3)number（） 与 parseInt（） 都可以将对象转化为Number类型，Number函数要比parseInt函数严格很多。基本上，只要有一个字符无法转成数值，整个字符串就会被转为NaN。
+
+
+> Object类型练习： 当object与基本类型运算时： 
+
+```javascript
+var obj = {
+    valueOf: function(){
+        return 5;
+    },
+    toString: function(){
+        return 6;
+    }
+};
+ 
+var obj1 = {
+    valueOf: function(){
+        return 'a';
+    },
+    toString: function(){
+        return 'b';
+    }
+};
+console.log('Obj和Number运算时，会先调用valueOf方法', obj+1,obj-1,obj1+1,obj1-1,1+obj,1-obj,1+obj1,1-obj1)
+console.log('Obj和String运算时，会先调用valueOf方法', obj+'a1',obj-'a1',obj1+'a1',obj1-'a1','a1'+obj,'a1'-obj,'a1'+obj1,'a1'-obj1)
+console.log('Obj和Boolean运算时，会先调用valueOf方法', obj+true,obj-false,obj1+true,obj1-false,true+obj,false-obj1)
+console.log('Obj和Null运算时，会先调用valueOf方法', obj+null,obj-null,obj1+null,obj1-null,null+obj,null-obj,null+obj1,null-obj1)
+console.log('Obj和undefined运算时，会先调用valueOf方法', obj+undefined,obj-undefined,obj1+undefined,obj1-undefined,undefined+obj,undefined-obj,undefined+obj1,undefined-obj1)
+```
+
+当对 obj,obj1 用Number()和String()换转时
+
+```javascript
+console.log('当对Obj执行Number()和String()时', Number(obj), Number(obj1), String(obj), String(obj1))
+```
+
+```javascript
+var obj3 = {
+    valueOf: function(){
+        return 'aaa';
+    }
+};
+ 
+var obj4 = {
+    toString: function(){
+        return 'bbb';
+    }
+};
+console.log(Number(obj4),String(obj3))
+```
+
+> 总结： 
+>
+> Number类型会先调用valueOf(), String类型会先调用toString(),  如果结果是原始值，
+> 则返回原始值，否则继续用toString 或 valueOf(),继续计算，如果结果还不是原始值，则抛出一个类型错误;
+
+```
+{} + []
+[] + {}
+[] + []
+{} + {}
+```
+
+为什么 {} + [] = 0 ?  因为 javascript在运行时, 将 第一次{} 认为是空的代码块，所以就相当于 +[] = 0.  还有 {} +5 = 5, 同理。
 
 ### 3. 利用宏任务，微任务的知识点判断程序输出
 
@@ -423,4 +555,5 @@ ToBoolean ([]); // true
 * [{} == {} 结果为什么是false？](https://blog.csdn.net/hb_zhouyj/article/details/78343021)
 * [JS的隐式转换 从 [] ==false 说起](https://www.cnblogs.com/nanchen/p/7905528.html)
 * [[]、[] ==false、{} ==false](https://www.cnblogs.com/hsp-blog/p/7400802.html)
+* [Js 中那些 隐式转换](https://www.cnblogs.com/ihboy/p/6700059.html)
 
