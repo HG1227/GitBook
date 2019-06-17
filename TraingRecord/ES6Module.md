@@ -97,7 +97,7 @@ action(300) //300
 
 // 例一
 
-```javascript
+```
 function f(x = 1, y) {
   return [x, y];
 }
@@ -116,7 +116,7 @@ f(undefined, 1) // [1, 1]
 
 // 例二
 
-```javascript
+```
 function f(x, y = 5, z) {
     return [x, y, z];
 }
