@@ -17,26 +17,26 @@
 
 ES6是前端开发的主力语言 （Vue、 React）如果你不能熟练掌握 需要补习~
 
-## 2 使用
+## 2 使用 {#index}
 
 > ES6主要新特性
 
-1. Functions （函数）in ES6
+1. [Functions （函数）in ES6](#Functions)
     1. Default Parameters（默认参数） in ES6
     1. Arrow Functions （箭头函数）in ES6
-1. Strings （字符串）in ES6
+1. [Strings （字符串）in ES6](#Strings)
     1. Template Literals （模板字符串）in ES6
     1. Multi-line Strings （多行字符串）in ES6
-1. Destructuring Assignment （解构赋值）in ES6
-1. Enhanced Object Literals （增强的对象字面量）in ES6
-1. Promises in ES6
-1. Block-Scoped Constructs Let and Const（块作用域构造Let and Const）
-1. Classes（类） in ES6
+1. [Destructuring Assignment （解构赋值）in ES6](#Destructuring)
+1. [Enhanced Object Literals （增强的对象字面量）in ES6](#Enhanced)
+1. [Promises in ES6](#Promises)
+1. [Block-Scoped Constructs Let and Const（块作用域构造Let and Const）](#LetConst)
+1. [Classes（类） in ES6](#Classes)
 1. Modules（模块） in ES6
-1. Extension operators（扩展运算符） in ES6
-1. Properties of top-level objects（顶层对象的属性） in ES6
+1. [Extension operators（扩展运算符） in ES6](#Extension)
+1. [Properties of top-level objects（顶层对象的属性） in ES6](#Properties)
 
-### 2.1 函数
+### 2.1 函数 {#Functions} [回到目录](#index)
 
 #### 2.1.1 默认参数
 
@@ -366,7 +366,7 @@ x       // 1
 如果将 var x = 3 的 var 去除，函数 foo 的内部变量 x 就指向第一个参数 x ，与匿名函数内部的 x 是一致的，
 所以最后输出的就是 2 ，而外层的全局变量 x 依然不受影响。
 
-### 2.2 字符串
+### 2.2 字符串 {#Strings} [回到目录](#index)
 
 #### 2.2.1 模板字符串
 
@@ -505,7 +505,7 @@ console.log(str) // '姓名：**cc**，性别：**male**，爱好：**basketball
   return result;
 -->
 
-### 2.3 解构赋值
+### 2.3 解构赋值 {#Destructuring} [回到目录](#index)
 
 ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。
 本质上，这种写法属于“模式匹配”，只要等号两边的模式相同，左边的变量就会被赋予对应的值。下面是一些使用嵌套数组进行解构的例子
@@ -566,7 +566,7 @@ let [foo] = null;
 let [foo] = {};
 ```
 
-### 2.4 增强的对象字面量
+### 2.4 增强的对象字面量 {#Enhanced} [回到目录](#index)
 
 使用对象文本可以做许多让人意想不到的事情！通过ES6，我们可以把ES5中的JSON变得更加接近于一个类。
 
@@ -657,7 +657,7 @@ console.log(accountService)
 
 ES6对象文本是一个很大的进步对于旧版的对象文本来说。
 
-### 2.5 Promise构造函数
+### 2.5 Promise构造函数 {#Promises} [回到目录](#index)
 
 [廖雪峰的官方网站](https://www.liaoxuefeng.com/wiki/1022910821149312/1023024413276544)
 
@@ -1124,7 +1124,7 @@ Promise.race([runPromise,runPromise2]).then(function(value){
 
 [关于ES6的Promise的使用](https://www.jianshu.com/p/1ec8d1c4e287)
 
-### 2.6 块作用域构造Let and Const
+### 2.6 块作用域构造Let and Const {#LetConst} [回到目录](#index)
 
 #### 2.6.1 Let 命令
 
@@ -1335,7 +1335,7 @@ a = ['Dave']; //
     foo.prop = 123;
 ```
 
-### 2.7 类
+### 2.7 类 {#Classes} [回到目录](#index)
 
 ![](../assets/Es6/class-demo.jpg)
 ![](../assets/Es6/class-demo-1.jpg)
@@ -1350,7 +1350,8 @@ java、.NET、Python等都是强制类型定义的。也就是说，一旦一个
 数据类型可以被忽略的语言。它与强类型定义语言相反, 一个变量可以赋不同数据类型的值。
 
 ### 2.8 模块
-### 2.9 扩展运算符
+
+### 2.9 扩展运算符 {#Extension} [回到目录](#index)
 
 扩展运算符就是三个点（...）它好比rest参数的逆运算 ，将一个数组转为用逗号分隔的参数序列
 
@@ -1588,10 +1589,8 @@ const obj = {a: 1, b: 2};
 let arr = [...obj]; // TypeError: Cannot spread non-iterable object
 ```
 
+### 2.10 顶层对象的属性 {#Properties} [回到目录](#index)
 
-
-
-### 2.10 顶层对象的属性
 任何 Iterator 接口的对象（参阅 Iterator 一章），都可以用扩展运算符转为真正的数组。
 let nodeList = document.querySelectorAll('div');
 let array = [...nodeList];
