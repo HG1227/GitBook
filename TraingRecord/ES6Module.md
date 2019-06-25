@@ -1855,6 +1855,22 @@ while((tmp=gen.next()).done === false){
 > 练习2
 
 ```javascript
+function* generator(){
+    yield 1;
+    yield* ["a","b","c","d"];
+    yield 3;
+}
+var gen=generator();
+while((tmp=gen.next()).done === false){
+  console.log(tmp.value);
+}
+```
+
+输出结果为
+
+> 练习3
+
+```javascript
 function* numbers () {
      yield 1;
      yield 2;
@@ -1909,7 +1925,7 @@ console.log(iterator.next()) // 第四次输出
 > 1. 第三次输出时，输出两行内容。第一行内容为 delegate 函数中 console.log(str) 输出的，值为 numbers 函数的返回值。
 > 1. 第四次输出时，输出一行内容，其中的 value 值为 delegate 函数的返回值。此时，done 属性为 true。
 
-> 练习3
+> 练习4
 
 ```javascript
 function* withparam(x){
@@ -1962,20 +1978,6 @@ console.log(wt.next()) // 第一次输出
   * { value: 5, done: false }
   */
 console.log(wt.next()) // 第二次输出
-```
-
-> 练习4
-
-```javascript
-function* generator(){
-     yield 1;
-     yield* ["a","b","c","d"];
-     yield 3;
- }
- var gen=generator();
- while((tmp=gen.next()).done==false){
-     console.log(tmp.value);
- }
 ```
 
 ## 参考资料
