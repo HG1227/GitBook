@@ -1836,7 +1836,7 @@ y 等于24 ，所以return 语句的值等于42 。
 方法时的参数，只有从第二次使用next 方法开始，参数才是有效的。从语义上讲，第一个next 方法用来启动遍历器对象，所以不用带有参数。
 再看一个通过next 方法的参数，向 Generator 函数内部输入值的例子。
 
-> 练习
+> 练习1
 
 ```javascript
 function* generator(){
@@ -1852,7 +1852,7 @@ while((tmp=gen.next()).done === false){
 
 输出结果为
 
-> 练习
+> 练习2
 
 ```javascript
 function* numbers () {
@@ -1909,7 +1909,7 @@ console.log(iterator.next()) // 第四次输出
 > 1. 第三次输出时，输出两行内容。第一行内容为 delegate 函数中 console.log(str) 输出的，值为 numbers 函数的返回值。
 > 1. 第四次输出时，输出一行内容，其中的 value 值为 delegate 函数的返回值。此时，done 属性为 true。
 
-> 练习
+> 练习3
 
 ```javascript
 function* withparam(x){
@@ -1962,6 +1962,20 @@ console.log(wt.next()) // 第一次输出
   * { value: 5, done: false }
   */
 console.log(wt.next()) // 第二次输出
+```
+
+> 练习4
+
+```javascript
+function* generator(){
+     yield 1;
+     yield* ["a","b","c","d"];
+     yield 3;
+ }
+ var gen=generator();
+ while((tmp=gen.next()).done==false){
+     console.log(tmp.value);
+ }
 ```
 
 ## 参考资料
