@@ -1921,9 +1921,9 @@ console.log(iterator.next()) // 第三次输出
 console.log(iterator.next()) // 第四次输出
 ```
 
-> 1. 第二次输出时，输出一行内容，其中的 value 值仍为 numbers 函数的返回值。此时，done 属性为 false。
-> 1. 第三次输出时，输出两行内容。第一行内容为 delegate 函数中 console.log(str) 输出的，值为 numbers 函数的返回值。
-> 1. 第四次输出时，输出一行内容，其中的 value 值为 delegate 函数的返回值。此时，done 属性为 true。
+1. 第二次输出时，输出一行内容，其中的 value 值仍为 numbers 函数的返回值。此时，done 属性为 false。
+1. 第三次输出时，输出两行内容。第一行内容为 delegate 函数中 console.log(str) 输出的，值为 numbers 函数的返回值。
+1. 第四次输出时，输出一行内容，其中的 value 值为 delegate 函数的返回值。此时，done 属性为 true。
 
 > 练习4
 
