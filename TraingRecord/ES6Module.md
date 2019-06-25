@@ -37,6 +37,9 @@ ES6是前端开发的主力语言 （Vue、 React）如果你不能熟练掌握 
 1. [Extension operators（扩展运算符） in ES6](#Extension)
 1. [Properties of top-level objects（顶层对象的属性） in ES6](#Properties)
 1. [Generator in ES6](#Generator)
+    1. [基本概念](#GeneratorBase)
+    1. [Yield表达式](#GeneratorYield)
+    1. [next方法的参数](#GeneratorNext)
 
 ### 2.1 函数 {#Functions} [回到目录](#index)
 
@@ -1616,7 +1619,7 @@ const 命令、class 命令声明的全局变量，不属于顶层对象的属�
 
 [ES6入门标准.pdf]()
 
-#### 2.11.1 基本概念
+#### 2.11.1 基本概念 {#GeneratorBase}
 
 Generator 函数是 ES6 提供的一种异步编程解决方案，语法行为与传统函数完全不同。
 
@@ -1676,7 +1679,7 @@ hello ， done 属性的值false ，表示遍历还没有结束。
 着value 和done 两个属性的对象。value 属性表示当前的内部状态的值，是yield 表达式后面那个表达式的值； done 属性是一个布尔值，表示是否遍历
 结束。
 
-```javascript
+```
 function * foo(x,y){...}
 function *foo(x,y){...}
 function* foo(x,y){...}
@@ -1685,28 +1688,25 @@ function*foo(x,y){...}
 
 ES6没有规定，星号的具体位置，由于 Generator 函数仍然是普通函数，所以一般的写法是上面的第三种，即星号紧跟在function 关键字后面。本书也采用这种写法。
 
-#### 2.11.1 Yield 表达式
+#### 2.11.2 Yield 表达式 {#GeneratorYield}
 
-由于 Generator 函数返回的遍历器对象，只有调用next 方法才会遍历下一个内部状态，所以其实提供了一种可以暂停执行的函数。yield 表达式就是暂
-停标志。
+由于 Generator 函数返回的遍历器对象，只有调用next 方法才会遍历下一个内部状态，所以其实提供了一种可以暂停执行的函数。
+yield 表达式就是暂停标志。
 
 遍历器对象的next 方法的运行逻辑如下。
 
-（1）遇到yield 表达式，就暂停执行后面的操作，并将紧跟在yield 后面的那个表达式的值，作为返回的对象的value 属性值。
+1.遇到yield 表达式，就暂停执行后面的操作，并将紧跟在yield 后面的那个表达式的值，作为返回的对象的value 属性值。
+1.下一次调用next 方法时，再继续往下执行，直到遇到下一个yield 表达式。
+1.如果没有再遇到新的yield 表达式，就一直运行到函数结束，直到return 语句为止，并将return 语句后面的表达式的值，
+作为返回的对象的value属性值。
+1.如果该函数没有return 语句，则返回的对象的value 属性值为undefined 。
 
-（2）下一次调用next 方法时，再继续往下执行，直到遇到下一个yield 表达式。
-
-（3）如果没有再遇到新的yield 表达式，就一直运行到函数结束，直到return 语句为止，并将return 语句后面的表达式的值，作为返回的对象的value
-属性值。
-
-（4）如果该函数没有return 语句，则返回的对象的value 属性值为undefined 。
-
-需要注意的是， yield 表达式后面的表达式，只有当调用next 方法、内部指针指向该语句时才会执行，因此等于为 JavaScript 提供了手动的“惰性求
-值”（Lazy Evaluation）的语法功能。
+需要注意的是， yield 表达式后面的表达式，只有当调用next 方法、内部指针指向该语句时才会执行，
+因此等于为 JavaScript 提供了手动的“惰性求值”（Lazy Evaluation）的语法功能。
 
 ```javascript
 (function(){
-yield 1
+    yield 1
 })()
 // SyntaxError: Unexpected number
 
@@ -1752,19 +1752,21 @@ for(var f of flat(arr)){
 
 ```javascript
 function* demo() {
-console.log('Hello' + yield); // SyntaxError
-console.log('Hello' + yield 123); // SyntaxError
-console.log('Hello' + (yield)); // OK
-console.log('Hello' + (yield 123)); // OK
+    console.log('Hello' + yield); // SyntaxError
+    console.log('Hello' + yield 123); // SyntaxError
+    console.log('Hello' + (yield)); // OK
+    console.log('Hello' + (yield 123)); // OK
 }
 ```
 
 ```javascript
 function* demo() {
-foo(yield 'a', yield 'b'); // OK
-let input = yield; // OK
+    foo(yield 'a', yield 'b'); // OK
+    let input = yield; // OK
 }
-var foo= function(a){console.log(a)}
+var foo = function(a){
+  console.log(a)
+}
 ```
 
 yield 表达式如果用在另一个表达式之中，必须放在圆括号里面
@@ -1772,25 +1774,27 @@ yield 表达式如果用在另一个表达式之中，必须放在圆括号里�
 ```javascript
 var myIterable = {};
 myIterable[Symbol.iterator] = function* () {
-yield 1;
-yield 2;
-yield 3;
+    yield 1;
+    yield 2;
+    yield 3;
 };
-for(var f of myIterable){console.log(f)} // 1, 2, 3
+for(var f of myIterable){
+  console.log(f)
+} // 1, 2, 3
 ```
 
 上面代码中，Generator 函数赋值给Symbol.iterator 属性，从而使得myIterable 对象具有了 Iterator 接口，可以被... 运算符遍历了。
 
-#### 2.11.2 next 方法的参数
+#### 2.11.3 next 方法的参数 {#GeneratorNext}
 
 yield 表达式本身没有返回值，或者说总是返回undefined 。next 方法可以带一个参数，该参数就会被当作上一个yield 表达式的返回值。
 
 ```javascript
 function* f() {
-for(var i = 0; true; i++) {
-var reset = yield i;
-if(reset) { i = -1; }
-}
+    for(var i = 0; true; i++) {
+        var reset = yield i;
+        if(reset) { i = -1; }
+    }
 }
 var g = f();
 g.next() // { value: 0, done: false }
@@ -1807,9 +1811,9 @@ Generator 函数开始运行之后，继续向函数体内部注入值。也就�
 
 ```javascript
 function* foo(x) {
-var y = 2 * (yield (x + 1));
-var z = yield (y / 3);
-return (x + y + z);
+    var y = 2 * (yield (x + 1));
+    var z = yield (y / 3);
+    return (x + y + z);
 }
 var a = foo(5);
 a.next() // Object{value:6, done:false}
@@ -1832,6 +1836,149 @@ y 等于24 ，所以return 语句的值等于42 。
 方法时的参数，只有从第二次使用next 方法开始，参数才是有效的。从语义上讲，第一个next 方法用来启动遍历器对象，所以不用带有参数。
 再看一个通过next 方法的参数，向 Generator 函数内部输入值的例子。
 
+> 练习1
+
+```javascript
+function* generator(){
+    yield 1;
+    yield 2;
+    yield 3;
+}
+var gen = generator();
+while((tmp=gen.next()).done === false){
+    console.log(tmp.value);
+}
+```
+
+输出结果为
+
+> 练习2
+
+```javascript
+function* generator(){
+    yield 1;
+    yield* ["a","b","c","d"];
+    yield 3;
+}
+var gen=generator();
+while((tmp=gen.next()).done === false){
+  console.log(tmp.value);
+}
+```
+
+输出结果为
+
+> 练习3
+
+```javascript
+function* numbers () {
+     yield 1;
+     yield 2;
+   
+     return 'numbers';
+ }
+ 
+function* delegate () {
+     var str = yield* numbers();
+     console.log(str);
+     
+     yield 3;
+
+     return 'delegate';
+}
+
+var iterator = delegate();
+console.log(iterator.next()) // 第一次输出
+console.log(iterator.next()) // 第二次输出
+console.log(iterator.next()) // 第三次输出
+console.log(iterator.next()) // 第四次输出
+```
+
+```javascript
+/**
+  * 第一次输出结果
+  * { value: 1, done: false }
+  */
+console.log(iterator.next()) // 第一次输出
+ 
+ /**
+  * 第二次输出结果
+  * { value: 2, done: false }
+  */
+console.log(iterator.next()) // 第二次输出
+ 
+ /**
+  * 第三次输出结果
+  * numbers
+  * { value: 3, done: false }
+  */
+console.log(iterator.next()) // 第三次输出
+ 
+ /**
+  * 第四次输出结果
+  * { value: 'delegate', done: true }
+  */
+console.log(iterator.next()) // 第四次输出
+```
+
+> 1. 第二次输出时，输出一行内容，其中的 value 值仍为 numbers 函数的返回值。此时，done 属性为 false。
+> 1. 第三次输出时，输出两行内容。第一行内容为 delegate 函数中 console.log(str) 输出的，值为 numbers 函数的返回值。
+> 1. 第四次输出时，输出一行内容，其中的 value 值为 delegate 函数的返回值。此时，done 属性为 true。
+
+> 练习4
+
+```javascript
+function* withparam(x){
+    var y=yield x;
+        yield y;
+}
+var wt=withparam(3);
+console.log(wt.next());
+console.log(wt.next());
+```
+
+next()方法中可以传入一个参数，这个参数会作为上一个yield语句的返回值的，如果不传参数，yield语句中生成器函数内的返回值是undefined。
+
+```javascript
+/**
+  * 第一次输出结果
+  * { value: 3, done: false }
+  */
+console.log(wt.next()) // 第一次输出
+ /**
+  * 第二次输出结果
+  * { value: undefined, done: false }
+  */
+console.log(wt.next()) // 第二次输出
+```
+
+第二个next调用的时候的value是undefined的。现在我们给第二个next传入参数，
+
+```javascript
+function* withparam(x){
+    var y=yield x;
+        yield y;
+}
+var wt=withparam(3);
+console.log(wt.next());
+console.log(wt.next(5));
+```
+
+第二个next传入了5，所以y被赋值为5。记住永远不要做往第一个next中传入参数的傻事，
+因为next传入的参数会作为上一个yield语句中生成器函数内部的返回值，而第一个next执行时，没有上一个yield语句，也就没有接收参数的地方。
+
+```javascript
+/**
+  * 第一次输出结果
+  * { value: 3, done: false }
+  */
+console.log(wt.next()) // 第一次输出
+ /**
+  * 第二次输出结果
+  * { value: 5, done: false }
+  */
+console.log(wt.next()) // 第二次输出
+```
 
 ## 参考资料
 
@@ -1840,3 +1987,4 @@ y 等于24 ，所以return 语句的值等于42 。
 * [廖雪峰的官方网站-Promise](https://www.liaoxuefeng.com/wiki/1022910821149312/1023024413276544)
 * [ES6 Promise 用法讲解](https://www.cnblogs.com/whybxy/p/7645578.html)
 * [关于ES6的Promise的使用](https://www.jianshu.com/p/1ec8d1c4e287)
+* [ES6的生成器函数（generator）function*,yield,yield*学习使用](http://www.webfront-js.com/articaldetail/113.html)
