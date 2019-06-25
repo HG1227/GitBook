@@ -1752,19 +1752,21 @@ for(var f of flat(arr)){
 
 ```javascript
 function* demo() {
-console.log('Hello' + yield); // SyntaxError
-console.log('Hello' + yield 123); // SyntaxError
-console.log('Hello' + (yield)); // OK
-console.log('Hello' + (yield 123)); // OK
+    console.log('Hello' + yield); // SyntaxError
+    console.log('Hello' + yield 123); // SyntaxError
+    console.log('Hello' + (yield)); // OK
+    console.log('Hello' + (yield 123)); // OK
 }
 ```
 
 ```javascript
 function* demo() {
-foo(yield 'a', yield 'b'); // OK
-let input = yield; // OK
+    foo(yield 'a', yield 'b'); // OK
+    let input = yield; // OK
 }
-var foo= function(a){console.log(a)}
+var foo = function(a){
+  console.log(a)
+}
 ```
 
 yield 表达式如果用在另一个表达式之中，必须放在圆括号里面
@@ -1772,11 +1774,13 @@ yield 表达式如果用在另一个表达式之中，必须放在圆括号里�
 ```javascript
 var myIterable = {};
 myIterable[Symbol.iterator] = function* () {
-yield 1;
-yield 2;
-yield 3;
+    yield 1;
+    yield 2;
+    yield 3;
 };
-for(var f of myIterable){console.log(f)} // 1, 2, 3
+for(var f of myIterable){
+  console.log(f)
+} // 1, 2, 3
 ```
 
 上面代码中，Generator 函数赋值给Symbol.iterator 属性，从而使得myIterable 对象具有了 Iterator 接口，可以被... 运算符遍历了。
@@ -1787,10 +1791,10 @@ yield 表达式本身没有返回值，或者说总是返回undefined 。next �
 
 ```javascript
 function* f() {
-for(var i = 0; true; i++) {
-var reset = yield i;
-if(reset) { i = -1; }
-}
+    for(var i = 0; true; i++) {
+        var reset = yield i;
+        if(reset) { i = -1; }
+    }
 }
 var g = f();
 g.next() // { value: 0, done: false }
@@ -1807,9 +1811,9 @@ Generator 函数开始运行之后，继续向函数体内部注入值。也就�
 
 ```javascript
 function* foo(x) {
-var y = 2 * (yield (x + 1));
-var z = yield (y / 3);
-return (x + y + z);
+    var y = 2 * (yield (x + 1));
+    var z = yield (y / 3);
+    return (x + y + z);
 }
 var a = foo(5);
 a.next() // Object{value:6, done:false}
