@@ -1835,21 +1835,18 @@ y 等于24 ，所以return 语句的值等于42 。
 > 练习
 
 ```javascript
-function* gen() {
+function* generator(){
     yield 1;
     yield 2;
     yield 3;
 }
-var g = gen()
-g.next();
+var gen = generator();
+while((tmp=gen.next()).done === false){
+    console.log(tmp.value);
+}
 ```
 
 输出结果为
-
-* A. gen()执行后返回2
-* B. gen()执行后返回undefined
-* C. gen()执行后返回一个Generator对象
-* D. gen()执行后返回1
 
 > 练习
 
@@ -1871,7 +1868,13 @@ function* delegate () {
 }
 
 var iterator = delegate();
+console.log(iterator.next()) // 第一次输出
+console.log(iterator.next()) // 第二次输出
+console.log(iterator.next()) // 第三次输出
+console.log(iterator.next()) // 第四次输出
+```
 
+```javascript
 /**
   * 第一次输出结果
   * { value: 1, done: false }
@@ -1902,6 +1905,61 @@ console.log(iterator.next()) // 第四次输出
 > 1. 第三次输出时，输出两行内容。第一行内容为 delegate 函数中 console.log(str) 输出的，值为 numbers 函数的返回值。
 > 1. 第四次输出时，输出一行内容，其中的 value 值为 delegate 函数的返回值。此时，done 属性为 true。
 
+> 练习
+
+```javascript
+function* withparam(x){
+    var y=yield x;
+        yield y;
+}
+var wt=withparam(3);
+console.log(wt.next());
+console.log(wt.next());
+```
+
+next()方法中可以传入一个参数，这个参数会作为上一个yield语句的返回值的，如果不传参数，yield语句中生成器函数内的返回值是undefined。
+
+```javascript
+/**
+  * 第一次输出结果
+  * { value: 3, done: false }
+  */
+console.log(wt.next()) // 第一次输出
+ /**
+  * 第二次输出结果
+  * { value: undefined, done: false }
+  */
+console.log(wt.next()) // 第二次输出
+```
+
+第二个next调用的时候的value是undefined的。现在我们给第二个next传入参数，
+
+```javascript
+function* withparam(x){
+    var y=yield x;
+        yield y;
+}
+var wt=withparam(3);
+console.log(wt.next());
+console.log(wt.next(5));
+```
+
+第二个next传入了5，所以y被赋值为5。记住永远不要做往第一个next中传入参数的傻事，
+因为next传入的参数会作为上一个yield语句中生成器函数内部的返回值，而第一个next执行时，没有上一个yield语句，也就没有接收参数的地方。
+
+```javascript
+/**
+  * 第一次输出结果
+  * { value: 3, done: false }
+  */
+console.log(wt.next()) // 第一次输出
+ /**
+  * 第二次输出结果
+  * { value: 5, done: false }
+  */
+console.log(wt.next()) // 第二次输出
+```
+
 ## 参考资料
 
 * [ES6这些就够了](https://www.jianshu.com/p/287e0bb867ae)
@@ -1909,3 +1967,4 @@ console.log(iterator.next()) // 第四次输出
 * [廖雪峰的官方网站-Promise](https://www.liaoxuefeng.com/wiki/1022910821149312/1023024413276544)
 * [ES6 Promise 用法讲解](https://www.cnblogs.com/whybxy/p/7645578.html)
 * [关于ES6的Promise的使用](https://www.jianshu.com/p/1ec8d1c4e287)
+* [ES6的生成器函数（generator）function*,yield,yield*学习使用](http://www.webfront-js.com/articaldetail/113.html)
