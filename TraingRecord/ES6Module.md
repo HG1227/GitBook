@@ -1632,9 +1632,9 @@ Generator 函数有多种理解角度。从语法上，首先可以把它理解�
 
 ```javascript
 function* helloWorldGenerator(){
-yield 'Hello';
-yield 'World';
-return 'ending'
+    yield 'Hello';
+    yield 'World';
+    return 'ending'
 }
 var hw = helloWorldGenerator()
 ```
@@ -1904,19 +1904,19 @@ Generator 函数返回的遍历器对象，都有一个throw 方法，可以在�
 
 ```javascript
 var g = function* () {
-try {
-yield;
-} catch (e) {
-console.log('内部捕获', e);
-}
+    try {
+      yield;
+    } catch (e) {
+      console.log('内部捕获', e);
+    }
 };
 var i = g();
 i.next();
 try {
-i.throw('a');
-i.throw('b');
+    i.throw('a');
+    i.throw('b');
 } catch (e) {
-console.log('外部捕获', e);
+  console.log('外部捕获', e);
 }
 // 内部捕获 a
 // 外部捕获 b
@@ -1927,11 +1927,11 @@ catch 语句已经执行过了，不会再捕捉到这个错误了，所以这�
 
 ```javascript
 var g = function* () {
-try {
-yield;
-} catch (e) {
-console.log(e);
-}
+    try {
+      yield;
+    } catch (e) {
+      console.log(e);
+    }
 };
 var i = g();
 i.next();
@@ -1942,18 +1942,18 @@ throw 方法可以接受一个参数，该参数会被catch 语句接收，建�
 
 ```javascript
 var g = function* () {
-while (true) {
-yield;
-console.log('内部捕获', e);
-}
+    while (true) {
+      yield;
+      console.log('内部捕获', e);
+    }
 };
 var i = g();
 i.next();
 try {
-i.throw('a');
-i.throw('b');
+    i.throw('a');
+    i.throw('b');
 } catch (e) {
-console.log('外部捕获', e);
+  console.log('外部捕获', e);
 }
 // 外部捕获 a
 ```
@@ -1962,8 +1962,8 @@ console.log('外部捕获', e);
 
 ```javascript
 var gen = function* gen(){
-yield console.log('hello');
-yield console.log('world');
+    yield console.log('hello');
+    yield console.log('world');
 }
 var g = gen();
 g.next();
@@ -1973,28 +1973,17 @@ g.throw();
 ```
 如果 Generator 函数内部和外部，都没有部署try...catch 代码块，那么程序将报错，直接中断执行。
 
-```javascript
-var gen = function* gen(){
-yield console.log('hello');
-yield console.log('world');
-}
-var g = gen();
-g.next();
-g.throw();
-// hello
-// Uncaught undefined
-```
 上面代码中， g.throw 抛出错误以后，没有任何try...catch 代码块可以捕获这个错误，导致程序报错，中断执行。
 
 ```javascript
 var gen = function* gen(){
-try {
-yield console.log('a');
-} catch (e) {
-// ...
-}
-yield console.log('b');
-yield console.log('c');
+    try {
+        yield console.log('a');
+    } catch (e) {
+      // ...
+    }
+    yield console.log('b');
+    yield console.log('c');
 }
 var g = gen();
 g.next() // a
@@ -2008,15 +1997,15 @@ throw 方法被捕获以后，会附带执行下一条yield 表达式。也就�
 
 ```javascript
 var gen = function* gen(){
-yield console.log('hello');
-yield console.log('world');
+    yield console.log('hello');
+    yield console.log('world');
 }
 var g = gen();
 g.next();
 try {
-throw new Error();
+    throw new Error();
 } catch (e) {
-g.next();
+    g.next();
 }
 ```
 
@@ -2024,34 +2013,34 @@ g.next();
 
 ```javascript
 function* g() {
-yield 1;
-console.log('throwing an exception');
-throw new Error('generator broke!');
-yield 2;
-yield 3;
+    yield 1;
+    console.log('throwing an exception');
+    throw new Error('generator broke!');
+    yield 2;
+    yield 3;
 }
 function log(generator) {
-var v;
-console.log('starting generator');
-try {
-v = generator.next();
-console.log('第一次运行next方法', v);
-} catch (err) {
-console.log('捕捉错误', v);
-}
-try {
-v = generator.next();
-console.log('第二次运行next方法', v);
-} catch (err) {
-console.log('捕捉错误', v);
-}
-try {
-v = generator.next();
-console.log('第三次运行next方法', v);
-} catch (err) {
-console.log('捕捉错误', v);
-}
-console.log('caller done');
+    var v;
+    console.log('starting generator');
+    try {
+        v = generator.next();
+        console.log('第一次运行next方法', v);
+    } catch (err) {
+      console.log('捕捉错误', v);
+    }
+    try {
+        v = generator.next();
+        console.log('第二次运行next方法', v);
+    } catch (err) {
+      console.log('捕捉错误', v);
+    }
+    try {
+        v = generator.next();
+        console.log('第三次运行next方法', v);
+    } catch (err) {
+      console.log('捕捉错误', v);
+    }
+    console.log('caller done');
 }
 log(g());
 
@@ -2069,15 +2058,15 @@ log(g());
 Generator 函数返回的遍历器对象，还有一个return 方法，可以返回给定的值，并且终结遍历 Generator 函数。
 
 ```javascript
-  function* gen() {
+function* gen() {
   yield 1;
   yield 2;
   yield 3;
-  }
-  var g = gen();
-  g.next() // { value: 1, done: false }
-  g.return('foo') // { value: "foo", done: true }
-  g.next() // { value: undefined, done: true }
+}
+var g = gen();
+g.next() // { value: 1, done: false }
+g.return('foo') // { value: "foo", done: true }
+g.next() // { value: undefined, done: true }
 
 ```
 上面代码中，遍历器对象g 调用return 方法后，返回值的value 属性就是return 方法的参数foo 。并且，Generator 函数的遍历就终止了，返回值的
@@ -2086,15 +2075,15 @@ done 属性为true ，以后再调用next 方法， done 属性总是返回true 
 
 ```javascript
 function* numbers () {
-yield 1;
-try {
-yield 2;
-yield 3;
-} finally {
-yield 4;
-yield 5;
-}
-yield 6;
+    yield 1;
+    try {
+        yield 2;
+        yield 3;
+    } finally {
+        yield 4;
+        yield 5;
+    }
+    yield 6;
 }
 var g = numbers();
 g.next() // { value: 1, done: false }
@@ -2285,11 +2274,11 @@ result
 
 如果一个对象的属性是 Generator 函数，可以简写成下面的形式。
 
-```javascript
+```
 let obj = {
-* myGeneratorMethod() {
-···
-}
+    * myGeneratorMethod() {
+    ···
+    }
 };
 
 // 等价
