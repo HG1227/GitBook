@@ -40,6 +40,15 @@ ES6是前端开发的主力语言 （Vue、 React）如果你不能熟练掌握 
     1. [基本概念](#GeneratorBase)
     1. [Yield表达式](#GeneratorYield)
     1. [next方法的参数](#GeneratorNext)
+    1. [for...of循环](#GeneratorForOf)
+    1. [Generator.prototype.throw()](#GeneratorThrow)
+    1. [Generator.prototype.return()](#GeneratorReturn)
+    1. [next()、throw()、return() 的共同点](#GeneratorComparison)
+    1. [yield* 表达式](#GeneratorYield*)
+    1. [作为对象属性的Generator函数](#GeneratorObject)
+    1. [Generator函数的this](#GeneratorThis)
+    1. [Generator与状态机](#GeneratorStatus)
+    1. [Generator应用](#GeneratorUse)
 
 ### 2.1 函数 {#Functions} [回到目录](#index)
 
@@ -1709,10 +1718,16 @@ yield 表达式就是暂停标志。
     yield 1
 })()
 // SyntaxError: Unexpected number
-
 ```
 
 另外需要注意， yield 表达式只能用在 Generator 函数里面，用在其他地方都会报错。
+
+```javascript
+// 标准写法
+(function* (){
+    yield 1
+})()
+```
 
 ```javascript
 var arr = [1,[[2,3],4],[5,6]] // 目标 输出 1,2,3,4,5,6
@@ -1854,7 +1869,7 @@ genObj.next('b')
 
 上面代码是一个很直观的例子，每次通过next方法向 Generator 函数输入值，然后打印出来。
 
-#### 2.11.3 for...of 循环
+#### 2.11.4 for...of 循环 {#GeneratorForOf}
 ```javascript
 function *foo() {
 yield 1;
@@ -1898,7 +1913,7 @@ console.log(n)
 
 ```
 
-#### 2.11.4 Generator.prototype.throw()
+#### 2.11.5 Generator.prototype.throw() {#GeneratorThrow}
 
 Generator 函数返回的遍历器对象，都有一个throw 方法，可以在函数体外抛出错误，然后在 Generator 函数体内捕获。
 
@@ -2053,7 +2068,7 @@ log(g());
 ```
 上面代码一共三次运行next 方法，第二次运行的时候会抛出错误，然后第三次运行的时候，Generator 函数就已经结束了，不再执行下去了。
 
-#### 2.11.5 Generator.prototype.return()
+#### 2.11.6 Generator.prototype.return() {#GeneratorReturn}
 
 Generator 函数返回的遍历器对象，还有一个return 方法，可以返回给定的值，并且终结遍历 Generator 函数。
 
@@ -2094,7 +2109,8 @@ g.next() // { value: 7, done: true }
 ```
 如果 Generator 函数内部有try...finally 代码块，那么return 方法会推迟到finally 代码块执行完再执行。
 
-#### 2.11.6 next()、throw()、return() 的共同点
+#### 2.11.7 next()、throw()、return() 的共同点 {#GeneratorComparison}
+
 next() 、throw() 、return() 这三个方法本质上是同一件事，可以放在一起理解。它们的作用都是让 Generator 函数恢复执行，
 并且使用不同的语句替换yield 表达式
 
@@ -2119,7 +2135,7 @@ gen.return(2); // Object {value: 2, done: true}
 
 ```
 
-#### 2.11.7 yield* 表达式
+#### 2.11.8 yield* 表达式 {#GeneratorYield*}
 
 ```javascript
 function* foo() {
@@ -2270,7 +2286,7 @@ result
 // ['a', 'b', 'c', 'd', 'e', 'f', 'g']
 ```
 
-#### 2.11.8 作为对象属性的 Generator 函数
+#### 2.11.9 作为对象属性的 Generator 函数 {#GeneratorObject}
 
 如果一个对象的属性是 Generator 函数，可以简写成下面的形式。
 
@@ -2290,7 +2306,8 @@ myGeneratorMethod: function* () {
 };
 ```
 
-#### 2.11.9 Generator 函数的this
+#### 2.11.10 Generator 函数的this {#GeneratorThis}
+
 instanceof运算符用于测试构造函数的prototype属性是否出现在对象的原型链中的任何位置
 
 ```javascript
@@ -2389,7 +2406,7 @@ f.c // 3
 
 ```
 
-####2.11.10 Generator 与状态机
+#### 2.11.11 Generator 与状态机 {#GeneratorStatus}
 
 ```javascript
 var ticking = true;
@@ -2418,7 +2435,7 @@ yield;
 上面的 Generator 实现与 ES5 实现对比，可以看到少了用来保存状态的外部变量ticking ，这样就更简洁，更安全（状态不会被非法篡改）、更符合函
 数式编程的思想，在写法上也更优雅。Generator 之所以可以不用外部变量保存状态，是因为它本身就包含了一个状态信息，即目前是否处于暂停态。
 
-####2.11.11 应用
+#### 2.11.12 Generator应用 {#GeneratorUse}
 
 Generator 可以暂停函数执行，返回任意表达式的值。这种特点使得 Generator 有多种应用场景。
 
