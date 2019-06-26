@@ -1881,15 +1881,15 @@ function *foo() {
     return 6;
 }
 for (let v of foo()) {
-console.log(v);
+    console.log(v);
 }
 // 1 2 3 4 5
 ```
 
-for...of 循环可以自动遍历 Generator 函数时生成的Iterator 对象，且此时不再需要调用next 方法。
+`for...of`循环可以自动遍历`Generator`函数时生成的`Iterator`对象，且此时不再需要调用`next`方法。
 
-上面代码使用for...of 循环，依次显示 5 个`yield`表达式的值。这里需要注意，一旦next 方法的返回对象的done 属性为true ， for...of 循环就会中
-止，且不包含该返回对象，所以上面代码的return 语句返回的6 ，不包括在for...of 循环之中。
+上面代码使用`for...of`循环，依次显示5个`yield`表达式的值。这里需要注意，一旦`next`方法的返回对象的`done`属性为true，
+`for...of`循环就会中止，且不包含该返回对象，所以上面代码的`return`语句返回的6，不包括在`for...of`循环之中。
 
 ```javascript
 function* numbers () {
@@ -1907,11 +1907,9 @@ let [x, y] = numbers();
 //
 // for...of 循环
 for (let n of numbers()) {
-console.log(n)
+    console.log(n)
 }
-//
-//
-
+// 上述方法达成的效果是相同的
 ```
 
 #### 2.11.5 Generator.prototype.throw() {#GeneratorThrow} [回到目录](#index)
