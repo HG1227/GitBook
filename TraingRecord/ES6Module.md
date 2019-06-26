@@ -1615,7 +1615,6 @@ const 命令、class 命令声明的全局变量，不属于顶层对象的属�
 ```
 
 ### 2.11 Generator 函数的语法 {#Generator} [回到目录](#index)
-[廖雪峰的官方网站](https://www.liaoxuefeng.com/wiki/1022910821149312/1023024381818112)
 
 [ES6入门标准.pdf]()
 
@@ -1750,6 +1749,7 @@ for(var f of flat(arr)){
 
 ```
 
+
 ```javascript
 function* demo() {
     console.log('Hello' + yield); // SyntaxError
@@ -1758,18 +1758,17 @@ function* demo() {
     console.log('Hello' + (yield 123)); // OK
 }
 ```
+yield 表达式如果用在另一个表达式之中，必须放在圆括号里面
 
 ```javascript
 function* demo() {
     foo(yield 'a', yield 'b'); // OK
     let input = yield; // OK
 }
-var foo = function(a){
-  console.log(a)
-}
 ```
+yield 表达式用作函数参数或放在赋值表达式的右边，可以不加括号。
 
-yield 表达式如果用在另一个表达式之中，必须放在圆括号里面
+
 
 ```javascript
 var myIterable = {};
@@ -1883,8 +1882,9 @@ return 3
 yield 4
 }
 // 扩展运算符
-[...numbers()] //
+[...numbers()] // 去了解
 // Array.from 方法
+
 Array.from(numbers()) //
 // 解构赋值
 let [x, y] = numbers();
