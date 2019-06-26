@@ -2115,8 +2115,8 @@ next() 、throw() 、return() 这三个方法本质上是同一件事，可以�
 
 ```javascript
 const g = function* (x, y) {
-let result = yield x + y;
-return result;
+    let result = yield x + y;
+    return result;
 };
 const gen = g(1, 2);
 gen.next(); // Object {value: 3, done: false}
