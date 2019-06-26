@@ -1785,7 +1785,7 @@ var foo = function(a){
 }
 ```
 
-`yield`表达式如果用在另一个表达式之中，必须放在圆括号里面
+`yield`表达式用作函数参数或放在赋值表达式的右边，可以不加括号。
 
 ```javascript
 var myIterable = {};
