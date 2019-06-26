@@ -1773,6 +1773,8 @@ function* demo() {
 }
 ```
 
+`yield`表达式如果用在另一个表达式之中，必须放在圆括号里面
+
 ```javascript
 function* demo() {
     foo(yield 'a',yield 'b'); // OK
@@ -1897,7 +1899,7 @@ function* numbers () {
     yield 4
 }
 // 扩展运算符
-[...numbers()] //
+[...numbers()] // 去了解
 // Array.from 方法
 Array.from(numbers()) //
 // 解构赋值
