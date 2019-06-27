@@ -1921,6 +1921,85 @@ for (let n of numbers()) {
 // 上述方法达成的效果是相同的
 ```
 
+```javascript
+let map = new Map([
+    [1, 'one'],
+    [2, 'two'],
+    [3, 'three'],
+]);
+let arr = [...map.keys()]; // [1, 2, 3]
+
+
+```
+扩展运算符内部调用的是数据结构的 Iterator 接口，因此只要具有 Iterator 接口的对象，都可以使用扩展运算符，比如 Map 结构。
+
+```javascript
+const go = function*(){
+    yield 1;
+    yield 2;
+    yield 3;
+};
+[...go()] // [1, 2, 3]
+```
+
+上面代码中，变量go 是一个 Generator 函数，执行后返回的是一个遍历器对象，对这个遍历器对象执行扩展运算符，就会将内部遍历得到的值，转为一
+个数组。
+
+```javascript
+const obj = {a: 1, b: 2};
+let arr = [...obj]; // TypeError: Cannot spread non-iterable object
+```
+如果对没有 Iterator 接口的对象，使用扩展运算符，将会报错。
+
+== Array.from() ==
+
+Array.from 方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括 ES6 新增的数据结构 Set
+和 Map）。
+
+```javascript
+let arrayLike = {
+    '0': 'a',
+    '1': 'b',
+    '2': 'c',
+    length: 3
+};
+// ES5的写法
+var arr1 = [].slice.call(arrayLike); // ['a', 'b', 'c']
+// ES6的写法
+let arr2 = Array.from(arrayLike); // ['a', 'b', 'c']
+```
+
+实际应用中，常见的类似数组的对象是 DOM 操作返回的 NodeList 集合，以及函数内部的arguments 对象。Array.from 都可以将它们转为真正的数组。
+
+```javascript
+// NodeList对象
+let ps = document.querySelectorAll('p');
+Array.from(ps).forEach(function (p) {
+    console.log(p);
+});
+// arguments对象
+function foo() {
+    var args = Array.from(arguments);
+// ...
+}
+```
+
+上面代码中， querySelectorAll 方法返回的是一个类似数组的对象，可以将这个对象转为真正的数组，再使用forEach 方法。
+
+```javascript
+Array.from('hello')
+// ['h', 'e', 'l', 'l', 'o']
+let namesSet = new Set(['a', 'b'])
+Array.from(namesSet) // ['a', 'b']
+```
+
+```javascript
+Array.from([1, 2, 3])
+// [1, 2, 3]
+```
+只要是部署了 Iterator 接口的数据结构， Array.from 都能将其转为数组。
+
+
 #### 2.11.5 Generator.prototype.throw() {#GeneratorThrow} [回到目录](#index)
 
 Generator 函数返回的遍历器对象，都有一个throw 方法，可以在函数体外抛出错误，然后在 Generator 函数体内捕获。
