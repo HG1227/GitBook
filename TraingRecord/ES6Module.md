@@ -1627,7 +1627,7 @@ const 命令、class 命令声明的全局变量，不属于顶层对象的属�
 
 [ES6入门标准.pdf]()
 
-#### 2.11.1 基本概念 {#GeneratorBase}
+#### 2.11.1 基本概念 {#GeneratorYield} [回到目录](#index)
 
 Generator 函数是 ES6 提供的一种异步编程解决方案，语法行为与传统函数完全不同。
 
@@ -1635,8 +1635,7 @@ Generator 函数有多种理解角度。从语法上，首先可以把它理解�
 执行 Generator 函数会返回一个遍历器对象，也就是说，Generator 函数除了状态机，还是一个遍历器对象生成函数。返回的遍历器对象，可以依次遍
 历 Generator 函数内部的每一个状态。
 
-形式上，Generator 函数是一个普通函数，但是有两个特征。一是， function 关键字与函数名之间有一个星号；二是，函数体内部使用`yield`表达式，
-定义不同的内部状态（ `yield`在英语里的意思就是“产出”）。
+例如：
 
 ```javascript
 function* helloWorldGenerator(){
@@ -1646,6 +1645,9 @@ function* helloWorldGenerator(){
 }
 var hw = helloWorldGenerator()
 ```
+
+形式上，Generator 函数是一个普通函数，但是有两个特征。一是， function 关键字与函数名之间有一个星号；二是，函数体内部使用`yield`表达式，
+定义不同的内部状态（ `yield`在英语里的意思就是“产出”）。
 
 上面代码定义了一个 Generator 函数helloWorldGenerator ，它内部有两个`yield`表达式（ hello 和world ），即该函数有三个状态：hello，world 和
 return 语句（结束执行）。
@@ -1687,6 +1689,8 @@ hello ， done 属性的值false ，表示遍历还没有结束。
 着value 和done 两个属性的对象。value 属性表示当前的内部状态的值，是`yield`表达式后面那个表达式的值； done 属性是一个布尔值，表示是否遍历
 结束。
 
+关于 Generator 函数的写法
+
 ```
 function * foo(x,y){...}
 function *foo(x,y){...}
@@ -1704,10 +1708,13 @@ ES6没有规定，星号的具体位置，由于 Generator 函数仍然是普通
 遍历器对象的next 方法的运行逻辑如下。
 
 1.遇到`yield`表达式，就暂停执行后面的操作，并将紧跟在`yield`后面的那个表达式的值，作为返回的对象的value 属性值。
-1.下一次调用next 方法时，再继续往下执行，直到遇到下一个`yield`表达式。
-1.如果没有再遇到新的`yield`表达式，就一直运行到函数结束，直到return 语句为止，并将return 语句后面的表达式的值，
+
+2.下一次调用next 方法时，再继续往下执行，直到遇到下一个`yield`表达式。
+
+3.如果没有再遇到新的`yield`表达式，就一直运行到函数结束，直到return 语句为止，并将return 语句后面的表达式的值，
 作为返回的对象的value属性值。
-1.如果该函数没有return 语句，则返回的对象的value 属性值为undefined 。
+
+4.如果该函数没有return 语句，则返回的对象的value 属性值为undefined 。
 
 需要注意的是，`yield`表达式后面的表达式，只有当调用`next`方法、内部指针指向该语句时才会执行，
 因此等于为 JavaScript 提供了手动的“惰性求值”（Lazy Evaluation）的语法功能。
@@ -1728,8 +1735,10 @@ ES6没有规定，星号的具体位置，由于 Generator 函数仍然是普通
 })()
 ```
 
+例题 目标 输出 1,2,3,4,5,6 （错误写法）
+
 ```javascript
-var arr = [1,[[2,3],4],[5,6]] // 目标 输出 1,2,3,4,5,6
+var arr = [1,[[2,3],4],[5,6]]
 var flat = function*(a){
     a.forEach(function(item){
         if(typeof item!=='number'){
@@ -1747,6 +1756,7 @@ for(var f of flat(arr)){
 上面代码也会产生句法错误，因为`forEach`方法的参数是一个普通函数，但是在里面使用了`yield`表达式
 （这个函数里面还使用了`yield*`表达式，详细介绍见后文）。一种修改方法是改用`for`循环。
 
+例题 目标 输出 1,2,3,4,5,6 （正确写法）
 ```javascript
 var arr = [1,[[2,3],4],[5,6]] // 目标 输出 1,2,3,4,5,6
 var flat = function* (a){
@@ -1764,6 +1774,8 @@ for(var f of flat(arr)){
 
 ```
 
+例题 yield表达式的写法
+
 ```javascript
 function* demo() {
     console.log('Hello' + yield); // SyntaxError
@@ -1779,9 +1791,6 @@ function* demo() {
 function* demo() {
     foo(yield 'a',yield 'b'); // OK
     let input = yield; // OK
-}
-var foo = function(a){
-  console.log(a)
 }
 ```
 
@@ -2134,7 +2143,7 @@ gen.return(2); // Object {value: 2, done: true}
 
 ```
 
-#### 2.11.8 yield* 表达式 {#GeneratorYield*} [回到目录](#index)
+#### 2.11.8 yield * 表达式 {#GeneratorYield*} [回到目录](#index)
 
 ```javascript
 function* foo() {
