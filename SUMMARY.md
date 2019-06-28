@@ -65,6 +65,7 @@
     * [Vux使用](Vue/vux.md)
     * [vux-uploader使用](Vue/vux-uploader.md)
     * [Vue生命周期图例](webTips/vuesheng-ming-zhou-qi-tu-li.md)
+    * [iview-loader使用](Vue/iview-loader.md)
 * [代码审查](CodeReview.md)
     * [代码命名规范](TraingRecord/CodeNaming.md)
     * [页面代码结构](TraingRecord/CodeStructure.md)
