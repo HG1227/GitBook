@@ -49,6 +49,12 @@ ES6是前端开发的主力语言 （Vue、 React）如果你不能熟练掌握 
     1. [Generator函数的this](#GeneratorThis)
     1. [Generator与状态机](#GeneratorStatus)
     1. [Generator应用](#GeneratorUse)
+1. [Generator in ES6](#GeneratorApplications)
+    1. [传统方法](#GeneratorBase)
+    1. [基本概念](#GeneratorYield)
+    1. [Generator 函数](#GeneratorNext)
+    1. [Thunk 函数](#GeneratorForOf)
+    1. [co 模块](#GeneratorForOf)
 
 ### 2.1 函数 {#Functions} [回到目录](#index)
 
@@ -2569,8 +2575,74 @@ it.next();
 中的next 方法，必须加上response 参数，因为`yield`表达式，本身是没有值的，总是等于undefined 。
 
 （2）控制流管理
+```javascript
+step1(function (value1) {
+    step2(value1, function(value2) {
+        step3(value2, function(value3) {
+            step4(value3, function(value4) {
+                // Do something with value4
+            });
+        });
+    });
+});
+
+// 采用 Promise 改写上面的代码。
+Promise.resolve(step1)
+    .then(step2)
+    .then(step3)
+    .then(step4)
+    .then(function (value4) {
+        // Do something with value4
+    }, function (error) {
+        // Handle any error from step1 through step4
+    })
+    .done();
+
+// 上面代码已经把回调函数，改成了直线执行的形式，但是加入了大量 Promise 的语法。Generator 函数可以进一步改善代码运行流程
+function* longRunningTask(value1) {
+    try {
+        var value2 = yield step1(value1);
+        var value3 = yield step2(value2);
+        var value4 = yield step3(value3);
+        var value5 = yield step4(value4);
+        // Do something with value4
+    } catch (e) {
+        // Handle any error from step1 through step4
+    }
+}
+// 然后，使用一个函数，按次序自动执行所有步骤
+scheduler(longRunningTask(initialValue));
+function scheduler(task) {
+    var taskObj = task.next(task.value);
+    // 如果Generator函数未结束，就继续调用
+    if (!taskObj.done) {
+        task.value = taskObj.value
+        scheduler(task);
+    }
+}
+// 注意，上面这种做法，只适合同步操作，即所有的task 都必须是同步的，不能有异步操作。因为这里的代码一得到返回值，就继续往下执行，没有判断异
+   步操作何时完成。如果要控制异步的操作流程，详见后面的《异步操作》一章。
+
+```
 
 （3）部署 Iterator 接口
+```javascript
+// 利用 Generator 函数，可以在任意对象上部署 Iterator 接口。
+function* iterEntries(obj) {
+    let keys = Object.keys(obj);
+    for (let i=0; i < keys.length; i++) {
+        let key = keys[i];
+        yield [key, obj[key]];
+    }
+}
+let myObj = { foo: 3, bar: 7 };
+for (let [key, value] of iterEntries(myObj)) {
+    console.log(key, value);
+}
+// foo 3
+// bar 7
+// 上述代码中， myObj 是一个普通对象，通过iterEntries 函数，就有了 Iterator 接口。也就是说，可以在任意对象上部署next 方法。
+```
 
 （4）作为数据结构
 
@@ -2717,6 +2789,127 @@ console.log(wt.next()) // 第一次输出
   */
 console.log(wt.next()) // 第二次输出
 ```
+
+
+### 2.12 函数的异步应用 {#GeneratorApplications} [回到目录](#index)
+
+### 2.12.1 传统方法 {#GeneratorApplications} [回到目录](#index)
+
+异步编程对javascript语言太过重要。javascript语言的运行环境是“单线程”的，所以异步编程就显得尤为重要。
+
+传统方式 异步编程的方法 大概以下四种
+
+1. 回调函数
+2. 事件监听
+3. 发布/订阅
+4. promise对象
+
+Generator函数将Javascript异步编程带上了一个全新的阶段
+
+### 2.12.2 基本概念 {#GeneratorApplications} [回到目录](#index)
+
+异步
+
+所谓"异步"，简单说就是一个任务不是连续完成的，可以理解成该任务被人为分成两段，先执行第一段，然后转而执行其他任务，等做好了准备，再回过头
+执行第二段。
+比如，有一个任务是读取文件进行处理，任务的第一段是向操作系统发出请求，要求读取文件。然后，程序执行其他任务，等到操作系统返回文件，再接
+着执行任务的第二段（处理文件）。这种不连续的执行，就叫做异步。
+相应地，连续的执行就叫做同步。由于是连续执行，不能插入其他任务，所以操作系统从硬盘读取文件的这段时间，程序只能干等着。
+
+回调函数
+
+JavaScript 语言对异步编程的实现，就是回调函数。所谓回调函数，就是把任务的第二段单独写在一个函数里面，等到重新执行这个任务的时候，就直接
+调用这个函数。回调函数的英语名字callback ，直译过来就是"重新调用"。
+
+```javascript
+// 读取文件进行处理，是这样写的。
+fs.readFile('/etc/passwd', 'utf-8', function (err, data) {
+    if (err) throw err;
+    console.log(data);
+});
+```
+
+上面代码中， readFile 函数的第三个参数，就是回调函数，也就是任务的第二段。等到操作系统返回了/etc/passwd 这个文件以后，回调函数才会执行。
+一个有趣的问题是，为什么 Node 约定，回调函数的第一个参数，必须是错误对象err （如果没有错误，该参数就是null ）？
+原因是执行分成两段，第一段执行完以后，任务所在的上下文环境就已经结束了。在这以后抛出的错误，原来的上下文环境已经无法捕捉，只能当作参
+数，传入第二段。
+
+Promise
+
+回调函数本身并没有问题，它的问题出现在多个回调函数嵌套。假定读取A 文件之后，再读取B 文件，代码如下。
+
+```javascript
+fs.readFile(fileA, 'utf-8', function (err, data) {
+    fs.readFile(fileB, 'utf-8', function (err, data) {
+    // ...
+    });
+});
+```
+
+不难想象，如果依次读取两个以上的文件，就会出现多重嵌套。代码不是纵向发展，而是横向发展，很快就会乱成一团，无法管理。因为多个异步操作形
+成了强耦合，只要有一个操作需要修改，它的上层回调函数和下层回调函数，可能都要跟着修改。这种情况就称为"回调函数地狱"（callback hell）。
+
+```javascript
+var readFile = require('fs-readfile-promise');
+readFile(fileA)
+.then(function (data) {
+    console.log(data.toString());
+})
+.then(function () {
+    return readFile(fileB);
+})
+.then(function (data) {
+    console.log(data.toString());
+})
+.catch(function (err) {
+    console.log(err);
+});
+```
+
+### 2.12.1 Generator 函数 {#GeneratorApplications} [回到目录](#index)
+
+协程
+传统的编程语言，早有异步编程的解决方案（其实是多任务的解决方案）。其中有一种叫做"协程"（coroutine），意思是多个线程互相协作，完成异步任
+务。
+协程有点像函数，又有点像线程。它的运行流程大致如下。
+第一步，协程A 开始执行。
+第二步，协程A 执行到一半，进入暂停，执行权转移到协程B 。
+第三步，（一段时间后）协程B 交还执行权。
+第四步，协程A 恢复执行。
+上面流程的协程A ，就是异步任务，因为它分成两段（或多段）执行。
+举例来说，读取文件的协程写法如下。
+
+```javascript
+function* asyncJob() {
+// ...其他代码
+var f = yield readFile(fileA);
+// ...其他代码
+}
+```
+
+上面代码的函数asyncJob 是一个协程，它的奥妙就在其中的yield 命令。它表示执行到此处，执行权将交给其他协程。也就是说， yield 命令是异步两个
+阶段的分界线。
+协程遇到yield 命令就暂停，等到执行权返回，再从暂停的地方继续往后执行。它的最大优点，就是代码的写法非常像同步操作，如果去除yield 命令，
+简直一模一样。
+
+```javascript
+function* gen(x) {
+    var y = yield x + 2;
+    return y;
+}
+var g = gen(1);
+g.next() // { value: 3, done: false }
+g.next() // { value: undefined, done: true }
+```
+上面代码中，调用 Generator 函数，会返回一个内部指针（即遍历器） g 。这是 Generator 函数不同于普通函数的另一个地方，即执行它不会返回结
+果，返回的是指针对象。调用指针g 的next 方法，会移动内部指针（即执行异步任务的第一段），指向第一个遇到的yield 语句，上例是执行到x + 2 为
+止。
+换言之， next 方法的作用是分阶段执行Generator 函数。每次调用next 方法，会返回一个对象，表示当前阶段的信息（ value 属性和done 属性）。
+value 属性是yield 语句后面表达式的值，表示当前阶段的值； done 属性是一个布尔值，表示 Generator 函数是否执行完毕，即是否还有下一个阶段。
+
+### 2.12.2 Thunk 函数 {#GeneratorApplications} [回到目录](#index)
+
+### 2.12.1 co 模块 {#GeneratorApplications} [回到目录](#index)
 
 ## 参考资料
 
