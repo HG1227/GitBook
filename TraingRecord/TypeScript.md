@@ -192,6 +192,165 @@ function test2(a?:string, b:string, c:string = "c") {
 test2("x")
 ```
 
+### 3.3 函数新特性
+
+* Rest and Spread操作符：用来声明任意数量的方法参数
+
+```typescript
+function fun1(...args) {
+    args.forEach(function(arg) {
+      console.log(arg)
+    })
+}
+
+fun1(1, 2, 3)
+fun1(5, 6, 7, 8, 9)
+```
+
+> typescript暂不支持的ES6语法
+
+```typescript
+function fun1(a, b, c) {
+    console.log(a)
+    console.log(b)
+    console.log(c)
+}
+
+var args = [1, 2]
+fun1(...args)
+
+var args2 = [4, 5, 6, 7, 8]
+fun1(...args2)
+```
+
+* generator函数：控制函数的执行过程，手工暂停和恢复代码执行
+
+```typescript
+function* doSomething() {
+    console.log('start')
+    
+    yield
+    
+    console.log('end')
+}
+
+var func1 = doSomething()
+
+func1.next()
+func1.next()
+```
+
+```typescript
+function* gerStockPrice() {
+    while (true) {
+        yield Math.random()*100
+    }
+}
+
+var priceGenerator = gerStockPrice('IBM')
+
+var limitPrice = 15
+
+var price = 100
+
+while (price > limitPrice){
+    price = priceGenerator.next().value
+    console.log(`the generator return ${price}`)
+}
+
+console.log(`buying at ${price}`)
+```
+
+* destructuring析构表达式：通过表达式将对象或数组拆解成任意数量的变量
+
+从对象中取值
+
+> ES5
+
+```javascript
+function getStock() {
+    return {
+        code: 'IBM',
+        price: 100
+    }
+}
+var stock = getStock()
+var code = stock.code
+var price = stock.price
+```
+
+> ES6
+
+```typescript
+function getStock() {
+    return {
+        code: 'IBM',
+        price: 100
+    }
+}
+var {code, price} = getStock()
+console.log(code)
+console.log(price)
+// var {codex, price} = getStock()
+// var {code: codex, price} = getStock()
+// console.log(codex)
+```
+
+```typescript
+function getStock() {
+    return {
+        code: 'IBM',
+        price: {
+            price1: 200,
+            price2: 400
+        },
+        other: 'xxx'
+    }
+}
+var {code, price} = getStock()
+console.log(code)
+console.log(price)
+var {code, price: {price2}} = getStock()
+console.log(code)
+console.log(price)
+```
+
+从数组中取值
+
+```typescript
+var array1 = [1, 2, 3, 4]
+var [number1, number2] = array1
+
+console.log(number1)
+console.log(number2)
+
+var [,,number3, number4] = array1
+
+console.log(number3)
+console.log(number4)
+
+var [number1,,, number4] = array1
+
+console.log(number1)
+console.log(number4)
+```
+
+```typescript
+var array1 = [1, 2, 3, 4]
+var [number1, number2, ...others] = array1
+
+console.log(number1)
+console.log(number2)
+console.log(others)
+
+function doSomething([number1, number2, ...others]) {
+    console.log(number1)
+    console.log(number2)
+    console.log(others)
+}
+doSomething(array1)
+```
+
 ## 参考资料
 
 * [TypeScript 教程](https://www.runoob.com/typescript/ts-tutorial.html)
