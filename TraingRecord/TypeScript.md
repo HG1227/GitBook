@@ -351,6 +351,84 @@ function doSomething([number1, number2, ...others]) {
 doSomething(array1)
 ```
 
+### 3.4 表达式和循环
+
+* 箭头表达式：用来声明匿名函数，消除传统匿名函数的this指针问题
+
+```typescript
+// 单行
+var sum = (arg1, arg2) => arg1 + arg2
+// 多行
+var sum2 = (arg1, arg2) => {
+    return arg1 + arg2
+}
+// 无参数
+var sum3 = () => {
+
+}
+// 1个参数
+var sum4 = arg1 => {
+    console.log(arg1)
+}
+```
+
+```typescript
+var myArray = [1,2,3,4,5]
+
+console.log(myArray.filter(value => value%2 == 0))
+```
+
+```typescript
+function getStock(name: string) {
+    this.name = name
+    
+    setInterval(function() {
+      console.log('name is :' + this.name)
+    }, 1000)
+}
+
+var stock = new getStock('IBM')
+
+function getStock2(name: string) {
+    this.name = name
+    
+    setInterval(() => {
+      console.log('name is :' + this.name)
+    }, 1000)
+}
+
+var stock2 = new getStock2('IBM')
+```
+
+* forEach(), for in 和 for of：
+
+```typescript
+var myArray = [1,2,3,4]
+myArray.desc = 'for number'
+
+// 忽略属性值 不能打断循环break
+myArray.forEach(value => console.log(value))
+
+// 循环对象键值对的键名
+for (var n in myArray) {
+    console.log(n)
+    console.log(myArray[n])
+}
+
+//忽略属性值 可以打断循环做判断
+for (var n of myArray) {
+    console.log(n)
+}
+for (var n of myArray) {
+    if (n > 2) break
+    console.log(n)
+}
+for (var n of 'for number') {
+    console.log(n)
+}
+//for of循环可以用于任何对象上 常见的集合 数组、map、set 以及字符串
+```
+
 ## 参考资料
 
 * [TypeScript 教程](https://www.runoob.com/typescript/ts-tutorial.html)
