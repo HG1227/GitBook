@@ -57,7 +57,7 @@ export class Hello {}
 
 ### 3.1 字符串新特性
 
-* 多行字符串
+#### 3.1.1 多行字符串
 
 ```typescript
 var content = `aaa
@@ -65,7 +65,7 @@ bbb
 ccc`
 ```
 
-* 字符串模板
+#### 3.1.2 字符串模板
 
 ```typescript
 var myname = 'gao tianyang'
@@ -89,7 +89,7 @@ console.log(`<div>
 </div>`)
 ```
 
-* 自动拆分字符串
+#### 3.1.3 自动拆分字符串
 
 ```typescript
 function test(template, name, age) {
@@ -109,7 +109,7 @@ test`hello my name is ${myname}, i'm ${getAge()}`
 
 ### 3.2 参数新特性
 
-* 参数类型：在参数名称后面使用冒号来制定参数的类型
+#### 3.2.1 参数类型：在参数名称后面使用冒号来制定参数的类型
 
 ```typescript
 var myname: string  = "gao tianyang"
@@ -150,7 +150,7 @@ zhangsan.name = ""
 zhangsan.age = 18
 ```
 
-* 默认参数：在参数声明后面用等号来指定参数的默认值
+#### 3.2.2 默认参数：在参数声明后面用等号来指定参数的默认值
 
 ```typescript
 var myname: string = "gao tiangyang"
@@ -172,7 +172,7 @@ function test2(a:string, b:string, c:string = "c") {
 test2("x", "y")
 ```
 
-* 可选参数：在方法的参数声明后面用问号来标明此参数为可选参数
+#### 3.2.3 可选参数：在方法的参数声明后面用问号来标明此参数为可选参数
 
 ```typescript
 // 注意可选参数需要放置在必选参数后
@@ -194,7 +194,7 @@ test2("x")
 
 ### 3.3 函数新特性
 
-* Rest and Spread操作符：用来声明任意数量的方法参数
+#### 3.3.1 Rest and Spread操作符：用来声明任意数量的方法参数
 
 ```typescript
 function fun1(...args) {
@@ -223,7 +223,7 @@ var args2 = [4, 5, 6, 7, 8]
 fun1(...args2)
 ```
 
-* generator函数：控制函数的执行过程，手工暂停和恢复代码执行
+#### 3.3.2 generator函数：控制函数的执行过程，手工暂停和恢复代码执行
 
 ```typescript
 function* doSomething() {
@@ -261,7 +261,7 @@ while (price > limitPrice){
 console.log(`buying at ${price}`)
 ```
 
-* destructuring析构表达式：通过表达式将对象或数组拆解成任意数量的变量
+#### 3.3.3 destructuring析构表达式：通过表达式将对象或数组拆解成任意数量的变量
 
 从对象中取值
 
@@ -353,7 +353,7 @@ doSomething(array1)
 
 ### 3.4 表达式和循环
 
-* 箭头表达式：用来声明匿名函数，消除传统匿名函数的this指针问题
+#### 3.4.1 箭头表达式：用来声明匿名函数，消除传统匿名函数的this指针问题
 
 ```typescript
 // 单行
@@ -400,7 +400,7 @@ function getStock2(name: string) {
 var stock2 = new getStock2('IBM')
 ```
 
-* forEach(), for in 和 for of：
+#### 3.4.2 forEach(), for in 和 for of：
 
 ```typescript
 var myArray = [1,2,3,4]
@@ -428,6 +428,234 @@ for (var n of 'for number') {
 }
 //for of循环可以用于任何对象上 常见的集合 数组、map、set 以及字符串
 ```
+
+### 3.5 面向对象特性
+
+#### 3.5.1 TypeScript-类(class)
+ 
+类是TypeScript的核心，使用TypeScript开发时，大部分代码都是写在类里面的
+
+这里会介绍类的定义，构造函数，以及类的继承
+
+##### 3.5.1.1 类的声明
+
+```typescript
+// 类的声明
+class Person {
+    name;
+    
+    eat () {
+        console.log('im eating')
+    }
+}
+
+// 类的实例化
+var p1 = new Person()
+p1.name = 'batman'
+p1.eat()
+// 同一个类 可以new多个实例 每个实例属性方法相同 但状态不同
+var p2 = new Person()
+p2.name = 'superman'
+p2.eat()
+```
+
+访问控制符：控制类的属性是否可以在外部访问到
+
+`public`: 可以在内外访问（默认值）
+
+```typescript
+class Person {
+    public name;
+    
+    public eat () {
+        console.log('im eating')
+    }
+}
+
+var p1 = new Person()
+p1.name = 'batman'
+p1.eat()
+```
+`private`: 私有的 只可以在内部访问
+
+```typescript
+class Person {
+    private name;
+    
+    private eat () {
+        console.log('im eating')
+    }
+}
+
+var p1 = new Person()
+p1.name = 'batman'
+p1.eat()
+```
+
+`protected`: 受保护的 可以在内部和继承的子类访问
+
+```typescript
+class Person {
+    protected name;
+    
+    protected eat () {
+        console.log('im eating')
+    }
+}
+
+var p1 = new Person()
+p1.name = 'batman'
+p1.eat()
+```
+
+##### 3.5.1.2 类的构造函数
+
+构造函数`constructor`在类的实例化时被调用 并只会调用一次
+
+```typescript
+class Person {
+    constructor(){
+        console.log('do something')
+    }
+    
+    name;
+    
+    eat () {
+        console.log('im eating')
+    }
+}
+
+var p1 = new Person()
+p1.constructor()
+p1.name = 'batman'
+p1.eat()
+var p2 = new Person()
+p1.name = 'superman'
+p1.eat()
+```
+
+构造函数的使用场景
+
+例如在创建Person类的时候，name必须被指定
+
+```typescript
+class Person {
+    
+    name;
+    
+    constructor(name: string){
+        this.name = name
+    }
+    
+    eat () {
+        console.log('im eating')
+    }
+}
+
+var p1 = new Person()
+p1.name = 'batman'
+p1.eat()
+var p2 = new Person('superman')
+p1.eat()
+```
+
+简化可写 注意构造函数的访问控制符必须注明
+
+```typescript
+class Person {
+    
+    constructor(public name: string){
+    
+    }
+    
+    eat () {
+        console.log(this.name)
+    }
+}
+
+var p1 = new Person('batman')
+p1.eat()
+```
+
+##### 3.5.1.3 类的继承
+
+> extends 声明类的继承关系 继承关系是一种'是'的关系
+
+```typescript
+class Person {
+    
+    constructor(public name: string){
+    
+    }
+    
+    eat () {
+        console.log(this.name)
+    }
+}
+
+class Employee extends Person {
+    code: string
+    
+    work () {
+        console.log('do work')
+    }
+}
+
+var e1 = new Employee('batman')
+e1.eat()
+e1.code = '001'
+e1.work()
+```
+
+> super 调用父类属性
+
+```typescript
+class Person {
+    constructor(public name: string){
+        console.log('im person')
+    }
+    eat () {
+        console.log('im eating')
+    }
+}
+
+class Employee extends Person {
+    constructor(name: string, code: string){
+        super(name)
+        console.log('im employee')
+        this.code = code
+    }
+    code: string
+    
+    work () {
+        super.eat()
+        this.doWork()
+    }
+    
+    doWork () {
+        console.log('im working')
+    }
+    
+    // private doWork () {
+    //     console.log('im working')
+    // }
+}
+
+var e1 = new Employee('batman', '002')
+e1.work()
+```
+
+#### 3.5.2 TypeScript-泛型
+#### 3.5.3 TypeScript-接口
+#### 3.5.4 TypeScript-模块
+#### 3.5.5 TypeScript-注释
+#### 3.5.6 TypeScript-类型定义文件
+
+### 3.6 TypeScript总结
+
+### 3.7 最佳实践
+
+> 在Vue项目中使用TypeScript
 
 ## 参考资料
 
