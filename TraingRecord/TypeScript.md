@@ -720,9 +720,116 @@ e1.work()
 
 指定数组只能放某个类型的元素 不能放其他类型的元素
 
-#### 3.5.3 TypeScript-接口
-#### 3.5.4 TypeScript-模块
-#### 3.5.5 TypeScript-注释
+#### 3.5.3 TypeScript-接口(Interface)
+
+用来建立某种代码约定，使得其他开发者在调用某个方法或创建新的类时必须遵循接口所定义的代码约定
+
+用接口声明属性
+
+```typescript
+interface IPerson {
+    name: string
+    age: number
+}
+class Person {
+    constructor(public config: IPerson) {
+        
+    }
+}
+var p1 = new Person({
+    name: 'zhangsan',
+    age: 18
+})
+var p2 = new Person({
+    name: 'zhangsan',
+    age: 18,
+    other: 'other'
+})
+var p3 = new Person({
+    name: 'zhangsan'
+})
+```
+
+用接口声明方法
+
+在接口里声明一个方法 所有声明实现接口的类 必须实现此方法
+
+```typescript
+interface Animal {
+    eat()
+}
+class Sheep implements Animal {
+    eat() {
+        console.log('im eat grass')
+    }
+}
+class Tiger implements Animal {
+    eat() {
+        console.log('im eat meat')
+    }
+}
+```
+
+#### 3.5.4 TypeScript-模块(Module)
+
+模块可以帮助开发者将代码分割为可重用的单元。开发者可以自己决定将模块中的哪些资源(类、方法、变量)暴露出去供外部使用，
+哪些资源只能在模块内部使用。
+
+在TypeScript中 一个文件就是一个模块
+导出:export 导入:import
+通过导出导入 规定本模块对外暴露什么以及需要其他模块提供什么
+
+`a.ts`
+```typescript
+export var prop1;
+var prop2;
+
+export function func1 () {
+    
+}
+
+function func2 () {
+    
+}
+
+export class Clazz1 {
+    
+}
+
+class Clazz2 {
+    
+}
+```
+
+`b.ts`
+```typescript
+import {prop1, func1, Clazz1} from './a'
+
+console.log(pro1)
+
+function func1();
+
+new Clazz1();
+
+export function func3 () {
+    
+}
+```
+
+一个模块既可以导入 属性、方法、类 同时可以导出 两者相互不影响
+
+#### 3.5.5 TypeScript-注解(annotation)
+
+**注解**为程序的元素(类、方法、变量)加上更直观更名了的**说明**，这些说明信息与程序的业务逻辑无关，而是供指定的**工具**或**框架**使用。
+
+![](../assets/TypeScript/annotation.png)
+![](../assets/TypeScript/annotation2.png)
+
+上图中，用angular2框架写的程序，其中`Component`是下面`AppComponent`的一段注解
+这个注解本身是由angular2框架所提供的，注解中的一些属性会告诉angular2框架怎么处理`AppComponent`这个类
+
+可以理解为，当angular2框架实例化`AppComponent`这个类时，angular2框架应当加载属性中提供的html及css
+
 #### 3.5.6 TypeScript-类型定义文件
 
 ### 3.6 TypeScript总结
