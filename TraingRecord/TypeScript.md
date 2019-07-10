@@ -115,10 +115,10 @@ test`hello my name is ${myname}, i'm ${getAge()}`
 var myname: string  = "gao tianyang"
 myname = 13
 
-var alias = "wang zhiwei"
+var alise = "wang zhiwei"
 alise = 13
 
-var alias: any = "wang zhiwei"
+var alise: any = "wang zhiwei"
 alise = 13
 
 var age: number = 13
@@ -314,7 +314,7 @@ console.log(code)
 console.log(price)
 var {code, price: {price2}} = getStock()
 console.log(code)
-console.log(price)
+console.log(price2)
 ```
 
 ##### 3.3.3.2 从数组中取值
@@ -851,9 +851,9 @@ typings install dt~jquery --global --save // 指定前缀也就是源的维护�
 
 遇到jq无法引用的问题 通过`tsconfig.json`配置解决 此配置还加了未使用报错
 
-![TS的tsconfig.json配置](https://www.jianshu.com/p/6d2783f1ab51)
-![tsconfig.json编译选项](https://www.cnblogs.com/zaihuilou/p/9556373.html)
-![Typings能否基于package.json自动安装d.ts？](https://segmentfault.com/q/1010000005952451)
+[TS的tsconfig.json配置](https://www.jianshu.com/p/6d2783f1ab51)
+[tsconfig.json编译选项](https://www.cnblogs.com/zaihuilou/p/9556373.html)
+[Typings能否基于package.json自动安装d.ts？](https://segmentfault.com/q/1010000005952451)
 
 ### 3.6 TypeScript总结
 
