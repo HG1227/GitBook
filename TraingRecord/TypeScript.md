@@ -677,7 +677,49 @@ var e1 = new Employee('batman', '002')
 e1.work()
 ```
 
-#### 3.5.2 TypeScript-泛型
+#### 3.5.2 TypeScript-泛型(generic)
+
+参数化的类型，一般用来限制集合的内容
+
+```typescript
+class Person {
+    constructor(public name: string){
+        console.log('im person')
+    }
+    eat () {
+        console.log('im eating')
+    }
+}
+
+class Employee extends Person {
+    constructor(name: string, code: string){
+        super(name)
+        console.log('im employee')
+        this.code = code
+    }
+    code: string
+    
+    work () {
+        super.eat()
+        this.doWork()
+    }
+    
+    private doWork () {
+        console.log('im working')
+    }
+}
+
+var workers: Array<Person> = []
+workers[0] = new Person('ZhangSan')
+workers[1] = new Employee('LiSi', '2')
+workers[2] = 2
+
+var e1 = new Employee('batman', '002')
+e1.work()
+```
+
+指定数组只能放某个类型的元素 不能放其他类型的元素
+
 #### 3.5.3 TypeScript-接口
 #### 3.5.4 TypeScript-模块
 #### 3.5.5 TypeScript-注释
