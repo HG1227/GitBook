@@ -23,7 +23,7 @@ JavaScript实现了ES5规范，TypeScript实现了ES6规范
 
 ### 1.2 优势
 
-* 支持ES6规范
+* 支持ES6规范(15年发布)
 * 强大的IDE支持(错误提示、语法提示、重构)
 * Angular2的开发语言
 
@@ -125,6 +125,7 @@ var age: number = 13
 
 var man: boolean = true
 
+// 是否需要返回值(void-不需要)
 function test() : void {
   return ""
 }
@@ -140,6 +141,7 @@ function test3(name: string) : string {
 }
 test3(13)
 
+// 自定义类型
 class Person {
   name: string;
   age: number;
@@ -241,7 +243,7 @@ func1.next()
 ```
 
 ```typescript
-function* gerStockPrice() {
+function* gerStockPrice(stock) {
     while (true) {
         yield Math.random()*100
     }
@@ -263,7 +265,7 @@ console.log(`buying at ${price}`)
 
 #### 3.3.3 destructuring析构表达式：通过表达式将对象或数组拆解成任意数量的变量
 
-从对象中取值
+##### 3.3.3.1 从对象中取值
 
 > ES5
 
@@ -315,7 +317,7 @@ console.log(code)
 console.log(price)
 ```
 
-从数组中取值
+##### 3.3.3.2 从数组中取值
 
 ```typescript
 var array1 = [1, 2, 3, 4]
@@ -336,6 +338,7 @@ console.log(number4)
 ```
 
 ```typescript
+// Rest and Spread操作符必须是最后一个参数
 var array1 = [1, 2, 3, 4]
 var [number1, number2, ...others] = array1
 
@@ -350,6 +353,8 @@ function doSomething([number1, number2, ...others]) {
 }
 doSomething(array1)
 ```
+
+析构表达式的好处 当我们需要从一个对象的属性或者数组的元素里 初始化本地变量时 我们可以写更少的代码
 
 ### 3.4 表达式和循环
 
@@ -559,7 +564,9 @@ var p2 = new Person('superman')
 p1.eat()
 ```
 
-简化可写 注意构造函数的访问控制符必须注明
+简化可写 注意构造函数的访问控制符不可省略
+
+> 构造函数有、无访问控制符含义不同
 
 ```typescript
 class Person {
