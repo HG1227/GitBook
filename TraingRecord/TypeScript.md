@@ -383,7 +383,11 @@ var myArray = [1,2,3,4,5]
 console.log(myArray.filter(value => value%2 == 0))
 ```
 
+箭头表达式的最大作用不是简化代码 而是解决this关键字的指向问题
+ES5的this是调用时的this ES6箭头表达式的this是声明时的this
+
 ```typescript
+// ES5
 function getStock(name: string) {
     this.name = name
     
@@ -394,6 +398,7 @@ function getStock(name: string) {
 
 var stock = new getStock('IBM')
 
+// ES6
 function getStock2(name: string) {
     this.name = name
     
@@ -416,7 +421,7 @@ myArray.forEach(value => console.log(value))
 
 // 循环对象键值对的键名
 for (var n in myArray) {
-    console.log(n)
+    if (myArray[n] > 2) break
     console.log(myArray[n])
 }
 
@@ -442,7 +447,7 @@ for (var n of 'for number') {
 
 这里会介绍类的定义，构造函数，以及类的继承
 
-##### 3.5.1.1 类的声明
+##### 3.5.1.1 类的定义
 
 ```typescript
 // 类的声明
@@ -466,7 +471,7 @@ p2.eat()
 
 访问控制符：控制类的属性是否可以在外部访问到
 
-`public`: 可以在内外访问（默认值）
+`public`: (公共的) 可以在内外访问（默认值）
 
 ```typescript
 class Person {
@@ -481,7 +486,8 @@ var p1 = new Person()
 p1.name = 'batman'
 p1.eat()
 ```
-`private`: 私有的 只可以在内部访问
+
+`private`: (私有的) 只可以在内部访问
 
 ```typescript
 class Person {
@@ -497,7 +503,7 @@ p1.name = 'batman'
 p1.eat()
 ```
 
-`protected`: 受保护的 可以在内部和继承的子类访问
+`protected`: (受保护的) 可以在内部和继承的子类访问
 
 ```typescript
 class Person {
@@ -535,8 +541,8 @@ p1.constructor()
 p1.name = 'batman'
 p1.eat()
 var p2 = new Person()
-p1.name = 'superman'
-p1.eat()
+p2.name = 'superman'
+p2.eat()
 ```
 
 构造函数的使用场景
@@ -564,14 +570,32 @@ var p2 = new Person('superman')
 p1.eat()
 ```
 
-简化可写 注意构造函数的访问控制符不可省略
+简化可写
+
+```typescript
+class Person {
+    
+    constructor(public name: string){
+    
+    }
+    
+    eat () {
+        console.log(this.name)
+    }
+}
+
+var p1 = new Person('batman')
+p1.eat()
+```
+
+注意构造函数的访问控制符不可省略
 
 > 构造函数有、无访问控制符含义不同
 
 ```typescript
 class Person {
     
-    constructor(public name: string){
+    constructor(name: string){
     
     }
     
@@ -643,6 +667,7 @@ class Employee extends Person {
         console.log('im working')
     }
     
+    // 私有的doWork方法
     // private doWork () {
     //     console.log('im working')
     // }
