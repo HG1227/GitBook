@@ -830,13 +830,41 @@ export function func3 () {
 
 可以理解为，当angular2框架实例化`AppComponent`这个类时，angular2框架应当加载属性中提供的html及css
 
-#### 3.5.6 TypeScript-类型定义文件
+#### 3.5.6 TypeScript-类型定义文件(*.d.ts)
+
+类型定义文件用来帮助开发者在TypeScript中使用已有的JavaScript的工具包
+
+如：JQuery
+
+手动获取类型定义文件[DefinitelyTyped项目](https://github.com/DefinitelyTyped/DefinitelyTyped)
+
+工具获取类型定义文件[typings项目](https://github.com/typings/typings)
+
+```
+npm install typings --global
+typings search jquery
+
+cd ~/项目目录
+typings install jquery --save // 未成功使用下面命令
+typings install dt~jquery --global --save // 指定前缀也就是源的维护地址
+```
+
+遇到jq无法引用的问题 通过`tsconfig.json`配置解决 此配置还加了未使用报错
+
+![TS的tsconfig.json配置](https://www.jianshu.com/p/6d2783f1ab51)
+![tsconfig.json编译选项](https://www.cnblogs.com/zaihuilou/p/9556373.html)
+![Typings能否基于package.json自动安装d.ts？](https://segmentfault.com/q/1010000005952451)
 
 ### 3.6 TypeScript总结
 
+* 介绍了TypeScript的基本概念和优势
+* 介绍了如何搭建TypeScript开发环境
+* 介绍了TypeScript的的语法和特性
+
 ### 3.7 最佳实践
 
-> 在Vue项目中使用TypeScript
+#### 3.7.1 在Vue项目中使用TypeScript
+
 
 ## 参考资料
 
