@@ -521,7 +521,7 @@ p1.eat()
 
 ##### 3.5.1.2 类的构造函数
 
-构造函数`constructor`在类的实例化时被调用 并只会调用一次
+构造函数`constructor`在类的实例化时被自动调用
 
 ```typescript
 class Person {
@@ -567,7 +567,7 @@ var p1 = new Person()
 p1.name = 'batman'
 p1.eat()
 var p2 = new Person('superman')
-p1.eat()
+p2.eat()
 ```
 
 简化可写
