@@ -436,7 +436,50 @@ for (var n of myArray) {
 for (var n of 'for number') {
     console.log(n)
 }
-//for of循环可以用于任何对象上 常见的集合 数组、map、set 以及字符串
+```
+
+> 补充
+
+for of循环可以用于任何具有遍历器Iterator的对象上 常见的集合如：数组、map、set以及字符串内置了Iterator(迭代器)
+
+```typescript
+Array.prototype[Symbol.iterator];
+ 
+// ƒ values() { [native code] }
+ 
+String.prototype[Symbol.iterator];
+ 
+// ƒ [Symbol.iterator]() { [native code] }
+ 
+Set.prototype[Symbol.iterator];
+ 
+// ƒ values() { [native code] }
+ 
+Map.prototype[Symbol.iterator];
+ 
+// ƒ entries() { [native code] }
+ 
+Object.prototype[Symbol.iterator];
+ 
+// undefined
+```
+
+如何让对象可以被for of 遍历，当然是给它添加遍历器，代码如下：
+
+```typescript
+Object.prototype[Symbol.iterator] = function() {
+    let _this = this
+    let index = 0
+    let length = Object.keys(_this).length
+    return {
+        next:() => {
+            let value = _this[index]
+            let done = (index >= length)
+            index++
+            return {value,done}
+        }
+    }
+}
 ```
 
 ### 3.5 面向对象特性
