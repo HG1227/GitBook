@@ -2228,7 +2228,7 @@ gen.return(2); // Object {value: 2, done: true}
 
 ```
 
-#### 2.11.8 yield * 表达式 {#GeneratorYield*} [回到目录](#index)
+#### 2.11.8 `yield *` 表达式 {#GeneratorYield*} [回到目录](#index)
 
 ```javascript
 function* foo() {
