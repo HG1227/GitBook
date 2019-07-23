@@ -913,3 +913,10 @@ typings install dt~jquery --global --save // 指定前缀也就是源的维护�
 
 * [TypeScript 教程](https://www.runoob.com/typescript/ts-tutorial.html)
 * [vue + typescript 新项目起手式](https://segmentfault.com/a/1190000011744210?utm_source=tuicool&utm_medium=referral)
+* [使用 TypeScript 来写 Vue](https://blog.csdn.net/kaelyn_X/article/details/85019575)
+* [!: 使用场景及问题分析](https://www.tslang.cn/docs/release-notes/typescript-2.7.html)
+* [ts 新版本问题总结](https://www.jianshu.com/p/71ac8dd4c46e)
+* [计算属性](https://blog.csdn.net/xlelou/article/details/81477391)
+* [console报错 eslint](https://blog.csdn.net/weixin_42476786/article/details/85132793)
+* [tslint 或者eslint怎样覆盖配置](https://segmentfault.com/q/1010000008691654)
+* [ESlint中console.log报错问题](https://blog.csdn.net/weixin_34403976/article/details/89469152)
