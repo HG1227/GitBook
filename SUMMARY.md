@@ -46,6 +46,7 @@
     * [测试自动化](TraingRecord/testAuto.md)
     * [培训材料撰写](TraingRecord/TrainingMaterialWriting.md)
     * [TypeScript](TraingRecord/TypeScript.md)
+        * [VueAndTypeScript](TraingRecord/VueAndTypeScript.md)
     * [view](TraingRecord/view.md)
     * [Vue常用属性](TraingRecord/Vue.md)
     * [Webpack](TraingRecord/Webpack.md)
