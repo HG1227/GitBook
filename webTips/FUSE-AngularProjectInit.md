@@ -3,7 +3,7 @@
 #### 作者：高天阳
 #### 邮箱：13683265113@163.com
 
-```angular2html
+```
 更改历史
 
 * 2017-11-21	高天阳	初始化文档
@@ -21,7 +21,7 @@
 
 
 ### 1.2 克隆项目至本地：
-```angular2html
+```
 git clone [项目克隆地址]
 
 code:
@@ -29,20 +29,20 @@ git clone git@115.28.80.125:haomo/wechatgame.git
 ```
 
 ### 1.3 切换开发分支：
-```angular2html
+```
 git branch -a   // 查看分支
 git checkout dev    // 切换至dev分支
 ```
 
 ### 1.4 服务启动说明：
 
-```angular2html
+```
 npm install // 安装服务器插件(若安装过慢或丢包，请使用cnpm安装)
 bower install // 安装依赖的插件  
 ```
 
 ### 1.5 服务启动：
-```angular2html
+```
 gulp serve // 启动项目
 ```
 
@@ -50,7 +50,7 @@ gulp serve // 启动项目
 
 ### 2.1 目录结构：
 
-```angular2html
+```
 wechatgame/src/app/main/wegame/     编写代码存放目录
 wechatgame/src/app/navigation/      框架导航配置
 wechatgame/src/app/toolbar/         框架工具栏配置
@@ -64,7 +64,7 @@ wechatgame/node_modules             开发依赖
 
 * 项目主体
 
-```angular2html
+```
 index.route.js   配置起始页面
 index.module.js   配置项目目录
 wechatgame/src/app/main/wegame/sample.module.js    toolbar配置文件
@@ -83,7 +83,7 @@ wechatgame/src/app/main/wegame/customer/XXX.js    具体页面路由文件
 
 * 导航栏
 
-```angular2html
+```
 wechatgame/src/app/navigation/  导航配置
 wechatgame/src/app/navigation/navigation.module.js   导航路由配置
 wechatgame/src/app/navigation/navigation.controller.js   工具栏控制器配置
@@ -99,7 +99,7 @@ wechatgame/src/app/navigation/XXX/layouts   框架导航页面不同样式布局
 
 * 工具栏
 
-```angular2html
+```
 wechatgame/src/app/toolbar/         工具栏配置
 wechatgame/src/app/toolbar/toolbar.module.js   工具栏路由配置
 wechatgame/src/app/toolbar/toolbar.controller.js   工具栏控制器配置
@@ -122,7 +122,7 @@ wechatgame/src/app/toolbar/XXX/layouts   工具栏页面不同样式布局方案
 
 安装restangular插件
 
-```angular2html
+```
 bower install --save restangular
 ```
 ![](/assets/Fuse/Fuse15.jpeg)
@@ -161,7 +161,7 @@ bower install --save restangular
 
 * 处理方法1：此问题需安装node-sass
 
-```angular2html
+```
 npm install node-sass
 ```
 
@@ -175,7 +175,7 @@ npm install node-sass
 
 * 处理方法：全局安装bower、gulp
 
-```angular2html
+```
 npm install bower -g
 npm install gulp -g
 ```
@@ -245,7 +245,7 @@ npm install gulp -g
 ![](/assets/Fuse/Fuse35.jpeg)
 ![](/assets/Fuse/Fuse36.jpeg)
 
-```angular2html
+```
 /**
  * 时间格式化
  * @param date
@@ -285,7 +285,7 @@ JS：
 
 * 核心代码
 
-```angular2html
+```
 /**
  * 存储cookie
  */
@@ -304,7 +304,7 @@ if(vm.isRemember){
 
 ### 5.2 切换分支命令(开发分支：dev)
 
-``` angular2html
+``` 
 git checkout -b dev  
 git branch --set-upstream dev remotes/origin/dev
 ```
@@ -313,13 +313,13 @@ git branch --set-upstream dev remotes/origin/dev
 
 * 查看插件是否存在于bower库
 
-```angular2html
+```
 bower search [插件名称]
 ```
 
 * 安装插件并存储于项目依赖
 
-```angular2html
+```
 bower install [插件名称] --save
 
 bower install [插件名称] -S
@@ -327,7 +327,7 @@ bower install [插件名称] -S
 
 * 安装插件并存储于开发依赖
 
-```angular2html
+```
 bower install [插件名称] --save-dev
 
 bower install [插件名称] -D
@@ -335,13 +335,13 @@ bower install [插件名称] -D
 
 ### 5.4 打包项目：
 
-```angular2html
+```
 gulp build 打包 
 ```
 
 ## 6 代码结构
 
-```angular2html
+```
 vm.setSearchParams  = function(resetFlag){
   var deferred = $q.deferred();
 
@@ -383,7 +383,7 @@ vm.process = function(data){
 };
 ```
 
-```angular2html
+```
 vm.item = {};
 
 vm.loadItem = function(id){

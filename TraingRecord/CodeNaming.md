@@ -104,7 +104,7 @@
 * 注释
     * @TODO代办事项
     * 注释方法 /**回车
-```angular2html
+```
 /**
 * @TODO @desc 需要修改函数名称
 * @params

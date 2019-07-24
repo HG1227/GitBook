@@ -13,7 +13,7 @@ React 是一个用于构建用户界面的 JAVASCRIPT 库，主要用于构建UI
 5. **单向响应的数据流** − React 实现了单向响应的数据流，从而减少了重复代码，这也是它为什么比传统数据绑定更简单。
 
 ## 快速构建 React 开发环境
-```angular2html
+```
 npm install -g create-react-app
 create-react-app [name]
 ```
@@ -23,7 +23,7 @@ JSX是JavaScript的语法扩展,利用 JSX 编写 DOM 结构，可以用原生�
 这两者约定通过大小写来区分，小写的**字符串**是 HTML 标签，大写开头的**变量**是 React 组件。
 
 实例：JSX 中使用 JavaScript 表达式，表达式可写在花括号 {} 中：
-```angular2html
+```
 ReactDOM.render(
     <div> 
         {1+1}
@@ -35,12 +35,12 @@ ReactDOM.render(
 
 ## React 渲染元素
 元素就是您要在屏幕上看到的内容，例如：
-```angular2html
+```
 const element = <h1>Hello, world</h1>;
 ```
 
 假设你的HTML文件有一个<div>： <div id=“root”></div>我们称之为“根”DOM节点，其中的所有内容都将由React DOM进行管理，要将React元素渲染到根DOM节点中，请将其两者都传递给ReactDOM.render()：
-```angular2html
+```
 const element = <h1>Hello, world</h1>;
 ReactDOM.render(
     element,
@@ -49,7 +49,7 @@ ReactDOM.render(
 ```
 ## React 组件
 组件可以让您将UI拆分成独立的可重复使用的部分，组件就像JavaScript函数。他们接受任意输入，并返回应该在屏幕上显示的React元素。
-```angular2html
+```
 class Welcome extends Component {
     render() {
         return (
@@ -59,6 +59,6 @@ class Welcome extends Component {
 }
 ```
 使用定义的组件：
-```angular2html
+```
 ReactDOM.render(< Welcome />, document.getElementById('root'));
 ```

@@ -16,13 +16,13 @@
 
 ### 创建工程
 
-```
+```bash
 npm install -g @vue/cli
 ```
 
 node环境要求在8及以上 window系统不支持通过命令行 需要下载安装包进行升级
 
-```
+```bash
 vue create project-name
 ```
 
@@ -30,7 +30,7 @@ vue create project-name
 
 为工程添加TypeScript插件，进入工程目录
 
-```
+```bash
 vue add typescript
 // 执行该指令后 会在项目目录中修改、或添加ts文件
 ```
@@ -43,7 +43,7 @@ vue-cli-plugin-typescript插件除了添加了typescript相关依赖之外，我
 
 ### 使用Ts开发Vue
 
-```vue
+```
 <template>
   <div class="content-wrapper" >
 

@@ -4,12 +4,12 @@
 
 ### 第一步 打开bash_profile或者zshrc文件
 
-```angular2html
+```
 vim ~/.zshrc
 ```
 
 ### 第二步 将命令写到bash_profile或者zshrc中
-```angular2html
+```
 gitacpp(){
     git add . && git commit -m "$1" && git pull && git push
 }
@@ -21,7 +21,7 @@ hexocgd(){
 
 文件修改后如下
 
-```angular2html
+```
 #sellrobbyrussel If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -131,11 +131,11 @@ alias可以简化一些复杂的命令串，使一个单词或简化后的命令
 
 ### 基本用法
 
-```angular2html
+```
 alias 简化命令=‘实际的长串命令’    //实际长串命令通常为‘原命令 -/选项参数’
 ```
 
-```angular2html
+```
 alias gitacpp = 'git add . && git commit -m "$1" && git pull && git push' 
 alias hexocgd = 'hexo clean && hexo g && hexo d' 
 ```
@@ -143,13 +143,13 @@ alias hexocgd = 'hexo clean && hexo g && hexo d'
 
 ### 获取别名
 
-```angular2html
+```
 alias        //即可查看当前设定的所有alias别名
 ```
 
 ### 取消别名
 
-```angular2html
+```
 unalias 简化命令
 ```
 

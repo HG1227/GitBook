@@ -2,7 +2,7 @@
 
 ## 列表页
 
-```angular2html
+```
 vm.setSearchParams  = function(resetFlag){
   var deferred = $q.deferred();
 
@@ -46,7 +46,7 @@ vm.process = function(data){
 
 ## 编辑页
 
-```angular2html
+```
 vm.item = {};
 
 vm.loadItem = function(id){

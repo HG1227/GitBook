@@ -136,7 +136,7 @@ template
   
 templateUrl
 
- ```angular2html
+ ```
 //缓存
 angular.module("app").run(["$templateCache",function($templateCache){
 

@@ -203,7 +203,7 @@ plugins: [{
 
 * 配置`babel-loader`以正确编译 VUX 的js源码（通过配置vux-loader实现）
 
-```vue
+```
 plugins: [{
   name: 'vux-ui'
 }]

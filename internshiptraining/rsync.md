@@ -521,7 +521,7 @@ rsync -avz --delete page/ root@172.16.78.192:www/page
 本地传输文件至服务器后，属主、属组发生了变化，需要登录服务器操作更改文件夹的属主、属组。
 在查看rsync文档中了解到有`-o`（保持文件属主信息）、`-g`（保持文件属组信息）两个参数。
 
-```vue
+```
 rsync -avzog --delete page/ root@172.16.78.192:www/page
 ```
 
@@ -566,7 +566,7 @@ expect eof
 
 同步服务器www/page下的文件内容至本地page文件夹下
 
-```vue
+```bash
 rsync -avz root@172.16.78.192:www/page page
 ```
 

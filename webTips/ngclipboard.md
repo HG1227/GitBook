@@ -3,7 +3,7 @@
 #### 作者：高天阳
 #### 邮箱：13683265113@163.com
 
-```angular2html
+```
 更改历史
 
 * 2017-11-26	高天阳	初始化文档
@@ -26,13 +26,13 @@ ngclipboard使用angularjs指令将文本复制到剪贴板而不使用flash
 
 * Npm安装
 
-```angular2html
+```
 npm install ngclipboard --save
 ```
 
 * Bower安装
 
-```angular2html
+```
 bower install ngclipboard --save
 ```
 
@@ -40,7 +40,7 @@ bower install ngclipboard --save
 
 ### 2.2 引入依赖
 
-```angular2html
+```
 var myApp = angular.module('app', ['ngclipboard']);
 ```
 
@@ -50,13 +50,13 @@ var myApp = angular.module('app', ['ngclipboard']);
 
 * 可是使用id来加载标签里面的内容
 
-```angular2html
+```
 data-clipboard-target="#foo"
 ```
 
 示例:
 
-```angular2html
+```
 <!-- Target -->
 <input id="foo" value="https://github.com/sachinchoolur/ngclipboard.git">
 
@@ -70,13 +70,13 @@ data-clipboard-target="#foo"
 
 * 也可以获取值
 
-```angular2html
+```
 data-clipboard-text=""
 ```
 
 示例:
 
-```angular2html
+```
 <input type="text" ng-model="$ctrl.copyText" />
 <button class="btn btn-primary" uib-tooltip="复制成功" tooltip-popup-close-delay='1000' tooltip-trigger="'focus'" ngclipboard data-clipboard-text='{{$ctrl.copyText}}'>
     复制

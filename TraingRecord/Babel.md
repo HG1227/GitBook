@@ -31,7 +31,7 @@ Babel 可用于转化你的 JavaScript 代码
 
 Babel将其转为普通函数
 
-```angular2html
+```
 //转码前
 input.map(item => item + 1);
 //转码后
@@ -50,7 +50,7 @@ input.map(function (item){
 
 该文件用来设置转码规则和插件，基本格式如下。
 
-```angular2html
+```
 {
     "presets": [],
     "plugins": []
@@ -59,7 +59,7 @@ input.map(function (item){
 
 presets字段设定转码规则，官方提供以下的规则集，你可以根据需要安装。
 
-```angular2html
+```
 # ES2015转码规则
 $ npm install --save-dev babel-preset-es2015
 
@@ -75,7 +75,7 @@ $ npm install --save-dev babel-preset-stage-3
 
 然后，将这些规则加入.babelrc。
 
-```angular2html
+```
 {
     "presets": [
       "es2015",
@@ -93,13 +93,13 @@ Babel提供babel-cli工具，用于命令行转码。
 
 它的安装命令如下。
 
-```angular2html
+```
 $ npm install --global babel-cli
 ```
 
 基本用法如下。
 
-```angular2html
+```
 # 转码结果输出到标准输出
 $ babel example.js
 
@@ -124,14 +124,14 @@ $ babel src -d lib -s
 
 一个解决办法是将babel-cli安装在项目之中。
 
-```angular2html
+```
 # 安装
 $ npm install --save-dev babel-cli
 ```
 
 然后，改写package.json。
 
-```angular2html
+```
 {
   // ...
   "devDependencies": {
@@ -145,7 +145,7 @@ $ npm install --save-dev babel-cli
 
 转码的时候，就执行下面的命令。
 
-```angular2html
+```
 $ npm run build
 ```
 
@@ -155,7 +155,7 @@ babel-cli工具自带一个babel-node命令，提供一个支持ES6的REPL环境
 
 它不用单独安装，而是随babel-cli一起安装。然后，执行babel-node就进入PEPL环境。
 
-```angular2html
+```
 $ babel-node
 > (x => x * 2)(1)
 2
@@ -163,20 +163,20 @@ $ babel-node
 
 babel-node命令可以直接运行ES6脚本。将上面的代码放入脚本文件es6.js，然后直接运行。
 
-```angular2html
+```
 $ babel-node es6.js
 2
 ```
 
 babel-node也可以安装在项目中。
 
-```angular2html
+```
 $ npm install --save-dev babel-cli
 ```
 
 然后，改写package.json。
 
-```angular2html
+```
 {
   "scripts": {
     "script-name": "babel-node script.js"
@@ -191,13 +191,13 @@ $ npm install --save-dev babel-cli
 babel-register模块改写require命令，为它加上一个钩子。
 此后，每当使用require加载.js、.jsx、.es和.es6后缀名的文件，就会先用Babel进行转码。
 
-```angular2html
+```
 $ npm install --save-dev babel-register
 ```
 
 使用时，必须首先加载babel-register。
 
-```angular2html
+```
 require("babel-register");
 require("./index.js");
 ```
@@ -213,13 +213,13 @@ require("./index.js");
 
 安装命令如下。
 
-```angular2html
+```
 $ npm install babel-core --save
 ```
 
 然后，在项目中就可以调用babel-core。
 
-```angular2html
+```
 var babel = require('babel-core');
 
 // 字符串转码
@@ -244,7 +244,7 @@ babel.transformFromAst(ast, code, options);
 
 下面是一个例子。
 
-```angular2html
+```
 var es6Code = 'let x = n => n + 1';
 var es5Code = require('babel-core')
   .transform(es6Code, {
@@ -267,13 +267,13 @@ Babel默认只转换新的JavaScript句法（syntax），而不转换新的API�
 
 安装命令如下。
 
-```angular2html
+```
 $ npm install --save babel-polyfill
 ```
 
 然后，在脚本头部，加入如下一行代码。
 
-```angular2html
+```
 import 'babel-polyfill';
 // 或者
 require('babel-polyfill');
@@ -287,7 +287,7 @@ Babel默认不转码的API非常多，详细清单可以查看babel-plugin-trans
 Babel也可以用于浏览器环境。但是，从Babel 6.0开始，不再直接提供浏览器版本，而是要用构建工具构建出来。
 如果你没有或不想使用构建工具，可以通过安装5.x版本的babel-core模块获取。
 
-```angular2html
+```
 $ npm install babel-core@old
 ```
 
@@ -296,7 +296,7 @@ $ npm install babel-core@old
 
 然后，将下面的代码插入网页。
 
-```angular2html
+```
 <script src="node_modules/babel-core/browser.js"></script>
 <script type="text/babel">
 // Your ES6 code
@@ -308,7 +308,7 @@ $ npm install babel-core@old
 
 另一种方法是使用[babel-standalone](https://github.com/Daniel15/babel-standalone)模块提供的浏览器版本，将其插入网页。
 
-```angular2html
+```
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.4.4/babel.min.js"></script>
 <script type="text/babel">
 // Your ES6 code
@@ -319,13 +319,13 @@ $ npm install babel-core@old
 
 下面是如何将代码打包成浏览器可以使用的脚本，以Babel配合Browserify为例。首先，安装babelify模块。
 
-```angular2html
+```
 $ npm install --save-dev babelify babel-preset-es2015
 ```
 
 然后，再用命令行转换ES6脚本。
 
-```angular2html
+```
 $  browserify script.js -o bundle.js \
   -t [ babelify --presets [ es2015 react ] ]
 ```
@@ -334,7 +334,7 @@ $  browserify script.js -o bundle.js \
 
 在package.json设置下面的代码，就不用每次命令行都输入参数了。
 
-```angular2html
+```
 {
   "browserify": {
     "transform": [["babelify", { "presets": ["es2015"] }]]
@@ -352,13 +352,13 @@ Babel提供一个[REPL在线编译器](https://babeljs.io/repl/)，可以在线�
 
 [ESLint](http://eslint.org/) 用于静态检查代码的语法和风格，安装命令如下。
 
-```angular2html
+```
 $ npm install --save-dev eslint babel-eslint
 ```
 
 然后，在项目根目录下，新建一个配置文件.eslint，在其中加入parser字段。
 
-```angular2html
+```
 {
   "parser": "babel-eslint",
   "rules": {
@@ -369,7 +369,7 @@ $ npm install --save-dev eslint babel-eslint
 
 再在package.json之中，加入相应的scripts脚本。
 
-```angular2html
+```
 {
     "name": "my-module",
     "scripts": {
@@ -385,7 +385,7 @@ $ npm install --save-dev eslint babel-eslint
 [Mocha](http://www.ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html) 则是一个测试框架，
 如果需要执行使用ES6语法的测试脚本，可以修改package.json的scripts.test。
 
-```angular2html
+```
 "scripts": {
   "test": "mocha --ui qunit --compilers js:babel-core/register"
 }
@@ -405,7 +405,7 @@ ES5 代码： lib 目录下。
 
 注：lib 目录应该被加入 .gitignore 文件中
 
-```angular2html
+```
 $ mkdir babel
 $ cd babel
 $ yarn init
@@ -415,7 +415,7 @@ $ mkdir lib
 
 编辑package.json
 
-```angular2html
+```
 {
   "name": "babel",
   "version": "1.0.0",
@@ -429,7 +429,7 @@ $ mkdir lib
 
 安装babel-cli
 
-```angular2html
+```
 # babel脚手架
 $ yarn add babel-cli --dev
 # ES2015转码规则
@@ -447,7 +447,7 @@ $ yarn add babel-preset-stage-3 --dev
 
 package.json
 
-```angular2html
+```
 {
   "name": "babel",
   "version": "1.0.0",
@@ -469,7 +469,7 @@ package.json
 
 #### 2.2.2 编写Babel配置文件`.babelrc` 并修改
 
-```angular2html
+```
 $ touch .babelrc
 ```
 
@@ -577,7 +577,7 @@ babel-plugin-transform-es2015-block-scoped-functions、babel-plugin-transform-es
 一般来说，在 .babelrc 中，或者是gulp中，或者是使用babel-standalone 的在线转译功能，都使用的是**配置名**。
 一定要区分这三者的区别，不然很容易出错。
 
-```angular2html
+```
 {
     "presets": [
       "es2015",
@@ -592,7 +592,7 @@ babel-plugin-transform-es2015-block-scoped-functions、babel-plugin-transform-es
 
 在src文件夹中创建一些希望转换的js文件吧
 
-```angular2html
+```
 let a = 1;
 
 var selected = allJobs.filter(job => job.isSelected());
@@ -600,7 +600,7 @@ var selected = allJobs.filter(job => job.isSelected());
 
 #### 2.2.4 ES6转ES5
 
-```angular2html
+```
 $ npm run build
 ```
 
@@ -612,13 +612,13 @@ $ npm run build
 
 全局安装只需：
 
-```angular2html
+```
 $ npm install --global babel-cli
 ```
 
 这时候我们可以使用 Babel 命令编译文件：
 
-```angular2html
+```
 $ babel index.js --out-file compiled.js
 #或
 $ babel index.js -o compiled.js
@@ -626,7 +626,7 @@ $ babel index.js -o compiled.js
 
 编译目录：
 
-```angular2html
+```
 $ babel src -out-dir lib
 #或
 babel src -d lib
@@ -646,13 +646,13 @@ babel src -d lib
 
 本地安装，记在项目的根目录下：
 
-```angular2html
+```
 $ npm install --save-dev babel-cli
 ```
     
 但是在本地就不能用 babel 命令了，我们可以在 package.json 文件中添加点东西：
 
-```angular2html
+```
 {
     "script": {
         "build": "babel src -d lib"
@@ -666,13 +666,13 @@ $ npm install --save-dev babel-cli
 
 上述编译其实并没有进行，而是原样输出。这是因为我们没有安装相应的插件，官方提示我们需要安装 babel-reset-es2015 插件：
 
-```angular2html
+```
 $ npm install --save-dev babel-preset-es2015
 ```
 
 然后，在根目录创建一个名为 .babelrc 的文件，里面配置如下内容：
 
-```angular2html
+```
 {
     "presets": [
         "es2015"
@@ -682,13 +682,13 @@ $ npm install --save-dev babel-preset-es2015
     
 同理，可以设置 React 的编译插件：
 
-```angular2html
+```
 $ npm install --save-dev babel-preset-react
 ```
     
 .babelrc 文件里即：
 
-```angular2html
+```
 {
    "presets": [
        "es2015",
@@ -705,25 +705,25 @@ Babel 默认不转码的 API 非常多，详细清单可以查看 definitions.js
 
 为了完整使用 ES6 的 API ，我们只能安装这个插件：
 
-```angular2html
+```
 $ npm install -save-dev babel-polyfill
 ```
     
 然后，在需要使用的文件的顶部引入
 
-```angular2html
+```
 import "babel-polyfill"
 ```
     
 node.js 中：
 
-```angular2html
+```
 require('babel-polyfill');
 ```
     
 webpack.config.js 中：
 
-```angular2html
+```
 module.exports = {
     entry: ['babel-polyfill', './app/js']
 }
