@@ -43,6 +43,8 @@ vue-cli-plugin-typescript插件除了添加了typescript相关依赖之外，我
 
 ### 使用Ts开发Vue
 
+完整的Vue页面代码
+
 ```
 <template>
   <div class="content-wrapper" >
