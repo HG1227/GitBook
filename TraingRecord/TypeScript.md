@@ -10,9 +10,9 @@
 
 ```
 
-## 1 简介与优势
+## 简介与优势
 
-### 1.1 简介
+### 简介
 
 TypeScript是由**微软开发**的，一个**JavaScript超集**，遵循**ES6标准**
 
@@ -21,7 +21,7 @@ TypeScript是由**微软开发**的，一个**JavaScript超集**，遵循**ES6�
 ES是客户端脚本语言的规范，ES5、ES6是这个规范的不同版本，JavaScript、TypeScript是两种客户端脚本语言，
 JavaScript实现了ES5规范，TypeScript实现了ES6规范
 
-### 1.2 优势
+### 优势
 
 * 支持ES6规范(15年发布)
 * 强大的IDE支持(错误提示、语法提示、重构)
@@ -29,7 +29,7 @@ JavaScript实现了ES5规范，TypeScript实现了ES6规范
 
 微软+google
 
-## 2 环境配置
+## 环境配置
 
 * 什么是compiler？为什么需要compiler？
 
@@ -53,11 +53,11 @@ export class Hello {}
 
 当我们使用IDE时，其会充当compiler，帮助我们进行编译，并把ts文件变更为js文件
 
-## 3 概念、语法和特性
+## 概念、语法和特性
 
-### 3.1 字符串新特性
+### 字符串新特性
 
-#### 3.1.1 多行字符串
+#### 多行字符串
 
 ```typescript
 var content = `aaa
@@ -65,7 +65,7 @@ bbb
 ccc`
 ```
 
-#### 3.1.2 字符串模板
+#### 字符串模板
 
 ```typescript
 var myname = 'gao tianyang'
@@ -89,7 +89,7 @@ console.log(`<div>
 </div>`)
 ```
 
-#### 3.1.3 自动拆分字符串
+#### 自动拆分字符串
 
 ```typescript
 function test(template, name, age) {
@@ -107,9 +107,9 @@ var getAge = function () {
 test`hello my name is ${myname}, i'm ${getAge()}`
 ```
 
-### 3.2 参数新特性
+### 参数新特性
 
-#### 3.2.1 参数类型：在参数名称后面使用冒号来制定参数的类型
+#### 参数类型：在参数名称后面使用冒号来制定参数的类型
 
 ```typescript
 var myname: string  = "gao tianyang"
@@ -152,7 +152,7 @@ zhangsan.name = ""
 zhangsan.age = 18
 ```
 
-#### 3.2.2 默认参数：在参数声明后面用等号来指定参数的默认值
+#### 默认参数：在参数声明后面用等号来指定参数的默认值
 
 ```typescript
 var myname: string = "gao tiangyang"
@@ -174,7 +174,7 @@ function test2(a:string, b:string, c:string = "c") {
 test2("x", "y")
 ```
 
-#### 3.2.3 可选参数：在方法的参数声明后面用问号来标明此参数为可选参数
+#### 可选参数：在方法的参数声明后面用问号来标明此参数为可选参数
 
 ```typescript
 // 注意可选参数需要放置在必选参数后
@@ -194,9 +194,9 @@ function test2(a?:string, b:string, c:string = "c") {
 test2("x")
 ```
 
-### 3.3 函数新特性
+### 函数新特性
 
-#### 3.3.1 Rest and Spread操作符：用来声明任意数量的方法参数
+#### Rest and Spread操作符：用来声明任意数量的方法参数
 
 ```typescript
 function fun1(...args) {
@@ -225,7 +225,7 @@ var args2 = [4, 5, 6, 7, 8]
 fun1(...args2)
 ```
 
-#### 3.3.2 generator函数：控制函数的执行过程，手工暂停和恢复代码执行
+#### generator函数：控制函数的执行过程，手工暂停和恢复代码执行
 
 ```typescript
 function* doSomething() {
@@ -263,9 +263,9 @@ while (price > limitPrice){
 console.log(`buying at ${price}`)
 ```
 
-#### 3.3.3 destructuring析构表达式：通过表达式将对象或数组拆解成任意数量的变量
+#### destructuring析构表达式：通过表达式将对象或数组拆解成任意数量的变量
 
-##### 3.3.3.1 从对象中取值
+##### 从对象中取值
 
 > ES5
 
@@ -317,7 +317,7 @@ console.log(code)
 console.log(price2)
 ```
 
-##### 3.3.3.2 从数组中取值
+##### 从数组中取值
 
 ```typescript
 var array1 = [1, 2, 3, 4]
@@ -356,9 +356,9 @@ doSomething(array1)
 
 析构表达式的好处 当我们需要从一个对象的属性或者数组的元素里 初始化本地变量时 我们可以写更少的代码
 
-### 3.4 表达式和循环
+### 表达式和循环
 
-#### 3.4.1 箭头表达式：用来声明匿名函数，消除传统匿名函数的this指针问题
+#### 箭头表达式：用来声明匿名函数，消除传统匿名函数的this指针问题
 
 ```typescript
 // 单行
@@ -410,7 +410,7 @@ function getStock2(name: string) {
 var stock2 = new getStock2('IBM')
 ```
 
-#### 3.4.2 forEach(), for in 和 for of：
+#### forEach(), for in 和 for of：
 
 ```typescript
 var myArray = [1,2,3,4]
@@ -482,15 +482,15 @@ Object.prototype[Symbol.iterator] = function() {
 }
 ```
 
-### 3.5 面向对象特性
+### 面向对象特性
 
-#### 3.5.1 TypeScript-类(class)
+#### TypeScript-类(class)
  
 类是TypeScript的核心，使用TypeScript开发时，大部分代码都是写在类里面的
 
 这里会介绍类的定义，构造函数，以及类的继承
 
-##### 3.5.1.1 类的定义
+##### 类的定义
 
 ```typescript
 // 类的声明
@@ -562,7 +562,7 @@ p1.name = 'batman'
 p1.eat()
 ```
 
-##### 3.5.1.2 类的构造函数
+##### 类的构造函数
 
 构造函数`constructor`在类的实例化时被自动调用
 
@@ -651,7 +651,7 @@ var p1 = new Person('batman')
 p1.eat()
 ```
 
-##### 3.5.1.3 类的继承
+##### 类的继承
 
 > extends 声明类的继承关系 继承关系是一种'是'的关系
 
@@ -720,7 +720,7 @@ var e1 = new Employee('batman', '002')
 e1.work()
 ```
 
-#### 3.5.2 TypeScript-泛型(generic)
+#### TypeScript-泛型(generic)
 
 参数化的类型，一般用来限制集合的内容
 
@@ -763,7 +763,7 @@ e1.work()
 
 指定数组只能放某个类型的元素 不能放其他类型的元素
 
-#### 3.5.3 TypeScript-接口(Interface)
+#### TypeScript-接口(Interface)
 
 用来建立某种代码约定，使得其他开发者在调用某个方法或创建新的类时必须遵循接口所定义的代码约定
 
@@ -813,7 +813,7 @@ class Tiger implements Animal {
 }
 ```
 
-#### 3.5.4 TypeScript-模块(Module)
+#### TypeScript-模块(Module)
 
 模块可以帮助开发者将代码分割为可重用的单元。开发者可以自己决定将模块中的哪些资源(类、方法、变量)暴露出去供外部使用，
 哪些资源只能在模块内部使用。
@@ -861,7 +861,7 @@ export function func3 () {
 
 一个模块既可以导入 属性、方法、类 同时可以导出 两者相互不影响
 
-#### 3.5.5 TypeScript-注解(annotation)
+#### TypeScript-注解(annotation)
 
 **注解**为程序的元素(类、方法、变量)加上更直观更名了的**说明**，这些说明信息与程序的业务逻辑无关，而是供指定的**工具**或**框架**使用。
 
@@ -873,7 +873,7 @@ export function func3 () {
 
 可以理解为，当angular2框架实例化`AppComponent`这个类时，angular2框架应当加载属性中提供的html及css
 
-#### 3.5.6 TypeScript-类型定义文件(*.d.ts)
+#### TypeScript-类型定义文件(*.d.ts)
 
 类型定义文件用来帮助开发者在TypeScript中使用已有的JavaScript的工具包
 
@@ -898,15 +898,15 @@ typings install dt~jquery --global --save // 指定前缀也就是源的维护�
 [tsconfig.json编译选项](https://www.cnblogs.com/zaihuilou/p/9556373.html)
 [Typings能否基于package.json自动安装d.ts？](https://segmentfault.com/q/1010000005952451)
 
-### 3.6 TypeScript总结
+### TypeScript总结
 
 * 介绍了TypeScript的基本概念和优势
 * 介绍了如何搭建TypeScript开发环境
 * 介绍了TypeScript的的语法和特性
 
-### 3.7 最佳实践
+### 最佳实践
 
-#### 3.7.1 [Vue项目中应用Typescript](./VueAndTypeScript.md)
+#### [Vue项目中应用Typescript](./VueAndTypeScript.md)
 
 ## 参考资料
 

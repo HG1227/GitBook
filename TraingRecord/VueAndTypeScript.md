@@ -10,11 +10,11 @@
 
 ```
 
-## 1 Vue项目中应用Typescript
+## Vue项目中应用Typescript
 
 > Vue CLI在2.5版本之后内置了TypeScript的支持，并且@vue/cli3提供了TypeScript插件，因此搭建支持TypeScript的vue工程非常方便
 
-### 1.1 创建工程
+### 创建工程
 
 ```
 npm install -g @vue/cli
@@ -26,7 +26,7 @@ node环境要求在8及以上 window系统不支持通过命令行 需要下载�
 vue create project-name
 ```
 
-### 1.2 添加Typescript 插件
+### 添加Typescript 插件
 
 为工程添加TypeScript插件，进入工程目录
 
@@ -41,7 +41,7 @@ vue-cli-plugin-typescript插件除了添加了typescript相关依赖之外，我
 这两者是VUE的装饰器，vue-property-decorator依赖vue-class-component，class-style模式下开发时可使代码更加简明、可读，
 接下来我们会举例介绍怎样更高效、优雅的书写Vue代码
 
-### 1.3 使用Ts开发Vue
+### 使用Ts开发Vue
 
 ```vue
 <template>
