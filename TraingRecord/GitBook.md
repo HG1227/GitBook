@@ -6,6 +6,7 @@
 ```
 更改历史
 
+* 2019-07-24	    高天阳	gitbook使用代码高亮插件
 * 2018-09-14	    高天阳	gitbook生成PDF
 * 2018-01-07	    高天阳	gitbook serve报错处理方法
 * 2017-11-12	    高天阳	增加类比内容，更改页面格式
@@ -400,6 +401,9 @@ info: >> 1 file(s) generated
 
 执行完以上代码，进入书籍目录，即可看到已经转换完成的PDF了。大功告成！
 
+#### 2.4.5 gitbook使用代码高亮插件
+
+
 ## 3 同类技术对比(列表)
 
 ### 3.1 gitbook
@@ -479,3 +483,7 @@ Penflip似乎更适合你的想法（注意：现在我知道它为什么适合�
 * [Gitbook对比评论](https://news.ycombinator.com/item?id=8215620)
 * [Gitbook提交报403](http://www.jianshu.com/p/77b0340a02f3)
 * [Mac环境安装Gitbook，并导出PDF教程](https://www.jianshu.com/p/4824d216ad10)
+* [gitbook的插件配置](https://www.cnblogs.com/yonguo123/p/9524024.html)
+* [gitbook安装与使用](https://blog.csdn.net/fghsfeyhdf/article/details/88403548)
+* [gitbook常用插件简介](https://blog.csdn.net/qq_37149933/article/details/64170653)
+* [gitbook安装代码高亮插件：Prism](https://www.crifan.com/gitbook_install_code_highlight_plugin_prism/)
