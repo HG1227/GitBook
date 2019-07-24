@@ -17,6 +17,7 @@
     * [ES6模块](TraingRecord/ES6Module.md)
     * [Git](TraingRecord/git.md)
     * [Gitbook的使用](TraingRecord/GitBook.md)
+        * [Gitbook更多配置](TraingRecord/GitBookConfigure.md)
     * [GitLab](TraingRecord/GitLab.md)
     * [gulp](TraingRecord/gulp.md)
     * [如何提高编程技能](TraingRecord/HowCanBest.md)

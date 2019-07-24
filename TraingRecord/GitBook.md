@@ -96,6 +96,10 @@ gitbook --version            #检测是否安装成功
 
 ![](../../assets/gitbook/gitbookversion.png)
 
+### 配置
+
+#### [GitBook更多配置](./GitBookConfigure.md)
+
 ### 使用
 
 - 配置
@@ -133,7 +137,7 @@ gitbook --version            #检测是否安装成功
 
 ### 示例
 
-### GitBook章节和子章节
+#### GitBook章节和子章节
 
 在学习使用之前，我们首先需要了解一下`SUMMARY.md`是干什么的。GitBook使用文件 `SUMMARY.md` 来定义书本的章节和子章节的结构。
 文件 `SUMMARY.md` 被用来生成书本内容的预览表。
@@ -401,72 +405,6 @@ info: >> 1 file(s) generated
 
 执行完以上代码，进入书籍目录，即可看到已经转换完成的PDF了。大功告成！
 
-#### GitBook book.json配置
-
-##### title 设置书本的标题
-
-“title” : “私人笔记”
-
-##### author 作者的相关信息
-
-“author” : “gaotianyang”
-
-##### description 本书的简单描述
-
-“description” : “gaotianyang的私人笔记”
-
-##### language Gitbook使用的语言
-
-“language” : “zh-hans”
-
-版本2.6.4中可选的语言如下：
-
-en, ar, bn, cs, de, en, es, fa, fi, fr, he, it, ja, ko, no, pl, pt, ro, ru, sv, uk, vi, zh-hans, zh-tw
-
-##### links 在左侧导航栏添加链接信息
-
-```json
-{
-    "links": {
-        "sidebar": {
-            "Personal Book": "http://www.gtwteam.com"
-        }
-    }
-}
-```
-
-##### styles 自定义页面样式
-
-```json
-{
-    "styles": {
-        "website": "styles/website.css",
-        "ebook": "styles/ebook.css",
-        "pdf": "styles/pdf.css",
-        "mobi": "styles/mobi.css",
-        "epub": "styles/epub.css"
-    }
-}
-```
-
-例如使`h1 h2`标签有下划线， 可以在website.css中设置
-
-```css
-h1 , h2{
-    border-bottom: 1px solid #EEEEEE;
-}
-```
-
-##### plugins 插件列表
-
-可以在插件前面加`-`符号删除默认插件，默认五种插件如下
-
-* highlight：代码高亮
-* search：导航栏查询功能（不支持中文）
-* sharing：右上角分享功能
-* font-settings：字体设置（最上方的"A"符号）
-* livereload：为GitBook实时重新加载
-
 ## 同类技术对比(列表)
 
 ### GitBook
@@ -546,8 +484,3 @@ Penflip似乎更适合你的想法（注意：现在我知道它为什么适合�
 * [Gitbook对比评论](https://news.ycombinator.com/item?id=8215620)
 * [Gitbook提交报403](http://www.jianshu.com/p/77b0340a02f3)
 * [Mac环境安装Gitbook，并导出PDF教程](https://www.jianshu.com/p/4824d216ad10)
-* [gitbook的插件配置](https://www.cnblogs.com/yonguo123/p/9524024.html)
-* [gitbook安装与使用](https://blog.csdn.net/fghsfeyhdf/article/details/88403548)
-* [gitbook常用插件简介](https://blog.csdn.net/qq_37149933/article/details/64170653)
-* [gitbook安装代码高亮插件：Prism](https://www.crifan.com/gitbook_install_code_highlight_plugin_prism/)
-* [gitbook菜单序号设置](https://www.crifan.com/gitbook_add_chapter_index_number/)
