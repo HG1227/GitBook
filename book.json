@@ -63,7 +63,7 @@
     "include-csv@^0.1.0",
     "markdown-video",
     "anchor-navigation-ex",
-    "embed-pdf",
+    "-embed-pdf",
     "chart@^0.2.0"
   ],
   "pluginsConfig": {

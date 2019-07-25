@@ -1557,6 +1557,20 @@ editor.renderer.updateFontSize();
 把`.ico`格式的图标放进项目中。这个路径可以使用相对路径，比如我用的是`./images/a.ico`
 注意：这个pluginsConfig和其他的不大一样。图标只能用`.ico`文件。
 
+### embed-pdf 在GitBook中嵌入内联PDF
+
+[GitHub地址](https://github.com/antonlegoo/gitbook-plugin-embed-pdf)
+
+在book.json中添加以下内容。然后执行`gitbook install`，
+或者使用NPM安装（单独安装推荐NPM）`npm install gitbook-plugin-embed-pdf`，
+也可以从源码GitHub地址中下载，放到`node_modules`文件夹里（GitHub地址在进入插件地址右侧的GitHub链接）
+
+```json
+{
+    "plugins" : ["embed-pdf"]
+}
+```
+
 ### accordion 折叠模块
 
 [GitHub地址](https://github.com/artalar/gitbook-plugin-accordion)
