@@ -1245,6 +1245,40 @@ json配置个性化
 }
 ```
 
+### Ace Plugin
+
+[GitHub地址](https://github.com/ymcatar/gitbook-plugin-ace)
+
+使 GitBook 支持ace 。默认情况下，line-height 为 1，会使代码显得比较挤，而作者好像没提供修改行高的选项，如果需要修改行高，
+可以到 node_modules -> github-plugin-ace -> assets -> ace.js 中加入下面两行代码 (30 行左右的位置)：
+
+```javascript
+editor.container.style.lineHeight = 1.25;
+editor.renderer.updateFontSize();
+```
+不过上面的做法有个问题就是，每次使用 gitbook install 安装新的插件之后，代码又会重置为原来的样子。
+另外可以在 website.css 中加入下面的 css 代码来指定 ace 字体的大小
+
+```css
+.aceCode {
+  font-size: 14px !important;
+}
+```
+
+使用插件：
+
+在book.json中添加以下内容。然后执行`gitbook install`，
+或者使用NPM安装（单独安装推荐NPM）`npm install gitbook-plugin-ace`，
+也可以从源码GitHub地址中下载，放到`node_modules`文件夹里（GitHub地址在进入插件地址右侧的GitHub链接）
+
+```json
+{
+  "plugins": [
+      "ace"
+  ]
+}
+```
+
 ### Include Codeblock
 
 使用代码块的格式显示所包含文件的内容. 该文件必须存在。插件提供了一些配置，可以区插件官网查看。
