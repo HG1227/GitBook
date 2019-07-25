@@ -1086,7 +1086,6 @@ klipse 目前支持下面的语言：
 ```json
 {
     "plugins":["change_girls"],
-
     "pluginsConfig": {
         "change_girls" : {
             "time" : 10,
@@ -1103,6 +1102,31 @@ klipse 目前支持下面的语言：
 * time：图片的切换时间，单位是秒
 * urls： 一个数组，可以定义多个图片，只能使用互联网上的绝对地址
 
+### Include-csv 展示 csv 文件
+
+添加背景图片，并且可以自动切换
+
+[GitHub地址](https://github.com/zhenchao125/gitbook-plugin-change_girls)
+
+在book.json中添加以下内容。然后执行`gitbook install`，
+或者使用NPM安装（单独安装推荐NPM）`npm install gitbook-plugin-change_girls`，
+也可以从源码GitHub地址中下载，放到`node_modules`文件夹里（GitHub地址在进入插件地址右侧的GitHub链接）
+
+```json
+{
+    "plugins": ["include-csv"]
+}
+```
+
+使用示例：
+
+```
+{% includeCsv  src="../assets/csv/test.csv", useHeader="true" %} {% endincludeCsv %}
+```
+
+效果如下所示：
+
+{% includeCsv  src="../assets/csv/test.csv", useHeader="true" %} {% endincludeCsv %}
 
 ### 警报
 
@@ -1409,7 +1433,7 @@ editor.renderer.updateFontSize();
 使用示例:
 
 ```css
-[import](../assets/demo.css)
+[import](../assets/css/demo.css)
 ```
 
 ### 查看图片
