@@ -45,6 +45,7 @@
     "simple-page-toc@^0.1.1",
     "prism@^2.1.0",
     "prism-themes@^0.0.2",
+    "pageview-count",
     "advanced-emoji@^0.2.1",
     "anchors@^0.7.1",
     "include-codeblock@^3.0.2",

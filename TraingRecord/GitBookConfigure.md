@@ -832,17 +832,17 @@ klipse 目前支持下面的语言：
 * EcmaScript2017
 * Google Charts: See Interactive Business Report with Google Charts.
 
-下面是一个python的使用示例，其他语言类似，比如（eval-js）：
+下面是一个python的使用示例，其他语言类似，比如（eval-js）：(.需替换`)
 
 ```
-    ```eval-python
-        print [x +1 for x in range（10）]
-    ```
+...eval-python
+    print [x +1 for x in range（10）]
+...
 ```
 
 效果如下所示：
 
-[](../assets/gitbook/gitbook-klipse.png)
+![](../assets/gitbook/gitbook-klipse.png)
 
 ### donate 打赏插件
 
@@ -920,6 +920,7 @@ klipse 目前支持下面的语言：
     "plugins": ["alerts"]
 }
 ```
+
 用法样式：
 
 信息样式
@@ -958,14 +959,16 @@ klipse 目前支持下面的语言：
 这个GitBook插件将块引用转换为漂亮的警报。可以在全局和警报特定级别配置外观，
 因此输出确实符合您的需求（如下图）。此外，您还可以提供自己的警报类型（比如最后的comment）。
 
-![](../assets/gitbook-flexible-alerts.png)
+![](../assets/gitbook/gitbook-flexible-alerts.png)
 
 [GitHub地址](https://github.com/zanfab/gitbook-plugin-flexible-alerts)
 
 这个看上面那个链接里的内容更丰富一点
 
 > 用法：
+>
 > 1) 在你的gitbook的book.json文件中，添加flexible-alerts到插件列表。
+>
 > 2) 在pluginsConfig中，配置插件以满足您的需求。自定义设置不是必需的。
 
 简单使用
@@ -1028,7 +1031,7 @@ klipse 目前支持下面的语言：
 
 效果：
 
-![](../assets/gitbook-flexible-alerts2.png)
+![](../assets/gitbook/gitbook-flexible-alerts2.png)
 
 json配置个性化
 自定义一个COMMENT类型
@@ -1063,7 +1066,7 @@ json配置个性化
 
 效果：
 
-![](../assets/gitbook-flexible-alerts3.png)
+![](../assets/gitbook/gitbook-flexible-alerts3.png)
 
 ### pageview-count 阅读量计数
 
