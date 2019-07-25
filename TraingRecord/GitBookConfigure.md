@@ -1229,6 +1229,37 @@ json配置个性化
 
 没滚动条刷新一下页面
 
+### KaTex
+
+为了支持数学公式, 我们可以使用KaTex和MathJax插件, 官网上说Katex速度要快于MathJax
+
+[GitHub地址](https://github.com/GitbookIO/plugin-katex)
+
+在book.json中添加以下内容。然后执行`gitbook install`，
+或者使用NPM安装（单独安装推荐NPM）`npm install gitbook-plugin-katex`，
+也可以从源码GitHub地址中下载，放到`node_modules`文件夹里（GitHub地址在进入插件地址右侧的GitHub链接）
+
+```json
+{
+  "plugins" : [ "katex" ]
+}
+```
+
+使用示例:
+
+```markdown
+您现在可以使用{% math %}块将TeX公式添加到您的书中
+
+When {% math %}a \ne 0{% endmath %}, there are two solutions to {% math %}(ax^2 + bx + c = 0){% endmath %} and they are {% math %}x = {-b \pm \sqrt{b^2-4ac} \over 2a}.{% endmath %}
+
+您还可以使用快捷方式`$ $`：
+
+When $$a \ne 0$$, there are two solutions to $$(ax^2 + bx + c = 0)$$ and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+```
+When {% math %}a \ne 0{% endmath %}, there are two solutions to {% math %}(ax^2 + bx + c = 0){% endmath %} and they are {% math %}x = {-b \pm \sqrt{b^2-4ac} \over 2a}.{% endmath %}
+
+When $$a \ne 0$$, there are two solutions to $$(ax^2 + bx + c = 0)$$ and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+
 ### Anchors 添加 Github 风格的锚点样式
 
 [GitHub地址](https://github.com/rlmv/gitbook-plugin-anchors)
