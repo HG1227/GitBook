@@ -135,6 +135,45 @@ Gitbook默认自带有5个插件：
 }
 ```
 
+### Prism 回到顶部
+
+使用 `Prism.js` 为语法添加高亮显示，需要将 `highlight` 插件去掉。该插件自带的主题样式较少，
+可以再安装 `prism-themes` 插件，里面多提供了几种样式，具体的样式可以参考[这里](https://github.com/PrismJS/prism-themes)，
+在设置样式时要注意设置 css 文件名，而不是样式名。
+
+
+[GitHub地址](https://github.com/PrismJS/prism-themes)
+
+在book.json中添加以下内容。然后执行`gitbook install`，
+或者使用NPM安装（单独安装推荐NPM）`npm install gitbook-plugin-prism`，
+也可以从源码GitHub地址中下载，放到`node_modules`文件夹里（GitHub地址在进入插件地址右侧的GitHub链接）
+
+```json
+{
+    "plugins": [
+            "prism",
+            "-highlight"
+        ],
+    "pluginsConfig": {
+        "prism": {
+            "css": [
+                "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
+            ]
+        }
+    }
+}
+```
+
+如果需要修改背景色、字体大小等，可以在 `website.css` 定义 `pre[class*="language-"]` 类来修改，下面是一个示例：
+
+```css
+pre[class*="language-"] {
+    border: none;
+    background-color: #f7f7f7;
+    font-size: 1em;
+    line-height: 1.2em;
+}
+```
 ### 导航目录折叠
 
 #### chapter-fold 左侧目录折叠
@@ -374,6 +413,33 @@ input[type=checkbox]{
 效果图：
 
 ![](../assets/gitbook/gitbook-github.png)
+
+### Github Buttons 添加项目在 github 上的 star，watch，fork情况
+
+[GitHub地址](https://github.com/azu/gitbook-plugin-github-buttons)
+
+在book.json中添加以下内容。然后执行`gitbook install`，
+或者使用NPM安装（单独安装推荐NPM）`npm install gitbook-plugin-github-buttons`，
+也可以从源码GitHub地址中下载，放到`node_modules`文件夹里（GitHub地址在进入插件地址右侧的GitHub链接）
+
+```json
+{
+    "plugins": [
+        "github-buttons"
+    ],
+    "pluginsConfig": {
+        "github-buttons": {
+            "repo": "zhangjikai/gitbook-use",
+            "types": [
+                "star",
+                "watch",
+                "fork"
+            ],
+            "size": "small"
+        }
+    }
+}
+```
 
 ### emphasize 为文字加上底色
 
@@ -733,7 +799,7 @@ markdown中示例代码：
 | "maxDepth": 3 | 使用深度最多为maxdepth的标题。 |
 | "skipFirstH1": true | 排除文件中的第一个h1级标题。|
 
-使用方法: 在需要生成目录的地方用`<!` `-- toc -->`和`<!` `-- endtoc -->`括起来，全文都生成的话就在首尾添加。
+使用方法: `<!` `-- toc -->`在文本中的某处放置代码注释会将此注释后面的内容生成目录，并插入在标签后方，全文都生成的话就在文首添加。
 
 Ps: 此目录锚点仅支持英文标题，中文标题无法实现跳转。中文文档不推荐使用。
 
@@ -799,6 +865,71 @@ Ps: 此目录锚点仅支持英文标题，中文标题无法实现跳转。中�
     ]
 }
 ```
+
+#### anchor-navigation-ex 添加Toc到侧边悬浮导航以及回到顶部按钮
+
+需要注意以下两点：
+
+* 本插件只会提取 `h[1-3]` 标签作为悬浮导航
+* 只有按照以下顺序嵌套才会被提取
+
+```markdown
+# h1
+## h2
+### h3
+必须要以 h1 开始，直接写 h2 不会被提取
+## h2
+```
+
+[GitHub地址](https://github.com/aleen42/gitbook-anchor-navigation-ex)
+
+在book.json中添加以下内容。然后执行`gitbook install`，
+或者使用NPM安装（单独安装推荐NPM）`npm install gitbook-plugin-anchor-navigation-ex`，
+也可以从源码GitHub地址中下载，放到`node_modules`文件夹里（GitHub地址在进入插件地址右侧的GitHub链接）
+
+[插件功能定制，参数详解](https://github.com/zq99299/gitbook-plugin-anchor-navigation-ex/blob/master/doc/config.md)
+
+```json
+{
+    "plugins": [
+            "anchor-navigation-ex"
+        ],
+        "pluginsConfig": {
+            "anchor-navigation-ex": {
+                "showLevel": true,
+                    "associatedWithSummary": true,
+                    "printLog": false,
+                    "multipleH1": true,
+                    "mode": "float",
+                    "showGoTop":true,
+                    "float": {
+                        "floatIcon": "fa fa-navicon", // 配置导航图标，如果你喜欢原先的 锚 图标可以配置为 fa-anchor
+                        "showLevelIcon": false,  // 是否显示层级图标
+                        "level1Icon": "fa fa-hand-o-right", // 层级的图标css
+                        "level2Icon": "fa fa-hand-o-right",
+                        "level3Icon": "fa fa-hand-o-right"
+                    },
+                    "pageTop": {
+                        "showLevelIcon": false,
+                        "level1Icon": "fa fa-hand-o-right",
+                        "level2Icon": "fa fa-hand-o-right",
+                        "level3Icon": "fa fa-hand-o-right"
+                    }
+            }
+        }
+}
+```
+
+图标使用官网默认主题引入的css http://fontawesome.dashgame.com/
+
+其中multipleH1配置选项，如果为true的话，将按照一个md文件有多个H1标题处理，
+为false的话，则按照一个md文件只包含一个h1标题处理，最大的区别就是去掉了丑陋的1.xxx 中的1.
+
+生成页面内目录：在页面中增加`<extoc></extoc>`标签，会在此处生成TOC目录
+
+效果如下：
+
+<extoc></extoc>
 
 ### klipse 嵌入类似IDE的功能
 
@@ -1239,6 +1370,150 @@ json配置个性化
 }
 ```
 
+### Chart 使用 C3.js 或者 Highcharts 绘制图形。
+
+[GitHub地址](https://github.com/csbun/gitbook-plugin-chart)
+
+在book.json中添加以下内容。然后执行`gitbook install`，
+或者使用NPM安装（单独安装推荐NPM）`npm install gitbook-plugin-chart`，
+也可以从源码GitHub地址中下载，放到`node_modules`文件夹里（GitHub地址在进入插件地址右侧的GitHub链接）
+
+```json
+{
+    "plugins": [ "chart" ],
+    "pluginsConfig": {
+        "chart": {
+            "type": "c3"
+        }
+    }
+}
+```
+type 可以是 `c3` 或者 `highcharts`, 默认是 `c3`.
+
+下面是一个c3示例：
+
+```markdown
+{% chart %}
+{
+    "data": {
+        "type": "bar",
+        "columns": [
+            ["data1", 30, 200, 100, 400, 150, 250],
+            ["data2", 50, 20, 10, 40, 15, 25]
+        ],
+        "axes": {
+            "data2": "y2"
+        }
+    },
+    "axis": {
+        "y2": {
+            "show": true
+        }
+    }
+}
+{% endchart %}
+```
+
+效果如下所示：
+
+{% chart %}
+{
+    "data": {
+        "type": "bar",
+        "columns": [
+            ["data1", 30, 200, 100, 400, 150, 250],
+            ["data2", 50, 20, 10, 40, 15, 25]
+        ],
+        "axes": {
+            "data2": "y2"
+        }
+    },
+    "axis": {
+        "y2": {
+            "show": true
+        }
+    }
+}
+{% endchart %}
+
+### Disqus 添加disqus评论
+
+[GitHub地址](https://github.com/GitbookIO/plugin-disqus)
+
+在book.json中添加以下内容。然后执行`gitbook install`，
+或者使用NPM安装（单独安装推荐NPM）`npm install gitbook-plugin-disqus`，
+也可以从源码GitHub地址中下载，放到`node_modules`文件夹里（GitHub地址在进入插件地址右侧的GitHub链接）
+
+```json
+{
+    "plugins": [
+        "disqus"
+    ],
+    "pluginsConfig": {
+        "disqus": {
+            "shortName": "gitbookuse"
+        }
+    }
+}
+```
+
+### Puml 使用 PlantUML 展示 uml 图。
+
+[GitHub地址](https://github.com/GitbookIO/plugin-puml)
+
+[PlantUML 地址](http://plantuml.com/zh/)
+
+在book.json中添加以下内容。然后执行`gitbook install`，
+或者使用NPM安装（单独安装推荐NPM）`npm install gitbook-plugin-puml`，
+也可以从源码GitHub地址中下载，放到`node_modules`文件夹里（GitHub地址在进入插件地址右侧的GitHub链接）
+
+```json
+{
+    "plugins": [
+        "puml"
+    ]
+}
+```
+
+使用示例：
+
+```markdown
+{% plantuml %}
+Class Stage
+    Class Timeout {
+        +constructor:function(cfg)
+        +timeout:function(ctx)
+        +overdue:function(ctx)
+        +stage: Stage
+    }
+    Stage <|-- Timeout
+{% endplantuml %}
+```
+
+效果如下所示：
+
+![](../assets/gitbook/gitbook-uml.svg)
+
+### Mermaid-gb3 支持渲染Mermaid图表
+
+[GitHub地址](https://github.com/GitbookIO/plugin-disqus)
+
+在book.json中添加以下内容。然后执行`gitbook install`，
+或者使用NPM安装（单独安装推荐NPM）`npm install gitbook-plugin-mermaid-gb3`，
+也可以从源码GitHub地址中下载，放到`node_modules`文件夹里（GitHub地址在进入插件地址右侧的GitHub链接）
+
+```json
+{
+    "plugins": [
+        "mermaid-gb3"
+    ]
+}
+```
+
+使用示例:
+
+![](../assets/gitbook/gitbook-mermaid.png)
+
 ### 其他：设置导航序号
 
 配置，可以在book.json的pluginsConfig中添加如下：
@@ -1341,6 +1616,7 @@ json配置个性化
 
 * [GitBook插件整理 - book.json配置](https://www.cnblogs.com/mingyue5826/p/10307051.html)
 * [gitbook的插件配置](https://www.cnblogs.com/yonguo123/p/9524024.html)
+* [GitBook 插件](http://gitbook.zhangjikai.com/plugins.html)
 * [gitbook安装与使用](https://blog.csdn.net/fghsfeyhdf/article/details/88403548)
 * [gitbook常用插件简介](https://blog.csdn.net/qq_37149933/article/details/64170653)
 * [gitbook安装代码高亮插件：Prism](https://www.crifan.com/gitbook_install_code_highlight_plugin_prism/)

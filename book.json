@@ -42,7 +42,7 @@
     "-donate@^1.0.2",
     "code",
     "theme-comscore",
-    "simple-page-toc@^0.1.1",
+    "-simple-page-toc@^0.1.1",
     "prism@^2.1.0",
     "prism-themes@^0.0.2",
     "pageview-count",
@@ -67,6 +67,19 @@
     "chart@^0.2.0"
   ],
   "pluginsConfig": {
+    "anchor-navigation-ex": {
+      "multipleH1": false,
+      "float": {
+        "floatIcon": "fa fa-navicon",
+        "showLevelIcon": false,
+        "level1Icon": "fa fa-hand-o-right",
+        "level2Icon": "fa fa-hand-o-right",
+        "level3Icon": "fa fa-hand-o-right"
+      }
+    },
+    "chart": {
+      "type": "c3"
+    },
     "sharing": {
       "whatsapp": false,
       "weibo": true,
