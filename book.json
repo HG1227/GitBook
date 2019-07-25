@@ -67,6 +67,11 @@
     "chart@^0.2.0"
   ],
   "pluginsConfig": {
+    "terminal": {
+      "copyButtons": true,
+      "fade": false,
+      "style": "flat"
+    },
     "anchor-navigation-ex": {
       "multipleH1": false,
       "float": {

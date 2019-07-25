@@ -314,6 +314,75 @@ input[type=checkbox]{
 *   [x]  drink a cup of tea
 ```
 
+### Terminal
+
+模拟终端显示，主要用于显示命令以及多行输出，不过写起来有些麻烦。
+
+[GitHub地址](https://github.com/davidmogar/gitbook-plugin-terminal)
+
+在book.json中添加以下内容。然后执行`gitbook install`，
+或者使用NPM安装（单独安装推荐NPM）`npm install gitbook-plugin-terminal`，
+也可以从源码GitHub地址中下载，放到`node_modules`文件夹里（GitHub地址在进入插件地址右侧的GitHub链接）
+
+```json
+{
+  "plugins": [
+      "terminal"
+  ],
+  "pluginsConfig": {
+      "terminal": {
+          "copyButtons": true,
+          "fade": false,
+          "style": "flat"
+      }
+  }
+}
+```
+
+现在支持 6 种标签：
+
+* command: Command "executed" in the terminal.
+* delimiter: Sequence of characters between the prompt and the command.
+* error: Error message.
+* path: Directory path shown in the prompt.
+* prompt: Prompt of the user.
+* warning: Warning message.
+
+标签的使用格式如下所示：
+
+```
+**[<tag_name> 内容]
+```
+
+效果如下
+
+![](../assets/gitbook/gitbook-themes.gif)
+
+为了使标签正常工作，需要在代码块的第一行加入 `**[termial]` 标记，下面是一个完整的示例：
+
+效果如下所示：
+
+Ps:不知是否是版本或者是插件冲突的原因 显示有异常 不能换行显示
+
+```
+**[terminal]
+**[prompt foo@joe]**[path ~/foo/bar]**[delimiter  $ ]**[command ./myscript]
+Normal output line. Nothing special here...
+But...
+You can add some colors. What about a warning message?
+**[warning [WARNING] The color depends on the theme. Could look normal too]
+What about an error message?
+**[error [ERROR] This is not the error you are looking for]
+```
+
+terminal 支持下面 5 种样式，如果需要更换样式，在 pluginsConfig 里配置即可。
+
+* black: Just that good old black terminal everybody loves.
+* classic: Looking for green color font over a black background? This is for you.
+* flat: Oh, flat colors. I love flat colors. Everything looks modern with them.
+* ubuntu: Admit it or not, but Ubuntu have a good looking terminal.
+* white: Make your terminal to blend in with your GitBook.
+
 ### insert-logo 插入logo
 
 将logo插入到导航栏上方中
@@ -337,6 +406,7 @@ input[type=checkbox]{
   }
 }
 ```
+
 ### 搜索
 
 #### search-pro 高级搜索（支持中文）
@@ -1414,6 +1484,33 @@ editor.renderer.updateFontSize();
 
 ```
 <div class="click_reveal"><span> 点击显示 </span><div><pre><code>隐藏的文字</code></pre></div></div>
+```
+
+### Favicon 更改网站的 favicon.ico
+
+[GitHub地址](https://github.com/menduo/gitbook-plugin-favicon)
+
+在book.json中添加以下内容。然后执行`gitbook install`，
+或者使用NPM安装（单独安装推荐NPM）`npm install gitbook-plugin-favicon`，
+也可以从源码GitHub地址中下载，放到`node_modules`文件夹里（GitHub地址在进入插件地址右侧的GitHub链接）
+
+```json
+{
+    "plugins": [
+        "favicon"
+    ],
+    "pluginsConfig": {
+        "favicon": {
+            "shortcut": "assets/images/favicon.ico",
+            "bookmark": "assets/images/favicon.ico",
+            "appleTouch": "assets/images/apple-touch-icon.png",
+            "appleTouchMore": {
+                "120x120": "assets/images/apple-touch-icon-120x120.png",
+                "180x180": "assets/images/apple-touch-icon-180x180.png"
+            }
+        }
+    }
+}
 ```
 
 ### custom-favicon 修改标题栏图标
