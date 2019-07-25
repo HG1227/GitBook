@@ -298,7 +298,9 @@ input[type=checkbox]{
   }
 }
 ```
-### search-pro 高级搜索（支持中文）
+### 搜索
+
+#### search-pro 高级搜索（支持中文）
 
 [GitHub地址](https://github.com/gitbook-plugins/gitbook-plugin-search-pro)
 
@@ -310,6 +312,22 @@ input[type=checkbox]{
 {
     "plugins": [
          "-lunr", "-search", "search-pro"
+    ]
+}
+```
+
+#### search-plus 高级搜索（支持中文）
+
+[GitHub地址](https://github.com/lwdgit/gitbook-plugin-search-plus)
+
+在book.json中添加以下内容。然后执行`gitbook install`，
+或者使用NPM安装（单独安装推荐NPM）`npm install gitbook-plugin-search-plus`，
+也可以从源码GitHub地址中下载，放到`node_modules`文件夹里（GitHub地址在进入插件地址右侧的GitHub链接）
+
+```json
+{
+    "plugins": [
+         "-lunr", "-search", "search-plus"
     ]
 }
 ```
@@ -436,7 +454,7 @@ This text is {% em color="#ff0000" %}highlighted with a custom color!{% endem %}
            "all": [
                "douban", "facebook", "google", "hatenaBookmark", 
                "instapaper", "linkedin","twitter", "weibo", 
-               "messenger","qq", "qzone","viber","vk","weibo",
+               "messenger","qq", "qzone","viber","vk",
                "pocket", "stumbleupon","whatsapp"
            ]
        }
@@ -594,11 +612,11 @@ markdown中示例代码：
 
 | 参数 | 说明 |
 | :---: | :---: |
-| data-title | 该部分的标题，它将显示为bootstrap面板的标题（大小为h2）。* 请注意，您不能使用`"`标题中的字符，请`&quot;`改用。 |
+| data-title | 该部分的标题，它将显示为bootstrap面板的标题（大小为h2）。<br> 请注意，您不能使用`"`标题中的字符，请`& quot;`改用。 |
 | data-id | 章节的id，对按钮控制很有用（在下一节中讨论）。 |
-| data-show | 默认表示面板内容是否可见的布尔值。 * true：默认情况下，面板内容对用户可见，面板标题可以单击。 * false：默认情况下，面板内容对用户隐藏，面板 标题不可点击，只能通过添加自定义按钮查看（在下一节中讨论）。 |
-| data-nopd | 一个布尔值，表示该部分是否将隐藏在pdf导出中。 * true：面板不会显示在.pdf或.epub中。 |
-| data-collapse | 一个布尔值，表示默认情况下是否打开（但仍然可见）该部分。 * true：默认情况下，面板内容对用户可见，但已关闭。 * false：默认情况下，面板内容对用户可见，但已打开（默认设置）。 |
+| data-show | 默认表示面板内容是否可见的布尔值。<br> true：默认情况下，面板内容对用户可见，面板标题可以单击。<br> false：默认情况下，面板内容对用户隐藏，面板 标题不可点击，只能通过添加自定义按钮查看（在下一节中讨论）。 |
+| data-nopd | 一个布尔值，表示该部分是否将隐藏在pdf导出中。 <br> true：面板不会显示在.pdf或.epub中。 |
+| data-collapse | 一个布尔值，表示默认情况下是否打开（但仍然可见）该部分。<br> true：默认情况下，面板内容对用户可见，但已关闭。<br> false：默认情况下，面板内容对用户可见，但已打开（默认设置）。 |
 
 2. 添加按钮，控制部分可见性
 
@@ -680,7 +698,7 @@ markdown中示例代码：
 找到插件目录下的`index.js`文件：`***/node_modules/gitbook-plugin-page-treeview/lib/index.js`
 找到大约111行，删除这一行关于`var copyRight`的定义
 下面113行的`var insertTreeview`中，删除`+ copyRight`，目前就不显示了
-142行中的`'copyright': 'Copyright &#169; aleen42'`,也可以删除
+142行中的`'copyright': 'Copyright & #169; aleen42'`,也可以删除
 下面161行和163行和111行113行一样的，其实不删除也不显示了。
 但是以后执行`gitbook install`就恢复了。
 
@@ -715,11 +733,11 @@ markdown中示例代码：
 | "maxDepth": 3 | 使用深度最多为maxdepth的标题。 |
 | "skipFirstH1": true | 排除文件中的第一个h1级标题。|
 
-使用方法: 在需要生成目录的地方用下面的标签括起来，全文都生成的话就在首尾添加
+使用方法: 在需要生成目录的地方用`<!` `-- toc -->`和`<!` `-- endtoc -->`括起来，全文都生成的话就在首尾添加。
 
-```
-<!-- toc -->内容部分<!-- endtoc -->
-```
+Ps: 此目录锚点仅支持英文标题，中文标题无法实现跳转。中文文档不推荐使用。
+
+<!-- toc -->
 
 ### 悬浮目录
 

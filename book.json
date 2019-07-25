@@ -32,6 +32,9 @@
     "paperSize": "a4"
   },
   "plugins": [
+    "-sharing",
+    "sharing-plus",
+    "github",
     "livereload",
     "-lunr",
     "-search",
@@ -63,6 +66,29 @@
     "chart@^0.2.0"
   ],
   "pluginsConfig": {
+    "sharing": {
+      "whatsapp": false,
+      "weibo": true,
+      "vk": false,
+      "viber": false,
+      "twitter": false,
+      "stumbleupon": false,
+      "qzone": false,
+      "qq": true,
+      "pocket": false,
+      "messenger": false,
+      "linkedin": false,
+      "line": false,
+      "instapaper": false,
+      "hatenaBookmark": false,
+      "google": false,
+      "facebook": false,
+      "douban": true,
+      "all": ["weibo", "qzone", "qq", "linkedin", "douban"]
+    },
+    "github": {
+      "url": "https://github.com/mitudegaoyang"
+    },
     "theme-default": {
       "showLevel": false
     },
@@ -91,7 +117,7 @@
       "wechatText": "微信打赏"
     },
     "simple-page-toc": {
-      "maxDepth": 5,
+      "maxDepth": 3,
       "skipFirstH1": true
     },
     "sectionx": {
