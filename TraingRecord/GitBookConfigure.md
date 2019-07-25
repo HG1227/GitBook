@@ -1229,6 +1229,54 @@ json配置个性化
 
 没滚动条刷新一下页面
 
+### Anchors 添加 Github 风格的锚点样式
+
+[GitHub地址](https://github.com/rlmv/gitbook-plugin-anchors)
+
+![](../assets/gitbook/gitbook-anchors.png)
+
+在book.json中添加以下内容。然后执行`gitbook install`，
+或者使用NPM安装（单独安装推荐NPM）`npm install gitbook-plugin-anchors`，
+也可以从源码GitHub地址中下载，放到`node_modules`文件夹里（GitHub地址在进入插件地址右侧的GitHub链接）
+
+```json
+{
+  "plugins" : [ "anchors" ]
+}
+```
+
+### Include Codeblock
+
+使用代码块的格式显示所包含文件的内容. 该文件必须存在。插件提供了一些配置，可以区插件官网查看。
+如果同时使用 ace 和本插件，本插件要在 ace 插件前面加载。
+
+[GitHub地址](https://github.com/azu/gitbook-plugin-include-codeblock)
+
+在book.json中添加以下内容。然后执行`gitbook install`，
+或者使用NPM安装（单独安装推荐NPM）`npm install gitbook-plugin-include-codeblockk`，
+也可以从源码GitHub地址中下载，放到`node_modules`文件夹里（GitHub地址在进入插件地址右侧的GitHub链接）
+
+```json
+{
+  "plugins": [
+      "include-codeblock"
+  ],
+  "pluginsConfig": {
+      "include-codeblock": {
+          "template": "ace",
+          "unindent": "true",
+          "theme": "monokai"
+      }
+  }
+}
+```
+
+使用示例:
+
+```css
+[import](../assets/demo.css)
+```
+
 ### 查看图片
 
 #### popup 弹出大图
