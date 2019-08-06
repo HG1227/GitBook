@@ -162,7 +162,7 @@ Docker容器和文件夹很类似。一个Docker容器包含了所有的某个�
 
 * 首先查看docker的镜像仓库中是否有ubuntu这个镜像
 
-```angular2html
+```
 docker search ubuntu
 ```
 
@@ -182,11 +182,11 @@ ubuntu-upstart                                         Upstart is an event-based
 
 要从docker的镜像仓库中拉去ubuntu这个镜像到本地
 
-```angular2html
+```
 docker pull ubuntu
 ```
 
-```angular2html
+```
 ➜  ~ docker pull ubuntu
 Using default tag: latest
 latest: Pulling from library/ubuntu
@@ -199,11 +199,11 @@ dc27a084064f: Download complete
 
 ### 5.4 查看本地下载镜像
 
-```angular2html
+```
 docker images
 ```
 
-```angular2html
+```
 ➜  ~ docker images
 REPOSITORY                                       TAG                 IMAGE ID            CREATED             SIZE
 ubuntu                                           latest              ccc7a11d65b1        3 weeks ago         120MB
@@ -221,7 +221,7 @@ mysql
 
 ### 5.5 创建第一个容器
 
-```angular2html
+```
 docker run -i -t ubuntu /bin/bash
 docker run -it --name mdexam --hostname mdexam -d -p - /Users/liuranran/webwork/skilleee:/opt/work \[路径\] /bin/bash
 ```
@@ -235,11 +235,11 @@ root@c6d35db61f33:/# exit
 
 ### 5.6 查看已启动的容器
 
-```angular2html
+```
 docker ps
 ```
 
-```angular2html
+```
 ➜  ~ docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 ```
@@ -248,11 +248,11 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 
 ### 5.7 查看所有容器
 
-```angular2html
+```
 docker ps -a
 ```
 
-```angular2html
+```
 ➜  ~ docker ps -a
 查看所有容器
 
@@ -269,7 +269,7 @@ CONTAINER ID        IMAGE                                               COMMAND 
 docker start c6d35db61f33
 ```
 
-```angular2html
+```
 ➜  ~ docker start c6d35db61f33
 c6d35db61f33
 ➜  ~ docker ps
@@ -529,31 +529,31 @@ docker start mdexam
 
 #### 6.1.1 查看docker正在运行的命令
 
-```angular2html
+```
 ➜  ~ docker ps
 ```
 
-```angular2html
+```
 CONTAINER ID    IMAGE   COMMAND     CREATED     STATUS      PORTS       NAMES
 ```
 
 #### 6.1.2 查看docker全部正在运行的命令
 
-```angular2html
+```
 ➜  ~ docker ps -a
 ```
 
-```angular2html
+```
 CONTAINER ID    IMAGE   COMMAND     CREATED     STATUS      PORTS       NAMES
 ```
 
 #### 6.1.3 查看docker容器
 
-```angular2html
+```
 ➜  ~ docker images
 ```
 
-```angular2html
+```
 REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
 mysql/mysql-server   latest              1fdf3806e715        26 hours ago        309MB
 wordpress            latest              9414c91da9a8        6 days ago          408MB
@@ -562,42 +562,42 @@ mysql                latest              7bbe2074ef0a        6 days ago         
 
 #### 6.1.4 起`mysql`容器，命名为`mysql3306-TY`
 
-```angular2html
+```
 ➜  ~ docker run --name mysql3306-TY -p 3306:3306 -e "MYSQL_ROOT_PASSWORD=root" -d mysql
 ```
 
-```angular2html
+```
 cdce57f4147ac6d2e3beb135865e744a548709d12e140585490fad85522c7992
 ```
 
 #### 6.1.5 查看docker正在运行的命令
 
-```angular2html
+```
 ➜  ~ docker ps
 ```
 
-```angular2html
+```
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
 a1e5380e57b0        mysql               "docker-entrypoint.s…"   2 hours ago         Up 2 hours          0.0.0.0:3306->3306/tcp   mysql3306-TY
 ```
 
 #### 6.1.6 ~~进入test容器~~（最新版本mysql不需要再修改访问权限）
 
-```angular2html
+```
 ➜  ~ docker mysql3306-TY -it test /bin/bash
 ```
 
-```angular2html
+```
 WARNING: Error loading config file: /Users/haomo/.docker/config.json - stat /Users/haomo/.docker/config.json: permission denied
 ```
 
 #### 6.1.7 ~~进入mysql并输入密码~~`root`（最新版本mysql不需要再修改访问权限）
 
-```angular2html
+```
 bash-4.2# mysql -u root -p 
 ```
 
-```angular2html
+```
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 3
 Server version: 5.7.21 MySQL Community Server (GPL)
@@ -613,11 +613,11 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
 #### 6.1.8 ~~修改权限~~（最新版本mysql不需要再修改访问权限）
 
-```angular2html
+```
 mysql> grant all privileges on *.* to 'root'@'%'identified by 'root' with grant option;
 ```
 
-```angular2html
+```
 Query OK, 0 rows affected, 1 warning (0.00 sec)
 ```
 
@@ -627,7 +627,7 @@ Query OK, 0 rows affected, 1 warning (0.00 sec)
 mysql> exit
 ```
 
-```angular2html
+```
 Bye
 ```
 
@@ -637,17 +637,17 @@ Bye
 bash-4.2# exit
 ```
 
-```angular2html
+```
 exit
 ```
 
 #### 6.1.11 安装WordPress
 
-```angular2html
+```
 ➜  ~ docker run --name some-wordpress --link mysql3306-TY:mysql -p 8080:80 -d wordpress
 ```
 
-```angular2html
+```
 WARNING: Error loading config file: /Users/haomo/.docker/config.json - stat /Users/haomo/.docker/config.json: permission denied
 Unable to find image 'wordpress:latest' locally
 latest: Pulling from library/wordpress

@@ -3,7 +3,7 @@
 #### 作者：高天阳
 #### 邮箱：13683265113@163.com
 
-```angular2html
+```
 更改历史
 
 * 2017-11-26	高天阳	初始化文档
@@ -31,13 +31,13 @@ ng-file-upload是一款轻量级、跨浏览器的angular上传文件指令
 
 * Npm安装
 
-```angular2html
+```
 npm install ng-file-upload --save
 ```
 
 * Bower安装
 
-```angular2html
+```
 bower install ng-file-upload --save
 ```
 
@@ -47,7 +47,7 @@ bower install ng-file-upload --save
 
 引入ng-file-upload
 
-```angular2html
+```
 //inject directives and services. 
 var app = angular.module('fileUpload', ['ngFileUpload']);
 
@@ -115,7 +115,7 @@ app.controller('MyCtrl', ['$scope', 'Upload', function ($scope, Upload) {
 |accept="image/*"|标准的HTML文件接受的输入属性（依赖于浏览器）|
 |ngf-accept=" 'image/*' "|用逗号分隔允许的MIME类型来过滤文件|
 
-```angular2html
+```
 ngf-validate="{
      size: {min: 10, max: '20MB'},
      width: {min: 100, max:10000}, 
@@ -146,7 +146,7 @@ ngf-validate="{
 |ngf-multiple="true" or "false"|默认为false，为true时表示可以选择多个文件|
 |ngf-accept="'.pdf,.jpg'"|用逗号分隔允许的MIME类型来过滤文件|
 
-```angular2html
+```
 ngf-validate="{
      size: {min: 10, max: '20MB'},
      width: {min: 100, max:10000}, 
@@ -161,7 +161,7 @@ ngf-validate="{
 |--|--|
 |ngf-allow-dir="true" or "false"|默认为true，但只在goole浏览器下可以删除|
 
-```angular2html
+```
 ngf-drag-over-class="{
     accept:'acceptClass', 
     reject:'rejectClass', 

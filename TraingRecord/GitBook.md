@@ -1,4 +1,4 @@
-# Gitbook
+# GitBook
 
 #### 作者：高天阳
 #### 邮箱：13683265113@163.com
@@ -6,6 +6,7 @@
 ```
 更改历史
 
+* 2019-07-24	    高天阳	gitbook使用代码高亮插件
 * 2018-09-14	    高天阳	gitbook生成PDF
 * 2018-01-07	    高天阳	gitbook serve报错处理方法
 * 2017-11-12	    高天阳	增加类比内容，更改页面格式
@@ -14,16 +15,16 @@
 
 ```
 
-## 1 历史、现状和发展
+## 历史、现状和发展
 
-### 1.1 [历史](https://www.gitbook.com/about)
+### [历史](https://www.gitbook.com/about)
 
 GitBook创建于2014年中期，致力于为文档，数字书写和出版创建一个现代化的简单解决方案。
 
 我们已经开始构建一个[开源](https://github.com/GitbookIO/gitbook)的格式。哲学是简单到优雅的地步，消除内容创作者的分心和关注，使他们可以自由地写作。
 从那时起，我们已经长大了帮助超过**25万人**一起工作到写作**150,000册图书**投放到**20M**的游客每月。
 
-### 1.2 简介
+### 简介
 
 GitBook 是一个基于 Node.js 的命令行工具，可使用 Github/Git 和 Markdown 来制作精美的电子书。
 
@@ -31,7 +32,7 @@ GitBook可以把你的书本生成为静态网站以及PDF、ePub\(苹果和goog
 
 - 个人观点:这类应该是未来书籍出版的方向
 
-### 1.3 特点 
+### 特点 
 
 - **更新简单**，使用[Git](https://baike.baidu.com/item/GIT/12647237)(分布式版本控制系统)或者web编辑器发布和更新你的电子书是很容易的；
 - **版本管理**，Gitbook是以GIT-scm为基础的.一句简单的`git push`代码就可以发布一个新版本；
@@ -42,11 +43,11 @@ GitBook可以把你的书本生成为静态网站以及PDF、ePub\(苹果和goog
 - **个性化品牌**，个人主页和自定义域名；
 - **合作**，结构化你的流程，安全的访问控制
 
-## 2 安装和使用
+## 安装和使用
 
-### 2.1 安装
+### 安装
 
-#### 2.1.1 安装gitbook
+#### 安装GitBook
 
 [gitbook](https://github.com/GitbookIO/gitbook)的安装非常简单，详细指南可以参考
 [gitbook 文档](https://github.com/GitbookIO/gitbook)。
@@ -59,9 +60,9 @@ $ npm install gitbook -g
 
 需要注意的是：用户首先需要安装 nodejs，以便能够使用 npm 来安装 gitbook。
 
-#### 2.1.1 安装gitbook脚手架
+#### 安装GitBook脚手架
 
-##### 2.1.1.1 windows下安装gitbook脚手架
+##### windows下安装GitBook脚手架
 
 输入命令，全局安装gitbook。
 
@@ -83,7 +84,7 @@ mkdir   mybook       创建文件夹
 
 切换文件夹后在当前文件目录下的在窗口中输入如下命令
 
-##### 2.1.1.2 Mac下安装gitbook脚手架
+##### Mac下安装GitBook脚手架
 
 GitBook 是一个基于 Node.js 的命令行工具；安装gitbook-cli需要首先安装nodeJS,安装gitbook-cli:
 
@@ -95,7 +96,11 @@ gitbook --version            #检测是否安装成功
 
 ![](../../assets/gitbook/gitbookversion.png)
 
-### 2.2 使用
+### 配置
+
+#### [GitBook更多配置](./GitBookConfigure.md)
+
+### 使用
 
 - 配置
     - title
@@ -130,9 +135,9 @@ gitbook --version            #检测是否安装成功
     - eBook：需要安装ebook-convert
 - gitbook插件
 
-### 2.3 示例
+### 示例
 
-### 2.3.1 gitbook章节和子章节
+#### GitBook章节和子章节
 
 在学习使用之前，我们首先需要了解一下`SUMMARY.md`是干什么的。GitBook使用文件 `SUMMARY.md` 来定义书本的章节和子章节的结构。
 文件 `SUMMARY.md` 被用来生成书本内容的预览表。
@@ -162,7 +167,7 @@ gitbook 的基本用法非常简单，基本上就只有两步：
 
 下面将结合一个非常简单的实例，来介绍 gitbook 的基本用法。
 
-#### 2.3.1 gitbook初始化
+#### GitBook初始化
 
 首先，创建如下目录结构：
 
@@ -189,7 +194,7 @@ README.md 和 SUMMARY.md 是两个必须文件
 
 这样我们就会在自己的电脑上创建对好应的md文件；
 
-#### 2.3.2 gitbook预览
+#### GitBook预览
 
 当你在自己的电脑上编辑好图书之后，你可以使用Gitbook的命令行进行本地预览：
 
@@ -203,7 +208,7 @@ README.md 和 SUMMARY.md 是两个必须文件
 git build . build   #生成build文件存储html文件
 ```
 
-#### 2.3.3 在线协作文档
+#### 在线协作文档
 
 gitbook可以帮助我们团队在线编写gitbook，协作编辑文档。
 
@@ -242,9 +247,9 @@ gitbook可以帮助我们团队在线编写gitbook，协作编辑文档。
 ![](../../assets/gitbook/showbook.png)  
 ![](../../assets/gitbook/addmember.png)
 
-### 2.4 最佳实践
+### 最佳实践
 
-#### 2.4.1 [Linux系统上如何同时部署两个gitbook服务](http://blog.csdn.net/moxiaomomo/article/details/53026645)
+#### [Linux系统上如何同时部署两个gitbook服务](http://blog.csdn.net/moxiaomomo/article/details/53026645)
 
 gitbook启动的web 服务默认监听4000端口，而重启监控进程默认监听35729端口。一般这样可以启动一个电子书web服务:
 
@@ -262,7 +267,7 @@ gitbook serve --lrport 35288 --port 4001 /path2/your_another_doc_dir/
 
 否则会报如下错误:
 
-```angular2html
+```
 You already have a server listening on 35729  
 You should stop it and try again.  
 ```
@@ -290,7 +295,7 @@ Error: listen EADDRINUSE
 
 最后, 贴上gitbook的官方用法说明:
 
-```angular2html
+```
 $ gitbook help  
   
   build [book] [output]      build a book  
@@ -318,13 +323,13 @@ $ gitbook help
   init [directory]      create files and folders based on contents of SUMMARY.md  
 ```
 
-#### 2.4.2 [提交gitbook代码时报403](http://www.jianshu.com/p/77b0340a02f3)
+#### [提交gitbook代码时报403](http://www.jianshu.com/p/77b0340a02f3)
 
 > 处理方法
 
 查看本机用户名密码获取方式
 
-```angular2html
+```
 git config --local credential.helper
 git config --global credential.helper
 git config --system credential.helper
@@ -337,7 +342,7 @@ Mac系统打开钥匙串访问，查看到对应gitbook的秘钥(你会发现此
 
 再次提交代码，会提示你输入用户名密码。输入后成功提交。
 
-#### 2.4.3 gitbook serve报错
+#### gitbook serve报错
 
 windows系统gitbook serve时报错找不到lunr.min.js
 
@@ -347,13 +352,13 @@ windows系统gitbook serve时报错找不到lunr.min.js
 
 按下面顺序执行命令
 
-```angular2html
+```
 $ gitbook init
 $ gitbook build
 $ gitbook serve
 ```
 
-#### 2.4.4 gitbook生成pdf
+#### GitBook生成pdf
 
 安装calibre插件
 
@@ -381,7 +386,7 @@ sudo ln -s /Applications/calibre.app/Contents/MacOS/ebook-convert /usr/local/bin
 
 执行完成之后，重新进入书籍目录。
 
-``` 
+```
 huixingdeMacBook-Air:import huixing$ cd jianli
 huixingdeMacBook-Air:jianli huixing$ gitbook pdf . jianli.pdf
 info: 7 plugins are installed 
@@ -400,9 +405,9 @@ info: >> 1 file(s) generated
 
 执行完以上代码，进入书籍目录，即可看到已经转换完成的PDF了。大功告成！
 
-## 3 同类技术对比(列表)
+## 同类技术对比(列表)
 
-### 3.1 gitbook
+### GitBook
 
 - 喜欢:
     - 多人协作及团队支持
@@ -420,7 +425,7 @@ info: >> 1 file(s) generated
     - 根本没有“社交协作”，似乎只是由Git支持。不确定应用程序是否支持小规模协作（双人作者），或者您必须自己处理Git复杂性。
     - 似乎技术导向。没有小说类别。
 
-### 3.2 kanCloud——专注于文档在线创作、协作、分享和托管
+### kanCloud——专注于文档在线创作、协作、分享和托管
 
 看云的发布版本和编辑版本是分离的，而且看云对技术文档做了一些优化，并且支持 API 文档（包括在线调试）。
 最新更新支持插入视频。另外一个在国内定价收费也方便。
@@ -444,7 +449,7 @@ info: >> 1 file(s) generated
     - 离线写作客户端
     - 阅读客户端（支持安卓和IOS）
 
-#### 3.3 Leanpub——Publish Early, Publish Often
+#### Leanpub——Publish Early, Publish Often
 
 - 喜欢：
     - 精益出版。
@@ -459,7 +464,7 @@ info: >> 1 file(s) generated
     - 没有合作。
     - 不发布到主要书店（但允许你这样做）。
 
-#### 3.4 penflip——在线文本编辑工具
+#### penflip——在线文本编辑工具
 
 Penflip似乎更适合你的想法（注意：现在我知道它为什么适合你的想法），像GitHub一样合作。
 - 喜欢：

@@ -2,7 +2,7 @@
 
 #### 作者：高天阳&王志伟
 
-```angular2html
+```
 文档须知
 * 2018-10-17	高天阳	尝试修复插件无法推送
 * 2018-02-12	王志伟	补充资料
@@ -58,9 +58,39 @@ $ gitbook build
 - assets        #图片存储目录
 ```
 
-### 其它
+### 3.2 配置文件book.json的使用
 
-test
+#### 3.2.1 插件列表及功能
+
+livereload
+
+
+"-lunr", "-search","search-plus@^0.0.11",
+"-donate@^1.0.2",
+"code",
+"theme-comscore",
+"simple-page-toc@^0.1.1",
+"prism@^2.1.0",
+"prism-themes@^0.0.2",
+"advanced-emoji@^0.2.1",
+"anchors@^0.7.1",
+"include-codeblock@^3.0.2",
+"ace@^0.3.2",
+"emphasize@^1.1.0",
+"katex@^1.1.3",
+"splitter@^0.0.8",
+"mermaid-gb3@2.1.0",
+"tbfed-pagefooter@^0.0.1",
+"expandable-chapters-small@^0.1.7",
+"favicon@^0.0.2",
+"todo@^0.1.3",
+"terminal@^0.3.2",
+"alerts@^0.2.0",
+"include-csv@^0.1.0",
+"markdown-video",
+"anchor-navigation-ex",
+"embed-pdf",
+"chart@^0.2.0"
 
 ## 4 常见问题
 

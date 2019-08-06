@@ -16,59 +16,59 @@
     * git
 
 * 安装yeoman工具箱:
-```angular2html
+```
 npm install -g yo bower grunt-cli
 ```
 
 * 安装生成器:
-```angular2html
+```
 npm install -g generator-[name]
 ```
 
 * 创建文件夹并进入:
 
 * 在文件中使用生成器:
-```angular2html
+```
 yo [name]
 ```
 
 * 配置生成器:
 
 * 开启服务器:
-```angular2html
+```
 grunt serve
 ```
 
 ### 实战——angular
 
 * 安装yeoman工具箱:
-```angular2html
+```
 npm install -g yo bower grunt-cli
 ```
 
 * 确认yeoman安装工完毕:
-```angular2html
+```
 yo -version && bower -version && grunt-cli -version
 ```
 
 * 安装angularJs生成器:
-```angular2html
+```
 npm install -g generator-angular
 ```
 
 * 创建一个项目文件夹:
-```angular2html
+```
 mkdir yeoAngular && cd yeoAngular
 ```
 
 * 运行生成器:
-```angular2html
+```
 yo 选择 angular / yo angular
 ```
 
 * 配置生成器
 
 * 开启服务器:
-```angular2html
+```
 grunt serve
 ```

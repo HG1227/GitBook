@@ -18,13 +18,13 @@ Hexo 提供了一种更方便管理 Asset 的设定：`post_asset_folder`
 
 2.在hexo的目录下执行（需要等待一段时间）。
 
-```angular2html
+```
 npm install https://github.com/CodeFalling/hexo-asset-image --save
 ```
 
 3.完成安装后用`hexo`新建文章的时候会发现`_posts`目录下面会多出一个和文章名字一样的文件夹。图片就可以放在文件夹下面。结构如下：
 
-```angular2html
+```
 本地图片测试
 ├── apppicker.jpg
 ├── logo.jpg
@@ -36,7 +36,7 @@ npm install https://github.com/CodeFalling/hexo-asset-image --save
 
 生成的结构为：
 
-```angular2html
+```
 public/2016/3/9/本地图片测试
 ├── apppicker.jpg
 ├── index.html
@@ -46,13 +46,13 @@ public/2016/3/9/本地图片测试
 
 同时，生成的 html 是
 
-```angular2html
+```
 <img src="/2016/3/9/本地图片测试/logo.jpg" alt="logo">
 ```
 
 而不是愚蠢的
 
-```angular2html
+```
 <img src="本地图片测试/logo.jpg" alt="logo">
 ```
 

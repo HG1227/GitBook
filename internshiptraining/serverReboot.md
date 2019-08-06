@@ -17,15 +17,15 @@
 
 ### 2.1 进入服务器
 
-```angular2html
+```
 ssh [服务器地址]
 ```
 
-```angular2html
+```
 ➜  ~ ssh member@haomo-tech.com
 ```
 
-```angular2html
+```
 Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
@@ -58,29 +58,29 @@ Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64)
 
 ### 2.2 进入data目录下
 
-```angular2html
+```
 ➜  ~ cd /data/
 ```
 
 ### 2.3 查看data文件下内容
 
-```angular2html
+```
 ➜  ~ ls
 ```
 
 ### 2.4 进入tomcat下的bin目录
 
-```angular2html
+```
 ➜  ~ cd tomcat/bin
 ```
 
 ### 2.5 执行脚本`./catalina.sh`
 
-```angular2html
+```
 ➜  ~ ./catalina.sh start
 ```
 
-```angular2html
+```
 ./catalina.sh: 249: ./catalina.sh: -Djava.awt.headless=true: not found
 Using CATALINA_BASE:   /data/tomcat
 Using CATALINA_HOME:   /data/tomcat
@@ -94,7 +94,7 @@ Tomcat started.
 
 ### 2.6 如果未重启成功 需要先关闭服务再启动
 
-```angular2html
+```
 ➜  ~ ./catalina.sh stop
 ```
 

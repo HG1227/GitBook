@@ -26,7 +26,7 @@ This is an H1
 This is an H2
 ----
 
-```angular2html
+```
   Code:
 
   This is an H1   
@@ -35,7 +35,7 @@ This is an H2
   This is an H2
   ----
 ```
-```angular2html
+```
 备注:任何数量的=和-都可以有效果<br/>
 =表示最高阶标题,-表示第二阶标题
 ```
@@ -54,7 +54,7 @@ This is an H2
 
 ###### This is an H6
 
-```angular2html
+```
   Code:
 
   # This is an H1
@@ -70,7 +70,7 @@ This is an H2
   ###### This is an H6
 ```
 
-```angular2html
+```
 也可以表示成这样 # This is an H1 #
 备注: 行首n个#表示n阶标题，n最大为6
 ```
@@ -84,7 +84,7 @@ This is an H2
  1. Bird
  2. McHale
 
-```angular2html
+```
  Code:
  
  1. Bird
@@ -99,7 +99,7 @@ This is an H2
   + Green
   * Blue
 
-```angular2html
+```
   Code:
   - Red
   + Green
@@ -112,7 +112,7 @@ This is an H2
 
 示例
 
-```angular2html
+```
  > 简单引用1
  > 简单引用2
  > 
@@ -164,28 +164,28 @@ This is an H2
 也可以在星号或是减号中间插入空格
 
 
-```angular2html
+```
 ---
 ```
 
 ---
 
-```angular2html
+```
 - - -
 ```
 - - -
 
-```angular2html
+```
 ***
 ```
 ***
 
-```angular2html
+```
  * * *
 ```
 * * *
  
-```angular2html
+```
  ——————————————
 ```
 ——————————————
@@ -213,7 +213,7 @@ Mardown允许段落内的强迫换行(插入换行符)<br/>
   
   [baidu](https://www.baidu.com/)
  
-```angular2html
+```
 Code:
 This is [baidu](http://www.baidu.com/ "度娘")
 
@@ -238,7 +238,7 @@ This is [baidu example][id] reference-style link.
 [Baidu][]
 标记可以这样写: [Baidu]: http://baidu.com
  
-```angular2html
+```
 Code:
 [Baidu][]
 标记可以这样写: [Baidu]: http://baidu.com
@@ -248,7 +248,7 @@ Code:
  
  ---
  
-```angular2html
+```
 --I get 10 times more traffic from [Google] [1] than from 
 --[Yahoo] [2] or [MSN] [3]. 
 --[1]:  http://google.com/        "Google"
@@ -266,7 +266,7 @@ Code:
  
  https://www.baidu.com
  
-```angular2html
+```
 示例如下: 
 
 http://www.baidu.com
@@ -276,7 +276,7 @@ http://www.baidu.com
 
 Markdown使用性星号(*)和底线(_)作为标记强调字词的符号 两端被一个*或_包围的单词会被转换成斜体 两端被两个*或_包围的单词会被转换成粗体 *或_的两端不能有空白 用什么符号就以什么符号结尾
 
-```angular2html
+```
 示例
  *斜体*
  _斜体_
@@ -293,7 +293,7 @@ Markdown使用性星号(*)和底线(_)作为标记强调字词的符号 两端�
  ``包含 `两个反引号` `` 
  ``<特殊符号&>``
 
-```angular2html
+```
  示例:
 
  ``段落代码``  
@@ -310,7 +310,7 @@ Markdown使用性星号(*)和底线(_)作为标记强调字词的符号 两端�
 ![September](http://a3.topitme.com/4/9b/8f/11644743891028f9b4o.jpg) 
 ![雨夜](http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=624edb750633874488c8273f3966b38c/eaf81a4c510fd9f94340d04c2f2dd42a2834a444.jpg "视觉中国")
 
-```angular2html
+```
 示例
 ![September](http://a3.topitme.com/4/9b/8f/11644743891028f9b4o.jpg)  
 ![雨夜](http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=624edb750633874488c8273f3966b38c/eaf81a4c510fd9f94340d04c2f2dd42a2834a444.jpg "视觉中国")
@@ -322,7 +322,7 @@ Markdown使用性星号(*)和底线(_)作为标记强调字词的符号 两端�
 [xd]:http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=624edb750633874488c8273f3966b38c/eaf81a4c510fd9f94340d04c2f2dd42a2834a444.jpg "视觉中国"
 
 
-```angular2html
+```
 示例:
 --![雨夜][xd]  
 --[xd]:http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=624edb750633874488c8273f3966b38c/eaf81a4c510fd9f94340d04c2f2dd42a2834a444.jpg "视觉中国"
@@ -333,7 +333,7 @@ Markdown使用性星号(*)和底线(_)作为标记强调字词的符号 两端�
  
 使用反斜杠来插入一些在语法中有其它意义的符号,如* 需要转义的字符:
 
-```angular2html
+```
 \   反斜线
 `   反引号
 *   星号

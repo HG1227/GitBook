@@ -227,11 +227,11 @@ Nginx减轻了上游服务器的并发压力；延长了一个请求的处理时
 
 ##### 2.3.1.1 连接服务器
 
-```angular2html
+```
 ➜  ~ ssh member@haomo-tech.com
 ```
 
-```angular2html
+```
 Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
@@ -264,17 +264,17 @@ Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64)
 
 ##### 2.3.1.2 进入Nginx目录
 
-```angular2html
+```
 member@ecs-4354:~$ cd /etc/nginx/sites-enabled
 ```
 
 ##### 2.3.1.3 查看Nginx目录
 
-```angular2html
+```
 member@ecs-4354:/etc/nginx/sites-enabled$ ll
 ```
 
-```angular2html
+```
 total 92
 drwxr-xr-x 2 root root  4096 2月   9 11:48 ./
 drwxr-xr-x 7 root root  4096 12月 12 23:00 ../
@@ -299,16 +299,16 @@ lrwxrwxrwx 1 root root    34 11月 13 18:24 default -> /etc/nginx/sites-availabl
 
 ##### 2.3.1.4 复制一个配置文件范本
 
-```angular2html
+```
 member@ecs-4354:/etc/nginx/sites-enabled$ sudo cp digitizing.conf /etc/nginx/sites-enabled/zjkweb.conf
 ```
 ##### 2.3.1.5 查看Nginx目录
 
-```angular2html
+```
 member@ecs-4354:/etc/nginx/sites-enabled$ ll
 ```
 
-```angular2html
+```
 total 92
 drwxr-xr-x 2 root root  4096 2月   9 11:48 ./
 drwxr-xr-x 7 root root  4096 12月 12 23:00 ../
@@ -334,11 +334,11 @@ lrwxrwxrwx 1 root root    34 11月 13 18:24 default -> /etc/nginx/sites-availabl
 
 ##### 2.3.1.6 配置Nginx文件
 
-```angular2html
+```
 member@ecs-4354:/etc/nginx/sites-enabled$ sudo vim zjkweb.conf 
 ```
 
-```angular2html
+```
 server {
         listen       80;
         server_name  digitizing.haomo-tech.com;
@@ -411,18 +411,18 @@ server {
 
 ##### 2.3.1.7 进入代码仓库目录
 
-```angular2html
+```
 member@ecs-4354:/etc/nginx/sites-enabled$ cd
 member@ecs-4354:~$ cd /var/www/html
 ```
 
 ##### 2.3.1.8 查看目录
 
-```angular2html
+```
 member@ecs-4354:/var/www/html$ ll
 ```
 
-```angular2html
+```
 total 1007340
 drwxrwxrwx 15 member member       4096 2月   9 10:53 ./
 drwxrwxrwx  3 root   root         4096 12月  1 16:32 ../
@@ -443,16 +443,16 @@ drwxrwxr-x  3 member member       4096 1月   2 23:25 xuetangx/
 
 ##### 2.3.1.9 创建张家口项目目录
 
-```angular2html
+```
 member@ecs-4354:/var/www/html$ mkdir zjk
 ```
 ##### 2.3.1.10 查看目录
 
-```angular2html
+```
 member@ecs-4354:/var/www/html$ ll
 ```
 
-```angular2html
+```
 total 1007340
 drwxrwxrwx 15 member member       4096 2月   9 10:53 ./
 drwxrwxrwx  3 root   root         4096 12月  1 16:32 ../
@@ -474,7 +474,7 @@ drwxrwxr-x  3 member member       4096 2月   9 10:55 zjk/
 
 ##### 2.3.1.11 配置项目中的部署脚本
 
-```angular2html
+```
 #!/usr/bin/env bash
 
 npm run build:sit
@@ -484,7 +484,7 @@ rsync -avz --delete dist/*  member@haomo-tech.com:/var/www/html/zjk/
 
 ##### 2.3.1.12 部署
 
-```angular2html
+```
 ➜  zhangjiakouweb git:(master) ✗ sh deploy_dev.sh 
 ```
 
@@ -492,13 +492,13 @@ rsync -avz --delete dist/*  member@haomo-tech.com:/var/www/html/zjk/
 
 1. studio服务器重启nginx
 
-```angular2html
+```
 sudo gitlab-ctl restart nginx
 ```
 
 2. tech服务器重启nginx
 
-```angular2html
+```
 sudo pkill -9 nginx
 sudo nginx -c /etc/nginx/nginx.conf
 ```
@@ -511,11 +511,11 @@ sudo nginx -c /etc/nginx/nginx.conf
 
 ##### 2.3.2.1 连接服务器
 
-```angular2html
+```
 ➜  ~ ssh member@haomo-tech.com
 ```
 
-```angular2html
+```
 Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
@@ -548,17 +548,17 @@ Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-62-generic x86_64)
 
 ##### 2.3.2.2 进入Nginx目录
 
-```angular2html
+```
 member@ecs-4354:~$ cd /etc/nginx/sites-enabled
 ```
 
 ##### 2.3.2.3 查看Nginx目录
 
-```angular2html
+```
 member@ecs-4354:/etc/nginx/sites-enabled$ ll
 ```
 
-```angular2html
+```
 total 92
 drwxr-xr-x 2 root root  4096 2月   9 11:48 ./
 drwxr-xr-x 7 root root  4096 12月 12 23:00 ../
@@ -584,16 +584,16 @@ lrwxrwxrwx 1 root root    34 11月 13 18:24 default -> /etc/nginx/sites-availabl
 
 ##### 2.3.2.4 复制一个配置文件范本
 
-```angular2html
+```
 member@ecs-4354:/etc/nginx/sites-enabled$ sudo cp zjkweb.conf /etc/nginx/sites-enabled/vr.conf
 ```
 ##### 2.3.2.5 查看Nginx目录
 
-```angular2html
+```
 member@ecs-4354:/etc/nginx/sites-enabled$ ll
 ```
 
-```angular2html
+```
 total 92
 drwxr-xr-x 2 root root  4096 2月   9 11:48 ./
 drwxr-xr-x 7 root root  4096 12月 12 23:00 ../
@@ -619,11 +619,11 @@ lrwxrwxrwx 1 root root    34 11月 13 18:24 default -> /etc/nginx/sites-availabl
 ```
 ##### 2.3.2.6 配置Nginx文件
 
-```angular2html
+```
 member@ecs-4354:/etc/nginx/sites-enabled$ sudo vim vr.conf 
 ```
 
-```angular2html
+```
 server {
         listen       80;
         server_name  vr.haomo-tech.com;
@@ -654,7 +654,7 @@ server {
 
 1. tech服务器重启nginx
 
-```angular2html
+```
 sudo pkill -9 nginx
 sudo nginx -c /etc/nginx/nginx.conf
 ```
@@ -667,11 +667,11 @@ sudo nginx -c /etc/nginx/nginx.conf
 #### 2.3.3 以修改服务器接口返回json为例
 
 ##### 2.3.3.1 连接服务器
-```angular2html
+```
 ➜  ~ ssh member@haomo-studio.com
 ```
 
-```angular2html
+```
 Warning: the ECDSA host key for 'haomo-studio.com' differs from the key for the IP address '115.28.80.125'
 Offending key for IP in /Users/haomo/.ssh/known_hosts:2
 Matching host key in /Users/haomo/.ssh/known_hosts:7
@@ -690,17 +690,17 @@ Last login: Sat Feb 24 10:26:03 2018 from 117.136.40.205
 ```
 ##### 2.3.3.2 进入Nginx目录
    
-```angular2html
+```
 member@AY140710084449224635Z:~$ cd /etc/nginx/
 ```
 
 ##### 2.3.2.3 查看Nginx目录
 
-```angular2html
+```
 member@AY140710084449224635Z:/etc/nginx$ ll
 ```
 
-```angular2html
+```
 total 104
 drwxr-xr-x   6 root root  4096 Jan 30 20:59 ./
 drwxr-xr-x 124 root root 12288 Jan 19 07:35 ../
@@ -726,7 +726,7 @@ drwxr-xr-x   2 root root  4096 Nov  6 11:46 ssl/
 
 ##### 2.3.3.4 配置nginx.conf文件
 
-```angular2html
+```
 member@ecs-4354:/etc/nginx/sites-enabled$ sudo vim nginx.conf 
 ```
 ```
@@ -1165,7 +1165,7 @@ location ~ ^/get_service_task_url_param {
 
 ##### 2.3.3.5 重启nginx
 
-```angular2html
+```
 sudo gitlab-ctl restart nginx
 ```
 
@@ -1200,7 +1200,7 @@ sudo gitlab-ctl restart nginx
 
 * 修改前配置文件如下
 
-```angular2html
+```
 server {
         listen       80;
         server_name  vr.haomo-tech.com;
@@ -1217,7 +1217,7 @@ server {
 
 * 需要修改配置文件增加代理地址(哪个地址找不到就代理哪个地址)
 
-```angular2html
+```
 server {
         listen       80;
         server_name  vr.haomo-tech.com;

@@ -56,7 +56,7 @@
     - null
     - undefined
     
-```angular2html
+```
 var foo = 1;
 var bar = foo;
 
@@ -70,7 +70,7 @@ console.log(foo, bar); // => 1, 9
     - array
     - function
     
-```angular2html
+```
 var foo = [1, 2];
 var bar = foo;
 
@@ -83,7 +83,7 @@ console.log(foo[0], bar[0]); // => 9, 9
 
 - 使用直接量创建对象。
 
-```angular2html
+```
 // bad
 var item = new Object();
 
@@ -93,7 +93,7 @@ var item = {};
 
 - 不要使用[保留字](http://es5.github.io/#x7.6.1)作为键名，它们在IE8下不工作。[更多信息](https://github.com/airbnb/javascript/issues/61)。
 
-```angular2html
+```
 // bad
 var superman = {
   default: { clark: 'kent' },
@@ -109,7 +109,7 @@ var superman = {
 
 - 使用同义词替换需要使用的保留字。
 
-```angular2html
+```
 // bad
 var superman = {
   class: 'alien'
@@ -130,7 +130,7 @@ var superman = {
 
 - 使用直接量创建数组。
 
-```angular2html
+```
 // bad
 var items = new Array();
 
@@ -144,7 +144,7 @@ javascript
 
 var someStack = [];
 
-```angular2html
+```
 // bad
 someStack[someStack.length] = 'abracadabra';
 
@@ -154,7 +154,7 @@ someStack.push('abracadabra');
 
 - 当你需要拷贝数组时，使用Array＃[slice。jsPerf](https://jsperf.com/converting-arguments-to-an-array/7)
 
-```angular2html
+```
 var len = items.length;
 var itemsCopy = [];
 var i;
@@ -170,7 +170,7 @@ itemsCopy = items.slice();
 
 > Demo
 
-```angular2html
+```
 // bad
 var a = [1,2,3];
 var b = a;
@@ -184,7 +184,7 @@ console.log(a);// => [4,2,3]
 console.log(b);// => [4,2,3]
 ```
 
-```angular2html
+```
 // bad
 var a = [1,2,3];
 var b = [];
@@ -203,7 +203,7 @@ console.log(a);// => [4,2,3]
 console.log(b);// => [1,2,3]
 ```
 
-```angular2html
+```
 // good
 var a = [1,2,3];
 var b = a.slice();
@@ -219,7 +219,7 @@ console.log(b);// => [1,2,3]
 
 - 使用[Array＃slice](https://www.cnblogs.com/dingxiaoyue/p/4948166.html)将类数组对象转换成数组。
 
-```angular2html
+```
 function trigger() {
   var args = Array.prototype.slice.call(arguments);
   ...
@@ -228,7 +228,7 @@ function trigger() {
 
 > Demo
 
-```angular2html
+```
 function trigger() {
   var args = Array.prototype.slice.call(arguments);
   return args
@@ -251,7 +251,7 @@ console.log(a);// => ["a", "b", "c", "d", "e"]
 
 - 使用单引号''包裹字符串。
 
-```angular2html
+```
 // bad
 var name = "Bob Parr";
 
@@ -269,7 +269,7 @@ var fullName = 'Bob ' + this.lastName;
 
 - 注：若过度使用，通过连接符连接的长字符串可能会影响性能。[jsPerf](https://jsperf.com/ya-string-concat)＆[讨论](https://github.com/airbnb/javascript/issues/40)。
 
-```angular2html
+```
 // bad
 var errorMessage = 'This is a super long error that was thrown because of Batman. When you stop to think about how Batman had anything to do with this, you would get nowhere fast.';
 
@@ -287,7 +287,7 @@ var errorMessage = 'This is a super long error that was thrown because ' +
 
 - 程序化生成的字符串使用Array＃join连接而不是使用连接符。尤其是IE下：[jsPerf](http://jsperf.com/string-vs-array-concat/2)。
 
-```angular2html
+```
 var items;
 var messages;
 var length;
@@ -334,7 +334,7 @@ function inbox(messages) {
 
 - 函数表达式：
 
-```angular2html
+```
 // 匿名函数表达式
 var anonymous = function() {
   return true;
@@ -355,7 +355,7 @@ var named = function named() {
 
 - **注意： ECMA-262**把`块`定义为一组语句。函数声明不是语句。[阅读对ECMA-262这个问题的说明](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97)。
 
-```angular2html
+```
 // bad
 if (currentUser) {
   function test() {
@@ -374,7 +374,7 @@ if (currentUser) {
 
 - 永远不要把参数命名为`arguments`。将这取代函数作用英文域内的`arguments`对象。
 
-```angular2html
+```
 // bad
 function nope(name, options, arguments) {
   // ...stuff...
@@ -390,7 +390,7 @@ function yup(name, options, args) {
 
 - 使用`.`来访问对象的属性。
 
-```angular2html
+```
 var luke = {
   jedi: true,
   age: 28
@@ -405,7 +405,7 @@ var isJedi = luke.jedi;
 
 - 当通过变量访问属性时使用中括号`[]`。
 
-```angular2html
+```
 var luke = {
   jedi: true,
   age: 28
@@ -422,7 +422,7 @@ var isJedi = getProp('jedi');
 
 - 使用总是`var`来声明变量。不这么做将导致产生全局变量。我们要避免污染全局命名空间。
 
-```angular2html
+```
 // bad
 superPower = new SuperPower();
 
@@ -433,7 +433,7 @@ var superPower = new SuperPower();
 
 这样做的好处是增加新变量将变的更加容易，你而且永远不用再担心调换错`;`跟`,`。
 
-```angular2html
+```
 // bad
 var items = getItems(),
     goSportsTeam = true,
@@ -452,7 +452,7 @@ var dragonball = 'z';
 ```
 - 最后再声明未赋值的变量。当你需要引用前面的变量赋值时这将变的很有用。
 
-```angular2html
+```
 // bad
 var i, len, dragonball,
     items = getItems(),
@@ -474,7 +474,7 @@ var i;
 ```
 - 在作用域顶部声明变量。这将帮你避免变量声明提升相关的问题。
 
-```angular2html
+```
 // bad
 function () {
   test();
@@ -536,12 +536,12 @@ function () {
 ```
 - 
 
-```angular2html
+```
 
 ```
 - 
 
-```angular2html
+```
 
 ```
 
