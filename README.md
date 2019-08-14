@@ -41,7 +41,7 @@ $ gitbook --version
 # 初始化
 $ gitbook init
 
-# 安装以来
+# 安装依赖
 $ gitbook install
 
 # 本地预览
