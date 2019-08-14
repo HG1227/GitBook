@@ -1561,9 +1561,9 @@ editor.renderer.updateFontSize();
 
 [GitHub地址](https://github.com/antonlegoo/gitbook-plugin-embed-pdf)
 
-在book.json中添加以下内容。然后执行`gitbook install`，
+在 `book.json` 中添加以下内容。然后执行 `gitbook install`，
 或者使用NPM安装（单独安装推荐NPM）`npm install gitbook-plugin-embed-pdf`，
-也可以从源码GitHub地址中下载，放到`node_modules`文件夹里（GitHub地址在进入插件地址右侧的GitHub链接）
+也可以从源码GitHub地址中下载，放到 `node_modules` 文件夹里（GitHub地址在进入插件地址右侧的GitHub链接）
 
 ```json
 {
