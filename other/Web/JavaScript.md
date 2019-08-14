@@ -178,6 +178,15 @@ $是jQuery对象
 2. 利用for嵌套for，然后splice去重
 3. reduce  通过pre.includes(cur)判断
     
+## ES6新特性
+
+1. 解构
+1. 箭头函数
+1. Promise和Generator
+1. let const
+1. for...of
+1. {}
+
 ## 手写一个递归操作 将字符串翻转
 
 
