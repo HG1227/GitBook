@@ -18,6 +18,75 @@
 
 ## 组件的全局引入和局部引入是怎么写的
 
+全局组件引入写法：在项目的main.js中：
+
+```javascript
+import Vue from 'vue';
+import MyComponent from '@/components/MyComponent.vue'; // 导入自己写的组件文件
+ 
+Vue.use(MyComponent); // 自定义全局组件的时候需要Vue.use();
+ 
+Vue.component('my-component', MyComponent); //初始化组件
+ 
+new Vue({
+  el: '#app',
+  router,
+  components: {
+    App,
+    MyComponent
+  },
+  template: '<App/>',
+});
+```
+
+局部组件引入写法：在需要使用组件的a.vue文件中：
+
+```
+<template>
+</template>
+ 
+<script>
+import MyComponent from '@/components/MyComponent.vue';
+export default {
+  components: {MyComponent}, // 直接初始化就可以啦，不需要Vue.use();
+  data() {},
+  methods: {}
+};
+</script>
+ 
+<style lang="scss" scoped>
+</style>
+```
+
+下面附上自定义组件的MyComponent.vue文件代码：
+
+```
+<template>
+  <div>
+    <a @click="methods1()"></a>
+  </div>
+</template>
+<script>
+import { MessageBox } from 'mint-ui';
+export default {
+  data () { // 组件内参数定义在data中
+    return {
+      data1: {}
+    };
+  },
+  props: { // 组件传参使用props
+    value1: String,
+    value2: Number
+  },
+  methods: { // 组件的计算方法
+    methods1 () {
+    }
+  }
+};
+</script>
+<style lang="scss" scoped>
+</style>
+```
 
 ## 引入插件时vue.use和vue.prototype的区别
 
@@ -45,7 +114,49 @@
 
 ## VUE项目的SEO问题如何解决
 
+SEO及网站渲染
 
+1. 后端渲染: 指传统的 ASP、Java 或 PHP 的渲染机制；
+    1. 好处: 前端耗时少（前端只负责将html进行展示），利于SEO
+    1. 坏处: 网络传输数据量大，占用（部分、少部分）服务器运算资源，response 出的数据量会（稍）大点，模板改了前端的交互和样式什么的一样得跟着联动修改。
+1. 前端渲染: 指使用 JS 来渲染页面大部分内容，代表是现在流行的 SPA 单页面应用；
+    1. 好处: 
+        1. 局部刷新。无需每次都进行完整页面请求
+        1. 懒加载。如在页面初始时只加载可视区域内的数据，滚动后rp加载其它数据，可以通过 react-lazyload 实现
+        1. 富交互。使用 JS 实现各种酷炫效果
+        1. 节约服务器成本。省电省钱，JS 支持 CDN 部署，且部署极其简单，只需要服务器支持静态文件即可
+        1. 天生的关注分离设计。服务器来访问数据库提供接口，JS 只关注数据获取和展现
+        1. JS 一次学习，到处使用。可以用来开发 Web、Serve、Mobile、Desktop 类型的应用
+    1. 坏处: 前端耗时较多，不利于SEO，首屏加载慢。
+    
+vue-cli3解决SEO以及首屏加载问题
+
+1.vue ssr
+
+优点：
+
+更好的SEO，由于搜索引擎爬虫抓取工具可以直接查看完全渲染的页面。更快的内容到达时间(time-to-content)，
+特别是对于缓慢的网络情况或运行缓慢的设备。
+
+缺点：
+
+1. 浏览器特定的代码，只能在某些生命周期钩子函数(lifecycle hook)中使用；一些外部扩展库(external library)可能需要特殊
+处理，才能在服务器渲染应用程序中运行。
+1. 涉及构建设置和部署的更多要求。
+1. 更多的服务器端负载。
+
+2.nuxt.js
+
+Nuxt 是一个基于 Vue 生态的更高层的框架，为开发服务端渲染的 Vue 应用提供了极其便利的开发体验。
+甚至可以用它来做为静态站生成器。比ssr更加简单亲民
+
+3.预渲染：prerender-spa-plugin插件
+
+如果只是改善少数营销页面（例如 /, /about, /contact 等）的 SEO，那么你可能需要预渲染。
+无需使用 web 服务器实时动态编译 HTML，而是使用预渲染方式，在构建时(build time)简单地生成针对特定路由的静态 HTML 文件。
+优点是设置预渲染更简单，并可以将你的前端作为一个完全静态的站点。
+
+[VUE项目SEO问题的解决](https://blog.csdn.net/MiemieWan/article/details/84976052)
 
 ## 写Vue的路由vue-router
 
@@ -85,6 +196,18 @@ vuerouter = [
 
 ## 使用Vue时，页面的加载动画适合在哪个阶段(生命周期/钩子函数)触发
 
+均用到了`<transition>`标签
+
+方式一：css动画
+
+方式二：使用animate.css动画库
+
+方式三：使用Js钩子函数
+
+方式四：使用velocity js动画库
+
+[vue中动画的实现的几种方式](https://www.jianshu.com/p/5c34fafd22da)
+[vue官方文档过渡 & 动画](https://cn.vuejs.org/v2/guide/transitions.html)
 
 ## Vue的自定义指令
 
