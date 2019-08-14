@@ -41,12 +41,16 @@ $ gitbook --version
 # 初始化
 $ gitbook init
 
+# 安装以来
+$ gitbook install
+
 # 本地预览
 $ gitbook serve
 
 # 编译书籍
 $ gitbook build
 ```
+
 
 ## 3 开发
 
