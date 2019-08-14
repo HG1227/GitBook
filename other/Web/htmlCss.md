@@ -8,7 +8,7 @@
     * 标签独占一行，可指定宽、高
 * 内联元素(又叫行内元素)
     * display:inline
-    * <a>、<span>、<i>、<em>、<strong>、<label>、<q>、<var>、<cite>、<code>
+    * &lt;a>、&lt;span>、&lt;i>、&lt;em>、&lt;strong>、&lt;label>、&lt;q>、&lt;var>、&lt;cite>、&lt;code>
     * 标签在一行内，宽度与高度由内容决定，只有在内容超过HTML的宽度时，才会换行
 * 内联块状元素
     * display:inline-block
@@ -41,7 +41,7 @@ flex布局
 | 属性 | `[type="text"]` |
 | 伪类 | :hover |
 | 伪元素 | ::first-line |
-| 子选择器、相邻选择器 | |
+| 子选择器、相邻选择器 | ul>li h1+p |
 
 ### 权重计算规则
 
