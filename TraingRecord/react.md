@@ -50,22 +50,6 @@ npm start
 >
 > 第一行的 npx 不是拼写错误 —— 它是 npm 5.2+ 附带的 package 运行工具。
 
-## JSX
-
-JSX是JavaScript的语法扩展,利用JSX编写DOM结构，可以用原生的HTML标签，也可以直接像普通标签一样引用React组件。
-这两者约定通过大小写来区分，小写的**字符串**是HTML标签，大写开头的**变量**是React组件。
-
-实例：JSX中使用JavaScript表达式，表达式可写在花括号{}中：
-
-```
-ReactDOM.render(
-    <div> 
-        {1+1}
-    </div> ,
-    document.getElementById('example') 
-);
-```
-
 ## React 渲染元素
 
 元素就是您要在屏幕上看到的内容，例如：
@@ -85,7 +69,11 @@ ReactDOM.render(
 );
 ```
 
-## React 组件
+## 组件
+
+![](../assets/react/component.jpeg)
+
+如上图，组件就是网页中的一部分，每一个虚线框包裹的内容，都可以封装成一个组件。
 
 组件可以让您将UI拆分成独立的可重复使用的部分，组件就像JavaScript函数。他们接受任意输入，并返回应该在屏幕上显示的React元素。
 
@@ -104,3 +92,161 @@ class Welcome extends Component {
 ```
 ReactDOM.render(< Welcome />, document.getElementById('root'));
 ```
+
+## 简单的JSX语法
+
+JSX是JavaScript的语法扩展,利用JSX编写DOM结构，可以用原生的HTML标签，也可以直接像普通标签一样引用React组件。
+这两者约定通过大小写来区分，小写的**字符串**是HTML标签，大写开头的**变量**是React组件。
+
+实例：JSX中使用JavaScript表达式，表达式可写在花括号{}中：
+
+注：只能写表达式，不能写js语句，如if等。
+
+```
+ReactDOM.render(
+    <div> 
+        { 1 + 2 }
+    </div> ,
+    document.getElementById('example') 
+);
+```
+
+## 示例
+
+在React官方代码示例中，共分为如下几个文件。
+
+```
+tic-tac-toe
+├── node_modules            # 插件资源
+├── public                  # 公共资源
+│   ├── favicon.ico         # ico图片
+│   ├── index.html          # 项目入口文件(可添加一些meta信息或统计代码)
+│   ├── logo192.png         # logo192x192
+│   ├── logo512.png         # logo512x512
+│   ├── manifest.json       # 
+│   └── robots.txt          # 
+├── build                   ## 
+├── src                     # 开发目录
+│   ├── assets              ## 
+│   │   ├── images          ## 
+│   │   └── style           ## 
+│   ├── App.js              # App组件
+│   └── index.js            # 项目的核心文件
+├── .xxxx                   # 各类配置文件(包括语法配置，git配置等)
+├── package.json            # 项目配置文件
+├── package-lock.json       # 项目插件版本控制文件
+└── README.md               # 项目说明文档(markdown格式)
+```
+
+index.js文件内容如下
+
+```
+// 引入React，帮助程序理解React的组件语法(大写开头的如App是一个组件、<App />尖括号语法)
+import React from 'react';
+// 引入ReactDOM，将React的组件渲染至DOM节点
+import ReactDOM from 'react-dom';
+
+// App组件，大写字母开头
+import App from './App';
+
+// 将App组件渲染至DOM节点上(其中<App />是JSX语法)
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
+App.js文件内容如下
+
+```
+import React from 'react';
+
+// 定义一个React组件
+function App() {
+  return (
+    <div className="App">
+      hello word
+    </div>
+  );
+}
+
+export default App;
+```
+
+也可以写做
+
+```
+import React from 'react';
+
+// 定义一个React组件
+class App extends React.Component {
+  render() {
+    // JSX语法
+    return (
+    <div className="App">
+      hello word
+    </div>
+    );
+  }
+}
+
+export default App;
+```
+
+这是两种定义组件的方式，一种是解释型的函数来定义，一种使用ES6的class来继承。函数型的定义比较简单，语法清晰，
+但是不能使用state和lifecycle（或者说如果使用的话需要hook）。class继承的方式相对复杂，但可以拥有state和lifecycle。
+[参考资料](https://medium.com/@Zwenza/functional-vs-class-components-in-react-231e3fbd7108)
+
+## TodoList功能
+
+改造原有代码，将App.js改为TodoList.js
+
+代码如下
+
+```
+import React from 'react';
+
+// 定义一个React组件
+class TodoList extends React.Component {
+
+    // 用来存储数据
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            data: []
+        }
+    }
+
+    // 声明方法
+    handleBtnClick () {
+        // this指向问题 若在页面中未使用bind修改this指向，则this指向的是button而不是组件，当使用bind后this指向正确
+        this.setState({
+            // [...]展开运算符，相当于承接原有data中的数据，类似push的效果
+            data: [...this.state.data, {name: 'hello word', type: false}]
+        })
+    }
+
+    render() {
+        return (
+            <div>
+                <div>
+                    <input type="text"/>
+                    <button onClick={this.handleBtnClick.bind(this)}>add</button>
+                </div>
+                <div>
+                    <ul>
+                        {
+                            this.state.data.map((item, index) => {
+                                return <li key={index}>{item.name}</li>
+                            })
+                        }
+                    </ul>
+                </div>
+            </div>
+        );
+    }
+}
+
+export default TodoList;
+```
+
+
+
