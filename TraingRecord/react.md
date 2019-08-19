@@ -196,6 +196,8 @@ export default App;
 
 ## TodoList功能
 
+### TodoList初始化组件
+
 改造原有代码，将App.js改为TodoList.js
 
 代码如下
@@ -248,5 +250,123 @@ class TodoList extends React.Component {
 export default TodoList;
 ```
 
+### TodoList新增
 
+```
+import React from 'react';
 
+// 定义一个React组件
+class TodoList extends React.Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            data: [],
+            inputValue: ''
+        }
+    }
+
+    // 输入框变化将值存储在state中
+    handleInputChange (e) {
+        this.setState({
+            inputValue: e.target.value
+        })
+    }
+
+    // 点击新增后，清空原有输入框的值(需要将输入框的value绑定在inputValue上，达成双向绑定的效果)
+    handleBtnClick () {
+        this.setState({
+            inputValue: '',
+            data: [...this.state.data, {name: this.state.inputValue, type: false}]
+        })
+    }
+
+    render() {
+        return (
+            <div>
+                <div>
+                    <input type="text" onChange={this.handleInputChange.bind(this)} value={this.state.inputValue}/>
+                    <button onClick={this.handleBtnClick.bind(this)}>add</button>
+                </div>
+                <div>
+                    <ul>
+                        {
+                            this.state.data.map((item, index) => {
+                                return <li key={index}>{item.name}</li>
+                            })
+                        }
+                    </ul>
+                </div>
+            </div>
+        );
+    }
+}
+
+export default TodoList;
+```
+
+### TodoList删除
+
+```
+import React from 'react';
+
+// 定义一个React组件
+class TodoList extends React.Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            data: [],
+            inputValue: ''
+        }
+    }
+
+    handleInputChange (e) {
+        this.setState({
+            inputValue: e.target.value
+        })
+    }
+
+    handleBtnClick () {
+        this.setState({
+            inputValue: '',
+            data: [...this.state.data, {name: this.state.inputValue, type: false}]
+        })
+    }
+
+    handleItemClick (index) {
+        // 拷贝data再进行修改 因为React不推荐直接修改数据 而是都通过setState的方式将变化后的数据保存在原数据中
+        // 如果直接修改 可能会导致调bug变得困难 以及代码变得效率低下
+        const data = [...this.state.data]
+        data.splice(index, 1)
+        // ES6中键和值一致可以省略'键:'
+        this.setState({
+            data
+        })
+    }
+
+    render() {
+        return (
+            <div>
+                <div>
+                    <input type="text" onChange={this.handleInputChange.bind(this)} value={this.state.inputValue}/>
+                    <button onClick={this.handleBtnClick.bind(this)}>add</button>
+                </div>
+                <div>
+                    <ul>
+                        {
+                            this.state.data.map((item, index) => {
+                                return <li key={index} onClick={this.handleItemClick.bind(this, index)}>{item.name}</li>
+                            })
+                        }
+                    </ul>
+                </div>
+            </div>
+        );
+    }
+}
+
+export default TodoList;
+```
