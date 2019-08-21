@@ -370,3 +370,5 @@ class TodoList extends React.Component {
 
 export default TodoList;
 ```
+
+### TodoList子组件的拆分及父子之间的传参
