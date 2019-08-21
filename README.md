@@ -14,8 +14,8 @@
 本项目文档:[Gitbook链接地址](https://mitudegaoyang.gitbooks.io/mybook/content/)，
 
 Gitbook详细说明见:[Gitbook的使用](TraingRecord/GitBook.md)
-markdown详细说明见:[Markdown](TraingRecord/markdown.md)
-文档书写规范:[培训材料撰写](TraingRecord/TrainingMaterialWriting.md)
+markdown详细说明见:[Markdown](tools/markdown.md)
+文档书写规范:[培训材料撰写](basics/TrainingMaterialWriting.md)
 
 ## 2 使用
 

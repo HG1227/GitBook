@@ -906,7 +906,7 @@ typings install dt~jquery --global --save // 指定前缀也就是源的维护�
 
 ### 最佳实践
 
-#### [Vue项目中应用Typescript](./VueAndTypeScript.md)
+#### [Vue项目中应用Typescript](VueAndTypeScript.md)
 
 ## 参考资料
 

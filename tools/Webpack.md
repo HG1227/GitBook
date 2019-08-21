@@ -6,26 +6,25 @@
 
 #### 1.1 概述 {#11-概述}
 
-Webpack 是当下最热门的前端资源模块化管理和打包工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。还可以将按需加载的模块进行代码分隔，等到实际需要的时候再异步加载。通过 loader 的转换，任何形式的资源都可以视作模块，比如 CommonJs 模块、 AMD 模块、 ES6 模块、CSS、图片、 JSON、Coffeescript、 LESS 等。
+Webpack 是当下最热门的前端资源模块化管理和打包工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。
+还可以将按需加载的模块进行代码分隔，等到实际需要的时候再异步加载。通过 loader 的转换，任何形式的资源都可以视作模块，
+比如 CommonJs 模块、 AMD 模块、 ES6 模块、CSS、图片、 JSON、Coffeescript、 LESS 等。
 
 ### 第二章 安装 {#第二章-安装}
 
 #### 2.1 前提条件 {#21-前提条件}
 
-在开始前，先要确认你已经安装[Node.js](https://nodejs.org/en/)的最新版本。使用 Node.js 最新的 LTS 版本，是理想的启动入口。使用旧版本，你可能遇到各种问题，因为它们可能缺少 webpack 功能或缺少相关 package 包。
+在开始前，先要确认你已经安装[Node.js](https://nodejs.org/en/)的最新版本。使用 Node.js 最新的 LTS 版本，是理想的启动入口。
+使用旧版本，你可能遇到各种问题，因为它们可能缺少 webpack 功能或缺少相关 package 包。
 
 #### 2.2 安装 {#22-安装}
 
 1. 创建一个文件夹，npm初始化，本地安装webpack
 
 ```
-mkdir webpack-demo 
-&
-&
- cd webpack-demo
+mkdir webpack-demo && cd webpack-demo
 npm init -y
 npm install --save-dev webpack
-
 ```
 
 2.创建如下的目录结构和文件
@@ -37,8 +36,7 @@ npm install --save-dev webpack
     |- package.json
   + |- index.html
   + |- /src
-  +   |- index.js
-
+  + |- index.js
 ```
 
 **src/index.js**
@@ -60,48 +58,21 @@ document.body.appendChild(component());
 **index.html**
 
 ```
-<
-html
->
-<
-head
->
-<
-title
->
-Getting Started
-<
-/title
->
-<
-script src="https://unpkg.com/lodash@4.16.6"
->
-<
-/script
->
-<
-/head
->
-<
-body
->
-<
-script src="./src/index.js"
->
-<
-/script
->
-<
-/body
->
-<
-/html
->
+<html>
+    <head>
+        <title>Getting Started</title>
+        <script src="https://unpkg.com/lodash@4.16.6"></script>
+    </head>
+    <body>
+        <script src="./src/index.js"></script>
+    </body>
+</html>
 ```
 
 ### 第三章 创建一个 bundle 文件 {#第三章-创建一个-bundle-文件}
 
-首先我们稍微调整我们的目录结构，将源代码（src）与我们的目标代码（dist）分开。“源”代码是我们将编写和编辑的代码。“目标”代码是`output`最终将最终加载到浏览器中的构建过程的最优化的代码。
+首先我们稍微调整我们的目录结构，将源代码（src）与我们的目标代码（dist）分开。“源”代码是我们将编写和编辑的代码。
+“目标”代码是`output`最终将最终加载到浏览器中的构建过程的最优化的代码。
 
 **project**
 
@@ -109,10 +80,10 @@ script src="./src/index.js"
   webpack-demo
   |- package.json
 + |- /dist
-+   |- index.html
++ |- index.html
 - |- index.html
   |- /src
-    |- index.js
+  |- index.js
 
 ```
 
@@ -120,7 +91,6 @@ script src="./src/index.js"
 
 ```
 npm install --save lodash
-
 ```
 
 然后 import lodash。
@@ -147,55 +117,16 @@ npm install --save lodash
 我们还要修改dist下的`index.html`，来引入按照预期打包的单个 js 文件。
 
 ```
-<
-html
->
-<
-head
->
-<
-title
->
-Getting Started
-<
-/title
->
-
--    
-<
-script src="https://unpkg.com/lodash@4.16.6"
->
-<
-/script
->
-<
-/head
->
-<
-body
->
-
--    
-<
-script src="./src/index.js"
->
-<
-/script
->
-
-+    
-<
-script src="bundle.js"
->
-<
-/script
->
-<
-/body
->
-<
-/html
->
+<html>
+   <head>
+     <title>Getting Started</title>
+-    <script src="https://unpkg.com/lodash@4.16.6"></script>
+   </head>
+   <body>
+-    <script src="./src/index.js"></script>
++    <script src="bundle.js"></script>
+   </body>
+</html>
 ```
 
 这里，`index.js`显式要求引入的`lodash`必须存在，然后将它以`_`的别名绑定（不会造成全局范围变量名污染）。
@@ -232,9 +163,9 @@ bundle.js  544 kB       0  [emitted]  [big]  main
   |- package.json
 + |- webpack.config.js
   |- /dist
-    |- index.html
+  |- index.html
   |- /src
-    |- index.js
+  |- index.js
 
 ```
 
@@ -451,12 +382,12 @@ Time: 895ms
   |- package.json
   |- webpack.config.js
   |- /dist
-    |- bundle.js
-    |- index.html
+  |- bundle.js
+  |- index.html
   |- /src
-+   |- icon.png
-    |- style.css
-    |- index.js
++ |- icon.png
+  |- style.css
+  |- index.js
   |- /node_modules
 
 ```
@@ -656,6 +587,3 @@ webpack-dev-server支持两种模式来自动刷新页面.
 这里只需要多增加 --hot指令就OK了.如下所示.
 
 `webpack-dev-server --content-base build --inline --hot`
-
-
-

@@ -98,7 +98,7 @@ gitbook --version            #检测是否安装成功
 
 ### 配置
 
-#### [GitBook更多配置](./GitBookConfigure.md)
+#### [GitBook更多配置](GitBookConfigure.md)
 
 ### 使用
 
