@@ -88,8 +88,8 @@ rematch流程：
 
 ## 示例
 
-```
-  ##index.js
+```javascript
+  index.js
   import React from 'react'
   import ReactDOM from 'react-dom'
   import { Provider } from 'react-redux'
@@ -124,7 +124,7 @@ rematch流程：
   )
   ​
   ​
-  ##App.js
+  App.js
   import React from 'react'
   import { connect } from 'react-redux'
   ​
@@ -166,15 +166,140 @@ rematch流程：
   )(App)
 ```
 
-
 ## 最佳实践
 
 ### 老项目接入
 
+主要针对已经使用thunk中间键的老项目。
+
+#### 安装依赖，并删除依赖中的redux
+
+> yarn add @rematch/core
+>
+> yarn remove redux （删除redux可能会造成eslint报错）
+
+#### 修改redux入口文件
+
+```javascript
+  src/store/index.js
+  ​
+  import { init } from '@rematch/core';
+  import thunk from 'redux-thunk';
+  import reduxReducerConfig from '@/reducers';
+  import models from '../models';
+  ​
+  const store = init({
+    models,
+    redux: {
+      reducers: {
+        ...reduxReducerConfig
+      },
+      middlewares: [thunk],
+    },
+  });
+  ​
+  export default store;
+```
+
+#### 修改reducers的入口文件
+
+```javascript
+  import { routerReducer as routing } from 'react-router-redux';
+  - import { combineReducers } from 'redux';
+  import dispatchConfigReducer from './dispatch-config';
+  import counterReducer from './count';
+  ​
+  - export default combineReducers({
+  -   routing,
+  -   dispatchConfigReducer,
+  -   counterReducer,
+  - });
+  ​
+  + export default {
+  +   routing,
+  +   dispatchConfigReducer,
+  +   counterReducer,
+  + };
+```
+#### 增加model的入口文件
+
+```javascript
+  + src/models
+  + src/models/re-count.js
+  + src/models/config-list.js
+  + src/models/index.js
+  ​
+  index.js
+  ​
+  import reCount from './re-count';
+  import configList from './config-list';
+  ​
+  export default {
+    reCount,
+    configList,
+  };
+```
+
+如果老项目中没有使用redux，可以使用`yarn remove thunk`删除thunk的依赖和reducers这个文件夹，
+并且在init初始化的时候可以不用传redux这个配置。如果接入rematch，需要锁定版本，
+rematch中引入的redux版本为4.0.0，所以老项目中的
+
 ### 新项目配置
+
+```javascript
+  index.js
+  ​
+  import React from 'react';
+  import { render } from 'react-dom';
+  import { browserHistory, Router } from 'react-router';
+  import { syncHistoryWithStore } from 'react-router-redux';
+  import { Provider } from 'react-redux';
+  import routes from '@/routes';
+  import store from '@/store';
+  import '@/styles/index.less';
+  ​
+  const history = syncHistoryWithStore(browserHistory, store);
+  ​
+  render(
+    <Provider store={store}>
+      <Router history={history} routes={routes} />
+    </Provider>,
+    document.getElementById('root'),
+  );
+  ​
+  ---------------------------------------------------------------------------------------
+  ​
+  // 新建store文件夹，并添加index.js
+  ​
+  import { init } from '@rematch/core';
+  import { routerReducer as routing } from 'react-router-redux';
+  import models from '../models';
+  ​
+  const store = init({
+    models,
+    redux: {
+      reducers: {
+        routing,
+      },
+    },
+  });
+  ​
+  export default store;
+  ​
+  ---------------------------------------------------------------------------------------
+  ​
+  // 新建models文件夹，并添加index
+  ​
+  models结构
+  ├── common
+  │   ├── bizLineList.js
+  │   └── index.js
+  └── index.js
+```
 
 ### bug
 
+Redux DevTools 要升级到最新版，2.16.0有bug
 
 ## 同类技术比较
 
@@ -191,13 +316,13 @@ Dva是一揽子的解决方案，可以使用侵入性很强的dva-cli来快速�
 * 如果使用Dva的一整套框架，现有的项目会有较大的改动
 * Dva使用redux-saga来处理异步，学习成本比较高
 
-### [mirror](https://github.com/mirrorjs/mirror)
+### mirror
 
-类似于Dva的一个redux数据流方案，最新一次更新在两个月之前，一直没有发布1.0的版本
+[mirror](https://github.com/mirrorjs/mirror)类似于Dva的一个redux数据流方案，最新一次更新在两个月之前，一直没有发布1.0的版本
 
-### [rematch](https://github.com/rematch/rematch)
+### rematch
 
-rematch的灵感来自于Dva和mirror，将两者的有点结合了起来。
+[rematch](https://github.com/rematch/rematch)的灵感来自于Dva和mirror，将两者的有点结合了起来。
 
 #### 优点
 
@@ -227,7 +352,7 @@ rematch的灵感来自于Dva和mirror，将两者的有点结合了起来。
 |dispatch promises|√||√|
 |加载插件|√|√|√|
 |persist plugin|√|||
-|package size|14.9k（gzipped: 5.1k）、 redux + thunk: 6k（2k）|130.4k（gzipped: 33.8k）|dva-core: 72.6k（gzipped: 22.5k）|
+|package size|14.9k（gzipped: 5.1k）<br> redux + thunk: 6k（2k）|130.4k（gzipped: 33.8k）|dva-core: 72.6k（gzipped: 22.5k）|
 
 ## 参考资料
 
