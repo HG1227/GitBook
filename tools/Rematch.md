@@ -484,6 +484,124 @@ export const Componet = (props) => {
 
 ## 最佳实践
 
+### 业务逻辑实现
+
+如下图所示，当选择公司性质为 “默认” 或者 “个人” 时候 ‘公司全称’字段是隐藏。当我们选择公司性质为“公司”时 ‘公司全称’字段展示。
+
+默认状态：
+
+![](../assets/rematch/rematchDemo.png)
+
+公司性质为“公司”
+
+![](../assets/rematch/rematchDemo2.png)
+
+这个功能该如何实现呢？
+
+思路：
+
+1. 在‘公司性质’这个 select框上面绑定一个 onchange事件，每次变化 获取到当前select框 对应的值。
+2. 将获取到当前select框的值写一个接口去调用它（如果使用react， 则在 reducer里面定义），并将每次返回的值在传递给前端页面;
+3. 根据接口返回的select的值来对应显示“公司性质”的显示或者隐藏。
+
+代码：
+
+newEdit.js — view层 — 父组件
+
+```javascript
+import Form from './components/basicForm';
+
+onSwitchAccountCategory = (value) => {  /*将从接口获取到的数据子组件 ,这里传递了所有的props数据,和一个函数onSwitchAccountCategory ，传递的函数用于从子组件获取到select框的值传递给父组件*/
+  this.props.dispatch({
+    type: `${this.module}/switchAccountCategory`,
+    payload: value
+  });
+}
+
+buildForm = (props) => {
+  return (
+    <Form  {...props}  onSwitchAccountCategory={this.onSwitchAccountCategory} />
+  );
+}
+```
+
+basicForm.js — view层—子组件
+
+```javascript
+import { FormInputField } from 'components/common';
+
+ render = () => {
+ 
+ let { entity } = this.props; 
+ 
+ return (
+  <Form>
+    <FormInputField
+      getFieldDecorator={getFieldDecorator}
+      label="公司性质"
+      fieldProps={{style: {width: 120 }, onChange: this.props.onSwitchAccountCategory}} /*onChange 方法 */
+      field="accountCategory"
+      fieldDecoratorOptions={
+        {
+          rules: [
+            {
+              required: true,
+              message:'请选择公司性质'
+            }
+          ],
+          validateTrigger: ['onSubmit']
+        }
+      }
+      entity={entity}
+      datasource={CompanyNature.toArray().map(item => ({ text: item.text, id: item.value }))}
+      type="select"/>
+
+    /*---------------------------------------------------------------------------------------*/ 
+      /* 将获取的select框的值转换，判断是否等于公司来控制其 显示 或者 隐藏*/
+    {
+     CompanyNature.getAliasFromValue(entity.accountCategory) === '公司' &&
+      <FormInputField
+      getFieldDecorator={getFieldDecorator}
+      label="公司全称"
+      field="companyName"
+      required={false}
+      fieldDecoratorOptions={
+        {
+          rules: [
+            {
+              required: false,
+              whitespace: true,
+              message: "请输入公司全称"
+            },
+            {
+              validator: this.verifyCompanyName,
+            }
+          ],
+          validateTrigger: ['onSubmit']
+        }
+      }
+      entity={entity}
+      key="companyName"/>}
+ </Form>)
+)
+```
+
+edit.js — Model层
+
+```javascript
+reducers: {
+    switchAccountCategory(state, action) {  //切换公司性质
+      return {
+        ...state,
+        entity: {
+          ...state.entity,
+          accountCategory: action.payload   /* 将获取到的select框的值传递给view层 */ 
+        }
+      };
+    },
+  }
+```
+
 ### 老项目接入
 
 主要针对已经使用thunk中间键的老项目。
@@ -677,3 +795,4 @@ Dva是一揽子的解决方案，可以使用侵入性很强的dva-cli来快速�
 * [Rematch: 重新设计 Redux](https://zhuanlan.zhihu.com/p/34199586)
 * [精读《重新思考 Redux》](https://zhuanlan.zhihu.com/p/36810237)
 * [react中实现防vue中的v-if 和v-show指令切换效果](https://blog.csdn.net/CodingNoob/article/details/86693591)
+* [react控制元素的显示或隐藏](https://blog.csdn.net/qq_24147051/article/details/81112641)
