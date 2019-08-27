@@ -201,8 +201,11 @@ rematch流程：
 
 ## 示例
 
+### 简单示例
+
+index.js
+
 ```javascript
-  index.js
   import React from 'react'
   import ReactDOM from 'react-dom'
   import { Provider } from 'react-redux'
@@ -225,7 +228,9 @@ rematch流程：
   }
   ​
   const store = init({
-    count,
+    module: {
+      count,
+    }
   })
   ​
   // Use react-redux's <Provider /> and pass it the store.
@@ -235,9 +240,11 @@ rematch流程：
     </Provider>,
     document.getElementById('root')
   )
-  ​
-  ​
-  App.js
+```
+​
+App.js
+
+```javascript
   import React from 'react'
   import { connect } from 'react-redux'
   ​
@@ -277,6 +284,202 @@ rematch流程：
     mapState,
     mapDispatch
   )(App)
+```
+
+### 复杂数据结构
+
+一般来讲state中的数据结构是以对象的形式存储的，因为不只存储一个数据，那么例子需要作出适当调整
+
+index.js
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { init } from '@rematch/core';
+import App from './App';
+const count = {
+  state: {
+    num: 0,
+    flag: true,
+    flagShow: true
+  },
+  reducers: {
+    increment: (state, payload) => {
+      return {
+        ...state,
+        num: payload
+      }
+    },
+    toggle: (state, payload) => {
+      return {
+        ...state,
+        flag: payload
+      }
+    },
+    toggleShow: (state, payload) => {
+      return {
+        ...state,
+        flagShow: payload
+      }
+    },
+  },
+  effects: dispatch => ({
+    async asyncIncrement() {
+      await new Promise(resolve => {
+        setTimeout(resolve, 1000)
+      })
+      dispatch.count.increment()
+    },
+  }),
+}
+const store = init({
+    models: {
+        count
+    }
+})
+// Use react-redux's <Provider /> and pass it the store.
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+document.getElementById('root')
+)
+```
+
+app.js
+
+```javascript
+import React from 'react';
+import { connect } from 'react-redux'
+import { Componet } from './componet';
+
+class App extends React.Component {
+
+    // 未使用的constructor声明
+    // constructor(props) {
+    //     super(props)
+    // }
+
+    increment () {
+        this.props.increment(this.props.count.num + 1)
+    }
+    // if切换
+    toggle () {
+        this.props.toggle(!this.props.count.flag)
+    }
+    // show 切换
+    toggleShow () {
+        this.props.toggleShow(!this.props.count.flagShow)
+    }
+    // 子组件传值
+    handleClick (msg, name) {
+        console.log('子组件传回父组件')
+        console.log(msg, name);
+    }
+
+    // 通过匿名函数绑定this
+    // handleClick = (msg, name) => {
+    //     console.log('子组件传回父组件')
+    //     console.log(msg, name);
+    // }
+
+    render() {
+        return (
+            <div>
+                <h2>
+                    count is <b style={{backgroundColor: '#ccc'}}>{this.props.count.num}</b>
+                </h2>
+                ​
+                <h2>
+                    <button onClick={this.increment.bind(this)}>增加count</button>
+                    {' '}
+                    <em style={{backgroundColor: 'yellow'}}>(normal dispatch)</em>
+                </h2>
+                ​
+                <h2>
+                    <button onClick={this.toggle.bind(this)}>类v-if实现</button>
+                    <button onClick={this.toggleShow.bind(this)}>类v-show实现</button>
+                    {' '}
+                    <em style={{backgroundColor: 'yellow'}}>(normal dispatch)</em>
+                </h2>
+
+                <h2>
+                    {'v-if当前值'}{this.props.count.flag ? 'true' : 'false'}
+                </h2>
+                <h2>
+                    {'v-show当前值'}{this.props.count.flagShow ? 'true' : 'false'}
+                </h2>
+
+                <Componet
+                    title="仿v-if、v-show"
+                    msg="仿v-if、v-show"
+                    v-if={this.props.count.flag}
+                    v-show={this.props.count.flagShow}
+                    onClick={this.handleClick.bind(this)}
+                    // 通过匿名函数绑定this
+                    // onClick={this.handleClick}
+                />
+
+                <h2>
+                    <button onClick={this.props.asyncIncrement}>
+                        Increment count (delayed 1 second)
+                    </button>
+                    {' '}
+                    <em style={{backgroundColor: 'yellow'}}>(an async effect!!!)</em>
+                </h2>
+            </div>
+        )
+    }
+}
+
+const mapState = state => ({
+  count: state.count,
+})
+
+const mapDispatch = dispatch => ({
+  increment: dispatch.count.increment,
+  toggle: dispatch.count.toggle,
+  toggleShow: dispatch.count.toggleShow,
+  asyncIncrement: dispatch.count.asyncIncrement,
+})
+
+export default connect(
+    mapState,
+    mapDispatch
+)(App)
+```
+
+仿v-if、v-show效果展示
+
+component.js
+
+```javascript
+import React, { Component } from 'react';
+
+let name = 'zhangsan';
+let msg = {
+    name: 'zhangsan',
+    age: 1212
+};
+export const Componet = (props) => {
+    // console.log(props);
+    if (props['v-if']) {
+        let isShow = props['v-show'] ? 'block' : 'none';
+        return (
+            // 通过匿名函数绑定this
+            // <ul onClick={props.onClick.bind(this, msg, name)} style={{display: isShow}} >
+            <ul onClick={()=>props.onClick(msg, name)} style={{display: isShow}} >
+                <li>${name}</li>
+                <li>${props.title}</li>
+                <li>${props.msg}</li>
+                <li>zhangsan</li>
+            </ul>
+        );
+    } else {
+        return (<div></div>);
+    }
+};
 ```
 
 ## 最佳实践
@@ -473,3 +676,4 @@ Dva是一揽子的解决方案，可以使用侵入性很强的dva-cli来快速�
 * [重新思考Redux](https://rematch.gitbook.io/handbook/)
 * [Rematch: 重新设计 Redux](https://zhuanlan.zhihu.com/p/34199586)
 * [精读《重新思考 Redux》](https://zhuanlan.zhihu.com/p/36810237)
+* [react中实现防vue中的v-if 和v-show指令切换效果](https://blog.csdn.net/CodingNoob/article/details/86693591)
