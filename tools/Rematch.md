@@ -487,6 +487,14 @@ export const Componet = (props) => {
 };
 ```
 
+rematch功能划分
+
+![](../assets/rematch/rematchAbility.png)
+
+rematch流程走向
+
+![](../assets/rematch/rematchProcess.png)
+
 ## 最佳实践
 
 ### 业务逻辑实现
