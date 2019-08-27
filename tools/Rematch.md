@@ -325,11 +325,13 @@ const count = {
     },
   },
   effects: dispatch => ({
-    async asyncIncrement() {
+    async asyncIncrement(s) {
+      // 需要处理数据可在这里进行处理
+      s = ++s
       await new Promise(resolve => {
         setTimeout(resolve, 1000)
       })
-      dispatch.count.increment()
+      dispatch.count.increment(s)
     },
   }),
 }
@@ -356,13 +358,16 @@ import { Componet } from './componet';
 
 class App extends React.Component {
 
-    // 未使用的constructor声明
+    // 需要初始化本模块state的时候通过constructor
     // constructor(props) {
     //     super(props)
     // }
 
     increment () {
         this.props.increment(this.props.count.num + 1)
+    }
+    asyncIncrement () {
+      this.props.asyncIncrement(this.props.count.num + 1)
     }
     // if切换
     toggle () {
@@ -396,6 +401,14 @@ class App extends React.Component {
                     {' '}
                     <em style={{backgroundColor: 'yellow'}}>(normal dispatch)</em>
                 </h2>
+
+                <h2>
+                    <button onClick={this.asyncIncrement.bind(this)}>
+                        Increment count (delayed 1 second)
+                    </button>
+                    {' '}
+                    <em style={{backgroundColor: 'yellow'}}>(an async effect!!!)</em>
+                </h2>
                 ​
                 <h2>
                     <button onClick={this.toggle.bind(this)}>类v-if实现</button>
@@ -420,14 +433,6 @@ class App extends React.Component {
                     // 通过匿名函数绑定this
                     // onClick={this.handleClick}
                 />
-
-                <h2>
-                    <button onClick={this.props.asyncIncrement}>
-                        Increment count (delayed 1 second)
-                    </button>
-                    {' '}
-                    <em style={{backgroundColor: 'yellow'}}>(an async effect!!!)</em>
-                </h2>
             </div>
         )
     }
