@@ -37,35 +37,72 @@ react-router就是一个决定生成什么父子关系的组件，一般和layou
 ### 安装
 
 ```
-npm install -S react-router
+npm install -S react-router-dom
 ```
 
 ### 使用
 
 使用时，路由器Router就是React的一个组件。
 
-```javascript
-import { Router } from 'react-router';
+```
+import { Router } from 'react-router-dom';
 render(<Router/>, document.getElementById('app'));
 ```
 
-### 注册路由
+### 基本路由
 
-Router组件本身只是一个容器，真正的路由要通过Route组件定义。
+在下面这个例子中，我们有3个'Page'组件处理<Router>。注意：我们使用`<Link to="/">`而不是`<a href="/">`。
 
-```javascript
-import { Router, Route, hashHistory } from 'react-router';
+```
+import React from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-render((
-  <Router history={hashHistory}>
-    <Route path="/" component={App}/>
-  </Router>
-), document.getElementById('app'));
+function Index() {
+  return <h2>Home</h2>;
+}
+
+function About() {
+  return <h2>About</h2>;
+}
+
+function Users() {
+  return <h2>Users</h2>;
+}
+
+function AppRouter() {
+  return (
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about/">About</Link>
+            </li>
+            <li>
+              <Link to="/users/">Users</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Route path="/" exact component={Index} />
+        <Route path="/about/" component={About} />
+        <Route path="/users/" component={Users} />
+      </div>
+    </Router>
+  );
+}
+
+export default AppRouter;
 ```
 
 上面代码中，用户访问根路由`/`（比如`http://www.example.com/`），组件APP就会加载到`document.getElementById('app')`。
 
-你可能还注意到，Router组件有一个参数history，它的值hashHistory表示，路由的切换由URL的hash变化决定，即URL的#部分发生变化。
+你可能还注意到，Router组件实际上是[BrowserRouter](./react-router-dom.md)组件起的别名，
+
+它的值hashHistory表示，路由的切换由URL的hash变化决定，即URL的#部分发生变化。
 举例来说，用户访问`http://www.example.com/`，实际会看到的是`http://www.example.com/#/`。
 
 Route组件定义了URL路径与组件的对应关系。你可以同时使用多个Route组件。
@@ -151,5 +188,6 @@ let routes = <Route path="/" component={App}>
 * [react-router官方文档](https://reacttraining.com/react-router/web/guides/quick-start)
 * [React Router 使用教程](https://www.cnblogs.com/qiangxia/p/5646194.html)
 * [react-router、react-redux、antd（Layout）](https://www.jianshu.com/p/54e21ddae130)
+* [React-Router基础（<BrowserRouter>）](https://www.cnblogs.com/xingxingclassroom/p/10740148.html)
 
 
