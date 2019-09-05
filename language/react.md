@@ -50,6 +50,8 @@ npm start
 >
 > 第一行的 npx 不是拼写错误 —— 它是 npm 5.2+ 附带的 package 运行工具。
 
+[完整搭建实例](../tools/create-react-app.md)
+
 ## React 渲染元素
 
 元素就是您要在屏幕上看到的内容，例如：

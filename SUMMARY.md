@@ -82,6 +82,7 @@
     * [cycleJs](language/cycleJs.md)
     * [ES6](language/ES6.md)
     * [react](language/react.md)
+        * [create-react-app](tools/create-react-app.md)
         * [Rematch](tools/Rematch.md)
         * [react-router](tools/react-router.md)
         * [react-router-dom](tools/react-router-dom.md)
