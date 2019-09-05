@@ -19,6 +19,9 @@ const styles = {
     color: 'white',
     height: 48,
     padding: '0 30px',
+    '&:hover': {
+      background: 'linear-gradient(45deg, #FF8E53 30%, #FE6B8B 90%)',
+    }
   },
 };
 
