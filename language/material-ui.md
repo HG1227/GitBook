@@ -4,7 +4,7 @@
 
 ### 实例 
 
-```jsx harmony
+```js
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
@@ -39,5 +39,4 @@ export default withStyles(styles)(HigherOrderComponent);
 
 ## 参考资料
 
-* (Higher-order component API)[https://material-ui.com/zh/styles/basics/#higher-order-component-api]
-
+* [Higher-order component API](https://material-ui.com/zh/styles/basics/#higher-order-component-api)
