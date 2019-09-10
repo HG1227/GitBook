@@ -1,6 +1,20 @@
-# material-ui
+# css in js
 
-## withStyles的使用
+#### 作者：高天阳
+#### 邮箱：13683265113@163.com
+
+```
+更改历史
+
+* 2018-09-05        高天阳     初始化文档
+
+```
+
+## 简介
+
+
+
+## material-ui withStyles的使用
 
 ### 实例 
 
@@ -39,4 +53,5 @@ export default withStyles(styles)(HigherOrderComponent);
 
 ## 参考资料
 
+* [CSS-in-JS，向Web组件化再迈一大步](https://www.jianshu.com/p/cefd3ae73255)
 * [Higher-order component API](https://material-ui.com/zh/styles/basics/#higher-order-component-api)
