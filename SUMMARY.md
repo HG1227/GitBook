@@ -82,6 +82,7 @@
     * [cycleJs](language/cycleJs.md)
     * [ES6](language/ES6.md)
     * [react](language/react.md)
+        * [react生命周期](language/react-life-cycle.md)
         * [create-react-app](tools/create-react-app.md)
         * [Rematch](tools/Rematch.md)
         * [react-router](tools/react-router.md)
