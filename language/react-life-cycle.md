@@ -184,7 +184,7 @@ render方法在上文讲过，这边只是重新调用。
 
 > React v16.4 的生命周期图
 
-![](../assets/react/react-life-16.3.png)
+![](../assets/react/react-life-16.4+.png)
 
 #### 变更缘由
 
@@ -223,7 +223,7 @@ getDerivedStateFromProps本来（React v16.3中）是只在创建和更新（由
 
 > React v16.3 的生命周期图
 
-![](../assets/react/react-life-16.4+.png)
+![](../assets/react/react-life-16.3.png)
 
 这样的话理解起来有点乱，在React v16.4中改正了这一点，让getDerivedStateFromProps无论是Mounting还是Updating，
 也无论是因为什么引起的Updating，全部都会被调用，具体可看React v16.4 的生命周期图。
