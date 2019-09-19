@@ -180,6 +180,10 @@ render方法在上文讲过，这边只是重新调用。
 此方法在组件被卸载前调用，可以在这里执行一些清理工作，
 比如清除组件中使用的定时器，清除componentDidMount中手动创建的DOM元素等，以避免引起内存泄漏。
 
+### React v16.8 的生命周期
+
+![](../assets/react/react-life-16.8.png)
+
 ### React v16.4 的生命周期
 
 > React v16.4 的生命周期图
