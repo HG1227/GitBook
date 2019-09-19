@@ -81,6 +81,7 @@
         * [iview-loader使用](tools/iview-loader.md)
     * [cycleJs](language/cycleJs.md)
     * [ES6](language/ES6.md)
+        * [async/await](language/async-await.md)
     * [react](language/react.md)
         * [react生命周期](language/react-life-cycle.md)
         * [create-react-app](tools/create-react-app.md)
