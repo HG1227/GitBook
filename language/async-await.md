@@ -16,7 +16,7 @@
 
 async [ə'zɪŋk]：这个单词看起来很怪异，它的原型是asynchrony，意为异步。
 
-可能有的人看了这个词想到了放在script标签里的异步脚本，但是此async非彼async，
+可能有的人看了这个词想到了放在script标签里的异步脚本，但是此async非彼[async](https://www.jianshu.com/p/66db7d62d827)，
 这个async是ES2017出来的，也是用来处理异步的，和ES6中的promise类似。
 
 ### async与Promise、generator有什么差别
@@ -25,7 +25,7 @@ nodeJs里面有一个典型的异步操作，下面用三种异步处理方式�
 
 #### promise来读取文件
 
-```
+```javascript
 // promise.js
 const fs = require("fs");
 const read = function(fileName){
@@ -59,7 +59,7 @@ read('1.txt').then(res=>{
 
 #### generator函数读取文件
 
-```
+```javascript
 // generator.js
 const fs = require("fs");
 const read = function(fileName){
@@ -95,7 +95,7 @@ s.next().value.then(res => {
 
 #### async函数读取文件
 
-```
+```javascript
 const fs = require("fs");
 const read = function(fileName){
     return new Promise((resolve,reject)=>{
@@ -148,7 +148,7 @@ readByAsync();
 
 知道了这个东西是干什么的，那么我们在async中怎么用呢？
 
-```
+```javascript
 const fs = require("fs");
 const read = function(fileName){
     return new Promise((resolve,reject)=>{
@@ -177,6 +177,181 @@ readByAsync();
 ```
 
 大家看完了这个async是不是感觉还挺有用的啊，以后工作中async就会替代generator，原理是Promise，所以说特别好用。
+
+## 示例
+
+### async的基础用法
+
+async作为一个关键字放到函数前面，用于表示函数是一个异步函数，因为async就是异步的意思，
+异步函数也就意味着该函数的执行不会阻塞后面代码的执行。写一个async函数
+
+```javascript
+async function timeout() {
+　　return 'hello world';
+}
+```
+
+### async的调用
+
+语法很简单，就是在函数前面加上async关键字，来表示它是异步的，那怎么调用呢？
+async函数也是函数，平时我们怎么使用函数就怎么使用它，
+直接加括号调用就可以了，为了表示它没有阻塞它后面代码的执行，我们在async 函数调用之后加一句`console.log`;
+
+```javascript
+async function timeout() {
+    return 'hello world'
+}
+timeout();
+console.log('虽然在后面，但是我先执行');
+```
+
+打开浏览器控制台，我们看到了
+
+![](../assets/Es6/async2.png)
+
+async函数timeout调用了，但是没有任何输出，它不是应该返回'hello world',先不要着急，
+看一看timeout()执行返回了什么？把上面的timeout()语句改为console.log(timeout())
+
+```javascript
+async function timeout() {
+    return 'hello world'
+}
+console.log(timeout());
+console.log('虽然在后面，但是我先执行');
+```
+
+继续看控制台
+
+![](../assets/Es6/async3.png)
+
+原来async函数返回的是一个promise对象，如果要获取到promise返回值，我们应该用then方法，继续修改代码
+
+```javascript
+async function timeout() {
+    return 'hello world'
+}
+timeout().then(result => {
+    console.log(result);
+})
+console.log('虽然在后面，但是我先执行');
+```
+
+看控制台
+
+![](../assets/Es6/async4.png)
+
+我们获取到了"hello world', 同时timeout的执行也没有阻塞后面代码的执行，和我们刚才说的一致。
+
+### async的回调
+
+这时，你可能注意到控制台中的Promise有一个resolved，这是async函数内部的实现原理。
+如果async函数中有返回一个值,当调用该函数时，
+内部会调用Promise.solve()方法把它转化成一个promise对象作为返回，
+但如果timeout函数内部抛出错误呢？那么就会调用Promise.reject()返回一个promise对象，
+这时修改一下timeout函数
+
+```javascript
+async function timeout(flag) {
+    if (flag) {
+        return 'hello world'
+    } else {
+        throw 'my god, failure'
+    }
+}
+console.log(timeout(true))  // 调用Promise.resolve() 返回promise 对象。
+console.log(timeout(false)); // 调用Promise.reject() 返回promise 对象。
+```
+
+控制台如下：
+
+![](../assets/Es6/async5.png)
+
+如果函数内部抛出错误， promise 对象有一个catch 方法进行捕获。
+
+```javascript
+timeout(false).catch(err => {
+    console.log(err)
+})
+```
+
+### await的使用
+
+async关键字差不多了，我们再来考虑await关键字，await是等待的意思，
+那么它等待什么呢，它后面跟着什么呢？其实它后面可以放任何表达式，
+不过我们更多的是放一个返回promise 对象的表达式。注意await关键字只能放到async函数里面
+
+现在写一个函数，让它返回promise对象，该函数的作用是2s之后让数值乘以2
+
+```javascript
+// 2s 之后返回双倍的值
+function doubleAfter2seconds(num) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(2 * num)
+        }, 2000);
+    } )
+}
+```
+
+现在再写一个async函数，从而可以使用await关键字， await后面放置的就是返回promise对象的一个表达式，
+所以它后面可以写上doubleAfter2seconds函数的调用
+
+```javascript
+async function testResult() {
+    let result = await doubleAfter2seconds(30);
+    console.log(result);
+}
+```
+
+现在调用testResult 函数
+
+```javascript
+testResult();
+```
+
+打开控制台，2s 之后，输出了60. 
+
+现在我们看看代码的执行过程，调用testResult函数，它里面遇到了await, 
+await表示等一下，代码就暂停到这里，不再向下执行了，它等什么呢？
+等后面的promise对象执行完毕，然后拿到promise resolve的值并进行返回，
+返回值拿到之后，它继续向下执行。具体到 我们的代码, 遇到await之后，
+代码就暂停执行了，等待doubleAfter2seconds(30) 执行完毕，
+doubleAfter2seconds(30) 返回的promise 开始执行，2秒之后，
+promise resolve了，并返回了值为60， 这时await 才拿到返回值60，
+然后赋值给result，暂停结束，代码才开始继续执行，执行console.log语句。
+
+就这一个函数，我们可能看不出async/await的作用，如果我们要计算3个数的值，然后把得到的值进行输出呢？
+
+```javascript
+async function testResult() {
+    let first = await doubleAfter2seconds(30);
+    let second = await doubleAfter2seconds(50);
+    let third = await doubleAfter2seconds(30);
+    console.log(first + second + third);
+}
+```
+
+6秒后，控制台输出220, 我们可以看到，写异步代码就像写同步代码一样了，再也没有回调地域了。
+
+## 最佳实践
+
+再写一个真实的例子，我原来做过一个小功能，话费充值，当用户输入电话号码后，
+先查找这个电话号码所在的省和市，然后再根据省和市，找到可能充值的面值，进行展示。
+
+为了模拟一下后端接口，我们新建一个node 项目。 新建一个文件夹 async, 
+然后npm init -y 新建package.json文件，npm install express --save 安装后端依赖，
+再新建server.js 文件作为服务端代码， public文件夹作为静态文件的放置位置，
+在public 文件夹里面放index.html 文件， 整个目录如下
+
+
+
+
+
+
+
+
+
+
 
 ## 参考资料
 
